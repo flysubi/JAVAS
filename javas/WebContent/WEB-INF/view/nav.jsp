@@ -13,16 +13,19 @@
 	<div class="collapse navbar-collapse" id="myNav">
 		<c:choose>
 		<c:when test="${auth eq null }">
+		<ul class="nav navbar-nav">
+			<li><a href="#" style="font-family: 돋움; font-size: 14px; font-weight: 700; color: black;">신민수님 환영합니다! (100p)</a></li>
+		</ul>
 		<ul class="nav navbar-nav navbar-right">
-			<li><a href="#" style="font-family: 돋움; font-size: 18px; font-weight: 900;">로그인</a></li>
-			<li><a href="#" style="font-family: 돋움; font-size: 18px; font-weight: 900;">회원가입</a></li>
+			<li><a href="#" style="font-family: 돋움; font-size: 14px;">로그인</a></li>
+			<li><a href="#" style="font-family: 돋움; font-size: 14px;">회원가입</a></li>
 		</ul>
 		</c:when>
 		<c:otherwise>
 		
 		<ul class="nav navbar-nav navbar-right">
 			<li class="dropdown"><a class="dropdown-toggle"
-						data-toggle="dropdown" href="#" style="font-family: 돋움; font-size: 18px; font-weight: 900;">${auth } (${point } p)<span class="caret"></span></a>
+						data-toggle="dropdown" href="#" style="font-family: 돋움; font-size: 18px; font-weight: 900; color: black;">${auth } (${point } p)<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="#">로그아웃</a></li>
 							
@@ -34,12 +37,12 @@
 	</div>
 	<div class="collapse navbar-collapse" id="myNav">
 		<ul class="nav navbar-nav">
-			<li><a href="#" style="font-family: 돋움; font-size: 18px; font-weight: 900;">JAVAS</a></li>
+			<li><a href="#" style="font-family: 돋움; font-size: 36px; font-weight: 900; color: blue;">JAVAS</a></li>
 		</ul>
 		
 		<ul class="nav navbar-nav navbar-right">
-			<li><a href="#" style="font-family: 돋움; font-size: 18px; font-weight: 900;">사용법</a></li>
-			<li><a href="#" style="font-family: 돋움; font-size: 18px; font-weight: 900;">공유게시판</a></li>
+			<li><a href="#" style="font-family: 돋움; font-size: 18px; font-weight: 900; color: black;">사용법</a></li>
+			<li><a href="#" style="font-family: 돋움; font-size: 18px; font-weight: 900; color: black;">공유게시판</a></li>
 		</ul>
 	</div>
 </div>
