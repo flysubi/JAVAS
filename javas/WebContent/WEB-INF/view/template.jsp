@@ -17,11 +17,6 @@
 </head>
 <body class="container">
 	<div>
-	<header>
-		<div align="center" class="jumbotron"> <!-- 클래스는 2개이상도 쓸 수 있다. -->
-			<a href="/" style="text-decoration:none; font-family: 돋움; font-weight: 900; font-size: 63pt;">JAVAS</a>
-		</div>
-	</header>
 	<nav>
 		<!-- <tiles:getAsString name="nav"/>  value값 출력(글씨를 찍음) -->
 		<tiles:insertAttribute name="nav"/> <!-- value값 include -->
