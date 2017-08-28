@@ -51,6 +51,7 @@
 		<ul class="nav navbar-nav navbar-right">
 			<li><a href="#">JAVAS</a></li>
 			<li><a href="#">공유게시판</a></li>
+			<li><a href="/question/list.js">Q&A</a></li>
 		</ul>
 	</div>
 </div>
