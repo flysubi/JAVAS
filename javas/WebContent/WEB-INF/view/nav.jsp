@@ -10,7 +10,7 @@
 		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNav"><span class="icon-bar"></span> <span class="icon-bar"></span> <span
 				class="icon-bar"></span></button>
 	</div>
-	<div class="collapse navbar-collapse" id="myNav">
+	<div class="collapse navbar-collapse" id="myNav" style="background-image: none; background-color: white; border-color: white;  border-radius:0;">
 		<c:choose>
 		<c:when test="${auth eq null }">
 		<ul class="nav navbar-nav">
@@ -35,8 +35,8 @@
 		</c:otherwise>
 		</c:choose>
 	</div>
-	<div class="collapse navbar-collapse" id="myNav">
-		<ul class="nav navbar-nav">
+	<div class="collapse navbar-collapse" id="myNav" style="background-image: none; background-color: white; border-color: white; border: 0;">
+		<ul class="nav navbar-nav" style="outline:0; border:0;">
 			<li><a href="#" style="font-family: 돋움; font-size: 36px; font-weight: 900; color: blue;">JAVAS</a></li>
 		</ul>
 		
@@ -45,4 +45,4 @@
 			<li><a href="#" style="font-family: 돋움; font-size: 18px; font-weight: 900; color: black;">공유게시판</a></li>
 		</ul>
 	</div>
-</div>
+</div>	
