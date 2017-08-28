@@ -43,11 +43,6 @@
 		<property name="dataSource" ref="ds" />
 		<property name="mapperLocations">
 			<list>
-				<value></value>
-				<value></value>
-				<value></value>
-				<value></value>
-				<value></value>
 			</list>
 		</property>
 	</bean>

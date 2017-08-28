@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/user")
 public class UserController {
 	
-	@RequestMapping("/join.sz")
+	@RequestMapping("/join.js")
 	public ModelAndView toJoin() {
 		ModelAndView mav = new ModelAndView("t_el");
 		mav.addObject("section", "user/join");
