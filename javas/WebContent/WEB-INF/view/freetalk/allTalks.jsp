@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<div style="padding-bottom: 10px;">
+<div style="padding-bottom: 10px; text-align: center">
 	<h2>게시판</h2>
 	<div style="padding-right: 20px; padding-bottom: 10px;" align="right">
 		<a href="/freetalk/addNew.js">

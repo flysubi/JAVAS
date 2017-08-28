@@ -16,11 +16,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div>
 	<nav>
 		<!-- <tiles:getAsString name="nav"/>  value값 출력(글씨를 찍음) -->
 		<tiles:insertAttribute name="nav"/> <!-- value값 include -->
 	</nav>
+	<div class="container">
 	<section style="min-height: 70%">
 		<tiles:insertAttribute name="section"/>
 	</section>
