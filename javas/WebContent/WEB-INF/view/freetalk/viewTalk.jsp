@@ -53,7 +53,7 @@
 <script>
 	var list = function() {
 		$.ajax({
-			url : "/freetalk/commentsAjax.js",
+			url : "/question/commentsAjax.js",
 			data : {
 				"num" : "${param.num}",
 			}

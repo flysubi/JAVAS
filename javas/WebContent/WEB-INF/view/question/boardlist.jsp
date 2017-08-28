@@ -3,7 +3,7 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div align="center">
 	<table class="table table-hover">
 		<thead>
@@ -23,12 +23,12 @@
 							<td>${i.FT_WRITER }</td>
 							<c:choose>
 								<c:when test="${i.FT_DEPTH eq 0}">
-									<td><a href="/question/detail.js?num=${i.FT_NUM }">${i.FT_TITLE }</a></td>
+									<td><a href="/question/detail.jv?num=${i.FT_NUM }">${i.FT_TITLE }</a></td>
 								</c:when>
 								<c:otherwise>
 									<td><c:forEach begin="1" end="${i.FT_DEPTH }" step="1">
 											&emsp;
-										</c:forEach> <a href="/question/detail.js?num=${i.FT_NUM }"> <i
+										</c:forEach> <a href="/question/detail.jv?num=${i.FT_NUM }"> <i
 											class="material-icons">subdirectory_arrow_right</i>${i.FT_TITLE }</a></td>
 								</c:otherwise>
 							</c:choose>
@@ -41,12 +41,13 @@
 					<tr>
 						<td colspan="4" style="text-align: center"><br />글이 없어요.</td>
 					</tr>
-
+					
 				</c:otherwise>
 			</c:choose>
 		</tbody>
 	</table>
-	<form action="/question/search.js">
+	<button  type="submit" class="btn btn-default" align="right" style="height:60;"><a href="/question/write.jv">글등록</a></button>
+	<form action="/question/search.jv">
 		<div class="input-group">
 			<input type="text" class="form-control" placeholder="Search"
 				name="keyword"  required="required">

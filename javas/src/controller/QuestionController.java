@@ -22,7 +22,7 @@ public class QuestionController {
 	@Autowired
 	QuestionModel qs;
 
-	@RequestMapping("/list.js")
+	@RequestMapping("/list.jv")
 	public ModelAndView boardList() {
 		ModelAndView mav = new ModelAndView("t_el");
 		List<Map<String, String>> list = qs.boardList();
@@ -33,7 +33,7 @@ public class QuestionController {
 		return mav;
 	}
 
-	@RequestMapping("/write.js")
+	@RequestMapping("/write.jv")
 	public ModelAndView boardWrite() {
 		ModelAndView mav = new ModelAndView("t_el");
 		mav.addObject("section", "/question/boardwrite");
@@ -41,41 +41,42 @@ public class QuestionController {
 		return mav;
 	}
 
-	@RequestMapping("/writeExec.js")
+	@RequestMapping("/writeExec.jv")
 	public ModelAndView boardWriteExec(@RequestParam Map<String, String> map, HttpSession session) {
-		map.put("writer", (String) session.getAttribute("auth"));
+		System.out.println(map);
+		map.put("writer", "flysubi");
 		qs.postsUpload(map);
-		ModelAndView mav = new ModelAndView("redirect:/question/list.js");
+		ModelAndView mav = new ModelAndView("redirect:/question/list.jv");
 		return mav;
 	}
 
-	@RequestMapping("/detail.js")
+	@RequestMapping("/detail.jv")
 	public ModelAndView boardDetail(@RequestParam(name = "num") String num) {
 		ModelAndView mav = new ModelAndView("t_el");
 		Map<String, String> map = qs.boardDetail(num);
-		mav.addObject("section", "/freeboard/boarddetail");
+		mav.addObject("section", "/question/boarddetail");
 		mav.addObject("posts", map);
 		return mav;
 	}
 
-	@RequestMapping("/answer.js")
+	@RequestMapping("/answer.jv")
 	public ModelAndView BoardReply(@RequestParam(name = "num") String num) {
 		ModelAndView mav = new ModelAndView("t_el");
 		Map<String, String> map = qs.boardDetail(num);
-		mav.addObject("section", "/freeboard/boardanswer");
+		mav.addObject("section", "/question/boardanswer");
 		mav.addObject("posts", map);
 		return mav;
 	}
 
-	@RequestMapping("/replyExec.js")
+	@RequestMapping("/replyExec.jv")
 	public ModelAndView boardReplyExec(@RequestParam Map<String, Object> map, HttpSession session) {
 		map.put("writer", (String) session.getAttribute("auth"));
-		ModelAndView mav = new ModelAndView("redirect:/freeboard/list.choc");
+		ModelAndView mav = new ModelAndView("redirect:/quesuton/list.jv");
 		qs.boardReply(map);
 		return mav;
 	}	
 
-	@RequestMapping("/search.js")
+	@RequestMapping("/search.jv")
 	public ModelAndView freeSearchList(@RequestParam (name="keyword") String keyword, String[] strAr, Map<String, List<String>> map) {
 		strAr = keyword.split(" ");
 		List Arlist = new ArrayList();
@@ -92,7 +93,7 @@ public class QuestionController {
 		return mav;
 	}
 	
-	@RequestMapping("/reply.js")
+	@RequestMapping("/reply.jv")
 	@ResponseBody
 	public List<Map<String, Object>> freeboardsmallReply(@RequestParam Map<String, Object> reply, HttpSession session) {
 		reply.put("writer", (String)session.getAttribute("auth"));
@@ -103,7 +104,7 @@ public class QuestionController {
 		return list;
 	}
 	
-	@RequestMapping("/replylist.js")
+	@RequestMapping("/replylist.jv")
 	@ResponseBody
 	public List<Map<String, Object>> freeboardgetlReply(@RequestParam Map<String, Object> reply) {
 		

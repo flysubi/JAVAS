@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <div align="center">
-	<form action="/freeboard/writeExec.choc" method="post">
+	<form action="/question/writeExec.jv" method="post">
 			<div class="form-group">
 				<input class="form-control" type="text" name="title" placeholder="제목을 입력해 주세요" required="required"/>
 			</div>
