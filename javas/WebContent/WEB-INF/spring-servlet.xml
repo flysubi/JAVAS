@@ -43,6 +43,9 @@
 		<property name="dataSource" ref="ds" />
 		<property name="mapperLocations">
 			<list>
+				<value>/WEB-INF/mapper/freetalk-mapper.xml</value>
+				<value>/WEB-INF/mapper/question-mapper.xml</value>
+				<value>/WEB-INF/mapper/user-mapper.xml</value>
 			</list>
 		</property>
 	</bean>
