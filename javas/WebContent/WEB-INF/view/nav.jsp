@@ -50,7 +50,7 @@
 		
 		<ul class="nav navbar-nav navbar-right">
 			<li><a href="#">JAVAS</a></li>
-			<li><a href="#">공유게시판</a></li>
+			<li><a href="/freetalk/allTalks.js">공유게시판</a></li>
 		</ul>
 	</div>
 </div>
