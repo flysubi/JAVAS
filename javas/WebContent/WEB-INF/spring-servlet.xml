@@ -42,9 +42,7 @@
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="ds" />
 		<property name="mapperLocations">
-			<list>
-				<value></value>
-				
+			<list>				
 			</list>
 		</property>
 	</bean>
