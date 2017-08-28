@@ -13,9 +13,6 @@ import org.springframework.stereotype.Service;
 public class FreetalkDao {
 
 	@Autowired
-	DataSource ds;
-	
-	@Autowired
 	SqlSessionFactory factory;
 	
 	public List<Map> allTalks(Map map) {
