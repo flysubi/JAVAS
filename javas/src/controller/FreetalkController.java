@@ -20,7 +20,6 @@ public class FreetalkController {
 	@Autowired
 	FreetalkDao fdao;
 	
-	
 	@RequestMapping("/addNew.js")
 	public ModelAndView addNew() {
 		ModelAndView mav = new ModelAndView("t_el");
