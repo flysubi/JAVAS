@@ -29,7 +29,7 @@ public class FreetalkController {
 	
 	@RequestMapping("/addNewExec.js")
 	public ModelAndView addNewExec(@RequestParam Map map, HttpSession session) {
-			map.put("writer", session.getAttribute("login"));
+			map.put("writer", session.getAttribute("auth"));
 			boolean b = fdao.addNew(map);
 			
 		ModelAndView mav = new ModelAndView();
@@ -78,7 +78,7 @@ public class FreetalkController {
 	@RequestMapping("/commentsAjax.js")
 	@ResponseBody
 	public List viewTalkAjax(@RequestParam Map param, @RequestParam (name="num") int num, HttpSession session ) {
-		String id = (String)session.getAttribute("login");
+		String id = (String)session.getAttribute("auth");
 			param.put("writer", id);
 			List<Map> list = fdao.getComment(num);
 			if(param.get("content") != null) {

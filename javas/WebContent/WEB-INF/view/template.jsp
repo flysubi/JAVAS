@@ -21,7 +21,7 @@
 		<tiles:insertAttribute name="nav"/> <!-- value값 include -->
 	</nav>
 	<div class="container">
-	<section style="min-height: 70%">
+	<section style="min-height: 70%; text-align: center;">
 		<tiles:insertAttribute name="section"/>
 	</section>
 	<footer>

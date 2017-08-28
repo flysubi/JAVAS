@@ -50,12 +50,8 @@
 		
 		<ul class="nav navbar-nav navbar-right">
 			<li><a href="#">JAVAS</a></li>
-<<<<<<< HEAD
-			<li><a href="#">공유게시판</a></li>
 			<li><a href="/question/list.js">Q&A</a></li>
-=======
 			<li><a href="/freetalk/allTalks.js">공유게시판</a></li>
->>>>>>> branch 'master' of https://github.com/flysubi/JAVAS.git
 		</ul>
 	</div>
 </div>
