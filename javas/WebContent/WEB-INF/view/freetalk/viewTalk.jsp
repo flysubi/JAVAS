@@ -7,11 +7,11 @@
  	background : snow;
  }
 </style>
-	<h2>${sessionScope.map.FT_TITLE}</h2>
+	<h2>${sessionScope.map.TITLE}</h2>
 		<p style="text-align: right; padding-right: 100px; font-size: 12pt;">
-			작성자 : ${sessionScope.map.FT_WRITER }
-				<button type="submit" class="btn btn-danger btn-xs" id="like" value="${sessionScope.map.FT_NUM }">♡</button>
-				 | 작성일 : <fmt:formatDate value="${sessionScope.map.FT_WRITEDATE}" pattern="yy-MM-dd"/>
+			작성자 : ${sessionScope.map.WRITER }
+				<button type="submit" class="btn btn-danger btn-xs" id="like" value="${sessionScope.map.NUM }">♡</button>
+				 | 작성일 : <fmt:formatDate value="${sessionScope.map.WRITEDATE}" pattern="yy-MM-dd"/>
 		 <c:choose>
 			<c:when test="${sessionScope.map.DIFF lt 1}">
 				<c:choose>
@@ -33,12 +33,8 @@
 		 </c:choose>
 		</p>
 	<div class="col-xs-0 col-md-2"></div>
-	<div class="well col-xs-12 col-md-8"><pre>${sessionScope.map.FT_CONTENT}</pre></div>
+	<div class="well col-xs-12 col-md-8"><pre>${sessionScope.map.CONTENT}</pre></div>
 	<div class="col-xs-0 col-md-2"></div>
-	<div style="padding-right: 200px; padding-bottom: 10px;" align="right">
-		<a href="/freetalk/addReply.sz">
-			<button type="button" class="btn btn-default">답글달기</button></a>	
-	</div>
 	<hr style="background-color:silver; height: 2px; width: 70%"/>
 	<div class="col-xs-0 col-md-2"></div>
 	<div class="col-xs-12 col-md-8">
@@ -57,11 +53,12 @@
 <script>
 	var list = function() {
 		$.ajax({
-			url : "/freetalk/commentsAjax.sz",
+			url : "/freetalk/commentsAjax.js",
 			data : {
 				"num" : "${param.num}",
 			}
 		}).done(function(rst) {
+			console.log(rst);
 			var table = "";
 			for(var i=0; i<rst.length; i++) {
 				table += "<tr><td style=\"width: 20%\"><b>"+rst[i].WRITER+"</b></td>";
@@ -76,10 +73,10 @@
 	
 	$("#suc").on("click",function() {
 			$.ajax({
-				url : "/freetalk/commentsAjax.sz",
+				url : "/freetalk/commentsAjax.js",
 				data : {
 					"content" : $("#comment").val(),
-					"num" : "${sessionScope.map.FT_NUM }",
+					"num" : "${sessionScope.map.NUM }",
 				}
 			}).done(function(){
 				list();
@@ -89,20 +86,3 @@
 	
 </script>
 
-<script>
-	document.getElementById("like").onclick = function() {
-		var req = new XMLHttpRequest();
-		req.onreadystatechange = function() {
-			if(this.readyState == 4) {
-				var obj = JSON.parse(this.responseText);
-				if(obj.result) {
-					window.alert("좋아요");
-				} else {
-					window.alert("좋아요 실패");
-				}
-				}
-			};
-			req.open("get","/freetalk/likeAjax.sz?num="+this.value,true);
-			req.send();
-		}
-</script>

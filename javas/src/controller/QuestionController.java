@@ -41,7 +41,7 @@ public class QuestionController {
 		return mav;
 	}
 
-	@RequestMapping("/writeExec.choc")
+	@RequestMapping("/writeExec.js")
 	public ModelAndView boardWriteExec(@RequestParam Map<String, String> map, HttpSession session) {
 		map.put("writer", (String) session.getAttribute("auth"));
 		qs.postsUpload(map);
@@ -51,7 +51,7 @@ public class QuestionController {
 
 	@RequestMapping("/detail.js")
 	public ModelAndView boardDetail(@RequestParam(name = "num") String num) {
-		ModelAndView mav = new ModelAndView("t_el_freeboard");
+		ModelAndView mav = new ModelAndView("t_el");
 		Map<String, String> map = qs.boardDetail(num);
 		mav.addObject("section", "/freeboard/boarddetail");
 		mav.addObject("posts", map);
@@ -60,7 +60,7 @@ public class QuestionController {
 
 	@RequestMapping("/answer.js")
 	public ModelAndView BoardReply(@RequestParam(name = "num") String num) {
-		ModelAndView mav = new ModelAndView("t_el_freeboard");
+		ModelAndView mav = new ModelAndView("t_el");
 		Map<String, String> map = qs.boardDetail(num);
 		mav.addObject("section", "/freeboard/boardanswer");
 		mav.addObject("posts", map);
@@ -73,15 +73,7 @@ public class QuestionController {
 		ModelAndView mav = new ModelAndView("redirect:/freeboard/list.choc");
 		qs.boardReply(map);
 		return mav;
-	}
-
-	@RequestMapping("/likeup.js")
-	@ResponseBody
-	public boolean boardLikeUp(@RequestParam Map<String, String> map, HttpSession session) {
-		map.put("id", (String) session.getAttribute("auth"));
-		boolean flag = qs.boardLike(map);
-		return flag;
-	}
+	}	
 
 	@RequestMapping("/search.js")
 	public ModelAndView freeSearchList(@RequestParam (name="keyword") String keyword, String[] strAr, Map<String, List<String>> map) {
@@ -93,14 +85,14 @@ public class QuestionController {
 		map.put("arr", Arlist);
 		List data = qs.boardSearch(map);
 		
-		ModelAndView mav = new ModelAndView("t_el_freeboard");
+		ModelAndView mav = new ModelAndView("t_el");
 		mav.addObject("section", "/question/boardlist");
 		mav.addObject("active", "list");
 		mav.addObject("postsList", data);
 		return mav;
 	}
 	
-	@RequestMapping("/reply.choc")
+	@RequestMapping("/reply.js")
 	@ResponseBody
 	public List<Map<String, Object>> freeboardsmallReply(@RequestParam Map<String, Object> reply, HttpSession session) {
 		reply.put("writer", (String)session.getAttribute("auth"));
@@ -111,7 +103,7 @@ public class QuestionController {
 		return list;
 	}
 	
-	@RequestMapping("/replylist.choc")
+	@RequestMapping("/replylist.js")
 	@ResponseBody
 	public List<Map<String, Object>> freeboardgetlReply(@RequestParam Map<String, Object> reply) {
 		
