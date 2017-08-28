@@ -7,11 +7,14 @@
 	</insert>
 	<!-- 특정 -->
 	<select id="getTalks"  resultType="java.util.HashMap" parameterType="java.util.HashMap">
-		select * from ( select rownum as r, tmp.* from (select * from freetalk
+		select * from ( select rownum as r, tmp.* from (select * from (select * from freetalk f left join 
+(select num,count(*) as cnt from comments group by num) c on f.num = c.num)
 			<choose><when test="arr != '' and arr != null"> where
 		<foreach collection="arr" item="search" separator=" or " open="(" close=")">
 			title like #{search} or content like #{search}
 		</foreach>
+		</when><when test="category != '' and category != null">
+			where category=#{category}
 		</when></choose>
 		) tmp ) where r between #{start} and #{end}
 	</select>
@@ -32,4 +35,7 @@
 	<select id="getComment" resultType="java.util.HashMap" parameterType="java.lang.Integer">
 		select c.*, to_Char(c.WRITEDATE) FC from comments c where ft_num=#{num}
 	</select>
+	<insert id="loveUp" parameterType="java.util.HashMap">
+		insert into love values(#{num}, #{id})
+	</insert>
 </mapper>

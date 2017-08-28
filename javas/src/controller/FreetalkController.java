@@ -20,26 +20,27 @@ public class FreetalkController {
 	@Autowired
 	FreetalkDao fdao;
 	
-	@RequestMapping("/addNew.js")
+	@RequestMapping("/addNew.jv")
 	public ModelAndView addNew() {
 		ModelAndView mav = new ModelAndView("t_el");
 			mav.addObject("section", "freetalk/addNew");
 		return mav;
 	}
 	
-	@RequestMapping("/addNewExec.js")
+	@RequestMapping("/addNewExec.jv")
 	public ModelAndView addNewExec(@RequestParam Map map, HttpSession session) {
 			map.put("writer", session.getAttribute("auth"));
 			boolean b = fdao.addNew(map);
 			
 		ModelAndView mav = new ModelAndView();
-			mav.setViewName("redirect:/freetalk/allTalks.js");
+			mav.setViewName("redirect:/freetalk/allTalks.jv");
 		return mav;
 	}
 	
 	
-	@RequestMapping("/allTalks.js")
-	public ModelAndView talkList(@RequestParam(name="p", defaultValue="1") int p, @RequestParam (name="search", required=false) String s) {
+	@RequestMapping("/allTalks.jv")
+	public ModelAndView talkList(@RequestParam(name="p", defaultValue="1") int p, 
+			@RequestParam (name="search", required=false) String s, @RequestParam (name="category", required=false) String cate) {
 		String[] ar = null;
 		if(s != null) {
 			ar = s.split("\\s+");
@@ -50,6 +51,7 @@ public class FreetalkController {
 		int start = 1+(p-1)*10;
 		int end = p*10;
 		Map map = new HashMap();
+			map.put("category", cate);
 			map.put("start",start );
 			map.put("end", end);
 			map.put("arr", ar);
@@ -66,7 +68,7 @@ public class FreetalkController {
 			mav.addObject("list", list);
 		return mav;
 	}
-	@RequestMapping("/viewTalk.js")
+	@RequestMapping("/viewTalk.jv")
 	public ModelAndView viewTalk(@RequestParam (name="num") int n, HttpSession session ) {
 		Map map = fdao.oneTalks(n);
 		ModelAndView mav = new ModelAndView("t_el");
@@ -75,7 +77,7 @@ public class FreetalkController {
 		return mav;
 	}
 	
-	@RequestMapping("/commentsAjax.js")
+	@RequestMapping("/commentsAjax.jv")
 	@ResponseBody
 	public List viewTalkAjax(@RequestParam Map param, @RequestParam (name="num") int num, HttpSession session ) {
 		String id = (String)session.getAttribute("auth");
@@ -85,6 +87,17 @@ public class FreetalkController {
 				boolean b = fdao.addComment(param);
 			}
 		return list;
+	}
+	
+	@RequestMapping("/loveAjax.jv")
+	@ResponseBody
+	public Map loveAjax(@RequestParam Map param, HttpSession session ) {
+		String id = (String)session.getAttribute("auth");
+			param.put("id", id);
+		boolean flag = fdao.loveUp(param);
+		Map map = new HashMap<>();
+			map.put("result", flag);
+		return map;
 	}
 	
 }

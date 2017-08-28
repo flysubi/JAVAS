@@ -5,12 +5,16 @@ package controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class IndexController {
-	@RequestMapping({"/", "/index.js"})
-	public String toIndex() {
-		return "t_base";
+	@RequestMapping({"/", "/index.jv"})
+	public ModelAndView toIndex() {
+		ModelAndView mav = new ModelAndView("t_base");
+		
+		mav.addObject("nav", "on");
+		return mav;
 	}
 	
 }

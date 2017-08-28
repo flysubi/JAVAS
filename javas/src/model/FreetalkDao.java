@@ -92,4 +92,16 @@ public class FreetalkDao {
 		}
 	}
 	
+	public boolean loveUp(Map map) {
+		SqlSession session = factory.openSession();
+		try {
+			session.insert("freetalk.loveUp",map);
+			return true;
+		} catch(Exception e) {
+			return false; 
+		} finally {
+			session.close();
+		}
+	}
+	
 }
