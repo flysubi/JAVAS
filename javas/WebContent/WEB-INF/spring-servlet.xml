@@ -11,6 +11,7 @@
 	<mvc:annotation-driven /> <!-- mvc를 쓰는데있어서 필요한 객체 몇개를 한꺼번에 활성화시켜주는 태그 -->
 	<mvc:default-servlet-handler/> 
 	<context:component-scan base-package="controller" />
+	<context:component-scan base-package="model" />
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<constructor-arg name="prefix" value="/WEB-INF/view/" />
