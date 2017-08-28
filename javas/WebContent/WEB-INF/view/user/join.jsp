@@ -4,54 +4,41 @@
 <html>
 <head>
 <style type="text/css">
-
-.big,
-.form-group input {
-	display: inline;
-}
-
-.big {
-	font-size: 16px; 
-	font-weight: 400;
-	font-family: HelveticaNeue,'나눔바른고딕',NanumBarunGothic,AppleSDGothicNeo-Regular,sans-serif;
-	margin-top: 20px;
-}
-
-.form-group input {
-	width:70%;
-	float: right; 
-	height: 40px;
+b {
+	font-size: 16pt;
 }
 </style>
 <title>회원 가입</title>
 </head>
 <body>
-<div align="left" class="row">
-	<div class="col-ss-0 col-sm-2"></div>
+<!-- lg : TV 
+	 md : PC
+	 sm : 테블릿
+	 ss : 폰
+-->
+<div align="center" class="row">
+	<div class="col-ss-0 col-sm-4"></div>
 	<div class="col-ss-12 col-sm-4">
 		<div class="form-group">
-			<form action="/join/result.sz" class="form-signin"  method="post">
+			<form action="/user/joinResult.sz" class="form-signin"  method="post">
+				<!-- 컨트롤러로 보냄 -->
+				<h3 class="form-signin-heading">회원 가입</h3>
 				<div class="form-group">
-				<label for="id"><span class="big">아이디</span></label><input type="text"
-						name="id" id="jid" class="form-control" placeholder="아이디를 입력해주세요."
-						required="required" style="width:70%; float: right;"><br /> <span id="cor"
+					<label for="id"><b>ID</b></label><br /> <input type="text"
+						class="form-control" name="id" id="jid" placeholder="pick your id"
+						required="required"><br /> <span id="cor"
 						style="color: green;"></span> <span id="wrg" style="color: red;"></span>
 				</div>
 				<div class="form-group">
-					<label for="email"><span class="big">이메일</span></label><input type="email"
+					<label for="email"><b>Email</b></label><br /> <input type="email"
 						name="email" id="jemail" class="form-control"
 						placeholder="your email address" required="required"><br />
 					<span id="ecor" style="color: green;"></span> <span id="ewrg"
 						style="color: red;"></span>
 				</div>
 				<div class="form-group">
-					<label for="pass"><span class="big">비밀번호</span></label><input
+					<label for="pass"><b>Password</b></label><br /> <input
 						type="password" class="form-control" name="pass"
-						placeholder="create a password" required="required"><br />
-				</div>
-				<div class="form-group">
-					<label for="pass"><span class="big">비밀번호 확인</span></label><input
-						type="password" class="form-control" name="passc"
 						placeholder="create a password" required="required"><br />
 				</div>
 				<button type="submit" class="btn bnt-default" id="join">가입하기</button>
@@ -60,7 +47,7 @@
 			<a href="findMember.sz">아이디찾기</a>
 		</div>
 	</div>
-	<div class="col-ss-0 col-sm-6"></div>
+	<div class="col-ss-0 col-sm-4"></div>
 	</div>
 </body>
 </html>
@@ -81,7 +68,7 @@
 						if(document.getElementById("ecor").innerHTML.trim().length > 0) {
 							document.getElementById("join").disabled= false;
 						}
-						// 내부에서 c:choose로 해도 됨.
+				
 					}
 				}
 			}
@@ -107,7 +94,7 @@
 							document.getElementById("join").disabled= false;
 						}
 						
-						// 내부에서 c:choose로 해도 됨.
+						
 					}
 				}
 			}
