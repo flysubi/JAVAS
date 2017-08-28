@@ -53,7 +53,11 @@
 <script>
 	var list = function() {
 		$.ajax({
+<<<<<<< HEAD
 			url : "/question/commentsAjax.js",
+=======
+			url : "/freetalk/commentsAjax.jv",
+>>>>>>> branch 'master' of https://github.com/flysubi/JAVAS.git
 			data : {
 				"num" : "${param.num}",
 			}
@@ -73,7 +77,7 @@
 	
 	$("#suc").on("click",function() {
 			$.ajax({
-				url : "/freetalk/commentsAjax.js",
+				url : "/freetalk/commentsAjax.jv",
 				data : {
 					"content" : $("#comment").val(),
 					"num" : "${sessionScope.map.NUM }",
@@ -84,5 +88,23 @@
 			});
 		});
 	
+</script>
+
+<script>
+
+	$("#like").on("click",function() {
+		$.ajax({
+			url : "/freetalk/loveAjax.jv",
+			data : {
+				"num" : this.value,
+			}
+		}).done(function(rst){
+			if(rst.result) {
+				window.alert("추천 성공");
+			} else {
+				window.alert("추천 실패");
+			}
+		});
+	});
 </script>
 
