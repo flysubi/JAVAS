@@ -48,12 +48,12 @@ b {
 </html>
 <script>
 	document.getElementById("jid").onblur = function() { // 포커스를 옮길 때 작동
-		if (id.trim().length > 0) {
 		var id = this.value;
+		if (id.trim().length > 0) {
 			$.ajax({
 				url : "/user/idCheckAjax.jv",
 				data : {
-					"id" = id
+					"id" : id
 				}
 			}).done(function(rst){
 				if(rst == true) {
@@ -72,12 +72,12 @@ b {
 	};
 	
 	document.getElementById("jemail").onblur = function() {
-		if (email.trim().length > 0) {
 		var email = this.value;
+		if (email.trim().length > 0) {
 			$.ajax({
 				url : "/user/emailCheckAjax.jv",
 				data : {
-					"email" = email
+					"email" : email
 				}
 			}).done(function(rst){
 				if(rst == true) {
