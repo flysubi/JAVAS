@@ -20,7 +20,7 @@ public class QuestionModel {
 		System.out.println(writeData);
 		SqlSession session = factory.openSession();
 		try {
-			session.insert("quesiton.addNew", writeData);
+			session.insert("quesiton.addNew", map);
 		} catch (Exception e) {
 			System.out.println("[JDBC] QuestionBoardModelException postsUpload : " + e.getMessage());
 		} finally {
@@ -42,11 +42,14 @@ public class QuestionModel {
 		return list;
 	}
 
-	public Map<String, String> boardDetail(String num) {
-		Map<String, String> map = new HashMap<>();
+	public Map<String, String> boardDetail(Map map) {
+		Map<String, String> map1 = new HashMap<>();
 		SqlSession session = factory.openSession();
 		try {
-			map = session.selectOne("question.getOne", num);
+			if(map.get("like") != null) {
+				session.update("question.count", map);
+			}			
+			map1 = session.selectOne("question.getOne", map.get("num"));
 		} catch (Exception e) {
 			System.out.println("[JDBC] QuestionBoardBoardModelException boardDetail : " + e.getMessage());
 		} finally {
@@ -58,6 +61,7 @@ public class QuestionModel {
 
 	public void boardReply(Map<String, Object> map) {
 		SqlSession session = factory.openSession();
+		System.out.println("[boardReply.Model]:"+map );
 		try {
 			session.update("question.reviseStep", map);
 			session.insert("question.addReply", map);
