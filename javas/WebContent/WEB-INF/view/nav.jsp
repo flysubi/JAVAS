@@ -54,7 +54,7 @@
 		</c:choose>
 	</div>
 	<div class="collapse navbar-collapse" id="myNav"
-		style="background-color: white;">
+		style="background-color: white;"> 
 		<ul class="nav navbar-nav">
 <!-- 			<li><a href="#" style="color: black;">JAVAS</a></li> -->
             <li><a href="#"><img alt="javas" src="/style/javas.png"></a>
