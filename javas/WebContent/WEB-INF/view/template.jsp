@@ -30,28 +30,19 @@ body {
 	<c:choose>
 	<c:when test="${nav eq null }">
 	<div class="container">
-<<<<<<< HEAD
-	<section style="min-height: 70%;  text-align: center;">
-=======
-	<section style="min-height: 75%; text-align: center;">
->>>>>>> branch 'master' of https://github.com/flysubi/JAVAS.git
+	<section style="min-height: 70%; text-align: center;">
 		<tiles:insertAttribute name="section"/>
 	</section>
-	<footer>
-		<tiles:insertAttribute name="footer"/>
-	</footer>
 	</div>
 	</c:when>
 	<c:otherwise>
-	<section style="min-height: 75%; text-align: center;">
+	<section style="min-height: 70%; text-align: center;">
 		<tiles:insertAttribute name="section"/>
 	</section>
-	<div class="container">
-	<footer>
-		<tiles:insertAttribute name="footer"/>
-	</footer>
-	</div>
 	</c:otherwise>
 	</c:choose>
+	<footer style="background-color: f7e7d6; padding:32; ">
+		<tiles:insertAttribute name="footer"/>
+	</footer>
 </body>
 </html>
