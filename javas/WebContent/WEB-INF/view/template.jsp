@@ -24,7 +24,7 @@
 	<c:choose>
 	<c:when test="${nav eq null }">
 	<div class="container">
-	<section style="min-height: 70%; text-align: center;">
+	<section style="min-height: 75%; text-align: center;">
 		<tiles:insertAttribute name="section"/>
 	</section>
 	<footer>
@@ -33,7 +33,7 @@
 	</div>
 	</c:when>
 	<c:otherwise>
-	<section style="min-height: 70%; text-align: center;">
+	<section style="min-height: 75%; text-align: center;">
 		<tiles:insertAttribute name="section"/>
 	</section>
 	<div class="container">

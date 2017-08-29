@@ -36,7 +36,7 @@
 			</c:when>
 			<c:otherwise>
 				<ul class="nav navbar-nav">
-					<li><a href="#">${auth }님 환영합니다!</a></li>
+					<li><a style="margin-left: 20px;" href="#">${auth }님 환영합니다!</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown"><a class="dropdown-toggle"
@@ -46,6 +46,7 @@
 					</a>
 						<ul class="dropdown-menu">
 							<li><a href="/user/logout.jv">로그아웃</a></li>
+							<li><a href="/user/logout.jv">정보수정</a></li>
 
 						</ul></li>
 
