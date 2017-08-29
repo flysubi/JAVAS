@@ -4,6 +4,5 @@
 <div align="left">
 
 </div>
-<div align="center">
-
+<img alt="dad" src="/style/중간.png">
 </div>
