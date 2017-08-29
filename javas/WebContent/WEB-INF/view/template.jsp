@@ -30,24 +30,20 @@ body {
 	<c:choose>
 	<c:when test="${nav eq null }">
 	<div class="container">
-	<section style="min-height: 72%; text-align: center;">
+
+	<section style="min-height: 70%; text-align: center;">
 		<tiles:insertAttribute name="section"/>
 	</section>
-	<footer>
-		<tiles:insertAttribute name="footer"/>
-	</footer>
 	</div>
 	</c:when>
 	<c:otherwise>
-	<section style="min-height: 79%; text-align: center;">
+	<section style="min-height: 70%; text-align: center;">
 		<tiles:insertAttribute name="section"/>
 	</section>
-	<div class="container">
-	<footer>
-		<tiles:insertAttribute name="footer"/>
-	</footer>
-	</div>
 	</c:otherwise>
 	</c:choose>
+	<footer style="background-color: f7e7d6; padding:32; ">
+		<tiles:insertAttribute name="footer"/>
+	</footer>
 </body>
 </html>
