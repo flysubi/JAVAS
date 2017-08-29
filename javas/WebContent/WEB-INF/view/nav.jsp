@@ -58,13 +58,13 @@
 		<ul class="nav navbar-nav">
 <!-- 			<li><a href="#" style="color: black;">JAVAS</a></li> -->
             <li><a href="#"><img alt="javas" src="/style/javas.png"></a>
-			<li><a href="#">자바스 사용법</a></li>
+			<li><a href="#" style="margin-top: 15px;">자바스 사용법</a></li>
 		</ul>
 
 		<ul class="nav navbar-nav navbar-right">
-			<li><a href="#">JAVAS</a></li>
-			<li><a href="/question/list.jv">Q&A</a></li>
-			<li><a href="/freetalk/allTalks.jv">공유게시판</a></li>
+			<li><a href="#" style="margin-top: 15px;">JAVAS</a></li>
+			<li><a href="/question/list.jv" style="margin-top: 15px;">Q&A</a></li>
+			<li><a href="/freetalk/allTalks.jv" style="margin-top: 15px;">공유게시판</a></li>
 
 		</ul>
 	</div>
