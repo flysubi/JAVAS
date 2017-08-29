@@ -119,7 +119,7 @@ public class UserController {
 	public ModelAndView toLogin(HttpSession session) {
 		ModelAndView mav = new ModelAndView("t_el");
 		mav.addObject("section", "user/login");
-		session.setAttribute("title", "회원가입");
+		session.setAttribute("title", "로그인");
 		return mav;
 	}
 	
