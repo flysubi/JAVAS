@@ -15,7 +15,7 @@ b {
 		<div class="col-ss-0 col-sm-4"></div>
 		<div class="col-ss-12 col-sm-4">
 			<div class="form-group">
-				<form action="/user/joinResult.sz" class="form-signin" method="post">
+				<form action="/user/joinResult.jv" class="form-signin" method="post">
 					<h3 class="form-signin-heading">회원 가입</h3>
 					<div class="form-group">
 						<label for="id"><b>ID</b></label><br /> <input type="text"
