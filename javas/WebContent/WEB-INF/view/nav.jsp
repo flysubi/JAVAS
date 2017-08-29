@@ -57,7 +57,7 @@
 		style="background-color: white;">
 		<ul class="nav navbar-nav">
 <!-- 			<li><a href="#" style="color: black;">JAVAS</a></li> -->
-            <li><a href="#"><img alt="javas" src="/style/javas.png"></a>
+            <li><a href="/"><img alt="javas" src="/style/javas.png"></a>
 			<li><a href="#">자바스 사용법</a></li>
 		</ul>
 
