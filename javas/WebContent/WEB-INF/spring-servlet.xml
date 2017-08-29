@@ -12,6 +12,12 @@
 	<mvc:default-servlet-handler/> 
 	<context:component-scan base-package="controller" />
 	<context:component-scan base-package="model" />
+	<context:component-scan base-package="handler" />
+	<!-- webSocket handler 등록  / Intercepter-->
+	<websocket:handlers>
+		<websocket:mapping handler="joinSocketHandler" path="/ws/join.ws"/>
+	</websocket:handlers>
+	
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<constructor-arg name="prefix" value="/WEB-INF/view/" />
