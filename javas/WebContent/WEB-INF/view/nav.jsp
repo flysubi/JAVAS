@@ -28,10 +28,10 @@
 					<li><a href="#">신민수님 환영합니다! (100p)</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="/user/join.one"> <span
+					<li><a href="/user/join.jv"> <span
 							class="glyphicon glyphicon-user"></span> 회원가입
 					</a></li>
-					<li><a href="/user/login.one"> <span
+					<li><a href="/user/login.jv"> <span
 							class="glyphicon glyphicon-log-in"></span> 로그인
 					</a></li>
 				</ul>

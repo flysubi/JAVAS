@@ -18,8 +18,8 @@ public class UserDao {
 	public boolean joinMember(Map map) {
 		SqlSession session = factory.openSession();
 		try {
-			session.insert("member.join_step1", map); // 결과물 무조건 int
-			session.insert("member.join_step2", map);
+			session.insert("user.join_step1", map); 
+			session.insert("user.join_step2", map);
 			session.commit();
 			return true;
 		} catch (Exception e) {
@@ -31,10 +31,10 @@ public class UserDao {
 		}
 	}
 
-	public boolean existCheck(Map map) {
+	public boolean login(Map map) {
 		SqlSession session = factory.openSession();
 		try {
-			HashMap rst = session.selectOne("member.login", map);
+			HashMap rst = session.selectOne("user.login", map);
 			
 			return rst != null;
 		} catch (Exception e) {
@@ -75,7 +75,6 @@ public class UserDao {
 		} finally {
 			session.close();
 		}
-		// =======================================================
 	}
 
 	public Map<String, Object> readMember(String id) {
@@ -114,19 +113,6 @@ public class UserDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
-		}
-	}
-	
-	public List<Map<String, Object>> genderList() {
-		SqlSession session = factory.openSession();
-		try {
-			List<Map<String, Object>> list = session.selectList("member.gender");
-			return list;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		} finally {
-			session.close();
 		}
 	}
 }

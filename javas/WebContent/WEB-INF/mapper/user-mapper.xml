@@ -9,4 +9,10 @@
 	 	<select id="idCheck" parameterType="java.lang.String" resultType="java.util.HashMap">
 	 		select * from member where id=#{id}
 	 	</select>
+	 	<insert id="join_step1" parameterType="java.util.HashMap">
+	 		insert into member values(#{id}, #{pass}, #{email})
+	 	</insert>
+	 	<insert id="join_step2" parameterType="java.util.HashMap">
+	 		insert into info(id) values(#{id})
+	 	</insert>
  </mapper>
