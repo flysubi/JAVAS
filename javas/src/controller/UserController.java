@@ -70,7 +70,7 @@ public class UserController {
 			String text ="<h1>JAVAS회원가입을 축하드립니다!</h1>";
 			String code = UUID.randomUUID().toString().substring(0, 8);
 			text += "아래 링크를 클릭하고 가입 페이지를 확인해주세요.<br/>";
-			text += "<a href=\"http://192.168.10.70/user/emailAuth.jv?key="+code+"\">인증하기</a>";
+			text += "<a href=\"http://localhost/user/emailAuth.jv?key="+code+"\">인증하기</a>";
 			msg.setText(text, "UTF-8", "html");
 			sender.send(msg);
 			session.setAttribute("code", code);
@@ -106,6 +106,13 @@ public class UserController {
 	public ModelAndView failJoin() {
 		ModelAndView mav = new ModelAndView("t_el");
 		mav.addObject("section", "user/fail");
+		return mav;
+	}
+	
+	@RequestMapping("/login.jv")
+	public ModelAndView toLogin() {
+		ModelAndView mav = new ModelAndView("t_el");
+		mav.addObject("section", "user/login");
 		return mav;
 	}
 }
