@@ -3,5 +3,10 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="user">
-	 	
+	 	<select id="findMember" parameterType="java.lang.String" resultType="java.util.HashMap">
+	 		select * from member where email=#{email}
+	 	</select>
+	 	<select id="idCheck" parameterType="java.lang.String" resultType="java.util.HashMap">
+	 		select * from member where id=#{id}
+	 	</select>
  </mapper>
