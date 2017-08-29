@@ -16,6 +16,12 @@
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
+<style type="text/css">
+body {
+	font-family:HelveticaNeue,'나눔바른고딕',NanumBarunGothic,AppleSDGothicNeo-Regular,sans-serif;
+	
+}
+</style>
 <body>
 	<nav>
 		<!-- <tiles:getAsString name="nav"/>  value값 출력(글씨를 찍음) -->
@@ -24,7 +30,11 @@
 	<c:choose>
 	<c:when test="${nav eq null }">
 	<div class="container">
+<<<<<<< HEAD
+	<section style="min-height: 70%;  text-align: center;">
+=======
 	<section style="min-height: 75%; text-align: center;">
+>>>>>>> branch 'master' of https://github.com/flysubi/JAVAS.git
 		<tiles:insertAttribute name="section"/>
 	</section>
 	<footer>
