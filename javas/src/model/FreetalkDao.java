@@ -105,4 +105,18 @@ public class FreetalkDao {
 		}
 	}
 	
+	public boolean talkDel(int num) {
+		SqlSession session = factory.openSession();
+		try {
+			session.delete("freetalk.talkDel",num);
+			return true;
+		} catch(Exception e) {
+			return false; 
+		} finally {
+			session.close();
+		}
+	}
+	
+
+	
 }

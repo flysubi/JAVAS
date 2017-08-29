@@ -65,7 +65,6 @@
 			<li><a href="#">JAVAS</a></li>
 			<li><a href="/question/list.jv">Q&A</a></li>
 			<li><a href="/freetalk/allTalks.jv">공유게시판</a></li>
-
 		</ul>
 	</div>
 </div>

@@ -16,14 +16,13 @@
 } 
 </style>
 <div style="padding-bottom: 10px;">
-	<h2>게시판</h2>
-	<div class="input-group" style="padding-bottom: 15px;">
+	<div class="input-group" style="padding-bottom: 15px; padding-top: 15px;">
 		<form action="/freetalk/allTalks.jv" id="submit">
 			<select style="width: 223px;" class="form-control" name="category" id="category">
-				<option value="" class="form-control">카테고리별 검색</option>
-				<c:forTokens var="t" items="교통,PC관리,인터넷,기타" delims=",">
-					<option value="${t}" class="form-control">${t}</option>
-				</c:forTokens>
+				<option value="" class="form-control" ${"all" eq param.category ? 'selected' : ''}>카테고리별 검색</option>
+				<option value="교통" class="form-control" ${"교통" eq param.category ? 'selected' : ''}>교통</option>
+				<option value=PC관리 class="form-control" ${"PC관리" eq param.category ? 'selected' : ''}>PC관리</option>
+				<option value="인터넷" class="form-control" ${"인터넷" eq param.category ? 'selected' : ''}>인터넷</option>
 			</select>
 		</form>
 	</div>
