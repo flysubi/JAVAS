@@ -24,9 +24,7 @@
 		style="background-color: white;">
 		<c:choose>
 			<c:when test="${auth eq null }">
-				<ul class="nav navbar-nav">
-					<li><a href="#">신민수님 환영합니다! (100p)</a></li>
-				</ul>
+				
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="/user/join.jv"> <span
 							class="glyphicon glyphicon-user"></span> 회원가입
@@ -37,7 +35,9 @@
 				</ul>
 			</c:when>
 			<c:otherwise>
-
+				<ul class="nav navbar-nav">
+					<li><a href="#">${auth }님 환영합니다!</a></li>
+				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="#"
@@ -71,6 +71,6 @@
 </div>
 <c:if test="${nav ne 'on'}">
 	<div style="background-color: LightSkyBlue; margin-top: 0; padding-left: 218px;">
-		<h1 style="margin: 0; color: white; font-size: 14pt; padding: 10px;">공지사항</h1>
+		<h1 style="margin: 0; color: white; font-size: 14pt; padding: 10px;">${title }</h1>
 	</div>
 </c:if>

@@ -12,13 +12,14 @@ b {
 </head>
 
 <body>
+	<div style="margin-top: 40px;">
+	</div>
 	<div align="center" class="row">
 		<div class="col-ss-0 col-sm-4"></div>
 		<div class="col-ss-12 col-sm-4">
 			<div class="form-group">
 				<form action="/user/loginResult.jv" class="form-signin" method="post">
 					<!-- 컨트롤러로 보냄 -->
-					<h3 class="form-signin-heading">회원 로그인</h3>
 					<div class="form-group">
 						<label for="id"><b>ID</b></label><br /> <input type="text"
 							class="form-control" name="id" id="jid"

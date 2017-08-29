@@ -37,9 +37,10 @@ public class UserController {
 	JoinSocketHandler jsh;
 	
 	@RequestMapping("/join.jv")
-	public ModelAndView toJoin() {
+	public ModelAndView toJoin(HttpSession session) {
 		ModelAndView mav = new ModelAndView("t_el");
 		mav.addObject("section", "user/join");
+		session.setAttribute("title", "회원가입");
 		return mav;
 	}
 	
@@ -115,9 +116,10 @@ public class UserController {
 	}
 	
 	@RequestMapping("/login.jv")
-	public ModelAndView toLogin() {
+	public ModelAndView toLogin(HttpSession session) {
 		ModelAndView mav = new ModelAndView("t_el");
 		mav.addObject("section", "user/login");
+		session.setAttribute("title", "회원가입");
 		return mav;
 	}
 	
