@@ -8,7 +8,12 @@
 }
 </style>
 <!-- <div class="well"> -->
-<h3 style="text-align: left; padding-left: 200px;">${sessionScope.map.TITLE}</h3>
+<h3 style="text-align: left; padding-left: 200px;">
+${sessionScope.map.TITLE}
+<c:if test="${sessionScope.map.WRITER eq sessionScope.auth }">
+	<a href="/freetalk/talkDel.jv?num=${sessionScope.map.NUM}">X</a>
+</c:if>
+</h3>
 <p style="text-align: left; padding-left: 200px; font-size: 12pt;">
 	작성자 : ${sessionScope.map.WRITER }
 	<button type="submit" class="btn btn-danger btn-xs" id="like"
@@ -112,7 +117,7 @@
 			if (rst.result) {
 				window.alert("추천 성공");
 			} else {
-				window.alert("추천 실패");
+				window.alert("추천 실패\n이미 추천이 되어있는 글입니다.");
 			}
 		});
 	});
