@@ -23,6 +23,7 @@ public class FreetalkController {
 	@RequestMapping("/addNew.jv")
 	public ModelAndView addNew() {
 		ModelAndView mav = new ModelAndView("t_el");
+			mav.addObject("title","게시판");
 			mav.addObject("section", "freetalk/addNew");
 		return mav;
 	}
@@ -32,8 +33,9 @@ public class FreetalkController {
 			map.put("writer", session.getAttribute("auth"));
 			boolean b = fdao.addNew(map);
 			
-		ModelAndView mav = new ModelAndView();
-			mav.setViewName("redirect:/freetalk/allTalks.jv");
+		ModelAndView mav = new ModelAndView("t_el");
+			mav.addObject("rst", b);
+			mav.addObject("section","alert/freetalkAdd");
 		return mav;
 	}
 	
@@ -66,14 +68,17 @@ public class FreetalkController {
 			mav.addObject("size", size);
 			mav.addObject("page", p);
 			mav.addObject("list", list);
+			mav.addObject("title","게시판");
 		return mav;
 	}
+	
 	@RequestMapping("/viewTalk.jv")
 	public ModelAndView viewTalk(@RequestParam (name="num") int n, HttpSession session ) {
 		Map map = fdao.oneTalks(n);
 		ModelAndView mav = new ModelAndView("t_el");
 			mav.addObject("section", "freetalk/viewTalk");
 			session.setAttribute("map", map);
+			mav.addObject("title","게시판");
 		return mav;
 	}
 	
@@ -99,5 +104,18 @@ public class FreetalkController {
 			map.put("result", flag);
 		return map;
 	}
+	
+	@RequestMapping("/talkDel.jv")
+	public ModelAndView talkDel(@RequestParam (name="num") int num, HttpSession session ) {
+		ModelAndView mav = new ModelAndView("t_el");
+		boolean b = fdao.talkDel(num);
+			mav.addObject("section", "alert/talkDel");
+			mav.addObject("num",num);
+			mav.addObject("rst", b);
+			mav.addObject("title","게시판");
+		return mav;
+	}
+	
+	
 	
 }
