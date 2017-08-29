@@ -18,9 +18,9 @@
 var ws = new WebSocket("ws://192.168.10.70/ws/join.ws")
 	ws.onmessage = function(e) { // 서버측에서 메세지를 받을 때 해야할 일
 	if(e.data == "true") {
-			location.href="/join/success.sz";
+			location.href="/user/success.jv";
 		}else {
-			location.href="/join/fail.sz";
+			location.href="/user/fail.jv";
 		}
 	};
 </script>
