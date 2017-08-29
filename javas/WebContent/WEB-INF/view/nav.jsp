@@ -21,15 +21,15 @@
 		</button>
 	</div>
 	<div class="collapse navbar-collapse" id="myNav"
-		style="background-color: white; font-weight: 600;">
+		style="background-color: white;">
 		<c:choose>
 			<c:when test="${auth eq null }">
 				
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="/user/join.jv"> <span
+					<li><a href="/user/join.jv"  style="color: #939393;"> <span
 							class="glyphicon glyphicon-user"></span> 회원가입
 					</a></li>
-					<li><a href="/user/login.jv"> <span
+					<li><a href="/user/login.jv"  style="color: #939393;"> <span
 							class="glyphicon glyphicon-log-in"></span> 로그인
 					</a></li>
 				</ul>
