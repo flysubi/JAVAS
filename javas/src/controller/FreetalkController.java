@@ -31,10 +31,12 @@ public class FreetalkController {
 	@RequestMapping("/addNewExec.jv")
 	public ModelAndView addNewExec(@RequestParam Map map, HttpSession session) {
 			map.put("writer", session.getAttribute("auth"));
+			System.out.println("addNew ==== "+map);
 			boolean b = fdao.addNew(map);
 			
-		ModelAndView mav = new ModelAndView();
-			mav.setViewName("redirect:/freetalk/allTalks.jv");
+		ModelAndView mav = new ModelAndView("t_el");
+			mav.addObject("rst", b);
+			mav.addObject("section","alert/freetalkAdd");
 		return mav;
 	}
 	

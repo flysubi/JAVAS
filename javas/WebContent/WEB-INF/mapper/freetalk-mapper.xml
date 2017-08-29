@@ -3,7 +3,7 @@
 <mapper namespace="freetalk">
 	<!-- 새글 등록시 -->
 	<insert id="addNew" parameterType="java.util.HashMap">
-		insert into freetalk values(freetalk_seq.nextval,  #{writer}, #{title}, #{content}, 0, sysdate)
+		insert into freetalk values(freetalk_seq.nextval,  #{writer}, #{title}, #{content}, 0, sysdate, #{cate})
 	</insert>
 	<!-- 특정 -->
 	<select id="getTalks"  resultType="java.util.HashMap" parameterType="java.util.HashMap">

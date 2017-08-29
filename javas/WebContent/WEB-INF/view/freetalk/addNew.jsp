@@ -1,10 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div align="center" class="row ">
 	<h2>게시글 쓰기</h2>
 	<div class="col-xs-0 col-md-1"></div>
 	<div class="col-xs-12 col-md-10">
 		<form action="/freetalk/addNewExec.jv" method="post">
+		<div class="form-group" align="left">
+				<div class="input-group">
+				<select style="width: 223px;" class="form-control" name="cate">
+						<option value="" class="form-control">카테고리 선택하기</option>
+					<c:forTokens var="t" items="PC관리,인터넷,기타" delims=",">
+						<option value="${t}" class="form-control">${t}</option>
+					</c:forTokens>
+				</select>
+				</div>
+			</div>
 			<div class="form-group" align="left">
 				<label style="margin-left: 10px;">제목</label> 
 				 <input class="form-control" type="text" name="title" />
