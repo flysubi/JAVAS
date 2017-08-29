@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"  %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -20,6 +21,8 @@
 		<!-- <tiles:getAsString name="nav"/>  value값 출력(글씨를 찍음) -->
 		<tiles:insertAttribute name="nav"/> <!-- value값 include -->
 	</nav>
+	<c:choose>
+	<c:when test="${nav eq null }">
 	<div class="container">
 	<section style="min-height: 70%; text-align: center;">
 		<tiles:insertAttribute name="section"/>
@@ -28,5 +31,17 @@
 		<tiles:insertAttribute name="footer"/>
 	</footer>
 	</div>
+	</c:when>
+	<c:otherwise>
+	<section style="min-height: 70%; text-align: center;">
+		<tiles:insertAttribute name="section"/>
+	</section>
+	<div class="container">
+	<footer>
+		<tiles:insertAttribute name="footer"/>
+	</footer>
+	</div>
+	</c:otherwise>
+	</c:choose>
 </body>
 </html>
