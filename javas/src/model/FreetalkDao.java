@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class FreetalkDao {
 
+
 	@Autowired
 	SqlSessionFactory factory;
 	
@@ -87,6 +88,18 @@ public class FreetalkDao {
 			return n;
 		} catch(Exception e) {
 			return -1; 
+		} finally {
+			session.close();
+		}
+	}
+	
+	public boolean loveUp(Map map) {
+		SqlSession session = factory.openSession();
+		try {
+			session.insert("freetalk.loveUp",map);
+			return true;
+		} catch(Exception e) {
+			return false; 
 		} finally {
 			session.close();
 		}
