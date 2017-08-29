@@ -62,16 +62,16 @@
 		</ul>
 
 		<ul class="nav navbar-nav navbar-right">
-<<<<<<< HEAD
+
 			<li><a href="#" style="margin-top: 15px;">JAVAS</a></li>
 			<li><a href="/question/list.jv" style="margin-top: 15px;">Q&A</a></li>
 			<li><a href="/freetalk/allTalks.jv" style="margin-top: 15px;">공유게시판</a></li>
 
-=======
+
 			<li><a href="#" style="margin-top: 15px;">JAVAS</a></li>
 			<li><a href="/question/list.jv" style="margin-top: 15px;">Q&A</a></li>
 			<li><a href="/freetalk/allTalks.jv" style="margin-top: 15px;">공유게시판</a></li>
->>>>>>> branch 'master' of https://github.com/flysubi/JAVAS.git
+
 		</ul>
 	</div>
 </div>
