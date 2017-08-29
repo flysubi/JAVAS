@@ -54,17 +54,17 @@ public class UserDao {
 		return sb.toString();
 	}
 
-	public String findMember(String email) {
+	public String findUser(String email) {
 		String hid = "";
 		String hpass = "";
 		String idpass = "no";
 		SqlSession session = factory.openSession();
 		try {
 
-			HashMap rst = session.selectOne("member.findMember", email);
+			HashMap rst = session.selectOne("user.findMember", email);
 			if (rst != null) {
 				hid = change((String) rst.get("ID"));
-				hpass = change((String) rst.get("PASS"));
+				hpass = change((String) rst.get("PASSWORD"));
 				idpass = hid + "&" + hpass;
 			}
 			return idpass;

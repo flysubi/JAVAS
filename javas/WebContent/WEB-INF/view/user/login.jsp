@@ -12,13 +12,14 @@ b {
 </head>
 
 <body>
+	<div style="margin-top: 40px;">
+	</div>
 	<div align="center" class="row">
 		<div class="col-ss-0 col-sm-4"></div>
 		<div class="col-ss-12 col-sm-4">
 			<div class="form-group">
 				<form action="/user/loginResult.jv" class="form-signin" method="post">
 					<!-- 컨트롤러로 보냄 -->
-					<h3 class="form-signin-heading">회원 로그인</h3>
 					<div class="form-group">
 						<label for="id"><b>ID</b></label><br /> <input type="text"
 							class="form-control" name="id" id="jid"
@@ -40,7 +41,7 @@ b {
 					<br/><input type="checkbox" name="keep"/>로그인 상태 유지
 					</div>
 				</form>
-				<a href="findMember.sz">아이디 또는 비밀번호찾기</a>
+				<a href="/user/findUser.jv">아이디 또는 비밀번호찾기</a>
 			</div>
 		</div>
 		<div class="col-ss-0 col-sm-4"></div>

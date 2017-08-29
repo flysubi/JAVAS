@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.net.InetAddress;
 import java.util.Map;
 import java.util.UUID;
@@ -36,9 +37,10 @@ public class UserController {
 	JoinSocketHandler jsh;
 	
 	@RequestMapping("/join.jv")
-	public ModelAndView toJoin() {
+	public ModelAndView toJoin(HttpSession session) {
 		ModelAndView mav = new ModelAndView("t_el");
 		mav.addObject("section", "user/join");
+		session.setAttribute("title", "회원가입");
 		return mav;
 	}
 	
@@ -114,9 +116,10 @@ public class UserController {
 	}
 	
 	@RequestMapping("/login.jv")
-	public ModelAndView toLogin() {
+	public ModelAndView toLogin(HttpSession session) {
 		ModelAndView mav = new ModelAndView("t_el");
 		mav.addObject("section", "user/login");
+		session.setAttribute("title", "회원가입");
 		return mav;
 	}
 	
@@ -146,4 +149,41 @@ public class UserController {
 		}
 	}
 	
+
+	@RequestMapping("/findUser.jv")
+	public ModelAndView findId() {
+		ModelAndView mav = new ModelAndView("t_el");
+		mav.addObject("section", "user/findUser");
+		return mav;
+	}
+
+	@RequestMapping("/findResult.jv")
+	public ModelAndView findMemberResult(@RequestParam(name = "email") String email) {
+		String arr = udao.findUser(email);
+		ModelAndView mav = new ModelAndView();
+		if (arr.equals("no")) {
+			mav.setViewName("t_el");
+			mav.addObject("section", "user/findNoResult");
+			return mav;
+		} else {
+			String[] s = arr.split("&");
+			mav.setViewName("t_el");
+			mav.addObject("section", "user/findResult");
+			mav.addObject("id", s[0]);
+			mav.addObject("pass", s[1]);
+			return mav;
+		}
+	}
+
+	@RequestMapping("/logout.jv")
+	public String logout(HttpSession session, HttpServletResponse resp) throws IOException {
+		// ModelAndView mav = new ModelAndView("t_base");
+
+		Cookie c = new Cookie("login", (String) session.getAttribute("auth"));
+		c.setPath("/");
+		c.setMaxAge(0);
+		resp.addCookie(c);
+		session.invalidate();
+		return "redirect:/";
+	}
 }
