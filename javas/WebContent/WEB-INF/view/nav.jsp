@@ -63,13 +63,13 @@
 
 		<ul class="nav navbar-nav navbar-right">
 			<li><a href="#">JAVAS</a></li>
-			<li><a href="/question/list.js">Q&A</a></li>
+			<li><a href="/question/list.jv">Q&A</a></li>
 			<li><a href="/freetalk/allTalks.jv">공유게시판</a></li>
 		</ul>
 	</div>
 </div>
 <c:if test="${nav ne 'on'}">
 	<div style="background-color: LightSkyBlue; margin-top: 0; padding-left: 218px;">
-		<h1 style="margin: 0; color: white; font-size: 14pt; padding: 10px;">공지사항</h1>
+		<h1 style="margin: 0; color: white; font-size: 14pt; padding: 10px;">${title} </h1>
 	</div>
 </c:if>

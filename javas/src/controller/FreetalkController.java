@@ -23,6 +23,7 @@ public class FreetalkController {
 	@RequestMapping("/addNew.jv")
 	public ModelAndView addNew() {
 		ModelAndView mav = new ModelAndView("t_el");
+			mav.addObject("title","게시판");
 			mav.addObject("section", "freetalk/addNew");
 		return mav;
 	}
@@ -66,6 +67,7 @@ public class FreetalkController {
 			mav.addObject("size", size);
 			mav.addObject("page", p);
 			mav.addObject("list", list);
+			mav.addObject("title","게시판");
 		return mav;
 	}
 	@RequestMapping("/viewTalk.jv")
@@ -74,6 +76,7 @@ public class FreetalkController {
 		ModelAndView mav = new ModelAndView("t_el");
 			mav.addObject("section", "freetalk/viewTalk");
 			session.setAttribute("map", map);
+			mav.addObject("title","게시판");
 		return mav;
 	}
 	

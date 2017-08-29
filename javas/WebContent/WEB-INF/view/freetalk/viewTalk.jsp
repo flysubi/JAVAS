@@ -7,8 +7,9 @@
  	background : snow;
  }
 </style>
-	<h2>${sessionScope.map.TITLE}</h2>
-		<p style="text-align: right; padding-right: 100px; font-size: 12pt;">
+<!-- <div class="well"> -->
+	<h3 style="text-align: left; padding-left: 200px;">${sessionScope.map.TITLE}</h3>
+		<p style="text-align: left; padding-left: 200px; font-size: 12pt;">
 			작성자 : ${sessionScope.map.WRITER }
 				<button type="submit" class="btn btn-danger btn-xs" id="like" value="${sessionScope.map.NUM }">♡</button>
 				 | 작성일 : <fmt:formatDate value="${sessionScope.map.WRITEDATE}" pattern="yy-MM-dd"/>
@@ -33,11 +34,13 @@
 		 </c:choose>
 		</p>
 	<div class="col-xs-0 col-md-2"></div>
-	<div class="well col-xs-12 col-md-8"><pre>${sessionScope.map.CONTENT}</pre></div>
+	<div class="col-xs-12 col-md-8"><pre style="background-color: white; text-align: left;">${sessionScope.map.CONTENT}</pre></div>
 	<div class="col-xs-0 col-md-2"></div>
+<!-- 	</div> -->
 	<hr style="background-color:silver; height: 2px; width: 70%"/>
+	<p style="text-align: left; padding-left: 200px;">댓글</p>
 	<div class="col-xs-0 col-md-2"></div>
-	<div class="col-xs-12 col-md-8">
+	<div class=" well col-xs-12 col-md-8">
 	<div class="table-responsive">
 		<table id="list" class="table">
 		</table>
@@ -49,7 +52,6 @@
 	</div>
 	</div>
 	<div class="col-xs-0 col-md-2"></div>
-
 <script>
 	var list = function() {
 		$.ajax({
