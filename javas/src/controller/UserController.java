@@ -6,6 +6,8 @@ import java.util.UUID;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMessage.RecipientType;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -114,5 +116,32 @@ public class UserController {
 		ModelAndView mav = new ModelAndView("t_el");
 		mav.addObject("section", "user/login");
 		return mav;
+	}
+	
+	@RequestMapping("/loginResult.jv")
+	public ModelAndView toLoginResult(@RequestParam Map map, HttpSession session, HttpServletResponse resp) {
+		ModelAndView mav = new ModelAndView();
+		boolean b = udao.login(map);
+		if (b) {
+			if (map.get("keep") != null) {
+				Cookie c = new Cookie("login", (String) map.get("id"));
+				c.setMaxAge(60 * 60 * 24 * 7);
+				c.setPath("/");
+				resp.addCookie(c);
+			}
+			if (session.getAttribute("logo") == null) {
+				mav.setViewName("redirect:/");
+			} else {
+				mav.setViewName("redirect:/" + session.getAttribute("logo"));
+			}
+			session.setAttribute("auth", map.get("id"));
+			return mav;
+		} else {
+			mav.setViewName("t_el");
+			mav.addObject("section", "user/login");
+			mav.addObject("lfalse", "on");
+			return mav;
+		}
+
 	}
 }
