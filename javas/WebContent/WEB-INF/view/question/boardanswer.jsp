@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <div align="center">
 	<h1>답글</h1>
-	<form action="/freeboard/replyExec.jv" method="post">
+	<form action="/question/replyExec.jv" method="post">
 			<div class="form-group">
 				<input class="form-control" type="text" name="title" placeholder="제목을 입력해 주세요" value="re : ${posts.FT_TITLE }" required="required"/>
 			</div>

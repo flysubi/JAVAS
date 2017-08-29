@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <style>
@@ -34,7 +36,6 @@
 						<c:forEach items="${postsList }" var="i">
 							<tr>
 								<td>${i.FT_NUM }</td>
-								<td>${i.FT_WRITER }</td>
 								<c:choose>
 									<c:when test="${i.FT_DEPTH eq 0}">
 										<td><a href="/question/detail.jv?num=${i.FT_NUM }">${i.FT_TITLE }</a></td>
@@ -42,10 +43,11 @@
 									<c:otherwise>
 										<td><c:forEach begin="1" end="${i.FT_DEPTH }" step="1">
 												&emsp;
-											</c:forEach> <a href="/question/detail.jv?num=${i.FT_NUM }"> <i
+											</c:forEach> <a href="/question/detail.jv?num=${i.FT_NUM }&like=${i.FT_LIKE}"> <i
 												class="material-icons">subdirectory_arrow_right</i>${i.FT_TITLE }</a></td>
 									</c:otherwise>
 								</c:choose>
+								<td>${i.FT_WRITER }</td>
 								<td>${i.FT_LIKE }</td>
 							</tr>
 						</c:forEach>

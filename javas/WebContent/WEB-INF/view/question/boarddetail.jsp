@@ -15,7 +15,7 @@
 	<button class="btn bnt-default" id="likeup" type="button"
 		style="width: 40%">추천</button>
 	
-	<a href="/quesiton/answer.jv?num=${posts.FT_NUM }"
+	<a href="/question/answer.jv?num=${posts.FT_NUM }"
 		style="text-decoration: none;"><button class="btn bnt-default"
 			type="button">답글 쓰기</button></a>
 </div>

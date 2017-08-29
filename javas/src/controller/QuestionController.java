@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -51,9 +52,13 @@ public class QuestionController {
 	}
 
 	@RequestMapping("/detail.jv")
-	public ModelAndView boardDetail(@RequestParam(name = "num") String num) {
+	public ModelAndView boardDetail(@RequestParam(name = "num") String num, @RequestParam(name="like") int like) {
 		ModelAndView mav = new ModelAndView("t_el");
-		Map<String, String> map = qs.boardDetail(num);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("num", num);
+		map.put("like", like);
+		qs.boardDetail(map);
 		mav.addObject("section", "/question/boarddetail");
 		mav.addObject("posts", map);
 		return mav;
@@ -62,16 +67,28 @@ public class QuestionController {
 	@RequestMapping("/answer.jv")
 	public ModelAndView BoardReply(@RequestParam(name = "num") String num) {
 		ModelAndView mav = new ModelAndView("t_el");
-		Map<String, String> map = qs.boardDetail(num);
+		Map<String, String> map = new HashMap<>(); 
+		map.put("num", num);
+		map = qs.boardDetail(map);
 		mav.addObject("section", "/question/boardanswer");
 		mav.addObject("posts", map);
 		return mav;
 	}
 
 	@RequestMapping("/replyExec.jv")
-	public ModelAndView boardReplyExec(@RequestParam Map<String, Object> map, HttpSession session) {
-		map.put("writer", (String) session.getAttribute("auth"));
-		ModelAndView mav = new ModelAndView("redirect:/quesuton/list.jv");
+	public ModelAndView boardReplyExec(HttpSession session, @RequestParam(name="title") String title, @RequestParam(name="content") String content, @RequestParam(name="group") int group, @RequestParam(name="step") int step, @RequestParam(name="depth") int depth ) {
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("group", group);
+		map.put("step", step);
+		map.put("depth", depth);
+		map.put("writer", "flysubi");
+		map.put("title", title);
+		map.put("content", content);
+		
+		
+		System.out.println("[reply.controller] : "+map);
+		ModelAndView mav = new ModelAndView("redirect:/question/list.jv");
 		qs.boardReply(map);
 		return mav;
 	}	
