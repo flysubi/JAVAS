@@ -31,7 +31,7 @@
 					<li><a href="/user/join.one"> <span
 							class="glyphicon glyphicon-user"></span> 회원가입
 					</a></li>
-					<li><a href="/user/login.one"> <span
+					<li><a href="/user/join.js"> <span
 							class="glyphicon glyphicon-log-in"></span> 로그인
 					</a></li>
 				</ul>
