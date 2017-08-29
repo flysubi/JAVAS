@@ -3,6 +3,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div align="left">
 
-</div>
 <img alt="dad" src="/style/중간.png">
 </div>
