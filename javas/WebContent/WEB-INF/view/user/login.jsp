@@ -40,7 +40,7 @@ b {
 					<br/><input type="checkbox" name="keep"/>로그인 상태 유지
 					</div>
 				</form>
-				<a href="findMember.sz">아이디 또는 비밀번호찾기</a>
+				<a href="/user/findUser.jv">아이디 또는 비밀번호찾기</a>
 			</div>
 		</div>
 		<div class="col-ss-0 col-sm-4"></div>

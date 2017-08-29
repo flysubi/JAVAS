@@ -45,7 +45,7 @@
 							(${point } p)<span class="caret"></span>
 					</a>
 						<ul class="dropdown-menu">
-							<li><a href="#">로그아웃</a></li>
+							<li><a href="/user/logout.jv">로그아웃</a></li>
 
 						</ul></li>
 
