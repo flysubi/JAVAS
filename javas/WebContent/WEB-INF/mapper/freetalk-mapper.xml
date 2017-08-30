@@ -16,7 +16,7 @@
 		</when><when test="category != '' and category != null">
 			where category=#{category}
 		</when></choose>
-		order by num ) tmp ) where r between #{start} and #{end}
+		order by num desc ) tmp ) where r between #{start} and #{end}
 	</select>
 	<select id="countAll" resultType="java.lang.Integer" parameterType="java.util.HashMap">
 		select count(*) from freetalk 
@@ -24,7 +24,11 @@
 		<foreach collection="arr" item="search" separator=" or " open="(" close=")">
 			title like #{search} or content like #{search}
 		</foreach>
-		</when></choose>
+		</when>
+		<when test="category != '' and category != null">
+			where category like #{category}
+		</when>
+		</choose>
 	</select>
 	<select id="getOne" resultType="java.util.HashMap" parameterType="java.lang.Integer">
 		select f.*, to_date(to_char(sysdate)) - writedate dd, sysdate-writedate diff from freetalk f where num=#{num}
@@ -41,4 +45,10 @@
 	<delete id="talkDel" parameterType="java.lang.Integer">
 		delete from freetalk where num=#{num}
 	</delete>
+	<select id="loveCnt" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		select count(*) from love where num=#{num}
+	</select>
+	<select id="loveId" parameterType="java.util.HashMap" resultType="java.lang.String">
+		select id from love where num=#{num} and id=#{id}
+	</select>
 </mapper>
