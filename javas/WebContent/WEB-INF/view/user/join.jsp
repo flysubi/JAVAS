@@ -7,6 +7,9 @@
 b {
 	font-size: 16pt;
 }
+.form-control {
+	height: 50px;
+}
 </style>
 <title>회원 가입</title>
 </head>
@@ -18,29 +21,55 @@ b {
 		<div class="col-ss-12 col-sm-4">
 			<div class="form-group">
 				<form action="/user/joinResult.jv" class="form-signin" method="post">
-					<div class="form-group">
-						<label for="id"><b>ID</b></label><br /> <input type="text"
+					<h3 style="float:left;">필수입력사항</h3>
+					<div class="form-group" >
+						<input type="text"
 							class="form-control" name="id" id="jid"
-							placeholder="pick your id" required="required"><br /> <span
-							id="cor" style="color: green;"></span> <span id="wrg"
-							style="color: red;"></span>
-					</div>
-					<div class="form-group">
-						<label for="email"><b>Email</b></label><br /> <input type="email"
+							placeholder="아이디" required="required"> <span
+							id="cor" style="color: green; float: left;"></span> <span id="wrg"
+							style="color: red; float: left;"></span>
+						<input
+							type="password" class="form-control" name="pass" id="pass"
+							placeholder="비밀번호" required="required">
+						<input
+							type="password" class="form-control" id="cpass"
+							placeholder="비밀번호 재확인" required="required">
+							<span id="pcor" style="color: green; float: left;"></span> <span id="pwrg"
+							style="color: red; float: left;"></span>
+						<input type="email"
 							name="email" id="jemail" class="form-control"
-							placeholder="your email address" required="required"><br />
-						<span id="ecor" style="color: green;"></span> <span id="ewrg"
-							style="color: red;"></span>
+							placeholder="본인확인 이메일" required="required">
+						<span id="ecor" style="color: green; float: left;"></span> <span id="ewrg"
+							style="color: red; float: left;"></span>
 					</div>
-					<div class="form-group">
-						<label for="pass"><b>Password</b></label><br /> <input
-							type="password" class="form-control" name="pass"
-							placeholder="create a password" required="required"><br />
+					<br/>
+					<h3 style="float:left;">선택입력사항</h3>
+					<div class="form-group" >
+					<input type="text"
+							class="form-control" name="name"
+							placeholder="이름">
+					 <div class="input-group">
+    				<span class="input-group-addon">생일</span>
+    				<input id="year" type="text" class="form-control" name="year" placeholder="년(4자)" 
+    					style="width: 40%;" maxlength="4">
+    				<select class="form-control" name="month" id="month" style="width: 30%;">
+    					<option>월</option>
+    					<c:forEach begin="1" step="1" end="12" var="i">
+    						<option value="${i }">${i }</option>
+    					</c:forEach>
+    				</select>
+    				<input id="day" type="text" class="form-control" name="day"  maxlength="2" placeholder="일" style="width: 30%;">
+    				</div>
+    				<span id="ywrg"
+							style="color: red; float: left;"></span><br/>
+					<label class="radio-inline" style="font-size: 20px;"><input type="radio" name="gender" value="남" style="height: 20px; width: 20px;"> 남자</label>
+					<label class="radio-inline" style="font-size: 20px;"><input type="radio" name="gender" value="여" style="height: 20px; width: 20px;"> 여자</label>
 					</div>
-					<button type="submit" class="btn bnt-default" id="join">가입하기</button>
-					<button type="reset" class="btn bnt-default">다시작성</button>
+					<button type="submit" class="btn bnt-default" id="join" style="background-color: LightSkyBlue; color: white; font-weight: 900; width: 49%;">가입하기</button>
+					<button type="reset" class="btn bnt-default" style="background-color: LightSkyBlue; color: white; font-weight: 900;  width: 49%;">다시작성</button>
 				</form>
-				<a href="findMember.sz">아이디찾기</a>
+				
+				<a href="/user/findUser.jv">아이디찾기</a>
 			</div>
 		</div>
 		<div class="col-ss-0 col-sm-4"></div>
@@ -59,10 +88,10 @@ b {
 			}).done(function(rst){
 				if(rst == true) {
 					document.getElementById("cor").innerHTML = "";
-					document.getElementById("wrg").innerHTML = "이미 등록된 아이디입니다.<br/>";
+					document.getElementById("wrg").innerHTML = "<div align=\"left\" style=\"padding: 7px;\">이미 등록된 아이디입니다.</div>";
 					document.getElementById("join").disabled= true;
 				}else {
-					document.getElementById("cor").innerHTML = "멋진 아이디네요!<br/>";
+					document.getElementById("cor").innerHTML = "<div align=\"left\" style=\"padding: 7px;\">멋진 아이디네요!</div>";
 					document.getElementById("wrg").innerHTML = "";
 					if(document.getElementById("ecor").innerHTML.trim().length > 0) {
 						document.getElementById("join").disabled= false;
@@ -83,10 +112,10 @@ b {
 			}).done(function(rst){
 				if(rst == true) {
 					document.getElementById("ecor").innerHTML = "";
-					document.getElementById("ewrg").innerHTML = "이미 등록된 이메일입니다.<br/>";
+					document.getElementById("ewrg").innerHTML = "<div align=\"left\ style=\"padding-left: 7px;\">이미 등록된 이메일입니다.</div>";
 					document.getElementById("join").disabled= true;
 				}else {
-					document.getElementById("ecor").innerHTML = "멋진 이메일이네요!<br/>";
+					document.getElementById("ecor").innerHTML = "<div align=\"left\" style=\"padding-left: 7px;\">멋진 이메일이네요!</div>";
 					document.getElementById("ewrg").innerHTML = "";
 					if(document.getElementById("cor").innerHTML.trim().length > 0) {
 						document.getElementById("join").disabled= false;
@@ -95,4 +124,45 @@ b {
 			})
 		}	
 	};
+	
+	
+	
+	$("#cpass").blur(function(){
+		var pass = $("#pass").val();
+		var cpass = this.value;
+		if (pass.trim().length > 0) {
+			if(pass != cpass) {
+				document.getElementById("pwrg").innerHTML = "<div align=\"left\" style=\"padding: 7px;\">비밀번호가 일치하지 않습니다.</div>";
+				document.getElementById("pcor").innerHTML = "";
+				document.getElementById("join").disabled= true;
+			}else {
+				document.getElementById("pcor").innerHTML = "<div align=\"left\" style=\"padding: 7px;\">비밀번호가 일치합니다!</div>";
+				document.getElementById("pwrg").innerHTML = "";
+				if(document.getElementById("cor").innerHTML.trim().length > 0 && document.getElementById("ecor").innerHTML.trim().length > 0) {
+					document.getElementById("join").disabled= false;
+				}
+			}
+		}
+	})
+	
+	$("#year").blur(function(){
+		var r = /[0-9]{4}/;
+		if(r.test($(this).val()) == false) {
+			$("#ywrg").html("<div align=\"left\ style=\"padding-left: 7px;\">태어난 년도를 정확히 입력해주세요!</div>")
+		}
+	});
+	
+	$("#month").blur(function(){
+		var r = /[0-9]/;
+		if(r.test($(this).val()) == false) {
+			$("#ywrg").html("<div align=\"left\ style=\"padding-left: 7px;\">태어난 달을 정확히 입력해주세요!</div>")
+		}
+	});
+	
+	$("#day").blur(function(){
+		var r = /[0-9]{1,2}/;
+		if(r.test($(this).val()) == false) {
+			$("#ywrg").html("<div align=\"left\ style=\"padding-left: 7px;\">태어난 날짜를 정확히 입력해주세요!</div>")
+		}
+	});
 </script>

@@ -10,5 +10,11 @@
 <definition name="t_el" extends="t_base">
 		<put-attribute name="section" expression="/WEB-INF/view/${section}.jsp"/>
 </definition>
-
+<definition name="t_el_info" extends="t_base">
+		<put-attribute name="section">
+			<definition template="/WEB-INF/view/user/template.jsp">
+				<put-attribute name="section" expression="/WEB-INF/view/${section}.jsp" />
+			</definition>
+		</put-attribute>
+	</definition>
 </tiles-definitions>

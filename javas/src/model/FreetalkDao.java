@@ -87,6 +87,7 @@ public class FreetalkDao {
 			int n = session.selectOne("freetalk.countAll",map);
 			return n;
 		} catch(Exception e) {
+			System.out.println("[freetalk] countAll error ... "+e.toString());
 			return -1; 
 		} finally {
 			session.close();
@@ -99,6 +100,7 @@ public class FreetalkDao {
 			session.insert("freetalk.loveUp",map);
 			return true;
 		} catch(Exception e) {
+			System.out.println("[freetalk] loveUp error ... "+e.toString());
 			return false; 
 		} finally {
 			session.close();
@@ -111,12 +113,37 @@ public class FreetalkDao {
 			session.delete("freetalk.talkDel",num);
 			return true;
 		} catch(Exception e) {
+			System.out.println("[freetalk] talkDel error ... "+e.toString());
 			return false; 
 		} finally {
 			session.close();
 		}
 	}
 	
+	public int loveCnt(int num) {
+		SqlSession session = factory.openSession();
+		try {
+			int n = session.selectOne("freetalk.loveCnt",num);
+			return n;
+		} catch(Exception e) {
+			System.out.println("[freetalk] loveCnt error ... "+e.toString());
+			return -1; 
+		} finally {
+			session.close();
+		}
+	}
 
+	public String loveId(Map map) {
+		SqlSession session = factory.openSession();
+		try {
+			String s = session.selectOne("freetalk.loveId",map);
+			return s;
+		} catch(Exception e) {
+			System.out.println("[freetalk] loveId error ... "+e.toString());
+			return null; 
+		} finally {
+			session.close();
+		}
+	}
 	
 }

@@ -28,7 +28,7 @@ public class QuestionController {
 		ModelAndView mav = new ModelAndView("t_el");
 		List<Map<String, String>> list = qs.boardList();
 		mav.addObject("section", "/question/boardlist");
-		mav.addObject("active", "list");
+		mav.addObject("title","Q&A");
 		mav.addObject("postsList", list);
 
 		return mav;
@@ -37,8 +37,9 @@ public class QuestionController {
 	@RequestMapping("/write.jv")
 	public ModelAndView boardWrite() {
 		ModelAndView mav = new ModelAndView("t_el");
+		mav.addObject("title","Q&A");
 		mav.addObject("section", "/question/boardwrite");
-		mav.addObject("active", "write");
+		
 		return mav;
 	}
 
@@ -105,7 +106,6 @@ public class QuestionController {
 		
 		ModelAndView mav = new ModelAndView("t_el");
 		mav.addObject("section", "/question/boardlist");
-		mav.addObject("active", "list");
 		mav.addObject("postsList", data);
 		return mav;
 	}

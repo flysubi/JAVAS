@@ -5,7 +5,7 @@ b {
 	font-size: 16pt;
 }
 </style>
-<div align="center" class="row">
+<div align="center" class="row" style="margin-top: 100px;">
 	<div class="col-ss-0 col-sm-4"></div>
 	<div class="col-ss-12 col-sm-4">
 		<div class="form-group">

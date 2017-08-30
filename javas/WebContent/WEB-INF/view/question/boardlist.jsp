@@ -18,7 +18,8 @@
 }
 </style>
 <div style="padding-bottom: 10px;">
-	<h2>Q&A</h2>
+	<div class="input-group" style="padding-bottom: 15px; padding-top: 15px;">
+	</div>
 	<div class="table-responsive">
 		<table class="table">
 			<thead>
@@ -84,4 +85,5 @@
 		</c:forEach>
 	</ul>
 </div>
+
 	

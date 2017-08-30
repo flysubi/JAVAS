@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 새로 글 쓰기 -->
 	<insert id="addNew" parameterType="java.util.HashMap">
 		insert into questionboard values
-		(questiontionboard_seq.nextval, questionboard_seq.currval, 1, 0,
+		(questionboard_seq.nextval, questionboard_seq.currval, 1, 0,
 		#{writer},
 		#{title}, #{content}, 0)
 	</insert>

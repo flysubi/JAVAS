@@ -5,7 +5,6 @@
 .navbar-default .navbar-nav>li>a {
 	color: black;
 }
-
 </style>
 <!--  navigator 
 	navbar-default
@@ -35,8 +34,13 @@
 					<li><p class="navbar-text" style="color: black;">${auth }님 환영합니다 (${point} P)</p></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right" >
-						<li><a href="#" style="color: #939393;"><span class="glyphicon glyphicon-envelope"></span> 쪽지함</a></li>
+<<<<<<< HEAD
+						<li><a href="/memo/list.jv" style="color: #939393;"><span class="glyphicon glyphicon-envelope"></span> 쪽지함</a></li>
 						<li><a href="/user/logout.jv" style="color: #939393;"><span class="glyphicon glyphicon-wrench"></span> 정보수정</a></li>
+=======
+						<li><a href="#" style="color: #939393;"><span class="glyphicon glyphicon-envelope"></span> 쪽지함</a></li>
+						<li><a href="/user/userInfo.jv" style="color: #939393;"><span class="glyphicon glyphicon-wrench"></span> 정보수정</a></li>
+>>>>>>> branch 'master' of https://github.com/flysubi/JAVAS.git
 						<li><a href="/user/logout.jv" style="color: #939393;"><span class="glyphicon glyphicon-log-out"></span> 로그아웃</a></li>
 				</ul>
 			</c:otherwise>
@@ -45,7 +49,7 @@
 	<hr style="background-color: #939393; margin: 0"/>
 	<div class="collapse navbar-collapse" id="myNav" style="background-color: white;"> 
 		<ul class="nav navbar-nav">
-            <li><a href="#"><img alt="javas" src="/style/javas.png"></a>
+            <li><a href="/"><img alt="javas" src="/style/javas.png"></a>
 		</ul>
 		<ul class="nav navbar-nav navbar-right" style="font-size: 14pt; margin-top: 17px; font-weight: 600;">
 		<li><a href="#">메뉴얼</a></li>
