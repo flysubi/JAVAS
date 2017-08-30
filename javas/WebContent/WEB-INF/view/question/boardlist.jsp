@@ -69,7 +69,7 @@
 	</a>
 </div>
 <div align="center">
-	<form action="/quetion/list.jv">
+	<form action="/question/list.jv">
 		<div class="input-group">
 			<span><input type="text" class="form-control"
 				placeholder="Search" name="search" style="width: 250px;"></span>&nbsp;
