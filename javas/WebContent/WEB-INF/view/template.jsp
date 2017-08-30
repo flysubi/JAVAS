@@ -30,6 +30,7 @@ body {
 	<c:choose>
 	<c:when test="${nav eq null }">
 	<div class="container">
+
 	<section style="min-height: 70%; text-align: center;">
 		<tiles:insertAttribute name="section"/>
 	</section>
