@@ -61,7 +61,8 @@ public class UserController {
 	@RequestMapping("/joinResult.jv")
 	public ModelAndView join(@RequestParam Map map, HttpSession session) {
 		ModelAndView mav = new ModelAndView("t_el");
-		mav.addObject("section", "user/result");
+		mav.addObject("section", "user/joinResult");
+		mav.addObject("height", "52%");
 		session.setAttribute("user", map);
 		try {
 			MimeMessage msg = sender.createMimeMessage();
@@ -105,6 +106,7 @@ public class UserController {
 		session.setAttribute("auth", map.get("id"));
 		mav.addObject("id", map.get("id"));
 		mav.addObject("section", "user/success");
+		mav.addObject("height", "52%");
 		return mav;
 	}
 	
@@ -112,6 +114,7 @@ public class UserController {
 	public ModelAndView failJoin() {
 		ModelAndView mav = new ModelAndView("t_el");
 		mav.addObject("section", "user/fail");
+		mav.addObject("height", "52%");
 		return mav;
 	}
 	
@@ -120,6 +123,7 @@ public class UserController {
 		ModelAndView mav = new ModelAndView("t_el");
 		mav.addObject("section", "user/login");
 		session.setAttribute("title", "로그인");
+		mav.addObject("height", "52%");
 		return mav;
 	}
 	
@@ -154,6 +158,7 @@ public class UserController {
 	public ModelAndView findId() {
 		ModelAndView mav = new ModelAndView("t_el");
 		mav.addObject("section", "user/findUser");
+		mav.addObject("height", "52%");
 		return mav;
 	}
 
@@ -164,6 +169,7 @@ public class UserController {
 		if (arr.equals("no")) {
 			mav.setViewName("t_el");
 			mav.addObject("section", "user/findNoResult");
+			mav.addObject("height", "52%");
 			return mav;
 		} else {
 			String[] s = arr.split("&");
@@ -171,6 +177,7 @@ public class UserController {
 			mav.addObject("section", "user/findResult");
 			mav.addObject("id", s[0]);
 			mav.addObject("pass", s[1]);
+			mav.addObject("height", "52%");
 			return mav;
 		}
 	}
@@ -185,5 +192,13 @@ public class UserController {
 		resp.addCookie(c);
 		session.invalidate();
 		return "redirect:/";
+	}
+	
+	@RequestMapping("/userInfo.jv")
+	public ModelAndView userInfo(HttpSession session) {
+		ModelAndView mav = new ModelAndView("t_el_info");
+		mav.addObject("section", "user/userInfo");
+		session.setAttribute("title", "정보수정");
+		return mav;
 	}
 }

@@ -18,6 +18,7 @@ public class UserDao {
 	public boolean joinMember(Map map) {
 		SqlSession session = factory.openSession();
 		try {
+			System.out.println(map);
 			session.insert("user.join_step1", map); 
 			session.insert("user.join_step2", map);
 			session.commit();

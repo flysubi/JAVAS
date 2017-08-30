@@ -21,13 +21,13 @@ b {
 		<div class="col-ss-12 col-sm-4">
 			<div class="form-group">
 				<form action="/user/joinResult.jv" class="form-signin" method="post">
-					<h3 style="float:left;">필수입력사항</h3>
 					<div class="form-group" >
+						<div class="input-group">
+    				<span class="input-group-addon">아이디</span>
 						<input type="text"
 							class="form-control" name="id" id="jid"
-							placeholder="아이디" required="required"> <span
-							id="cor" style="color: green; float: left;"></span> <span id="wrg"
-							style="color: red; float: left;"></span>
+							required="required">
+							</div>
 						<input
 							type="password" class="form-control" name="pass" id="pass"
 							placeholder="비밀번호" required="required">
@@ -43,7 +43,6 @@ b {
 							style="color: red; float: left;"></span>
 					</div>
 					<br/>
-					<h3 style="float:left;">선택입력사항</h3>
 					<div class="form-group" >
 					<input type="text"
 							class="form-control" name="name"
@@ -65,7 +64,7 @@ b {
 					<label class="radio-inline" style="font-size: 20px;"><input type="radio" name="gender" value="남" style="height: 20px; width: 20px;"> 남자</label>
 					<label class="radio-inline" style="font-size: 20px;"><input type="radio" name="gender" value="여" style="height: 20px; width: 20px;"> 여자</label>
 					</div>
-					<button type="submit" class="btn bnt-default" id="join" style="background-color: LightSkyBlue; color: white; font-weight: 900; width: 49%;">가입하기</button>
+					<button type="submit" class="btn bnt-default" id="join" style="background-color: LightSkyBlue; color: white; font-weight: 900; width: 49%;">저장하기</button>
 					<button type="reset" class="btn bnt-default" style="background-color: LightSkyBlue; color: white; font-weight: 900;  width: 49%;">다시작성</button>
 				</form>
 				
