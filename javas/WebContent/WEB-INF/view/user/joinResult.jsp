@@ -1,11 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div align="center" class="row ">
+<div align="center"  class="row" style="margin-top: 100px;">
 	<h3>회원가입을 환영합니다!</h3><br/>
-	
-	
-	
-	<br/><br/>
+
 	<p>
 		이제 마지막으로 이메일 인증 절차가 남아있습니다.<br/>
 		당신의 이메일로 링크를 첨부하였으니,<br/>
