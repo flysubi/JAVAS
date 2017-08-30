@@ -31,8 +31,12 @@ body {
 	<c:when test="${nav eq null }">
 	<div class="container">
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<section style="min-height: 72%; text-align: center;">
 =======
+=======
+
+>>>>>>> branch 'master' of https://github.com/flysubi/JAVAS.git
 	<section style="min-height: 70%; text-align: center;">
 >>>>>>> branch 'master' of https://github.com/flysubi/JAVAS.git
 		<tiles:insertAttribute name="section"/>
