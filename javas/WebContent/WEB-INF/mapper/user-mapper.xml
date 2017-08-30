@@ -13,7 +13,7 @@
 	 		insert into member values(#{id}, #{pass}, #{email})
 	 	</insert>
 	 	<insert id="join_step2" parameterType="java.util.HashMap">
-	 		insert into info(id) values(#{id})
+	 		insert into info values(#{id}, #{name}, #{gender}, #{year}, #{month}, #{day})
 	 	</insert>
 	 	<select id="login" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 	 		select * from member where id=#{id} and password=#{pass}
