@@ -113,6 +113,15 @@ public class UserController {
 		mav.addObject("id", map.get("id"));
 		mav.addObject("section", "user/success");
 		mav.addObject("height", "52%");
+		
+		String id = (String)session.getAttribute("auth");
+		Map point = new HashMap();
+		point.put("id", id);
+		point.put("point", 10);
+		point.put("content", "login");
+	boolean bb = pdao.pointUp(point);
+	Map getPoint = pdao.getPoint(id);
+	session.setAttribute("point", getPoint.get("POINT"));
 		return mav;
 	}
 	
@@ -150,8 +159,20 @@ public class UserController {
 				mav.setViewName("redirect:/" + session.getAttribute("logo"));
 			}
 			session.setAttribute("auth", map.get("id"));
-			
 			String id = (String)session.getAttribute("auth");
+			Map login = new HashMap<>();
+				login.put("id", id);
+				login.put("content", "login");
+			int logCk = pdao.loginCk(login);
+			if(logCk >= 1 || logCk == -1) {
+				Map point = new HashMap();
+					point.put("id", id);
+					point.put("point", 1);
+					point.put("content", "login");
+				boolean bb = pdao.pointUp(point);
+				Map getPoint = pdao.getPoint(id);
+				session.setAttribute("point", getPoint.get("POINT"));
+			}
 
 			return mav;
 		} else {
