@@ -55,4 +55,17 @@ public class PointDao {
 			session.close();
 		}
 	}
+	
+	public int loginCk(Map map) {
+		SqlSession session = factory.openSession();
+		try {
+			int n = session.selectOne("point.loginCk",map);
+			return n;
+		}catch(Exception e) {
+			System.out.println("[pointDao loginCk error ... ]"+e.toString());
+			return -1;
+		}finally {
+			session.close();
+		}
+	}
 }
