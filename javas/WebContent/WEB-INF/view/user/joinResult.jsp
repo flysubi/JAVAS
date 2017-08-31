@@ -12,7 +12,7 @@
 	</p>
 </div>
 <script>
-var ws = new WebSocket("ws://192.168.10.70/ws/join.ws")
+var ws = new WebSocket("ws://192.168.0.9/ws/join.ws")
 	ws.onmessage = function(e) { // 서버측에서 메세지를 받을 때 해야할 일
 	if(e.data == "true") {
 			location.href="/user/success.jv";

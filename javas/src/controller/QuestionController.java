@@ -39,14 +39,12 @@ public class QuestionController {
 		ModelAndView mav = new ModelAndView("t_el");
 		mav.addObject("title","Q&A");
 		mav.addObject("section", "/question/boardwrite");
-		
 		return mav;
 	}
 
 	@RequestMapping("/writeExec.jv")
-	public ModelAndView boardWriteExec(@RequestParam Map<String, String> map, HttpSession session) {
-		System.out.println(map);
-		map.put("writer", "flysubi");
+	public ModelAndView boardWriteExec(@RequestParam Map<String, Object> map, HttpSession session) {
+		map.put("writer", session.getAttribute("auth"));
 		qs.postsUpload(map);
 		ModelAndView mav = new ModelAndView("redirect:/question/list.jv");
 		return mav;
@@ -55,13 +53,13 @@ public class QuestionController {
 	@RequestMapping("/detail.jv")
 	public ModelAndView boardDetail(@RequestParam(name = "num") String num, @RequestParam(name="like") int like) {
 		ModelAndView mav = new ModelAndView("t_el");
-		
 		Map<String, Object> map = new HashMap<>();
 		map.put("num", num);
 		map.put("like", like);
-		qs.boardDetail(map);
+		Map<String, String> map1 = qs.boardDetail(map);
+		System.out.println("...."+map1);
 		mav.addObject("section", "/question/boarddetail");
-		mav.addObject("posts", map);
+		mav.addObject("posts", map1);
 		return mav;
 	}
 
@@ -88,7 +86,7 @@ public class QuestionController {
 		map.put("content", content);
 		
 		
-		System.out.println("[reply.controller] : "+map);
+		
 		ModelAndView mav = new ModelAndView("redirect:/question/list.jv");
 		qs.boardReply(map);
 		return mav;
@@ -101,6 +99,7 @@ public class QuestionController {
 		for(String str : strAr) {
 			Arlist.add("%"+str+"%");
 		}
+		int start = 1+
 		map.put("arr", Arlist);
 		List data = qs.boardSearch(map);
 		
