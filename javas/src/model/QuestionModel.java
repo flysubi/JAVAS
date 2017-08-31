@@ -15,12 +15,11 @@ public class QuestionModel {
 	@Autowired
 	SqlSessionFactory factory;
 
-	public void postsUpload(Map<String, String> map) {
-		Map<String, String> writeData = map;
-		System.out.println(map);
+	public void postsUpload(Map<String, Object> map) {
+		Map<String, Object> writeData = map;
 		SqlSession session = factory.openSession();
 		try {
-			session.insert("quesiton.addNew", map);
+			session.insert("question.addNew", map);
 		} catch (Exception e) {
 			System.out.println("[JDBC] QuestionBoardModelException postsUpload : " + e.getMessage());
 		} finally {
@@ -28,11 +27,12 @@ public class QuestionModel {
 		}
 	}
 
-	public List<Map<String, String>> boardList() {
-		List<Map<String, String>> list = new ArrayList<>();
+	public List<Map<String, Object>> boardList(Map map) {
+		List<Map<String, Object>> list = new ArrayList<>();
 		SqlSession session = factory.openSession();
 		try {
-			list = session.selectList("question.getAllTalks");
+			list = session.selectList("question.getAllTalks", map);
+			System.out.println(list);
 		} catch (Exception e) {
 			System.out.println("[JDBC] QuestionBoaordModelException boardList : " + e.getMessage());
 		} finally {
@@ -40,6 +40,20 @@ public class QuestionModel {
 		}
 
 		return list;
+	}
+	
+	public int countAll(Map map) {
+		SqlSession session = factory.openSession();
+		int n = 0;
+		try {
+			n = session.selectOne("question,countAll", map.get("num"));
+			System.out.println(n);
+		}catch(Exception e) {
+			System.out.println("[JDBC] QuestionBoaordModelException countAllt : " + e.getMessage());
+		}finally {
+			session.close();
+		}
+		return n;
 	}
 
 	public Map<String, String> boardDetail(Map map) {
@@ -50,13 +64,14 @@ public class QuestionModel {
 				session.update("question.count", map);
 			}			
 			map1 = session.selectOne("question.getOne", map.get("num"));
+			System.out.println(".."+map1);
 		} catch (Exception e) {
 			System.out.println("[JDBC] QuestionBoardBoardModelException boardDetail : " + e.getMessage());
 		} finally {
 			session.close();
 		}
 
-		return map;
+		return map1;
 	}
 
 	public void boardReply(Map<String, Object> map) {
@@ -70,22 +85,8 @@ public class QuestionModel {
 		} finally {
 			session.close();
 		}
-	}
+	}	
 	
-	public boolean boardLike(Map<String, String> map) {
-		boolean flag = false;
-		SqlSession session = factory.openSession();
-		try {
-			session.insert("question.likechk", map);
-			session.update("quesiton.likeUp", map);
-			flag = true;
-		}catch(Exception e) {
-			System.out.println("[JDBC] QuesitonBoardModelException boardLike : " + e.getMessage());
-		}finally {
-			session.close();
-		}
-		return flag;
-	}
 
 	public List<Map<String, String>> boardSearch(Map<String, List<String>> map){
 		SqlSession session = factory.openSession();

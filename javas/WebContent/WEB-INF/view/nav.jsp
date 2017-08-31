@@ -34,13 +34,8 @@
 					<li><p class="navbar-text" style="color: black;">${auth }님 환영합니다 (${point} P)</p></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right" >
-<<<<<<< HEAD
-						<li><a href="/memo/list.jv" style="color: #939393;"><span class="glyphicon glyphicon-envelope"></span> 쪽지함</a></li>
-						<li><a href="/user/logout.jv" style="color: #939393;"><span class="glyphicon glyphicon-wrench"></span> 정보수정</a></li>
-=======
 						<li><a href="#" style="color: #939393;"><span class="glyphicon glyphicon-envelope"></span> 쪽지함</a></li>
 						<li><a href="/user/userInfo.jv" style="color: #939393;"><span class="glyphicon glyphicon-wrench"></span> 정보수정</a></li>
->>>>>>> branch 'master' of https://github.com/flysubi/JAVAS.git
 						<li><a href="/user/logout.jv" style="color: #939393;"><span class="glyphicon glyphicon-log-out"></span> 로그아웃</a></li>
 				</ul>
 			</c:otherwise>

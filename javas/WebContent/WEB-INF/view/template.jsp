@@ -28,14 +28,9 @@ body {
 	</nav>
 	<c:choose>
 	<c:when test="${nav eq null }">
-<<<<<<< HEAD
-	<div class="container">
 
-	<section style="min-height: 70%; text-align: center;">
-=======
 	<div class="container">
 	<section style="min-height: ${height eq null ? '70%' : height}; text-align: center;">
->>>>>>> branch 'master' of https://github.com/flysubi/JAVAS.git
 		<tiles:insertAttribute name="section"/>
 	</section>
 	</div>

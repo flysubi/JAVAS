@@ -12,8 +12,6 @@
 		class="form-control" readonly="readonly">${posts.FT_CONTENT}</textarea>
 </div>
 <div align="center" style="margin-bottom: 15px;">
-	<button class="btn bnt-default" id="likeup" type="button"
-		style="width: 40%">추천</button>
 	
 	<a href="/question/answer.jv?num=${posts.FT_NUM }"
 		style="text-decoration: none;"><button class="btn bnt-default"
