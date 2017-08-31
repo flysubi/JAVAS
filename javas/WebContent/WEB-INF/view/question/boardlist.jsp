@@ -82,7 +82,7 @@
 	<ul class="pagination">
 		<c:forEach var="i" begin="1" end="${size}">
 			<li class="${i eq page ? 'active' :'' }"><a
-				href="/question/list.jv?p=${i }&search=${param.search}">${i}</a></li>
+				href="/question/list.jv?p=${i }">${i}</a></li>
 		</c:forEach>
 	</ul>
 </div>

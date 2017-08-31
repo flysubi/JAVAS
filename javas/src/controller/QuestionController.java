@@ -24,13 +24,37 @@ public class QuestionController {
 	QuestionModel qs;
 
 	@RequestMapping("/list.jv")
-	public ModelAndView boardList() {
+	public ModelAndView boardList(@RequestParam(name="p", defaultValue="1")int p,
+			@RequestParam(name="search", required=false) String s) {
+		String[] ar = null;
+		if(s != null) {
+			ar = s.split("\\s+");
+			for(int i=0; i < ar.length; i++) {
+				ar[i] = "%"+ar[i]+"%";
+			}
+		}
+		int start = 1+(p-1)*10;
+		int end = p*10;
+		
+		Map<String, Object> map = new HashMap<>();
+			map.put("start", start);
+			map.put("end", end);
+			map.put("arr", ar);
+		System.out.println(map);
+		List<Map<String, Object>> list = qs.boardList(map);
+		
+		
+		int tot = qs.countAll(map);
+		int size = tot%10 == 0 ? tot/10 : tot/10+1;
+		
 		ModelAndView mav = new ModelAndView("t_el");
-		List<Map<String, String>> list = qs.boardList();
+		
 		mav.addObject("section", "/question/boardlist");
 		mav.addObject("title","Q&A");
 		mav.addObject("postsList", list);
-
+		mav.addObject("page", p);
+		mav.addObject("total", tot);
+		mav.addObject("size", size);
 		return mav;
 	}
 
@@ -99,7 +123,11 @@ public class QuestionController {
 		for(String str : strAr) {
 			Arlist.add("%"+str+"%");
 		}
+<<<<<<< HEAD
 		int start = 1+
+=======
+		int start;
+>>>>>>> refs/heads/master
 		map.put("arr", Arlist);
 		List data = qs.boardSearch(map);
 		

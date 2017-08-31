@@ -27,11 +27,12 @@ public class QuestionModel {
 		}
 	}
 
-	public List<Map<String, String>> boardList() {
-		List<Map<String, String>> list = new ArrayList<>();
+	public List<Map<String, Object>> boardList(Map map) {
+		List<Map<String, Object>> list = new ArrayList<>();
 		SqlSession session = factory.openSession();
 		try {
-			list = session.selectList("question.getAllTalks");
+			list = session.selectList("question.getAllTalks", map);
+			System.out.println(list);
 		} catch (Exception e) {
 			System.out.println("[JDBC] QuestionBoaordModelException boardList : " + e.getMessage());
 		} finally {
@@ -39,6 +40,20 @@ public class QuestionModel {
 		}
 
 		return list;
+	}
+	
+	public int countAll(Map map) {
+		SqlSession session = factory.openSession();
+		int n = 0;
+		try {
+			n = session.selectOne("question,countAll", map.get("num"));
+			System.out.println(n);
+		}catch(Exception e) {
+			System.out.println("[JDBC] QuestionBoaordModelException countAllt : " + e.getMessage());
+		}finally {
+			session.close();
+		}
+		return n;
 	}
 
 	public Map<String, String> boardDetail(Map map) {
