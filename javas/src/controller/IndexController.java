@@ -24,7 +24,6 @@ public class IndexController {
 		String id = (String)session.getAttribute("auth");
 		if(id != null) {
 			Map point = pdao.getPoint(id);
-			System.out.println(point);
 			session.setAttribute("point", point.get("POINT"));
 		}
 		

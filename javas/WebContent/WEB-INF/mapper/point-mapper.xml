@@ -2,7 +2,7 @@
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="point">
 	<insert id="pointUp" parameterType="java.util.HashMap">
-		insert into point values(#{id}, #{point}, sysdate, #{content})
+		insert into point values(#{id}, #{point}, sysdate, #{content}, point_seq.nextval)
 	</insert>
 	<insert id="commPointUp" parameterType="java.util.HashMap">
 		insert into pointcomm values(#{commnum},#{id},#{point})
@@ -12,5 +12,8 @@
 	</select>
 	<select id="logPoint" parameterType="java.lang.String" >
 		select sysdate-p.pointdate day from point p where id=#{id}
+	</select>
+	<select id="loginCk" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+		select sysdate-POINTDATE from point where num=(select max(num) from point where content=#{content} and id=#{id})
 	</select>
 </mapper>

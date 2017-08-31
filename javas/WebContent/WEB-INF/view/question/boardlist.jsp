@@ -26,8 +26,9 @@
 				<tr class="Info">
 					<th width="5%"></th>
 					<th width="65%">제목</th>
-					<th width="작성자%">작성자</th>
+					<th width="20%">작성자</th>
 					<th width="10%">조회수</th>
+					
 				</tr>
 			</thead>
 		
@@ -39,7 +40,7 @@
 								<td>${i.FT_NUM }</td>
 								<c:choose>
 									<c:when test="${i.FT_DEPTH eq 0}">
-										<td><a href="/question/detail.jv?num=${i.FT_NUM }">${i.FT_TITLE }</a></td>
+										<td><a href="/question/detail.jv?num=${i.FT_NUM }&like=${i.FT_LIKE}">${i.FT_TITLE }</a></td>
 									</c:when>
 									<c:otherwise>
 										<td><c:forEach begin="1" end="${i.FT_DEPTH }" step="1">
@@ -81,7 +82,7 @@
 	<ul class="pagination">
 		<c:forEach var="i" begin="1" end="${size}">
 			<li class="${i eq page ? 'active' :'' }"><a
-				href="/question/list.jv?p=${i }&search=${param.search}">${i}</a></li>
+				href="/question/list.jv?p=${i }">${i}</a></li>
 		</c:forEach>
 	</ul>
 </div>
