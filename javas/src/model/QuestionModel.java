@@ -17,7 +17,7 @@ public class QuestionModel {
 
 	public void postsUpload(Map<String, String> map) {
 		Map<String, String> writeData = map;
-		System.out.println(writeData);
+		System.out.println(map);
 		SqlSession session = factory.openSession();
 		try {
 			session.insert("quesiton.addNew", map);

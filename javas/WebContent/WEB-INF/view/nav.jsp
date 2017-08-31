@@ -5,7 +5,6 @@
 .navbar-default .navbar-nav>li>a {
 	color: black;
 }
-
 </style>
 <!--  navigator 
 	navbar-default
