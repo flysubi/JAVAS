@@ -105,33 +105,15 @@ public class QuestionController {
 		map.put("group", group);
 		map.put("step", step);
 		map.put("depth", depth);
-		map.put("writer", "flysubi");
+		map.put("writer", session.getAttribute("auth"));
 		map.put("title", title);
 		map.put("content", content);
-		
-		
-		
-		ModelAndView mav = new ModelAndView("redirect:/question/list.jv");
 		qs.boardReply(map);
+		ModelAndView mav = new ModelAndView("redirect:/question/list.jv");
 		return mav;
 	}	
 
-	@RequestMapping("/search.jv")
-	public ModelAndView freeSearchList(@RequestParam (name="keyword") String keyword, String[] strAr, Map<String, List<String>> map) {
-		strAr = keyword.split(" ");
-		List Arlist = new ArrayList();
-		for(String str : strAr) {
-			Arlist.add("%"+str+"%");
-		}
-		int start;
-		map.put("arr", Arlist);
-		List data = qs.boardSearch(map);
-		
-		ModelAndView mav = new ModelAndView("t_el");
-		mav.addObject("section", "/question/boardlist");
-		mav.addObject("postsList", data);
-		return mav;
-	}
+
 	
 	@RequestMapping("/reply.jv")
 	@ResponseBody

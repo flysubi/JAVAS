@@ -25,9 +25,10 @@
 			<thead>
 				<tr class="Info">
 					<th width="5%"></th>
-					<th width="65%">제목</th>
+					<th width="50%">제목</th>
 					<th width="20%">작성자</th>
 					<th width="10%">조회수</th>
+					<th width="15%">작성일</th>
 					
 				</tr>
 			</thead>
@@ -51,7 +52,9 @@
 								</c:choose>
 								<td>${i.FT_WRITER }</td>
 								<td>${i.FT_LIKE }</td>
+								<td>${i.FT_DATE }</td>
 							</tr>
+							
 						</c:forEach>
 					</c:when>
 					<c:otherwise>
