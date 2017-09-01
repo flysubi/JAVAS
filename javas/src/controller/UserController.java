@@ -87,6 +87,7 @@ public class UserController {
 			msg.setText(text, "UTF-8", "html");
 			sender.send(msg);
 			session.setAttribute("code", code);
+			mav.addObject("ip", local.getHostAddress());
 		}catch(Exception e) {
 			System.out.println(e);
 		}
