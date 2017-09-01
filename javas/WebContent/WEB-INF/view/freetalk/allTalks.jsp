@@ -54,7 +54,7 @@
 		</table>
 	</div>
 	<c:if test="${empty list}">게시글이 없습니다.</c:if>
-	<div style="padding-right: 20px; padding-bottom: 10px;" align="right">
+	<div style="padding-right: 0px; padding-bottom: 10px;" align="right">
 		<a href="/freetalk/addNew.jv">
 			<button type="button" class="btn bt">글쓰기 <span class="glyphicon glyphicon-pencil"></span></button>
 		</a>
