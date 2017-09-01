@@ -12,11 +12,7 @@
 	</p>
 </div>
 <script>
-<<<<<<< HEAD
-var ws = new WebSocket("ws://192.168.0.9/ws/join.ws")
-=======
 var ws = new WebSocket("ws://${ip }/ws/join.ws")
->>>>>>> refs/heads/master
 	ws.onmessage = function(e) { // 서버측에서 메세지를 받을 때 해야할 일
 	if(e.data == "true") {
 			location.href="/user/success.jv";

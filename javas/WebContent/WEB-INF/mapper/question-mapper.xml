@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into questionboard values
 		(questionboard_seq.nextval, questionboard_seq.currval, 1, 0,
 		#{writer},
-		#{title}, #{content}, 0, to_char(sysdate))
+		#{title}, #{content}, 0, sysdate)
 	</insert>
 	<update id="count" parameterType="java.util.HashMap">
 		update questionboard set FT_like = #{like} + 1 where ft_num = #{num} 	
@@ -41,23 +41,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 글 리스트 가지고 오기 -->
 	<select id="getAllTalks" resultType="java.util.HashMap">
-			select * from ( select rownum as r, tmp.* from (select * from (select * from questionboard)
+			select t.*, to_date(to_char(sysdate))+1-ft_date as FT_DIFF from 
+			(select * from ( select rownum as r, tmp.* from (select * from (select * from questionboard)
 			<choose><when test="arr != '' and arr != null"> where
 		<foreach collection="arr" item="search" separator=" or " open="(" close=")">
 			ft_title like #{search} or ft_content like #{search}
 		</foreach>
 		</when>
 		</choose>
-		order by ft_group desc, ft_step asc) tmp) where r between #{start} and #{end}
+		order by ft_group desc, ft_step asc) tmp) where r between #{start} and #{end})t
 	</select>
 	
 	<!-- 한개만 가지고 오기 -->
 	<select id="getOne" resultType="java.util.HashMap">
-		select * from questionboard where
-		ft_num=#{num }
+		select t.*, sysdate-ft_date as FT_DIFF from (select * from questionboard where
+		ft_num=#{num })t
 	</select>	
 
-	
+    <!-- 본인 글 삭제 -->
+	<delete id="boardDel" parameterType="java.lang.Integer">
+		delete from questionboard where ft_num=#{num}
+	</delete>
 
  
 

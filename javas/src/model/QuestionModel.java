@@ -90,23 +90,7 @@ public class QuestionModel {
 		} finally {
 			session.close();
 		}
-	}	
-	
-
-	public List<Map<String, String>> boardSearch(Map<String, List<String>> map){
-		SqlSession session = factory.openSession();
-		List<Map<String, String>> list = new ArrayList<>();
-		try {
-			list = session.selectList("freeboard.search", map);
-			
-		}catch(Exception e){
-			System.out.println("[JDBC] FreeBoardModelException boardSearch : " + e.getMessage());
-		}finally {
-			session.close();
-		}
-		
-		return list;
-	}
+	}		
 	
 	public List<Map<String, Object>> replyAddList(Map<String, Object> map){
 		SqlSession session = factory.openSession();
@@ -138,6 +122,20 @@ public class QuestionModel {
 		return list;
 	} 
 	
+	public int boardDel(int num) {
+		SqlSession session = factory.openSession();
+		int n = 0;
+		try {
+			n = session.delete("question.boarddel",num);
+			
+		} catch(Exception e) {
+			System.out.println("[JDBC] Exception QuestionBoradModelException boardDel"+toString());;
+			 
+		} finally {
+			session.close();
+		}
+		return n;
+	}
 	
 }
 
