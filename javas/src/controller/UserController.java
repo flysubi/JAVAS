@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.net.InetAddress;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
@@ -9,6 +10,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMessage.RecipientType;
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import handler.JoinSocketHandler;
+import model.PointDao;
 import model.UserDao;
 
 @Controller
@@ -29,6 +32,9 @@ public class UserController {
 	
 	@Autowired
 	UserDao udao;
+	
+	@Autowired
+	PointDao pdao;
 	
 	@Autowired
 	JavaMailSender sender;
@@ -107,6 +113,15 @@ public class UserController {
 		mav.addObject("id", map.get("id"));
 		mav.addObject("section", "user/success");
 		mav.addObject("height", "52%");
+		
+		String id = (String)session.getAttribute("auth");
+		Map point = new HashMap();
+		point.put("id", id);
+		point.put("point", 10);
+		point.put("content", "login");
+	boolean bb = pdao.pointUp(point);
+	Map getPoint = pdao.getPoint(id);
+	session.setAttribute("point", getPoint.get("POINT"));
 		return mav;
 	}
 	
@@ -128,7 +143,7 @@ public class UserController {
 	}
 	
 	@RequestMapping("/loginResult.jv")
-	public ModelAndView toLoginResult(@RequestParam Map map, HttpSession session, HttpServletResponse resp) {
+	public ModelAndView toLoginResult(@RequestParam Map map, HttpSession session, HttpServletResponse resp, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		boolean b = udao.login(map);
 		if (b) {
@@ -144,6 +159,21 @@ public class UserController {
 				mav.setViewName("redirect:/" + session.getAttribute("logo"));
 			}
 			session.setAttribute("auth", map.get("id"));
+			String id = (String)session.getAttribute("auth");
+			Map login = new HashMap<>();
+				login.put("id", id);
+				login.put("content", "login");
+			int logCk = pdao.loginCk(login);
+			if(logCk >= 1 || logCk == -1) {
+				Map point = new HashMap();
+					point.put("id", id);
+					point.put("point", 1);
+					point.put("content", "login");
+				boolean bb = pdao.pointUp(point);
+				Map getPoint = pdao.getPoint(id);
+				session.setAttribute("point", getPoint.get("POINT"));
+			}
+
 			return mav;
 		} else {
 			mav.setViewName("t_el");

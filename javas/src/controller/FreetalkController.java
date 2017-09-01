@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import model.FreetalkDao;
+import model.PointDao;
 
 @Controller
 @RequestMapping("/freetalk")
@@ -19,6 +20,9 @@ public class FreetalkController {
 
 	@Autowired
 	FreetalkDao fdao;
+	
+	@Autowired
+	PointDao pdao;
 	
 	@RequestMapping("/addNew.jv")
 	public ModelAndView addNew() {
@@ -30,8 +34,17 @@ public class FreetalkController {
 	
 	@RequestMapping("/addNewExec.jv")
 	public ModelAndView addNewExec(@RequestParam Map map, HttpSession session) {
-			map.put("writer", session.getAttribute("auth"));
+		System.out.println(map);
+		String id = (String)session.getAttribute("auth");
+			map.put("writer", id);
 			boolean b = fdao.addNew(map);
+			Map point = new HashMap();
+				point.put("id", id);
+				point.put("point", 5);
+				point.put("content", "freetalk");
+			boolean bb = pdao.pointUp(point);
+			Map getPoint = pdao.getPoint(id);
+			session.setAttribute("point", getPoint.get("POINT"));
 			
 		ModelAndView mav = new ModelAndView("t_el");
 			mav.addObject("rst", b);
@@ -74,10 +87,24 @@ public class FreetalkController {
 	
 	@RequestMapping("/viewTalk.jv")
 	public ModelAndView viewTalk(@RequestParam (name="num") int n, HttpSession session ) {
+		String id = (String)session.getAttribute("auth");
 		Map map = fdao.oneTalks(n);
+		int love = fdao.loveCnt(n);
+		Map love2 = new HashMap<>();
+			love2.put("num", n);
+			love2.put("id", id);
+		String s = fdao.loveId(love2);
+		boolean b = false;
+		if(s != null) {
+			if(s.equals(id)) {
+				b = true;
+			}	
+		}
 		ModelAndView mav = new ModelAndView("t_el");
 			mav.addObject("section", "freetalk/viewTalk");
 			session.setAttribute("map", map);
+			mav.addObject("love",love);
+			mav.addObject("b",b);
 			mav.addObject("title","°Ô½ÃÆÇ");
 		return mav;
 	}
@@ -88,20 +115,37 @@ public class FreetalkController {
 		String id = (String)session.getAttribute("auth");
 			param.put("writer", id);
 			List<Map> list = fdao.getComment(num);
-			if(param.get("content") != null) {
+			if(param.get("content") != null && param.get("content") != "") {
 				boolean b = fdao.addComment(param);
+					Map point = new HashMap();
+						point.put("commnum", num);
+						point.put("id", id);
+						point.put("point", 2);
+				boolean bb = pdao.commPointUp(point);
+				Map getPoint = pdao.getPoint(id);
+				session.setAttribute("point", getPoint.get("POINT"));
 			}
 		return list;
 	}
 	
 	@RequestMapping("/loveAjax.jv")
 	@ResponseBody
-	public Map loveAjax(@RequestParam Map param, HttpSession session ) {
+	public Map loveAjax(@RequestParam Map param, @RequestParam (name="num") int num,HttpSession session ) {
 		String id = (String)session.getAttribute("auth");
 			param.put("id", id);
 		boolean flag = fdao.loveUp(param);
+		int n = fdao.loveCnt(num);
 		Map map = new HashMap<>();
 			map.put("result", flag);
+			map.put("cnt", n);
+		Map point = new HashMap();
+			String writer = (String)param.get("writer");
+			point.put("id",writer);
+			point.put("point", 1);
+			point.put("content", "love");
+		boolean bb = pdao.pointUp(point);
+		Map getPoint = pdao.getPoint(id);
+		session.setAttribute("point", getPoint.get("POINT"));
 		return map;
 	}
 	

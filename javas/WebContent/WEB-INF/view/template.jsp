@@ -27,7 +27,7 @@ body {
 		<tiles:insertAttribute name="nav"/> <!-- value값 include -->
 	</nav>
 	<c:choose>
-	<c:when test="${nav eq null}">
+	<c:when test="${nav eq null }">
 	<div class="container">
 	<section style="min-height: ${height eq null ? '70%' : height}; text-align: center;">
 		<tiles:insertAttribute name="section"/>

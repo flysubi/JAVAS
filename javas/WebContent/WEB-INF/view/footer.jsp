@@ -7,4 +7,3 @@
 <br/>
 Copyright &copy; JAVAS Corp. All rights Reserved.
 </div>
-
