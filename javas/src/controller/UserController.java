@@ -98,10 +98,8 @@ public class UserController {
 	public void emailAuth(@RequestParam(name="key", defaultValue="0") String key, HttpSession session) {
 		if(((String)session.getAttribute("code")).equals(key)) {
 			jsh.sendMessage("true");
-			System.out.println("t");
 		}else {
 			jsh.sendMessage("false");
-			System.out.println("f");
 		}
 	}
 	
@@ -230,6 +228,16 @@ public class UserController {
 		ModelAndView mav = new ModelAndView("t_el_info");
 		mav.addObject("section", "user/userInfo");
 		session.setAttribute("title", "정보수정");
+		Map map = udao.userInfo((String)session.getAttribute("auth"));
+		mav.addObject("map", map);
 		return mav;
 	}
+	@RequestMapping("/infoResult.jv")
+	public ModelAndView infoResult(@RequestParam Map map) {
+		ModelAndView mav = new ModelAndView("alert/userInfo");
+		boolean rst = udao.infoResult(map);
+		mav.addObject("rst", rst);
+		return mav;
+	}
+	
 }
