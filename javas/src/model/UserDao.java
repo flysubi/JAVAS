@@ -16,9 +16,15 @@ public class UserDao {
 	SqlSessionFactory factory;
 
 	public boolean joinMember(Map map) {
+		if(map.get("month").equals("¿ù")) {
+			map.put("month", null);
+		}
 		SqlSession session = factory.openSession();
 		try {
+<<<<<<< HEAD
 			System.out.println("[joinmember] :" + map);
+=======
+>>>>>>> branch 'master' of https://github.com/flysubi/JAVAS.git
 			session.insert("user.join_step1", map); 
 			session.insert("user.join_step2", map);
 			session.commit();
@@ -77,23 +83,7 @@ public class UserDao {
 		} finally {
 			session.close();
 		}
-	}
-
-	public Map<String, Object> readMember(String id) {
-		SqlSession session = factory.openSession();
-		try {
-			HashMap<String, Object> map = session.selectOne("member.readInfo", id);
-			return map;
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}finally {
-			session.close();
-		}
-	}
-
-	
+	}	
 
 	public boolean idCheck(String id) {
 
@@ -115,6 +105,38 @@ public class UserDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
+		}
+	}
+	
+	public Map<String, Object> userInfo(String id) {
+		SqlSession session = factory.openSession();
+		try {
+			HashMap<String, Object> map = session.selectOne("user.userInfo", id);
+			return map;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			session.close();
+		}
+	}
+	public boolean infoResult(Map map) {
+		if(map.get("month").equals("¿ù")) {
+			map.put("month", null);
+		}
+		SqlSession session = factory.openSession();
+		try {
+			session.update("user.info_step1", map); 
+			session.update("user.info_step2", map);
+			session.commit();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.rollback();
+			return false;
+		} finally {
+			session.close();
 		}
 	}
 }
