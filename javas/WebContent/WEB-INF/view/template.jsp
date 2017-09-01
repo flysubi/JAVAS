@@ -24,34 +24,28 @@ body {
 </style>
 <body>
 	<nav>
-		<!-- <tiles:getAsString name="nav"/>  value값 출력(글씨를 찍음) -->
 		<tiles:insertAttribute name="nav"/> <!-- value값 include -->
 	</nav>
 	<c:choose>
 	<c:when test="${nav eq null }">
-	<div class="container">
 <<<<<<< HEAD
-	<section style="min-height: 70%;  text-align: center;">
+
 =======
-	<section style="min-height: 75%; text-align: center;">
 >>>>>>> branch 'master' of https://github.com/flysubi/JAVAS.git
+	<div class="container">
+	<section style="min-height: ${height eq null ? '70%' : height}; text-align: center;">
 		<tiles:insertAttribute name="section"/>
 	</section>
-	<footer>
-		<tiles:insertAttribute name="footer"/>
-	</footer>
 	</div>
 	</c:when>
 	<c:otherwise>
-	<section style="min-height: 75%; text-align: center;">
+	<section style="min-height: 70%; text-align: center;">
 		<tiles:insertAttribute name="section"/>
 	</section>
-	<div class="container">
-	<footer>
-		<tiles:insertAttribute name="footer"/>
-	</footer>
-	</div>
 	</c:otherwise>
 	</c:choose>
+	<footer style="background-color: f7e7d6; padding:32; ">
+		<tiles:insertAttribute name="footer"/>
+	</footer>
 </body>
 </html>

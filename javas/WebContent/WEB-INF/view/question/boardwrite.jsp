@@ -12,10 +12,10 @@
 			</div>
 			<div class="form-group" align="left">
 				<label style="margin-left: 10px;">내용</label>
-				<textarea rows="10" class="form-control" name="content" placeholder="내용을 입력해주세요."></textarea>
+				<textarea rows="10" class="form-control" name="content" placeholder="내용을 입력해주세요." ></textarea>
 			</div>
 			<div class="form-group">
-				<button id="sbt" type="submit" class="btn btn-default" style="width: 100%">확인</button>
+				<button id="sbt" type="submit" class="btn btn-default" style="width: 100%">보내기</button>
 			</div>
 		</form>
 	</div>

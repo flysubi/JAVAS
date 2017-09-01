@@ -5,7 +5,6 @@
 .navbar-default .navbar-nav>li>a {
 	color: black;
 }
-
 </style>
 <!--  navigator 
 	navbar-default
@@ -26,18 +25,15 @@
 			<c:when test="${auth eq null }">
 				
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="/user/join.jv"> <span
-							class="glyphicon glyphicon-user"></span> 회원가입
-					</a></li>
-					<li><a href="/user/login.jv"> <span
-							class="glyphicon glyphicon-log-in"></span> 로그인
-					</a></li>
+					<li><a href="/user/join.jv"  style="color: #939393;"><span	class="glyphicon glyphicon-user"></span>  회원가입</a></li>
+					<li><a href="/user/login.jv"  style="color: #939393;"> <span class="glyphicon glyphicon-log-in"></span> 로그인</a></li>
 				</ul>
 			</c:when>
 			<c:otherwise>
 				<ul class="nav navbar-nav">
 					<li><a href="#">${auth }님 환영합니다!</a></li>
 				</ul>
+
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="#"
@@ -47,9 +43,7 @@
 						<ul class="dropdown-menu">
 							<li><a href="/user/logout.jv">로그아웃</a></li>
 
-						</ul></li>
-
-				</ul>
+						</ul></li>			
 			</c:otherwise>
 		</c:choose>
 	</div>
@@ -61,10 +55,13 @@
 		</ul>
 
 		<ul class="nav navbar-nav navbar-right" style="font-size: 14pt; margin-top: 17px;">
+
 		<li><a href="#">메뉴얼</a></li>
 			<li><a href="/question/list.jv">Q&A</a></li>
 			<li><a href="/freetalk/allTalks.jv">공유게시판</a></li>
+
 			<li><a href="/">JAVAS</a></li>
+
 		</ul>
 	</div>
 </div>

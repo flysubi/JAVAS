@@ -16,8 +16,6 @@ ${sessionScope.map.TITLE}
 </h3>
 <p style="text-align: left; padding-left: 200px; font-size: 12pt;">
 	작성자 : ${sessionScope.map.WRITER }
-	<button type="submit" class="btn btn-danger btn-xs" id="like"
-		value="${sessionScope.map.NUM }">♡</button>
 	| 작성일 :
 	<fmt:formatDate value="${sessionScope.map.WRITEDATE}"
 		pattern="yy-MM-dd" />
@@ -44,10 +42,16 @@ ${sessionScope.map.TITLE}
 		</c:otherwise>
 
 	</c:choose>
+	<button type="submit" class="btn" id="like"
+		value="${sessionScope.map.NUM }" style="color: red; background-color: white; font-size: 10pt;
+			padding-left:3; padding-right:3; padding-bottom: 1;padding-top:0; border: 1px solid gray;">
+			<c:choose>	<c:when test="${b}">♥</c:when><c:otherwise>♡</c:otherwise></c:choose>
+			<span style="color: black;">${love}</span></button>
 </p>
 <div class="col-xs-0 col-md-2"></div>
 <div class="col-xs-12 col-md-8">
-	<pre style="background-color: white; text-align: left; border-color: white;">${sessionScope.map.CONTENT}</pre>
+	<pre style="background-color: white; text-align: left; border-color: white;
+		font-family: HelveticaNeue,'나눔바른고딕',NanumBarunGothic,AppleSDGothicNeo-Regular,sans-serif;">${sessionScope.map.CONTENT}</pre>
 </div>
 <div class="col-xs-0 col-md-2"></div>
 <hr style="background-color:silver; height: 1px; width: 65%"/>
@@ -112,10 +116,12 @@ ${sessionScope.map.TITLE}
 			url : "/freetalk/loveAjax.jv",
 			data : {
 				"num" : this.value,
+				"writer" : " ${sessionScope.map.WRITER }",
 			}
 		}).done(function(rst) {
 			if (rst.result) {
 				window.alert("추천 성공");
+				$("#like").html("♥ <span style=\"color: black;\">"+rst.cnt+"</span>"); 
 			} else {
 				window.alert("추천 실패\n이미 추천이 되어있는 글입니다.");
 			}
