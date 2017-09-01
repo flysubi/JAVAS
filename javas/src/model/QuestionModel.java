@@ -18,8 +18,9 @@ public class QuestionModel {
 	public void postsUpload(Map<String, Object> map) {
 		Map<String, Object> writeData = map;
 		SqlSession session = factory.openSession();
+		
 		try {
-			session.insert("question.addNew", map);
+			session.insert("question.addNew", writeData);
 		} catch (Exception e) {
 			System.out.println("[JDBC] QuestionBoardModelException postsUpload : " + e.getMessage());
 		} finally {
@@ -30,6 +31,10 @@ public class QuestionModel {
 	public List<Map<String, Object>> boardList(Map map) {
 		List<Map<String, Object>> list = new ArrayList<>();
 		SqlSession session = factory.openSession();
+				
+		System.out.println(map.get("arr"));
+		
+		
 		try {
 			list = session.selectList("question.getAllTalks", map);
 			System.out.println(list);
@@ -46,7 +51,7 @@ public class QuestionModel {
 		SqlSession session = factory.openSession();
 		int n = 0;
 		try {
-			n = session.selectOne("question,countAll", map.get("num"));
+			n = session.selectOne("question.countAll", map.get("num"));
 			System.out.println(n);
 		}catch(Exception e) {
 			System.out.println("[JDBC] QuestionBoaordModelException countAllt : " + e.getMessage());
