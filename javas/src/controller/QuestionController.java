@@ -84,6 +84,7 @@ public class QuestionController {
 		System.out.println("...."+map1);
 		mav.addObject("section", "/question/boarddetail");
 		mav.addObject("posts", map1);
+		mav.addObject("title", "Q&A");
 		return mav;
 	}
 
@@ -106,7 +107,7 @@ public class QuestionController {
 		map.put("step", step);
 		map.put("depth", depth);
 		map.put("writer", session.getAttribute("auth"));
-		map.put("title", title);
+		map.put("title", "Q&A");
 		map.put("content", content);
 		qs.boardReply(map);
 		ModelAndView mav = new ModelAndView("redirect:/question/list.jv");
@@ -135,6 +136,14 @@ public class QuestionController {
 		list = qs.replyGetList(reply);
 		return list;
 	}
+	
+	@RequestMapping("/boardDel.jv")
+	public ModelAndView talkDel(@RequestParam (name="num") int num, HttpSession session ) {
+		qs.boardDel(num);
+		ModelAndView mav = new ModelAndView("redirect:/question/list.jv");
+		return mav;
+	}
+	
 	
 	
 	

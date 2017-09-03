@@ -121,6 +121,7 @@ public class FreetalkController {
 						point.put("commnum", num);
 						point.put("id", id);
 						point.put("point", 2);
+						point.put("content", "reply");
 				boolean bb = pdao.commPointUp(point);
 				Map getPoint = pdao.getPoint(id);
 				session.setAttribute("point", getPoint.get("POINT"));

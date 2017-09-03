@@ -27,8 +27,10 @@ body {
 	<nav>
 		<tiles:insertAttribute name="nav"/> <!-- value값 include -->
 	</nav>
+
 	<c:choose>
 	<c:when test="${nav eq null }">
+
 	<div class="container">
 	<section style="min-height: ${height eq null ? '70%' : height}; text-align: center;">
 		<tiles:insertAttribute name="section"/>
@@ -41,7 +43,7 @@ body {
 	</section>
 	</c:otherwise>
 	</c:choose>
-	<footer style="background-color: f7e7d6; padding:32; ">
+	<footer style="background-color: black; color:white; padding:32; ">
 		<tiles:insertAttribute name="footer"/>
 	</footer>
 </body>
