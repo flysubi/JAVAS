@@ -25,9 +25,10 @@
 			<thead>
 				<tr class="Info">
 					<th width="5%"></th>
-					<th width="65%">제목</th>
+					<th width="50%">제목</th>
 					<th width="20%">작성자</th>
 					<th width="10%">조회수</th>
+					<th width="15%">작성일</th>
 					
 				</tr>
 			</thead>
@@ -51,7 +52,18 @@
 								</c:choose>
 								<td>${i.FT_WRITER }</td>
 								<td>${i.FT_LIKE }</td>
+								<td>
+									<c:choose>
+										<c:when test="${i.FT_DIFF < 1 }">
+											<fmt:formatDate value="${i.FT_DATE }" pattern="HH:mm"/>
+										</c:when>
+											<c:otherwise>
+												<fmt:formatDate value="${i.FT_DATE }" pattern="yyyy-MM-dd"/>
+											</c:otherwise>
+									</c:choose>
+								</td>
 							</tr>
+							
 						</c:forEach>
 					</c:when>
 					<c:otherwise>
@@ -65,7 +77,7 @@
 		</table>
 	</div>		
 </div>
-<div style="padding-right: 20px; padding-bottom: 10px;" align="right">
+<div style="padding-right: 0px; padding-bottom: 10px;" align="right">
 	<a href="/question/write.jv">
 		<button type="button" class="btn bt">글쓰기 <span class="glyphicon glyphicon-pencil"></span></button>
 	</a>

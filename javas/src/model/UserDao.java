@@ -21,6 +21,10 @@ public class UserDao {
 		}
 		SqlSession session = factory.openSession();
 		try {
+<<<<<<< HEAD
+			System.out.println("[joinmember] :" + map);
+=======
+>>>>>>> branch 'master' of https://github.com/flysubi/JAVAS.git
 			session.insert("user.join_step1", map); 
 			session.insert("user.join_step2", map);
 			session.commit();
@@ -37,6 +41,7 @@ public class UserDao {
 	public boolean login(Map map) {
 		SqlSession session = factory.openSession();
 		try {
+			System.out.println("login : " + map);
 			HashMap rst = session.selectOne("user.login", map);
 			
 			return rst != null;

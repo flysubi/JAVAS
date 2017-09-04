@@ -34,7 +34,7 @@ public class FreetalkController {
 	
 	@RequestMapping("/addNewExec.jv")
 	public ModelAndView addNewExec(@RequestParam Map map, HttpSession session) {
-		System.out.println(map);
+		
 		String id = (String)session.getAttribute("auth");
 			map.put("writer", id);
 			boolean b = fdao.addNew(map);
