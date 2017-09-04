@@ -21,10 +21,6 @@ public class UserDao {
 		}
 		SqlSession session = factory.openSession();
 		try {
-<<<<<<< HEAD
-			System.out.println("[joinmember] :" + map);
-=======
->>>>>>> branch 'master' of https://github.com/flysubi/JAVAS.git
 			session.insert("user.join_step1", map); 
 			session.insert("user.join_step2", map);
 			session.commit();
