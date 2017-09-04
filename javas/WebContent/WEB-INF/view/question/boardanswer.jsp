@@ -1,27 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div align="center">
-	<h1>답글</h1>
-	<form action="/question/replyExec.jv" method="post">
-			<div class="form-group">
-				<input class="form-control" type="text" name="title" placeholder="제목을 입력해 주세요" value="re : ${posts.FT_TITLE }" required="required"/>
+<div align="center" class="row">
+	<h1>답글쓰기</h1>
+	<div class="col-xs-0 col-md-1"></div>
+	<div class="col-xs-12 col-md-10">
+		<form action="/question/replyExec.jv" method="post">
+			<div class="form-group" align="left">
+				<label style="margin-left: 10px;">제목</label> 
+				 <input class="form-control" type="text" name="title" value="re : ${posts.FT_TITLE }" />
 			</div>
-			<div class="form-group">
-				<textarea class="form-control" rows="25" name="content" required="required" placeholder="내용">
-
-
-
+			<div class="form-group" align="left">
+				<label style="margin-left: 10px;">내용</label>
+				<textarea rows="10" class="form-control" name="content" placeholder="내용을 입력해주세요." >
+</br>
 ${posts.FT_WRITER} 님의 글
 =============================================================================================
 
 ${posts.FT_CONTENT}
 
 =============================================================================================
-</textarea>
-	<input type="text" name="group" value="${posts.FT_GROUP }" style="display: none;"/>
-	<input type="text" name="step" value="${posts.FT_STEP }" style="display: none;"/>
-	<input type="text" name="depth" value="${posts.FT_DEPTH }" style="display: none;"/>
+	
+				</textarea>
+				<input type="text" name="group" value="${posts.FT_GROUP }" style="display: none;"/>
+				<input type="text" name="step" value="${posts.FT_STEP }" style="display: none;"/>
+				<input type="text" name="depth" value="${posts.FT_DEPTH }" style="display: none;"/>
 			</div>
-			<button type="submit" class="btn bnt-default" style="width: 40%">등록</button>
-	</form>
+			<div class="form-group">
+				<button id="sbt" type="submit" class="btn btn-default" style="width: 100%">보내기</button>
+			</div>
+		</form>
+	</div>
+	<div class="col-xs-0 col-md-1"></div>
 </div>

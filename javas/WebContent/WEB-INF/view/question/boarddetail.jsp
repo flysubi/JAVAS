@@ -3,6 +3,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <style>
+.btn {
+    border: none;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+.bt {
+	background-color: white; 
+	color: black;
+	 border : 1px solid gray;
+}
 .well {
 	background: white;
 }
@@ -19,7 +30,7 @@
 			</c:if>
 		</h3>
 		<p style="text-align: left; padding-left: 200px; font-size: 12pt;">
-		작성자 : ${sessionScope.map.WRITER }
+		작성자 : ${posts.FT_WRITER }
 		| 작성일 :
 			<fmt:formatDate value="${posts.FT_DATE}" pattern="yy-MM-dd" />
 			<c:choose>
@@ -52,7 +63,13 @@
 			</div>
 			<div class="col-xs-0 col-md-2"></div>
 			<hr style="background-color:silver; height: 1px; width: 65%"/>
-			
+			<c:if test="${sessionScope.auth eq 'admin' }">
+				<div style="padding-right: 200px; padding-bottom: 10px;" align="right">
+					<a href="/question/answer.jv?num=${posts.FT_NUM }">
+						<button type="button" class="btn bt">답글 <span class="glyphicon glyphicon-pencil"></span></button>
+					</a>
+				</div>
+			</c:if>
 	</c:when>
 </c:choose>
 
