@@ -15,7 +15,8 @@ public class PointDao {
 	
 	public boolean pointUp(Map map) {
 		SqlSession session = factory.openSession();
-		try {
+		System.out.println();
+		try {			
 			session.insert("point.pointUp",map);
 			return true;
 		}catch(Exception e) {

@@ -34,7 +34,7 @@ b {
 						<input
 							type="password" class="form-control" id="cpass"
 							placeholder="비밀번호 재확인" required="required">
-							<span id="pcor" style="color: green; float: left;"></span> <span id="pwrg"
+						    <span id="pwrg"
 							style="color: red; float: left;"></span>
 						<input type="email"
 							name="email" id="jemail" class="form-control"
@@ -77,7 +77,7 @@ b {
 </body>
 </html>
 <script>
-	document.getElementById("jid").onblur = function() { // 포커스를 옮길 때 작동
+	$("#jid").blur(function(){
 		var id = this.value;
 		if (id.trim().length > 0) {
 			$.ajax({
@@ -87,21 +87,21 @@ b {
 				}
 			}).done(function(rst){
 				if(rst == true) {
-					document.getElementById("cor").innerHTML = "";
-					document.getElementById("wrg").innerHTML = "<div align=\"left\" style=\"padding: 7px;\">이미 등록된 아이디입니다.</div>";
-					document.getElementById("join").disabled= true;
+					$("#cor").html("");
+					$("#wrg").html("<div align=\"left\" style=\"padding: 7px;\">이미 등록된 아이디입니다.</div>");
+					$("#join").attr("disabled", true);
 				}else {
-					document.getElementById("cor").innerHTML = "<div align=\"left\" style=\"padding: 7px;\">멋진 아이디네요!</div>";
-					document.getElementById("wrg").innerHTML = "";
-					if(document.getElementById("ecor").innerHTML.trim().length > 0) {
-						document.getElementById("join").disabled= false;
+					$("#cor").html("<div align=\"left\" style=\"padding: 7px;\">멋진 아이디네요!</div>");
+					$("#wrg").html("");
+					if($("#ecor").html().trim().length > 0) {
+						$("#join").attr("disabled", false);
 					}
 				}
 			})
 		}	
-	};
+	});
 	
-	document.getElementById("jemail").onblur = function() {
+	$("#jemail").blur(function(){
 		var email = this.value;
 		if (email.trim().length > 0) {
 			$.ajax({
@@ -111,39 +111,36 @@ b {
 				}
 			}).done(function(rst){
 				if(rst == true) {
-					document.getElementById("ecor").innerHTML = "";
-					document.getElementById("ewrg").innerHTML = "<div align=\"left\ style=\"padding-left: 7px;\">이미 등록된 이메일입니다.</div>";
-					document.getElementById("join").disabled= true;
+					$("#ecor").html("");
+					$("#ewrg").html("<div align=\"left\ style=\"padding-left: 7px;\">이미 등록된 이메일입니다.</div>");
+					$("#join").attr("disabled", true);
 				}else {
-					document.getElementById("ecor").innerHTML = "<div align=\"left\" style=\"padding-left: 7px;\">멋진 이메일이네요!</div>";
-					document.getElementById("ewrg").innerHTML = "";
-					if(document.getElementById("cor").innerHTML.trim().length > 0) {
-						document.getElementById("join").disabled= false;
-					}
+					$("#ecor").html("<div align=\"left\" style=\"padding-left: 7px;\">멋진 이메일이네요!</div>");
+					$("#ewrg").html("");
+					if($("#cor").html().trim().length > 0) {
+						$("#join").attr("disabled", false);					}
 				}
 			})
 		}	
-	};
+	});
 	
 	
 	
 	$("#cpass").blur(function(){
 		var pass = $("#pass").val();
 		var cpass = this.value;
-		if (pass.trim().length > 0) {
+		if (pass.length > 0 && cpass.length > 0) {
 			if(pass != cpass) {
-				document.getElementById("pwrg").innerHTML = "<div align=\"left\" style=\"padding: 7px;\">비밀번호가 일치하지 않습니다.</div>";
-				document.getElementById("pcor").innerHTML = "";
-				document.getElementById("join").disabled= true;
+				$("#pwrg").html("<div align=\"left\" style=\"padding: 7px;\">비밀번호가 일치하지 않습니다.</div>");
+				$("#join").attr("disabled", true);	
 			}else {
-				document.getElementById("pcor").innerHTML = "<div align=\"left\" style=\"padding: 7px;\">비밀번호가 일치합니다!</div>";
-				document.getElementById("pwrg").innerHTML = "";
-				if(document.getElementById("cor").innerHTML.trim().length > 0 && document.getElementById("ecor").innerHTML.trim().length > 0) {
-					document.getElementById("join").disabled= false;
+				$("#pwrg").html("");
+				if($("#cor").html().trim().length > 0 && $("#ecor").html().trim().length > 0) {
+					$("#join").attr("disabled", false);				
 				}
 			}
 		}
-	})
+	});
 	
 	$("#year").blur(function(){
 		var r = /[0-9]{4}/;

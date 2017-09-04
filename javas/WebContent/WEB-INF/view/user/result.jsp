@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div align="center"  class="row" style="margin-top: 100px;">
+<div align="center" class="row ">
 	<h3>회원가입을 환영합니다!</h3><br/>
-
+	
+	
+	
+	<br/><br/>
 	<p>
 		이제 마지막으로 이메일 인증 절차가 남아있습니다.<br/>
 		당신의 이메일로 링크를 첨부하였으니,<br/>
@@ -12,7 +15,7 @@
 	</p>
 </div>
 <script>
-var ws = new WebSocket("ws://${ip }/ws/join.ws")
+var ws = new WebSocket("ws://192.168.0.9/ws/join.ws")
 	ws.onmessage = function(e) { // 서버측에서 메세지를 받을 때 해야할 일
 	if(e.data == "true") {
 			location.href="/user/success.jv";

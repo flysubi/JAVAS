@@ -24,13 +24,37 @@ public class QuestionController {
 	QuestionModel qs;
 
 	@RequestMapping("/list.jv")
-	public ModelAndView boardList() {
+	public ModelAndView boardList(@RequestParam(name="p", defaultValue="1")int p,
+			@RequestParam(name="search", required=false) String s) {
+		String[] ar = null;
+		if(s != null) {
+			ar = s.split("\\s+");
+			for(int i=0; i < ar.length; i++) {
+				ar[i] = "%"+ar[i]+"%";
+			}
+		}
+		int start = 1+(p-1)*10;
+		int end = p*10;
+		
+		Map<String, Object> map = new HashMap<>();
+			map.put("start", start);
+			map.put("end", end);
+			map.put("arr", ar);
+		System.out.println(map);
+		List<Map<String, Object>> list = qs.boardList(map);
+		
+		
+		int tot = qs.countAll(map);
+		int size = tot%10 == 0 ? tot/10 : tot/10+1;
+		
 		ModelAndView mav = new ModelAndView("t_el");
-		List<Map<String, String>> list = qs.boardList();
+		
 		mav.addObject("section", "/question/boardlist");
 		mav.addObject("title","Q&A");
 		mav.addObject("postsList", list);
-
+		mav.addObject("page", p);
+		mav.addObject("total", tot);
+		mav.addObject("size", size);
 		return mav;
 	}
 
@@ -39,14 +63,12 @@ public class QuestionController {
 		ModelAndView mav = new ModelAndView("t_el");
 		mav.addObject("title","Q&A");
 		mav.addObject("section", "/question/boardwrite");
-		
 		return mav;
 	}
 
 	@RequestMapping("/writeExec.jv")
-	public ModelAndView boardWriteExec(@RequestParam Map<String, String> map, HttpSession session) {
-		System.out.println(map);
-		map.put("writer", "flysubi");
+	public ModelAndView boardWriteExec(@RequestParam Map<String, Object> map, HttpSession session) {
+		map.put("writer", session.getAttribute("auth"));
 		qs.postsUpload(map);
 		ModelAndView mav = new ModelAndView("redirect:/question/list.jv");
 		return mav;
@@ -55,13 +77,14 @@ public class QuestionController {
 	@RequestMapping("/detail.jv")
 	public ModelAndView boardDetail(@RequestParam(name = "num") String num, @RequestParam(name="like") int like) {
 		ModelAndView mav = new ModelAndView("t_el");
-		
 		Map<String, Object> map = new HashMap<>();
 		map.put("num", num);
 		map.put("like", like);
-		qs.boardDetail(map);
+		Map<String, String> map1 = qs.boardDetail(map);
+		System.out.println("...."+map1);
 		mav.addObject("section", "/question/boarddetail");
-		mav.addObject("posts", map);
+		mav.addObject("posts", map1);
+		mav.addObject("title", "Q&A");
 		return mav;
 	}
 
@@ -83,32 +106,15 @@ public class QuestionController {
 		map.put("group", group);
 		map.put("step", step);
 		map.put("depth", depth);
-		map.put("writer", "flysubi");
-		map.put("title", title);
+		map.put("writer", session.getAttribute("auth"));
+		map.put("title", "Q&A");
 		map.put("content", content);
-		
-		
-		System.out.println("[reply.controller] : "+map);
-		ModelAndView mav = new ModelAndView("redirect:/question/list.jv");
 		qs.boardReply(map);
+		ModelAndView mav = new ModelAndView("redirect:/question/list.jv");
 		return mav;
 	}	
 
-	@RequestMapping("/search.jv")
-	public ModelAndView freeSearchList(@RequestParam (name="keyword") String keyword, String[] strAr, Map<String, List<String>> map) {
-		strAr = keyword.split(" ");
-		List Arlist = new ArrayList();
-		for(String str : strAr) {
-			Arlist.add("%"+str+"%");
-		}
-		map.put("arr", Arlist);
-		List data = qs.boardSearch(map);
-		
-		ModelAndView mav = new ModelAndView("t_el");
-		mav.addObject("section", "/question/boardlist");
-		mav.addObject("postsList", data);
-		return mav;
-	}
+
 	
 	@RequestMapping("/reply.jv")
 	@ResponseBody
@@ -130,6 +136,14 @@ public class QuestionController {
 		list = qs.replyGetList(reply);
 		return list;
 	}
+	
+	@RequestMapping("/boardDel.jv")
+	public ModelAndView talkDel(@RequestParam (name="num") int num, HttpSession session ) {
+		qs.boardDel(num);
+		ModelAndView mav = new ModelAndView("redirect:/question/list.jv");
+		return mav;
+	}
+	
 	
 	
 	
