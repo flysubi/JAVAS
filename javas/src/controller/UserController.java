@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import handler.JoinSocketHandler;
+import model.MemoModel;
 import model.PointDao;
 import model.UserDao;
 
@@ -37,11 +38,14 @@ public class UserController {
 	PointDao pdao;
 	
 	@Autowired
+	MemoModel mm;
+	
+	@Autowired
 	JavaMailSender sender;
 	
 	@Autowired
 	JoinSocketHandler jsh;
-	
+		
 	@RequestMapping("/join.jv")
 	public ModelAndView toJoin(HttpSession session) {
 		ModelAndView mav = new ModelAndView("t_el");
@@ -171,6 +175,8 @@ public class UserController {
 				boolean bb = pdao.pointUp(point);
 				Map getPoint = pdao.getPoint(id);
 				session.setAttribute("point", getPoint.get("POINT"));
+				int c = mm.countAll(id);
+				session.setAttribute("memo", c);
 			}
 
 			return mav;

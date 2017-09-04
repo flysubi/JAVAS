@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
+import org.apache.catalina.Session;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +55,40 @@ public class MemoModel {
 		}
 		return list;
 	}
+
+	public int countAll(String id) {
+		int c = 0;
+		try {
+			SqlSession session = factory.openSession();
+			try {
+				c = session.selectOne("memo.countAll", id);
+			}catch(Exception e) {
+				System.out.println("[JDBC Exception] MemoModel.countAll() : " + e.getMessage());
+			}finally {
+				session.close();
+			}
+		}catch(Exception i) {
+			
+		}
+		return c;
+	}
 	
+	public int myCount(String id) {
+		int c = 0;
+		try {
+			SqlSession session = factory.openSession();
+			try {
+				c = session.selectOne("memo.myCount", id);
+			}catch(Exception e) {
+				System.out.println("[JDBC Exception] MemoModel.myCount() : " + e.getMessage());
+			}finally {
+				session.close();
+			}
+		}catch(Exception i) {
+			
+		}
+		return c;
+	}
 	
 	public void delete(String[] num, String id ) {
 		SqlSession session = factory.openSession();
