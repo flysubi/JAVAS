@@ -60,6 +60,11 @@
 			<li><a href="/freetalk/allTalks.jv">공유게시판</a></li>
 
 			<li><a href="/">JAVAS</a></li>
+			<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#">JAVAS<span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="/function/weather.jv">날씨</a></li>
+					</ul></li>
 
 		</ul>
 	</div>
