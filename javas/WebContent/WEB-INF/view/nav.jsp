@@ -51,7 +51,7 @@
 	<hr style="background-color: #939393; margin: 0"/>
 	<div class="collapse navbar-collapse" id="myNav" style="background-color: white;"> 
 		<ul class="nav navbar-nav">
-            <li><a href="/"  style="padding-left: 0;"><img alt="javas" src="/style/javas2.png"></a>
+            <li><a href="/"  style="padding-left: 0;"><img alt="javas" src="/style/javas.png"></a>
 		</ul>
 		<ul class="nav navbar-nav navbar-right" style="font-size: 14pt; margin-top: 17px; font-weight: 600;">
 
