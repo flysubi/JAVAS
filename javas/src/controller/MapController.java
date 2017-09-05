@@ -1,7 +1,12 @@
 package controller;
 
+import java.util.Collection;
+import java.util.Map;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,4 +28,23 @@ public class MapController {
 			mav.addObject("section", "/map/mapdirection");
 		return mav; 
 	}
+
+	@RequestMapping("/mylocation.jv")
+	public ModelAndView gpsMap() {
+		ModelAndView mav = new ModelAndView("t_el");
+			mav.addObject("section", "/map/mylocation");
+		return mav; 
+	}
+	
+	@RequestMapping("/mapAjax.jv")
+	@ResponseBody
+	public ModelAndView mapExec() {
+		ModelAndView mav = new ModelAndView("t_el"); 
+			mav.addObject("section", "/map/map");
+		return mav;
+	}
+
+
+			
+			
 }
