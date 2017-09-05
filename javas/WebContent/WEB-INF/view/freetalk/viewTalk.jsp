@@ -70,8 +70,7 @@ ${sessionScope.map.TITLE}
 <div class="col-xs-0 col-md-2"></div>
 <script>
 	var list = function() {
-		$
-				.ajax({
+		$.ajax({
 					url : "/freetalk/commentsAjax.jv",
 					data : {
 						"num" : "${param.num}",
