@@ -20,6 +20,7 @@ public class UserDao {
 			map.put("month", null);
 		}
 		SqlSession session = factory.openSession();
+
 		try {
 			session.insert("user.join_step1", map); 
 			session.insert("user.join_step2", map);
