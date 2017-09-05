@@ -46,7 +46,7 @@ $(function() {
     				"lat" : coords.lat,
     				"lng" : coords.lng,
     			}
-    		})
+    		}).done
     				
     		
     		
