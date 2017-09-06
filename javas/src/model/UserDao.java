@@ -19,9 +19,11 @@ public class UserDao {
 		if(map.get("month").equals("¿ù")) {
 			map.put("month", null);
 		}
+
 		SqlSession session = factory.openSession();
 
-		try {
+ 	try {
+
 			session.insert("user.join_step1", map); 
 			session.insert("user.join_step2", map);
 			session.commit();
