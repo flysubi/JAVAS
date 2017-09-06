@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="calendar">
+	<insert id="addCal" parameterType="java.util.HashMap">
+		insert into calendar(id,title,cdate,ctime,num,color) values(#{id},#{title}, to_date(#{date},'YYYY/MM/DD'), 
+		<choose><when test="time != '' and time != null">#{time}</when>
+		<otherwise>null</otherwise></choose>, calendar_seq.nextval,
+		<choose><when test="color != '' and color != null">#{color}</when>
+		<otherwise>null</otherwise></choose>)
+	</insert>
+	<select id="getCal" resultType="java.util.HashMap" parameterType="java.lang.String">
+		select c.*,  to_Char(c.cdate,'YYYY-MM-DD') CC from calendar c where id=#{id}
+	</select>
+	<update id="updateCal">
+	
+	</update>
+	<delete id="delCal">
+	
+	</delete>
+</mapper>

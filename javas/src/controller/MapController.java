@@ -11,38 +11,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/map")
+@RequestMapping("/function")
 public class MapController {
 	
 	@RequestMapping("/map.jv")
 	public ModelAndView map() {
 		ModelAndView mav = new ModelAndView("t_el");
-			mav.addObject("section", "/map/map");
+			mav.addObject("section", "/function/map");
 		return mav; 
 	}
 	
 	
-	@RequestMapping("/mapdirection.jv")
-	public ModelAndView mapDirection() {
-		ModelAndView mav = new ModelAndView("t_el");
-			mav.addObject("section", "/map/mapdirection");
-		return mav; 
-	}
-
-	@RequestMapping("/mylocation.jv")
-	public ModelAndView gpsMap() {
-		ModelAndView mav = new ModelAndView("t_el");
-			mav.addObject("section", "/map/mylocation");
-		return mav; 
-	}
-	
-	@RequestMapping("/mapAjax.jv")
-	@ResponseBody
-	public ModelAndView mapExec() {
-		ModelAndView mav = new ModelAndView("t_el"); 
-			mav.addObject("section", "/map/map");
-		return mav;
-	}
 
 
 			
