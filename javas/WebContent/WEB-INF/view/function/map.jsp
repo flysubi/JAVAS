@@ -109,7 +109,7 @@ $(function() {
 
 var list = function(lat, lng, address) {
 	$.ajax({
-		url : "/map/mapAjax.jv",
+		url : "/function/mapAjax.jv",
 		data : {
 			"lat" : lat,
 			"lng" : lng,

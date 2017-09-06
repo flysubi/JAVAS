@@ -10,7 +10,7 @@
 	</insert>
 	<select id="getCal" resultType="java.util.HashMap" parameterType="java.lang.String">
 		select c.*,  to_Char(c.cdate,'YYYY-MM-DD') CC from calendar c where id=#{id}
-	</select>ss
+	</select>
 	<update id="updateCal">
 	
 	</update>
