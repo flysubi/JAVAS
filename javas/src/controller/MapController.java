@@ -29,24 +29,6 @@ public class MapController {
 		return mav; 
 	}
 
-	@RequestMapping("/mylocation.jv")
-	public ModelAndView gpsMap() {
-		ModelAndView mav = new ModelAndView("t_el");
-			mav.addObject("section", "/map/mylocation");
-		return mav; 
-	}
-	
-	@RequestMapping("/mapAjax.jv")
-	@ResponseBody
-	public ModelAndView mapExec(@RequestParam Map map) {
-		System.out.println(map);
-		
-		ModelAndView mav = new ModelAndView("t_el"); 
-			
-		mav.addObject("section", "/map/map");
-		return mav;
-	}
-
 
 			
 			
