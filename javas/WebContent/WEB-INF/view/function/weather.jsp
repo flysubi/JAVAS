@@ -32,7 +32,6 @@ th {
 <script>
 function initMap() {
 	navigator.geolocation.getCurrentPosition(function(e) {
-	
 		var weather = function() {
 		$.ajax({
 			url : "https://api.openweathermap.org/data/2.5/forecast",
@@ -194,7 +193,10 @@ function initMap() {
 	
 	weather();
 	$("#loc").html(e.coords.latitude+"/"+e.coords.longitude);
-	});
-}
 	
+	
+	});	
+}
+
+
 </script>

@@ -22,20 +22,21 @@
 				<b>보내기실패</b> 당신의 요청을 처리할수 없어요.
 		</div>
 </c:if>
-	<form action="/memo/sendExec.jv" method="post">
+	<form action="/memo/writeExec.jv" method="post">
 		<div class="form-group">
-			<input type="text" value="${!empty target ? target : ''}" placeholder="받는이" class="form-control" id="reciver" name="reciver" required="required">
+			<input type="text" value="${!empty target ? target : ''}" placeholder="받는이" class="form-control" id="receiver" name="receiver" required="required">
 		</div>
 		<p id="cid"></p>
 		<div class="form-group">
 			<textarea class="form-control" rows="5" id="ta" name="ta" required="required" placeholder="내용"></textarea>
 		</div>
-		<button id="bnt" type="submit" class="btn bt" style="width: 40%" disabled>보내기</button>
+		<button id="bnt" type="submit" class="btn bt" style="width: 40%" >보내기</button>
 	</form>
 </div>
 
 <script>
-	document.getElementById("reciver").onblur = function(){
+/*
+	document.getElementById("receiver").onblur = function(){
 		var val = this.value;
 		var req = new XMLHttpRequest();
 		req.onreadystatechange = function(){
@@ -51,7 +52,8 @@
 				}
 			}
 		}
-		req.open("get", "/user/idCheck.choc?id=" + val, true);
+		req.open("get", "/user/idCheckAjax.jv?id=" + val, true);
 		req.send();
 	}
+*/	
 </script>
