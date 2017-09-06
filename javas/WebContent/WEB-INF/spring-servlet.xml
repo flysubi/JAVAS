@@ -64,6 +64,7 @@
 				<value>/WEB-INF/mapper/user-mapper.xml</value>
 				<value>/WEB-INF/mapper/point-mapper.xml</value>
 				<value>/WEB-INF/mapper/memo-mapper.xml</value>
+				<value>/WEB-INF/mapper/calendar-mapper.xml</value>
 			</list>
 		</property>
 	</bean>

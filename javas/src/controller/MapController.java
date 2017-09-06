@@ -38,9 +38,12 @@ public class MapController {
 	
 	@RequestMapping("/mapAjax.jv")
 	@ResponseBody
-	public ModelAndView mapExec() {
+	public ModelAndView mapExec(@RequestParam Map map) {
+		System.out.println(map);
+		
 		ModelAndView mav = new ModelAndView("t_el"); 
-			mav.addObject("section", "/map/map");
+			
+		mav.addObject("section", "/map/map");
 		return mav;
 	}
 
