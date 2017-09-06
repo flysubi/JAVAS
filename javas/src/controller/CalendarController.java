@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,24 +10,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import model.CalendarDao;
 
 @Controller
-@RequestMapping("/calendar")
+@RequestMapping("/function")
 public class CalendarController {
 	
 	@Autowired
 	CalendarDao cdao;
 
-	@RequestMapping("/mainCal.jv")
+	@RequestMapping("/calendar.jv")
 	public ModelAndView calendar(HttpSession session) {
 		String id = (String)session.getAttribute("auth");
 		ModelAndView mav = new ModelAndView("t_el");
 		List<Map> list = cdao.getCal(id);
 			mav.addObject("list",list);
-			mav.addObject("section", "calendar/mainCal");
+			mav.addObject("title","Ä¶¸°´õ");
+			mav.addObject("section", "function/calendar");
 		return mav;
 	}
 	
@@ -39,6 +42,21 @@ public class CalendarController {
 		ModelAndView mav = new ModelAndView("t_el");
 			mav.addObject("rst", b);
 			mav.addObject("section", "alert/addCal");
+		return mav;
+	}
+	
+	@RequestMapping("/calModify.jv")
+	public ModelAndView calModify(@RequestParam Map map, @RequestParam (name="num") int n) {
+		System.out.println(map);
+		boolean flag = false;
+		if(map.get("mode").equals("delete")) {
+			flag = cdao.deleteCal(n);
+		} else {
+			flag = cdao.updateCal(map);
+		}
+		ModelAndView mav = new ModelAndView("t_el");
+		
+			mav.addObject("section", "function/calendar");
 		return mav;
 	}
 }
