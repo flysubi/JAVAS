@@ -7,6 +7,7 @@
 <script
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD--k3vwuB9cAExy9ezTOAo-FR6ajxUctw&callback=initMap"
 	async defer></script>
+<script type="text/javascript" src="/style/weather/Modal.js"></script>
 <style>
 th {
 	background-color: lightgray;
@@ -28,7 +29,30 @@ th {
 		style="width: 80%; border: 1px solid gray; table-layout: fixed;">
 	</table>
 </div>
+<input type="text" id="text"/><button id="bt">눌러</button>
 <script>
+$("#bt").click(function(){
+	$.ajax({
+		url : "/tts/ttsAjax.jv",
+		data : {
+			"message" : $("#text").val()
+		}
+	}).done(function(rst){
+		var audio = new Audio("/tts//"+rst);
+		audio.play();
+		deleteFile(rst);
+	})
+});
+
+var deleteFile = function(rst) {
+	$.ajax({
+		url : "/tts/ttsDeleteAjax.jv",
+		data : {
+			"tempname" : rst
+		}
+	})
+};
+
 function initMap() {
 	var coords;
 	var address;

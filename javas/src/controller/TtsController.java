@@ -23,19 +23,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/function")
-public class WeatherController {
+@RequestMapping("/tts")
+public class TtsController {
 	
 	@Autowired
 	ServletContext application;
 	
-	@RequestMapping("/weather.jv")
-	public ModelAndView toJoin(HttpSession session) {
-		ModelAndView mav = new ModelAndView("t_el");
-		mav.addObject("section", "function/weather");
-		session.setAttribute("title", "³¯¾¾¾Ë¸²");
-		return mav;
-	}
 	@RequestMapping("/ttsAjax.jv")
 	@ResponseBody
 	public String ttsAjax(@RequestParam(name="message", defaultValue="")String message) {
