@@ -59,7 +59,6 @@ public class CalendarController {
 			} else {
 				map.put("dday", "false");
 			}
-			System.out.println(map);
 			flag = cdao.updateCal(map);
 		}
 		ModelAndView mav = new ModelAndView();
