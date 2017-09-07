@@ -61,7 +61,9 @@ public class MemoModel {
 		try {
 			SqlSession session = factory.openSession();
 			try {
+				System.out.println("count : "+session.selectOne("memo.countAll", id));
 				c = session.selectOne("memo.countAll", id);
+				
 			}catch(Exception e) {
 				System.out.println("[JDBC Exception] MemoModel.countAll() : " + e.getMessage());
 			}finally {
