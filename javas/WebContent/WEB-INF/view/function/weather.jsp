@@ -7,6 +7,7 @@
 <script
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD--k3vwuB9cAExy9ezTOAo-FR6ajxUctw&callback=initMap"
 	async defer></script>
+<script type="text/javascript" src="/style/weather/Modal.js"></script>
 <style>
 th {
 	background-color: lightgray;
@@ -17,6 +18,10 @@ th {
 	text-align: center;
 }
 </style>
+<button id="bt">실시간날씨</button>
+<div id="modal">
+<button class="js_close">닫기</button>
+</div>
 <h2 id=loc></h2>
 <div id="chart_div" align="center"></div>
 <div align="center" style="margin-left: 10px;">
@@ -30,6 +35,10 @@ th {
 	</table>
 </div>
 <script>
+var myModal = new Example.Modal({
+    id: "modal" // 모달창 아이디 지정
+});
+
 function initMap() {
 	navigator.geolocation.getCurrentPosition(function(e) {
 		var weather = function() {
@@ -49,7 +58,7 @@ function initMap() {
 			var three = "";
 			for(var i=0; i<=7; i++) {
 				weather += "<td style=\"text-align: center;\">";
-				weather += "<img alt=\""+all.list[i].weather[0].icon+"\" src=\"/style/weather-icon/"+all.list[i].weather[0].icon+".png\"/><br/>";
+				weather += "<img alt=\""+all.list[i].weather[0].icon+"\" src=\"/style/weather/weather-icon/"+all.list[i].weather[0].icon+".png\"/><br/>";
 				weather += "<b>"+parseInt(all.list[i].main.temp - 273.15)+"˚C</b><br/>";
 				weather += all.list[i].main.humidity+"%<br/>";
 				weather += all.list[i].wind.speed+"m/s<br/>";
@@ -70,7 +79,7 @@ function initMap() {
 				if(i == 8) {
 					one += "</tr><tr><td>날씨</td>";
 				}
-				one += "<td><img alt=\""+all.list[i].weather[0].icon+"\" src=\"/style/weather-icon/"+all.list[i].weather[0].icon+".png\"/></td>";
+				one += "<td><img alt=\""+all.list[i].weather[0].icon+"\" src=\"/style/weather/weather-icon/"+all.list[i].weather[0].icon+".png\"/></td>";
 			}
 			for(var i=8; i<=15; i++) {
 				if(i == 8) {
@@ -102,7 +111,7 @@ function initMap() {
 				if(i == 16) {
 					one += "</tr><tr><td>날씨</td>";
 				}
-				one += "<td><img alt=\""+all.list[i].weather[0].icon+"\" src=\"/style/weather-icon/"+all.list[i].weather[0].icon+".png\"/></td>";
+				one += "<td><img alt=\""+all.list[i].weather[0].icon+"\" src=\"/style/weather/weather-icon/"+all.list[i].weather[0].icon+".png\"/></td>";
 			}
 			for(var i=16; i<=23; i++) {
 				if(i == 16) {
@@ -134,7 +143,7 @@ function initMap() {
 				if(i == 24) {
 					one += "</tr><tr><td>날씨</td>";
 				}
-				one += "<td><img alt=\""+all.list[i].weather[0].icon+"\" src=\"/style/weather-icon/"+all.list[i].weather[0].icon+".png\"/></td>";
+				one += "<td><img alt=\""+all.list[i].weather[0].icon+"\" src=\"/style/weather/weather-icon/"+all.list[i].weather[0].icon+".png\"/></td>";
 			}
 			for(var i=24; i<=31; i++) {
 				if(i == 24) {
