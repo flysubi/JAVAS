@@ -33,6 +33,13 @@
 				<ul class="nav navbar-nav">
 					<li><a href="#">${auth }님 환영합니다!</a></li>
 				</ul>
+<<<<<<< HEAD
+				<ul class="nav navbar-nav navbar-right" >
+						<li><a href="/memo/list.jv" style="color: #939393;"><span class="glyphicon glyphicon-envelope"></span> 쪽지함 ${memo }</a></li>
+						<li><a href="/user/userInfo.jv" style="color: #939393;"><span class="glyphicon glyphicon-wrench"></span> 정보수정</a></li>
+						<li><a href="/user/logout.jv" style="color: #939393;"><span class="glyphicon glyphicon-log-out"></span> 로그아웃</a></li>
+				</ul>
+=======
 
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown"><a class="dropdown-toggle"
@@ -44,6 +51,7 @@
 							<li><a href="/user/logout.jv">로그아웃</a></li>
 
 						</ul></li>			
+>>>>>>> branch 'master' of https://github.com/flysubi/JAVAS.git
 			</c:otherwise>
 		</c:choose>
 

@@ -40,7 +40,6 @@ public class QuestionController {
 			map.put("start", start);
 			map.put("end", end);
 			map.put("arr", ar);
-		System.out.println(map);
 		List<Map<String, Object>> list = qs.boardList(map);
 		
 		
@@ -81,7 +80,6 @@ public class QuestionController {
 		map.put("num", num);
 		map.put("like", like);
 		Map<String, String> map1 = qs.boardDetail(map);
-		System.out.println("...."+map1);
 		mav.addObject("section", "/question/boarddetail");
 		mav.addObject("posts", map1);
 		mav.addObject("title", "Q&A");
@@ -96,6 +94,7 @@ public class QuestionController {
 		map = qs.boardDetail(map);
 		mav.addObject("section", "/question/boardanswer");
 		mav.addObject("posts", map);
+		mav.addObject("title", "Q&A");
 		return mav;
 	}
 
@@ -107,36 +106,13 @@ public class QuestionController {
 		map.put("step", step);
 		map.put("depth", depth);
 		map.put("writer", session.getAttribute("auth"));
-		map.put("title", "Q&A");
+		map.put("title", title);
 		map.put("content", content);
 		qs.boardReply(map);
 		ModelAndView mav = new ModelAndView("redirect:/question/list.jv");
 		return mav;
 	}	
 
-
-	
-	@RequestMapping("/reply.jv")
-	@ResponseBody
-	public List<Map<String, Object>> freeboardsmallReply(@RequestParam Map<String, Object> reply, HttpSession session) {
-		reply.put("writer", (String)session.getAttribute("auth"));
-		
-		List<Map<String, Object>> list = new ArrayList<>();
-		
-		list = qs.replyAddList(reply);
-		return list;
-	}
-	
-	@RequestMapping("/replylist.jv")
-	@ResponseBody
-	public List<Map<String, Object>> freeboardgetlReply(@RequestParam Map<String, Object> reply) {
-		
-		List<Map<String, Object>> list = new ArrayList<>();
-		
-		list = qs.replyGetList(reply);
-		return list;
-	}
-	
 	@RequestMapping("/boardDel.jv")
 	public ModelAndView talkDel(@RequestParam (name="num") int num, HttpSession session ) {
 		qs.boardDel(num);
