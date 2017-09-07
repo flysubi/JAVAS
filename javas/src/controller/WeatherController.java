@@ -1,5 +1,7 @@
 package controller;
 
+
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/function")
 public class WeatherController {
+	
 	
 	@RequestMapping("/weather.jv")
 	public ModelAndView toJoin(HttpSession session) {
