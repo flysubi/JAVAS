@@ -25,7 +25,6 @@ public class MemoController {
 	public ModelAndView memolist(HttpSession session) {
 		String id = (String)session.getAttribute("auth");
 		List<Map<String, String>> list = mm.list(id);
-		System.out.println("..."+list);
 		int c = mm.countAll(id);
 		int mc = mm.myCount(id);
 		session.setAttribute("memo", c);

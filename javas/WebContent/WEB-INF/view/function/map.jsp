@@ -7,89 +7,76 @@
 	
 </script>
 <script type="text/javascript">
-$(function() {        
-    // Geolocation API에 액세스할 수 있는지를 확인
-    if (navigator.geolocation) {
-        //위치 정보를 정기적으로 얻기
-        var map;
-		var coords;
-		var address;
-		
-        var id = navigator.geolocation.watchPosition(function(pos) {
-       		coords = {
-    				"lat" : pos.coords.latitude,
-    				"lng" : pos.coords.longitude,
-    				
-    		};
-       		
-       		
-     
-        	var geocoder = new google.maps.Geocoder();
+	$(function() {
+		// Geolocation API에 액세스할 수 있는지를 확인
+		if (navigator.geolocation) {
+			//위치 정보를 정기적으로 얻기
+			var map;
+			var coords;
+			var address;
+			var id = navigator.geolocation.watchPosition(function(pos) {
+				coords = {
+					"lat" : pos.coords.latitude,
+					"lng" : pos.coords.longitude,
+				};
+				var geocoder = new google.maps.Geocoder();
 
-        	
-        	var latlng = new google.maps.LatLng(coords.lat, coords.lng);
+				var latlng = new google.maps.LatLng(coords.lat, coords.lng);
 
-        	
+				geocoder.geocode({
+					'latLng' : latlng
+				}, function(results, status) {
 
-        	geocoder.geocode({'latLng' : latlng}, function(results, status) {
+					if (status == google.maps.GeocoderStatus.OK) {
 
-        		if (status == google.maps.GeocoderStatus.OK) {
-        	       	
-        			if (results[1]) {
+						if (results[1]) {
 
-        				address = results[3].formatted_address;
-        				
-        				$('#latitude').html(coords.lat);     // 위도 
-        	            $('#longitude').html(coords.lng); // 경도
-        				$('#address').html(address); // 주소
-        				list(coords.lat, coords.lng, address);            
-    				}
+							address = results[3].formatted_address;
 
-    	    	} else {
+							$('#latitude').html(coords.lat); // 위도 
+							$('#longitude').html(coords.lng); // 경도
+							$('#address').html(address); // 주소
+							list(coords.lat, coords.lng, address);
+						}
 
-        			alert("Geocoder failed due to: " + status);
+					} else {
 
-           		}
+						alert("Geocoder failed due to: " + status);
 
-        	});              
-           	
-            
- 
-            
-            
-            
-            
-        	map = new google.maps.Map(document.getElementById("map_canvas"), {
-        			"center" : coords,
-        			"zoom" : 17
-        	});
+					}
 
-            var marker = new google.maps.Marker({
-            	position : coords,
-            	map : map
-            });
-            
-            var marker_2 = new google.maps.Marker({
-    			map : map,
-    			position : {
-    				"lat" : 37.498,
-    				"lng" : 127.06,
-    			},
-    			
-    		});
-        });
-        
-        
-        $('#btnStop').click(function() {
-            navigator.geolocation.clearWatch(id);
-        });     
-        
+				});
 
-    } else {
-        alert("이 브라우저에서는 Geolocation이 지원되지 않습니다.")
-    }
-    
-});
+				map = new google.maps.Map(
+						document.getElementById("map_canvas"), {
+							"center" : coords,
+							"zoom" : 17
+						});
+
+				var marker = new google.maps.Marker({
+					position : coords,
+					map : map
+				});
+
+				var marker_2 = new google.maps.Marker({
+					map : map,
+					position : {
+						"lat" : 37.498,
+						"lng" : 127.06,
+					},
+
+				});
+			});
+
+			$('#btnStop').click(function() {
+				navigator.geolocation.clearWatch(id);
+			});
+
+		} else {
+			alert("이 브라우저에서는 Geolocation이 지원되지 않습니다.")
+		}
+
+	});
 </script>
 </head>
 <body>
@@ -106,22 +93,20 @@ $(function() {
 </body>
 </html>
 <script>
+	var list = function(lat, lng, address) {
+		$.ajax({
+			url : "/function/mapAjax.jv",
+			data : {
+				"lat" : lat,
+				"lng" : lng,
+				"address" : address,
+			}
+		}).done(function() {
 
-var list = function(lat, lng, address) {
-	$.ajax({
-		url : "/function/mapAjax.jv",
-		data : {
-			"lat" : lat,
-			"lng" : lng,
-			"address" : address,
-		}
-	}).done(function() {
-		
-	});	
+		});
 
-	
-}
-list();
+	}
+	list();
 </script>
 
 

@@ -173,10 +173,14 @@ public class UserController {
 					point.put("point", 1);
 					point.put("content", "login");
 				boolean bb = pdao.pointUp(point);
+				int c = mm.countAll(id);
+				System.out.println("count : "+c);
+				session.setAttribute("memo", c);
 				Map getPoint = pdao.getPoint(id);
 				session.setAttribute("point", getPoint.get("POINT"));
-				int c = mm.countAll(id);
-				session.setAttribute("memo", c);
+				
+				
+				
 			}
 
 			return mav;

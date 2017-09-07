@@ -13,6 +13,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title><tiles:getAsString name="title"/></title>
 <link rel='stylesheet' href='/fullcalendar/fullcalendar.css' />
+<link href='/fullcalendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+
+
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <!-- 부가적인 테마 -->
