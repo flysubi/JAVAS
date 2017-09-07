@@ -175,6 +175,7 @@ public class UserController {
 				boolean bb = pdao.pointUp(point);
 				Map getPoint = pdao.getPoint(id);
 				session.setAttribute("point", getPoint.get("POINT"));
+				
 				int c = mm.countAll(id);
 				session.setAttribute("memo", c);
 			}
