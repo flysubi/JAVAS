@@ -6,13 +6,13 @@
 <c:when test="${rst}">
 	<script>
 		window.alert("일정등록 완료");
-		location.href="/calendar/mainCal.jv";
+		location.href="/function/calendar.jv";
 	</script>
 </c:when>
 <c:otherwise>
 	<script>
 		window.alert("일정등록 실패");
-		location.href="/calendar/mainCal.jv";
+		location.href="/function/calendar.jv";
 	</script>
 </c:otherwise>
 </c:choose>
