@@ -2,58 +2,70 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <style>
+body {
+	margin: 0;
+	padding: 0;
+	font-size: 14px;
+}
 
-	body {
-		margin: 0;
-		padding: 0;
-		font-size: 14px;
-	}
+#top, #calendar.fc-unthemed {
+	font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
+}
 
-	#top,
-	#calendar.fc-unthemed {
-		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
-	}
-	#top {
-		background: #eee;
-		border-bottom: 1px solid #ddd;
-		padding: 0 10px;
-		line-height: 40px;
-		font-size: 12px;
-		color: #000;
-	}
+#top {
+	background: #eee;
+	border-bottom: 1px solid #ddd;
+	padding: 0 10px;
+	line-height: 40px;
+	font-size: 12px;
+	color: #000;
+}
 
-	#top .selector {
-		display: inline-block;
-		margin-right: 10px;
-	}
+#top .selector {
+	display: inline-block;
+	margin-right: 10px;
+}
 
-	#top select {
-		font: inherit; /* mock what Boostrap does, don't compete  */
-	}
+#top select {
+	font: inherit; /* mock what Boostrap does, don't compete  */
+}
 
-	.left { float: left }
-	.right { float: right }
-	.clear { clear: both }
+.left {
+	float: left
+}
 
-	#calendar {
-		max-width: 900px;
-		margin: 40px auto;
-		padding: 0 10px;
-	}
+.right {
+	float: right
+}
 
+.clear {
+	clear: both
+}
 
-	.fc-sat {
+#calendar {
+	max-width: 900px;
+	margin: 40px auto;
+	padding: 0 10px;
+}
+
+.fc-sat {
 	color: blue;
-	}
-	
-	.fc-sun {
-		color: red;
-	}
-	
-	.cal {
-		padding-bottom: 50px;
-		padding-top: 20px;
-	}
+}
+
+.fc-sun {
+	color: red;
+}
+
+.fc-left,
+.fc-right,
+.fc-view-container {
+	font-family: "Ubuntu",Tahoma,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.cal {
+	padding-bottom: 50px;
+	padding-top: 20px;
+}
 </style>
 <!-- <link rel="stylesheet" type="text/css" href="https://bootswatch.com/united/bootstrap.min.css"> -->
 <script src='/fullcalendar/lib/moment.min.js'></script>
@@ -76,8 +88,12 @@
 						<span class="glyphicon glyphicon-calendar"></span> 기념일/일정 등록
 					</h4>
 				</div>
-				<div class="modal-body" style="padding: 40px 50px;">
+				<div class="modal-body"
+					style="padding: 40px 50px; padding-top: 10px;">
 					<form action="/function/addCal.jv" method="post">
+						<div class="form-group" style="text-align: right">
+							<label>Dday 설정 </label> <input type="checkbox" name="dday">
+						</div>
 						<div class="form-group">
 							<label>제목</label> <input type="text" class="form-control"
 								id="title" name="title" placeholder="기념일/일정을 등록하세요.">
@@ -117,9 +133,14 @@
 						<span class="glyphicon glyphicon-calendar"></span> 기념일/일정 수정
 					</h4>
 				</div>
-				<div class="modal-body" style="padding: 40px 50px;">
+				<div class="modal-body"
+					style="padding: 40px 50px; padding-top: 10px;">
 					<form action="/function/calModify.jv" method="post" id="sub">
 						<input type="hidden" name="num" id="num" />
+						<div class="form-group" style="text-align: right">
+							<label>Dday 설정 </label> <input type="checkbox" id="dday"
+								name="dday" />
+						</div>
 						<div class="form-group">
 							<label>제목</label> <input type="text" class="form-control"
 								id="title2" name="title" placeholder="기념일/일정을 등록하세요.">
@@ -188,7 +209,11 @@
 								$("#title2").val(calEvent.title);
 								$("#color2").val(calEvent.color);
 								$("#num").val(calEvent.num);
-								
+								if(calEvent.dday == "true") {
+									$("#dday").prop("checked",true);
+								} else {
+									$("#dday").prop("checked",false);
+								}
 						    },
 							events: [
 								 <c:forEach var="g" items="${list }" varStatus="vs">
@@ -196,6 +221,7 @@
 									title : '${g.TITLE}',
 									start : '${g.CC}<c:if test="${g.CTIME ne null}">T${g.CTIME}</c:if>',
 									num : '${g.NUM}',
+									dday : '${g.DDAY}',
 									<c:if test="${g.COLOR ne null}">color:'${g.COLOR}'</c:if>
 								 }
 								<c:if test="${!vs.last }"> , </c:if> 
