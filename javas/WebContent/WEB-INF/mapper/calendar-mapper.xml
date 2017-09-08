@@ -2,19 +2,24 @@
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="calendar">
 	<insert id="addCal" parameterType="java.util.HashMap">
-		insert into calendar(id,title,cdate,ctime,num,color) values(#{id},#{title}, to_date(#{date},'YYYY/MM/DD'), 
-		<choose><when test="time != '' and time != null">#{time}</when>
-		<otherwise>null</otherwise></choose>, calendar_seq.nextval,
-		<choose><when test="color != '' and color != null">#{color}</when>
-		<otherwise>null</otherwise></choose>)
+		insert into calendar(id,title,cdate,ctime,num,color,dday) values(#{id},#{title}, to_date(#{date},'YYYY/MM/DD'), 
+		#{time, jdbcType=VARCHAR}, calendar_seq.nextval, #{color}, #{dday})
 	</insert>
 	<select id="getCal" resultType="java.util.HashMap" parameterType="java.lang.String">
-		select c.*,  to_Char(c.cdate,'YYYY-MM-DD') CC from calendar c where id=#{id}
+		select c.*,  to_Char(c.cdate,'YYYY-MM-DD') CC, to_date(to_char(sysdate)) - cdate DD from calendar c where id=#{id}
 	</select>
-	<update id="updateCal">
-	
+	<update id="updateCal" parameterType="java.util.HashMap">
+		update calendar set title=#{title}, cdate=#{date},
+		ctime=#{time, jdbcType=VARCHAR}, color=#{color}, dday=#{dday} where num=#{num} 
 	</update>
-	<delete id="delCal">
-	
+	<delete id="deleteCal" parameterType="java.lang.Integer">
+		delete from calendar where num=#{num}
 	</delete>
+	<select id="ddayCal" parameterType="java.lang.String" resultType="java.util.HashMap">
+		<![CDATA[
+		select * from (select  c.*, to_Char(c.cdate,'YYYY-MM-DD') CC, 
+		to_date(to_char(sysdate)) - cdate DD from calendar c 
+		where id=#{id} and dday='true' order by cdate ) where rownum <=3 and dd < 0
+		]]>
+	</select>
 </mapper>

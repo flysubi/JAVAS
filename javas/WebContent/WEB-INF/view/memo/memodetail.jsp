@@ -63,13 +63,6 @@
 			</div>
 			<div class="col-xs-0 col-md-2"></div>
 			
-			<c:if test="${sessionScope.auth eq 'admin' }">
-				<div style="padding-right: 200px; padding-bottom: 10px;" align="right">
-					<a href="/question/answer.jv?num=${posts.FT_NUM }">
-						<button type="button" class="btn bt">답글 <span class="glyphicon glyphicon-pencil"></span></button>
-					</a>
-				</div>
-			</c:if>
 	</c:when>
 </c:choose>
 
