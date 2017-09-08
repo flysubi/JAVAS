@@ -29,7 +29,8 @@ public class MemoController {
 		int mc = mm.myCount(id);
 		session.setAttribute("memo", c);
 		session.setAttribute("mymemo", mc);
-		ModelAndView mav = new ModelAndView("t_el");
+		ModelAndView mav = new ModelAndView("t_el_memo");
+			mav.addObject("active", "list");
 			mav.addObject("section", "/memo/memolist");
 			mav.addObject("title","쪽지");
 			mav.addObject("list", list);
@@ -37,14 +38,22 @@ public class MemoController {
 	}	
 	
 	@RequestMapping("/write.jv")
-	public ModelAndView memosend(@RequestParam (name= "target", defaultValue="") String target, @RequestParam (name= "w", required= false) String w) {
-		ModelAndView mav = new ModelAndView("t_el");
+	public ModelAndView memosend(@RequestParam (name= "w", required= false) String w) {
+		ModelAndView mav = new ModelAndView("t_el_memo");
 		mav.addObject("title","쪽지");
-		mav.addObject("target", target);
 		mav.addObject("w", w);
 		mav.addObject("section", "/memo/memowrite");
 		return mav;
 	}
+	
+	@RequestMapping("/mywrite.jv")
+	public ModelAndView myMemoWrite() {
+		ModelAndView mav = new ModelAndView("t_el_memo");
+		mav.addObject("title","쪽지");
+		mav.addObject("section", "/memo/mymemowrite");
+		return mav;
+	}
+	
 	
 	@RequestMapping("/writeExec.jv")
 	public ModelAndView sendExec(@RequestParam Map<String, String> map, HttpSession session) {
@@ -54,7 +63,7 @@ public class MemoController {
 			
 			mav.setViewName("redirect:/memo/list.jv");
 		}else {
-			mav.setViewName("t_el");
+			mav.setViewName("t_el_memo");
 			mav.addObject("section", "/memo/memowrite");
 			mav.addObject("result", "fff");
 		}
@@ -70,6 +79,8 @@ public class MemoController {
 		
 		return mav;
 	}
+	
+	
 	
 	
 }

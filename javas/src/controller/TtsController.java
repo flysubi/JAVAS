@@ -42,7 +42,7 @@ public class TtsController {
             con.setRequestProperty("X-Naver-Client-Id", clientId);
             con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
             // post request
-            String postParams = "speaker=mijin&speed=-1&text=" + text;
+            String postParams = "speaker=mijin&speed=1&text=" + text;
             con.setDoOutput(true);
             DataOutputStream wr = new DataOutputStream(con.getOutputStream());
             wr.writeBytes(postParams);
