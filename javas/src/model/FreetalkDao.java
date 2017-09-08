@@ -146,4 +146,30 @@ public class FreetalkDao {
 		}
 	}
 	
+	public boolean commDel(int num) {
+		SqlSession session = factory.openSession();
+		try {
+			session.delete("freetalk.commDel",num);
+			return true;
+		} catch(Exception e) {
+			System.out.println("[freetalk] commDel error ... "+e.toString());
+			return false; 
+		} finally {
+			session.close();
+		}
+	}
+	
+	public Map commId(int num) {
+		SqlSession session = factory.openSession();
+		try {
+			Map map = session.selectOne("freetalk.commId",num);
+			return map;
+		} catch(Exception e) {
+			System.out.println("[freetalk] commId error ... "+e.toString());
+			return null;
+		} finally {
+			session.close();
+		}
+	}
+	
 }

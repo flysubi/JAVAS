@@ -39,9 +39,10 @@ public class MemoController {
 	}	
 	
 	@RequestMapping("/write.jv")
-	public ModelAndView memoWrite() {
+	public ModelAndView memosend(@RequestParam (name= "w", required= false) String w) {
 		ModelAndView mav = new ModelAndView("t_el_memo");
 		mav.addObject("title","ÂÊÁö");
+		mav.addObject("w", w);
 		mav.addObject("section", "/memo/memowrite");
 		mav.addObject("name", "write");
 		return mav;
@@ -61,7 +62,6 @@ public class MemoController {
 	public ModelAndView sendExec(@RequestParam Map<String, String> map, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		map.put("id", (String) session.getAttribute("auth"));
-		System.out.println(".."+map);
 		if(mm.send(map)) {
 			
 			mav.setViewName("redirect:/memo/list.jv");

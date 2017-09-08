@@ -48,7 +48,6 @@
 	font-size: 0.75em;
 }
 </style>
-
 <div class="col-xs-0 col-md-1"></div>
 <div class="col-xs-12 col-md-10">
 	<div style="padding-bottom: 10px;">

@@ -70,8 +70,10 @@ public class CalendarController {
 	public ModelAndView calTest(HttpSession session) {
 		String id = (String)session.getAttribute("auth");
 		ModelAndView mav = new ModelAndView("t_el");
-		List<Map> list = cdao.ddayCal(id);
-			mav.addObject("list",list);
+		List<Map> dday = cdao.ddayCal(id);
+		List<Map> today = cdao.todayCal();
+			mav.addObject("dday",dday);
+			mav.addObject("today",today);
 			mav.addObject("section", "function/calTest");
 		return mav;
 	}
