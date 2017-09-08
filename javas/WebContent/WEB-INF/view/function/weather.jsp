@@ -7,7 +7,6 @@
 <script
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD--k3vwuB9cAExy9ezTOAo-FR6ajxUctw&callback=initMap"
 	async defer></script>
-<script type="text/javascript" src="/style/weather/Modal.js"></script>
 <style>
 th {
 	background-color: lightgray;
@@ -15,6 +14,18 @@ th {
 .fore>tr>td {
 	border: 1px solid gray;
 	text-align: center;
+}
+.modal-dialog.modal-fullsize { 
+	width: 50%; 
+	height: 50%;
+	float: center; 
+	margin: 10px 16px; 
+	padding: 0; 
+}
+.modal-content.modal-fullsize {
+  height: auto;
+  min-height: 100%;
+  border-radius: 6px; 
 }
 </style>
 <h2 id=loc></h2>
@@ -29,8 +40,10 @@ th {
 		style="width: 80%; border: 1px solid gray; table-layout: fixed;">
 	</table>
 </div>
-<input type="text" id="text"/><button id="bt">눌러</button>
+</body>
+</html>
 <script>
+
 $("#bt").click(function(){
 	$.ajax({
 		url : "/tts/ttsAjax.jv",
