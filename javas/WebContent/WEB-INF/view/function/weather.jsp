@@ -38,7 +38,7 @@ $("#bt").click(function(){
 			"message" : $("#text").val()
 		}
 	}).done(function(rst){
-		var audio = new Audio("/tts//"+rst);
+		var audio = new Audio("/voice//"+rst);
 		audio.play();
 		deleteFile(rst);
 	})
