@@ -39,7 +39,8 @@
 	<div id="slidebox">
 		<ul id="slider">
 			<li><img alt="main" src="/style/새메인.png"/></li>
-			<li><img alt="plues" src="/style/추가혜택.png"></li>
+			<li><img alt="wader" src="/style/날씨소개.png"></li>
+			<li><img alt="callender" src="/style/캘랜더.png"></li>
 		</ul>
 	</div>
 	<div>
