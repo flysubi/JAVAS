@@ -5,7 +5,7 @@
 .btn {
 	border: none;
 	color: white;
-	font-size: 5px;
+	font-size: 17px;
 	family-font
 	cursor: pointer;
 	width: 20px;

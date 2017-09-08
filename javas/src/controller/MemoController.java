@@ -33,6 +33,7 @@ public class MemoController {
 			mav.addObject("active", "list");
 			mav.addObject("section", "/memo/memolist");
 			mav.addObject("title","쪽지");
+			mav.addObject("name", "list");
 			mav.addObject("list", list);
 		return mav;
 	}	
@@ -42,6 +43,7 @@ public class MemoController {
 		ModelAndView mav = new ModelAndView("t_el_memo");
 		mav.addObject("title","쪽지");
 		mav.addObject("section", "/memo/memowrite");
+		mav.addObject("name", "write");
 		return mav;
 	}
 	
@@ -50,6 +52,7 @@ public class MemoController {
 		ModelAndView mav = new ModelAndView("t_el_memo");
 		mav.addObject("title","쪽지");
 		mav.addObject("section", "/memo/mymemowrite");
+		mav.addObject("name", "mywrite");
 		return mav;
 	}
 	
