@@ -1,17 +1,15 @@
 package controller;
 
-import java.sql.Date;
-import java.util.List;
-import java.util.Map;
 
-import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
+import java.util.List;
+import java.util.Map;
+import javax.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestParam;
 import model.CalendarDao;
 
 @Controller
@@ -45,6 +43,7 @@ public class CalendarController {
 		ModelAndView mav = new ModelAndView("t_el");
 			mav.addObject("rst", b);
 			mav.addObject("section", "alert/addCal");
+
 		return mav;
 	}
 	
@@ -71,8 +70,10 @@ public class CalendarController {
 	public ModelAndView calTest(HttpSession session) {
 		String id = (String)session.getAttribute("auth");
 		ModelAndView mav = new ModelAndView("t_el");
-		List<Map> list = cdao.ddayCal(id);
-			mav.addObject("list",list);
+		List<Map> dday = cdao.ddayCal(id);
+		List<Map> today = cdao.todayCal();
+			mav.addObject("dday",dday);
+			mav.addObject("today",today);
 			mav.addObject("section", "function/calTest");
 		return mav;
 	}

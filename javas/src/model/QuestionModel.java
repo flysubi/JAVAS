@@ -31,13 +31,8 @@ public class QuestionModel {
 	public List<Map<String, Object>> boardList(Map map) {
 		List<Map<String, Object>> list = new ArrayList<>();
 		SqlSession session = factory.openSession();
-				
-		System.out.println(map.get("arr"));
-		
-		
 		try {
 			list = session.selectList("question.getAllTalks", map);
-			System.out.println(list);
 		} catch (Exception e) {
 			System.out.println("[JDBC] QuestionBoaordModelException boardList : " + e.getMessage());
 		} finally {
@@ -52,7 +47,6 @@ public class QuestionModel {
 		int n = 0;
 		try {
 			n = session.selectOne("question.countAll", map.get("num"));
-			System.out.println(n);
 		}catch(Exception e) {
 			System.out.println("[JDBC] QuestionBoaordModelException countAllt : " + e.getMessage());
 		}finally {
@@ -69,7 +63,6 @@ public class QuestionModel {
 				session.update("question.count", map);
 			}			
 			map1 = session.selectOne("question.getOne", map.get("num"));
-			System.out.println(".."+map1);
 		} catch (Exception e) {
 			System.out.println("[JDBC] QuestionBoardBoardModelException boardDetail : " + e.getMessage());
 		} finally {
@@ -81,7 +74,6 @@ public class QuestionModel {
 
 	public void boardReply(Map<String, Object> map) {
 		SqlSession session = factory.openSession();
-		System.out.println("[boardReply.Model]:"+map );
 		try {
 			session.update("question.reviseStep", map);
 			session.insert("question.addReply", map);
@@ -92,35 +84,6 @@ public class QuestionModel {
 		}
 	}		
 	
-	public List<Map<String, Object>> replyAddList(Map<String, Object> map){
-		SqlSession session = factory.openSession();
-		List<Map<String, Object>> list = new ArrayList<>();
-		try {
-			session.insert("replyAdd", map);
-			list = session.selectList("replyList", map);
-		}catch(Exception e) {
-			session.rollback();
-			System.out.println("[JDBC] Exception FreeBoardModelException replyAddList");
-			e.printStackTrace();
-		}finally {
-			session.close();
-		}
-		return list;
-	} 
-	
-	public List<Map<String, Object>> replyGetList(Map<String, Object> map){
-		SqlSession session = factory.openSession();
-		List<Map<String, Object>> list = new ArrayList<>();
-		try {
-			list = session.selectList("replyList", map);
-		}catch(Exception e) {
-			System.out.println("[JDBC] Exception FreeBoardModelException replygetList");
-			e.printStackTrace();
-		}finally {
-			session.close();
-		}
-		return list;
-	} 
 	
 	public int boardDel(int num) {
 		SqlSession session = factory.openSession();

@@ -29,7 +29,7 @@
 					<li><a href="/user/login.jv"  style="color: #939393;"> <span class="glyphicon glyphicon-log-in"></span> 로그인</a></li>
 				</ul>
 			</c:when>
-			<c:otherwise>
+		<c:otherwise>
             <ul class="nav navbar-nav">
                <li><p class="navbar-text" style="color: black;">${auth }님 환영합니다 (${point} P)</p></li>
             </ul>
@@ -52,8 +52,6 @@
 		<li><a href="#">메뉴얼</a></li>
 			<li><a href="/question/list.jv">Q&A</a></li>
 			<li><a href="/freetalk/allTalks.jv">공유게시판</a></li>
-
-			<li><a href="/">JAVAS</a></li>
 			<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">JAVAS<span class="caret"></span></a>
 				<ul class="dropdown-menu">

@@ -22,4 +22,7 @@
 		where id=#{id} and dday='true' order by cdate ) where rownum <=3 and dd < 0
 		]]>
 	</select>
+	<select id="todayCal" resultType="java.util.HashMap">
+		select * from calendar where cdate = to_char(sysdate)
+	</select>
 </mapper>
