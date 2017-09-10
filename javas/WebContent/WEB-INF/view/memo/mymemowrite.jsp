@@ -5,7 +5,7 @@
 .btn {
 	border: none;
 	color: white;
-	font-size: 17px;
+	font-size: 5px;
 	family-font
 	cursor: pointer;
 	width: 20px;
@@ -48,6 +48,7 @@
 	font-size: 0.75em;
 }
 </style>
+
 <div class="col-xs-0 col-md-1"></div>
 <div class="col-xs-12 col-md-10">
 	<div style="padding-bottom: 10px;">
@@ -60,9 +61,10 @@
 			</div>
 			<div class="form-inline" align="left">
 				<label>받는 사람&nbsp;&nbsp;</label></label><label><input
-					type="checkbox" id="target" name="target" >&nbsp;내게
+					type="checkbox" id="target" name="target" checked="checked">&nbsp;내게
 					쓰기</label>&nbsp;&nbsp; <input type="text" placeholder="받는이" class="form-control"
-					id="receiver" name="receiver" required="required" style="width: 40%;">
+					id="receiver" name="receiver" value="${sessionScope.auth }"
+					required="required" style="width: 40%;">
 			</div>
 			<p id="cid"></p>
 			<div class="wrap">

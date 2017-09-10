@@ -37,7 +37,7 @@
 								<td align="center"><input type="checkbox" class="chk" id="item"
 									name="num" value="${i.FT_NUM}" /></td>
 								<td><a href="/memo/write.jv?target=${i.FT_SENDER }">${i.FT_SENDER}</a></td>
-								<td>${i.FT_CONTENT}</td>
+								<td><a href="/memo/detail.jv=${i.FT_NUM}">${i.FT_CONTENT}</td>
 								<td>${i.FT_DATE}</td>
 							</tr>
 						</c:forEach>

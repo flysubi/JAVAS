@@ -5,6 +5,7 @@ import java.util.*;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -55,7 +56,9 @@ public class FreetalkController {
 	
 	@RequestMapping("/allTalks.jv")
 	public ModelAndView talkList(@RequestParam(name="p", defaultValue="1") int p, 
-			@RequestParam (name="search", required=false) String s, @RequestParam (name="category", required=false) String cate) {
+			@RequestParam (name="search", required=false) String s, @RequestParam (name="category", required=false) String cate,
+			@RequestParam (name="num",defaultValue="-1") int num, @RequestParam (name="num2",defaultValue="-1") int num2,
+			HttpSession session ) {
 		String[] ar = null;
 		if(s != null) {
 			ar = s.split("\\s+");
@@ -74,8 +77,15 @@ public class FreetalkController {
 		
 		int tot = fdao.countAll(map);
 		int size = tot%10 ==0 ? tot/10 : tot/10+1;
-		
+		if(session.getAttribute("modal") == null) {
+			session.setAttribute("modal", -1);
+			
+		}
 		ModelAndView mav = new ModelAndView("t_el");
+		if(num != -1 && (int)session.getAttribute("modal") != num2) {
+			mav.addObject("num",num);
+		}
+		session.setAttribute("modal", num2);
 			mav.addObject("section", "freetalk/allTalks");
 			mav.addObject("total",tot);
 			mav.addObject("size", size);
@@ -161,6 +171,27 @@ public class FreetalkController {
 		return mav;
 	}
 	
+	@RequestMapping("/commModal.jv")
+	public ModelAndView commModal(@RequestParam (name="num") int num, HttpSession session ) {
+		ModelAndView mav = new ModelAndView();
+		List<Map> list = fdao.getComment(num);
+		
+		mav.addObject("list",list);
+			return mav;
+	}
+	
+	@RequestMapping("/commDel.jv")
+	@ResponseBody
+	public Map commDel(@RequestParam Map param, @RequestParam (name="num",defaultValue="-1") int num) {
+		Map map = new HashMap<>();
+		boolean flag = false;
+		Map getTalk = fdao.commId(num);
+		if(getTalk.get("WRITER").equals(param.get("writer"))) {
+			flag = fdao.commDel(num);
+		}
+		map.put("flag", flag);
+		return map;
+	}
 	
 	
 }

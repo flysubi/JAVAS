@@ -43,7 +43,7 @@ public class CalendarDao {
 	public boolean updateCal(Map map) {
 		SqlSession session = factory.openSession();
 		try {
-			session.insert("calendar.updateCal",map);
+			session.update("calendar.updateCal",map);
 			return true;
 		} catch(Exception e) {
 			System.out.println("[calendar] updateCal error ... "+e.toString());
@@ -61,6 +61,32 @@ public class CalendarDao {
 		} catch(Exception e) {
 			System.out.println("[calendar] deleteCal error ... "+e.toString());
 			return false;
+		} finally {
+			session.close();
+		}
+	}
+	
+	public List<Map> ddayCal(String id) {
+		SqlSession session = factory.openSession();
+		try {
+			List<Map> list = session.selectList("calendar.ddayCal",id);
+			return list;
+		} catch(Exception e) {
+			System.out.println("[calendar] ddayCal error ... "+e.toString());
+			return null;
+		} finally {
+			session.close();
+		}
+	}
+	
+	public List<Map> todayCal() {
+		SqlSession session = factory.openSession();
+		try {
+			List<Map> list = session.selectList("calendar.todayCal");
+			return list;
+		} catch(Exception e) {
+			System.out.println("[calendar] todayCal error ... "+e.toString());
+			return null;
 		} finally {
 			session.close();
 		}
