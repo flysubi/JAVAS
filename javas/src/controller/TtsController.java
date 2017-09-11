@@ -42,7 +42,7 @@ public class TtsController {
             con.setRequestProperty("X-Naver-Client-Id", clientId);
             con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
             // post request
-            String postParams = "speaker=mijin&speed=0&text=" + text;
+            String postParams = "speaker=mijin&speed=1&text=" + text;
             con.setDoOutput(true);
             DataOutputStream wr = new DataOutputStream(con.getOutputStream());
             wr.writeBytes(postParams);
@@ -56,7 +56,7 @@ public class TtsController {
                 byte[] bytes = new byte[1024];
                 // 랜덤한 이름으로 mp3 파일 생성
                 tempname = Long.valueOf(new Date().getTime()).toString();
-                File f = new File(application.getRealPath("/tts"), tempname);
+                File f = new File(application.getRealPath("/voice"), tempname);
                 f.createNewFile();
                 OutputStream outputStream = new FileOutputStream(f);
                 while ((read =is.read(bytes)) != -1) {
@@ -82,7 +82,7 @@ public class TtsController {
 	@RequestMapping("/ttsDeleteAjax.jv")
 	@ResponseBody
 	public void ttsDeleteAjax(@RequestParam(name="tempname") String tempname) {
-		File files[] = new File(application.getRealPath("/tts")).listFiles();
+		File files[] = new File(application.getRealPath("/voice")).listFiles();
 		for(int i=0;i<files.length-1;i++) {
 			files[i].delete();
 		}

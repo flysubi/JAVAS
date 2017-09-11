@@ -37,7 +37,7 @@
 		insert into comments values(comments_seq.nextval, #{num}, #{writer}, #{content}, sysdate)
 	</insert>
 	<select id="getComment" resultType="java.util.HashMap" parameterType="java.lang.Integer">
-		select c.*, to_Char(c.WRITEDATE) FC from comments c where ft_num=#{num}
+		select c.*, to_Char(c.WRITEDATE) FC from comments c where ft_num=#{num} order by num
 	</select>
 	<insert id="loveUp" parameterType="java.util.HashMap">
 		insert into love values(#{num}, #{id})
@@ -50,5 +50,11 @@
 	</select>
 	<select id="loveId" parameterType="java.util.HashMap" resultType="java.lang.String">
 		select id from love where num=#{num} and id=#{id}
+	</select>
+	<delete id="commDel" parameterType="java.lang.Integer">
+		delete from comments where num=#{num}
+	</delete>
+	<select id="commId" resultType="java.util.HashMap" parameterType="java.lang.Integer">
+		select * from comments where num=#{num}
 	</select>
 </mapper>
