@@ -68,6 +68,7 @@
 				<value>/WEB-INF/mapper/memo-mapper.xml</value>
 				<value>/WEB-INF/mapper/calendar-mapper.xml</value>
 				<value>/WEB-INF/mapper/weather-mapper.xml</value>
+				<value>/WEB-INF/mapper/fitness-mapper.xml</value>
 			</list>
 		</property>
 	</bean>
