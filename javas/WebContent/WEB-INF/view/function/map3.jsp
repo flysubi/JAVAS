@@ -15,8 +15,8 @@
 	var map;
 	var coords;
 	var address;
-	function initialize() {
 
+	function initialize() {
 		directionsDisplay = new google.maps.DirectionsRenderer();
 
 		var mapProp = {
@@ -36,9 +36,9 @@
 		map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 		directionsDisplay.setMap(map);
 		directionsDisplay.setPanel(document.getElementById("directionsPannel"));
+		console.log(document.getElementById("directionsPannel").value);
 		marker = new google.maps.Marker();
 		//src = new google.maps.LatLng(37.5117887, 126.8395951) // 신정도일하이빌
-
 		$(function() {
 			// Geolocation API에 액세스할 수 있는지를 확인
 			if (navigator.geolocation) {
@@ -54,7 +54,7 @@
 
 							var latlng = new google.maps.LatLng(coords.lat,
 									coords.lng);
-							alert(latlng);
+
 							geocoder.geocode({
 								'latLng' : latlng
 							}, function(results, status) {
@@ -65,19 +65,23 @@
 
 										address = results[3].formatted_address;
 
+										$('#latitude').html(coords.lat); // 위도 
+										$('#longitude').html(coords.lng); // 경도
+										$('#address').html(address); // 주소
+
 									}
 
+									src = new google.maps.LatLng(coords.lat,
+											coords.lng) // 서울
 								} else {
 
 									alert("Geocoder failed due to: " + status);
 
 								}
 
-								alert(coords);
-								src = new google.maps.LatLng(coords.lat,
-										coords.lng) // 도쿄
 							});
 						});
+
 				$('#btnStop').click(function() {
 					navigator.geolocation.clearWatch(id);
 				});
@@ -150,35 +154,29 @@
 		directionsDisplay.setMap(map);
 	}
 	function calcRoute(src, dest) {
+
 		alert(src);
+		alert(dest);
 		var selectedMode = document.getElementById("mode").value;
 		var request = {
 			origin : src,
 			destination : dest,
-			// Note that Javascript allows us to access the constant
-			// using square brackets and a string value as its
-			// "property."
 			travelMode : google.maps.TravelMode[selectedMode]
 		};
 		directionsService.route(request, function(response, status) {
 			if (status == google.maps.DirectionsStatus.OK) {
 				directionsDisplay.setDirections(response);
+				console.log(document.getElementById("directionsPannel").value);
+				
 			}
 		});
 	}
 </script>
-</head>
 
+</head>
 <body>
 	<div class="container">
-		<div class="header">
-			<nav>
-				<ul class="nav nav-pills pull-right">
-					<li role="presentation"><a href="main">Home</a></li>
-				</ul>
-			</nav>
-			<h4 class="text-muted">Google Map Test, nheo.an@gmail.com</h4>
-		</div>
+		
 		<div class="jumbotron">
 			<form class="form-nheo">
 				<label for="Address" class="sr-only">Where to go ?</label> <input
@@ -203,7 +201,6 @@
 		<div id="directionsPannel" style="width: 30%; height: 100%;"></div>
 	</div>
 </body>
-
 <script>
 	$(function() {
 		$('#btnnheo').click(function() {

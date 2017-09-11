@@ -40,7 +40,7 @@
 
 	
 	
-	<!-- https 설정 -->
+	<!-- https 설정 
 	<security-constraint>
 	<web-resource-collection>
 		<web-resource-name>Automatic SSL Forward</web-resource-name>
@@ -50,5 +50,5 @@
 		<transport-guarantee>CONFIDENTIAL</transport-guarantee>
 	</user-data-constraint>
 </security-constraint>
-	
+	-->
 </web-app>

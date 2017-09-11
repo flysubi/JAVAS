@@ -84,7 +84,6 @@ public class TtsController {
 	public void ttsDeleteAjax(@RequestParam(name="tempname") String tempname) {
 		File files[] = new File(application.getRealPath("/voice")).listFiles();
 		for(int i=0;i<files.length-1;i++) {
-			System.out.println(files[i].getName());
 			files[i].delete();
 		}
 	}

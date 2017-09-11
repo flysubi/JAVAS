@@ -33,16 +33,19 @@ public class MemoController {
 			mav.addObject("active", "list");
 			mav.addObject("section", "/memo/memolist");
 			mav.addObject("title","쪽지");
+			mav.addObject("name", "list");
 			mav.addObject("list", list);
 		return mav;
 	}	
 	
 	@RequestMapping("/write.jv")
-	public ModelAndView memosend(@RequestParam (name= "w", required= false) String w) {
+	public ModelAndView memosend(@RequestParam (name= "w", required= false) String w, @RequestParam (name= "my", required= false) String my) {
 		ModelAndView mav = new ModelAndView("t_el_memo");
 		mav.addObject("title","쪽지");
 		mav.addObject("w", w);
+		mav.addObject("my", my);
 		mav.addObject("section", "/memo/memowrite");
+		mav.addObject("name", "write");
 		return mav;
 	}
 	
@@ -51,6 +54,7 @@ public class MemoController {
 		ModelAndView mav = new ModelAndView("t_el_memo");
 		mav.addObject("title","쪽지");
 		mav.addObject("section", "/memo/mymemowrite");
+		mav.addObject("name", "mywrite");
 		return mav;
 	}
 	

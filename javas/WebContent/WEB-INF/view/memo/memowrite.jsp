@@ -2,14 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <style>
+
 .btn {
 	border: none;
 	color: white;
-	font-size: 5px;
-	family-font
+	font-size: 15px;
 	cursor: pointer;
-	width: 20px;
-	height: 30px;
 }
 
 .bt {
@@ -49,24 +47,29 @@
 }
 </style>
 <div class="col-xs-0 col-md-1"></div>
-<div class="col-xs-12 col-md-10">
+<div class="col-xs-12 col-md-6">
 	<div style="padding-bottom: 10px;">
 		<div class="input-group"
 			style="padding-bottom: 15px; padding-top: 15px;"></div>
 
 		<form action="/memo/writeExec.jv" method="post">
 			<div class="form-group" align="left">
-				<button id="bnt" type="submit" class="btn bt" style="width: 10%">보내기</button>
+				<button id="bnt" type="submit" class="btn bt" style="width: 20%">보내기</button>
 			</div>
-			<div class="form-inline" align="left">
-				<label>받는 사람&nbsp;&nbsp;</label></label><label><input
-					type="checkbox" id="target" name="target" >&nbsp;내게
-					쓰기</label>&nbsp;&nbsp; <input type="text" placeholder="받는이" class="form-control"
-					id="receiver" name="receiver" required="required" style="width: 40%;">
+			<div class="form-group" align="left">
+				<label>받는 사람</label> <input type="checkbox" id="target"
+					name="target" ${my eq null ? '' : 'checked'}>내게 쓰기 <input
+					type="text" placeholder="받는이" id="receiver"
+					value=<c:choose>
+						<c:when test="${w ne null }">"${w}"</c:when>
+						<c:when test="${my ne null}">"${my}"</c:when>
+						<c:otherwise>""</c:otherwise>
+					</c:choose>
+					name="receiver" required="required" class="form-control">
 			</div>
 			<p id="cid"></p>
 			<div class="wrap">
-				<textarea id="ta" name="ta" placeholder="내용"></textarea>
+				<textarea id="ta" name="ta" class="form-control" rows="10" placeholder="내용"></textarea>
 				<span id="counter"></span>
 			</div>
 
@@ -74,12 +77,13 @@
 	</div>
 </div>
 
+
 <script>
 	$("#target").on("change", function() {
 		if ($("#target").is(":checked")) {
-			document.getElementById("receiver").value = "${sessionScope.auth}";
+			$("#receiver").val("${sessionScope.auth}");
 		} else {
-			document.getElementById("receiver").value = "";
+			$("#receiver").val("");
 		}
 	});
 
@@ -93,6 +97,5 @@
 				window.alert("1000자까지만 입력이 가능합니다");
 			}
 		});
-
 	});
 </script>
