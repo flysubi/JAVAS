@@ -35,6 +35,7 @@
 		map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 		directionsDisplay.setMap(map);
 		directionsDisplay.setPanel(document.getElementById("directionsPannel"));
+		
 		marker = new google.maps.Marker();
 		//src = new google.maps.LatLng(37.5117887, 126.8395951) // 신정도일하이빌
 
@@ -63,9 +64,8 @@
 								} else {
 									alert("Geocoder failed due to: " + status);
 								}
-								alert(coords.lat);
 								src = new google.maps.LatLng(coords.lat,
-										coords.lng) // 도쿄
+										coords.lng) 
 							});
 						});
 				$('#btnStop').click(function() {
@@ -141,6 +141,7 @@
 	}
 	function calcRoute(src, dest) {
 		alert(src);
+		alert(dest);
 		var selectedMode = document.getElementById("mode").value;
 		var request = {
 			origin : src,

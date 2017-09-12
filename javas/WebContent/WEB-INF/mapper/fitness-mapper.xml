@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fitness">
+	<insert id="setMyFit" parameterType="java.util.HashMap">
+			insert into fitness values(#{id}, #{cm}, #{kg}, #{bmi}, #{sw}, #{ac})
+	</insert>
+	<select id="getMyFit" parameterType="java.lang.String" resultType="java.util.HashMap">
+		select * from fitness where id=#{id}
+	</select>
+	<update id="myFitUpdate" parameterType="java.util.HashMap">
+		update fitness set height=#{cm}, weight=#{kg}, bmi=#{bmi}, sw=#{sw}, ac=#{ac} where id=#{id}
+	</update>
+</mapper>
