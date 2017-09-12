@@ -47,7 +47,6 @@ public class QuestionModel {
 		int n = 0;
 		try {
 			n = session.selectOne("question.countAll", map.get("num"));
-			System.out.println(n);
 		}catch(Exception e) {
 			System.out.println("[JDBC] QuestionBoaordModelException countAllt : " + e.getMessage());
 		}finally {

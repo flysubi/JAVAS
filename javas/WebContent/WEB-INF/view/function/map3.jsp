@@ -14,8 +14,8 @@
 	var map;
 	var coords;
 	var address;
-	function initialize() {
 
+	function initialize() {
 		directionsDisplay = new google.maps.DirectionsRenderer();
 
 		var mapProp = {
@@ -29,20 +29,19 @@
 			streetViewControl : true,
 			overviewMapControl : true,
 			rotateControl : true,
-			mapTypeId : google.maps.MapTypeId.ROADMAP,
+			mapTypeId : google.maps.MapTypeId.ROADMAP
 		};
 
 		map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 		directionsDisplay.setMap(map);
 		directionsDisplay.setPanel(document.getElementById("directionsPannel"));
+		console.log(document.getElementById("directionsPannel").value);
 		marker = new google.maps.Marker();
 		//src = new google.maps.LatLng(37.5117887, 126.8395951) // 신정도일하이빌
-
 		$(function() {
 			// Geolocation API에 액세스할 수 있는지를 확인
 			if (navigator.geolocation) {
 				//위치 정보를 정기적으로 얻기
-
 				var id = navigator.geolocation
 						.watchPosition(function(pos) {
 							coords = {
@@ -50,24 +49,37 @@
 								"lng" : pos.coords.longitude,
 							};
 							var geocoder = new google.maps.Geocoder();
-
+							alert(geocoder);
 							var latlng = new google.maps.LatLng(coords.lat,
 									coords.lng);
+
 							geocoder.geocode({
 								'latLng' : latlng
 							}, function(results, status) {
+
 								if (status == google.maps.GeocoderStatus.OK) {
+
 									if (results[1]) {
+
 										address = results[3].formatted_address;
+										
+										$('#latitude').html(coords.lat); // 위도 
+										$('#longitude').html(coords.lng); // 경도
+										$('#address').html(address); // 주소
+
 									}
+                                    alert(coords);
+									src = new google.maps.LatLng(coords.lat,
+											coords.lng); // 서울
 								} else {
+
 									alert("Geocoder failed due to: " + status);
+
 								}
-								alert(coords.lat);
-								src = new google.maps.LatLng(coords.lat,
-										coords.lng) // 도쿄
+
 							});
 						});
+
 				$('#btnStop').click(function() {
 					navigator.geolocation.clearWatch(id);
 				});
@@ -95,10 +107,10 @@
 			map : map,
 			title : titlename,
 		});
-		marker.setMap(map)
+		marker.setMap(map);
 	}
 	function unsetMarker(marker) {
-		marker.setMap(null)
+		marker.setMap(null);
 	}
 	function procMapControl(response) {
 		dest = new google.maps.LatLng(
@@ -107,7 +119,7 @@
 		marker = new google.maps.Marker({
 			position : dest,
 			map : map,
-			title : response.results[0].formatted_address,
+			title : response.results[0].formatted_address
 		});
 		moveLocation(dest);
 		//var boundsk new google.maps.LatLngBounds();
@@ -141,35 +153,35 @@
 	}
 	function calcRoute(src, dest) {
 		alert(src);
+		alert(dest);
 		var selectedMode = document.getElementById("mode").value;
 		var request = {
 			origin : src,
 			destination : dest,
-			// Note that Javascript allows us to access the constant
-			// using square brackets and a string value as its
-			// "property."
 			travelMode : google.maps.TravelMode[selectedMode]
 		};
 		directionsService.route(request, function(response, status) {
 			if (status == google.maps.DirectionsStatus.OK) {
 				directionsDisplay.setDirections(response);
+				console.log(document.getElementById("directionsPannel").value);
+				
 			}
 		});
 	}
 </script>
-</head>
 
+</head>
 <body>
 	<div class="container">
-
+		
 		<div class="jumbotron">
 			<form class="form-nheo">
-				<label for="Address" class="sr-only">도찾지</label> <input type="name"
-					name="address" id="address" class="form-control" placeholder="도착지"
-					required autofocus>
+				<label for="Address" class="sr-only">도착지</label> <input
+					type="name" name="address" id="address" class="form-control"
+					placeholder="도착지" required autofocus>
 
 				<button id="btnnheo" class="btn btn-lg btn-primary btn-block"
-					type="button">길찾기</button>
+					type="button">Submit</button>
 			</form>
 		</div>
 		<div>
@@ -184,10 +196,8 @@
 
 		<div id="googleMap" style="width: 100%; height: 380px;"></div>
 		<div id="directionsPannel" style="width: 30%; height: 100%;"></div>
-		<input type="text" name="" size="40" value="입력값 오른쪽 정렬" style="text-align: right;">
 	</div>
 </body>
-
 <script>
 	$(function() {
 		$('#btnnheo').click(function() {

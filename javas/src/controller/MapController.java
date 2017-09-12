@@ -21,7 +21,26 @@ public class MapController {
 		return mav; 
 	}
 	
+	@RequestMapping("/map1.jv")
+	public ModelAndView mapTest() {
+		ModelAndView mav = new ModelAndView("t_el");
+			mav.addObject("section", "/function/map1");
+		return mav; 
+	}
 	
+	@RequestMapping("/map2.jv")
+	public ModelAndView mapTest1() {
+		ModelAndView mav = new ModelAndView("t_el");
+			mav.addObject("section", "/function/map2");
+		return mav; 
+	}
+	
+	@RequestMapping("/map3.jv")
+	public ModelAndView mapTest2() {
+		ModelAndView mav = new ModelAndView("t_el");
+			mav.addObject("section", "/function/map3");
+		return mav; 
+	}
 
 
 			
