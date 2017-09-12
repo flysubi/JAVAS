@@ -35,19 +35,22 @@
 		height:500px;
 	}
 </style>
+
 <body>
 	<div id="slidebox">
 		<ul id="slider">
 			<li><img alt="main" src="/style/새메인.png"/></li>
-			<li><img alt="wader" src="/style/날씨소개.png"></li>
-			<li><img alt="callender" src="/style/캘랜더.png"></li>
+			<li><img alt="wader" src="/style/기능.png"></li>
 		</ul>
 	</div>
+	
 	<div>
 	  <img alt="javas" src="/style/javas1.png">
 	  <img alt="good" src="/style/좋은점.png">
 	  <img alt="join" src="/style/가입문2.png">
 	</div>
+	
+	
 	<script type='text/javascript'>
 		var x = 1600;
 		var slider = document.getElementById("slider");
@@ -94,6 +97,9 @@
 			}, 20);
 		}
 		//setInterval(changeSlide,2000);
+		
+//----------------슬라이드----------------------------------------------
+
 	</script>
 </body>
 </html>
