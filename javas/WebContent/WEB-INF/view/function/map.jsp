@@ -138,10 +138,10 @@
 		}
 		calcRoute(src, dest);
 		directionsDisplay.setMap(map);
+		console.log(src);
+		console.log(dest);
 	}
 	function calcRoute(src, dest) {
-		alert(src);
-		alert(dest);
 		var selectedMode = document.getElementById("mode").value;
 		var request = {
 			origin : src,
@@ -185,7 +185,7 @@
 
 		<div id="googleMap" style="width: 100%; height: 380px;"></div>
 		<div id="directionsPannel" style="width: 30%; height: 100%;"></div>
-		<input type="text" name="" size="40" value="입력값 오른쪽 정렬" style="text-align: right;">
+		
 	</div>
 </body>
 
@@ -206,6 +206,10 @@
 			});
 		});
 	});
+	
+	
+		
+	
 </script>
 </html>
 

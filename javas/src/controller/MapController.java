@@ -33,16 +33,47 @@ public class MapController {
 		return mav; 
 	}
 	
-	@RequestMapping("/transferDataAjax.jv")
-	@ResponseBody
-	public ModelAndView transferData(@RequestParam(name="transfer") List list ) {
-		System.out.println(list);
+	@RequestMapping("/map1.jv")
+	public ModelAndView map1() {
 		ModelAndView mav = new ModelAndView("t_el");
-			mav.addObject("section", "/function/transferTest");
+			mav.addObject("section", "/function/map1");
 		return mav; 
 	}
 	
-
+	@RequestMapping("/search.jv")
+	public ModelAndView searchMap(HttpSession session) {
+		ModelAndView mav = new ModelAndView("t_el");
+			mav.addObject("section", "/function/search");
+			mav.addObject("title", "±Ê√£±‚");
+		return mav; 
+	}
+		
+	@RequestMapping("/transferDataAjax.jv")
+	@ResponseBody
+	public ModelAndView transferData(@RequestParam(name="transfer") List list , @RequestParam(name="info") List list1) {
+		System.out.println("transfer : "+list);
+		//System.out.println("info : "+list1);
+		
+		
+		ModelAndView mav = new ModelAndView("t_el");
+			mav.addObject("section", "/function/transferTest");
+		
+			
+		return mav; 
+	}
+	
+	@RequestMapping("/transferAjax.jv")
+	@ResponseBody
+	public ModelAndView transfer(@RequestParam(name="transfer") List list) {
+		System.out.println("transfer : "+list);
+		//System.out.println("info : "+list1);
+		ModelAndView mav = new ModelAndView("t_el");
+			mav.addObject("section", "/function/map1");
+		
+			
+		return mav; 
+	}
+	
 
 			
 			
