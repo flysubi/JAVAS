@@ -9,6 +9,7 @@
 
 
 <style type='text/css'>
+
 	body {
 		margin:0;
 	}
@@ -34,14 +35,17 @@
 		width:1600px;
 		height:500px;
 	}
-	
+
 	#realTimer  {
        padding: 10px 50px; 
        width: 260px; 
        font-weight:bold;  
        font-family:'나눔 고딕';  
        font-size: 30px;
-} 
+    }
+    
+   
+    
 </style>
 
 <body style="position:relative;">
@@ -55,22 +59,23 @@
 			</li>
 		</ul>
 	</div>
-	  
-	<div>
+	<div style="position: relative;">
 	  <img alt="javas" src="/style/javas1.png">
 	  <img alt="good" src="/style/좋은점.png">
+	  <img alt="join" src="/style/가입문2.png">
+	  <div style="position: absolute; left: 550px;  top:855px;">
+	       <a href="/user/join.jv">
+	         <img alt="join2" src="/style/회원가입하러.png">
+	       </a>
+	   </div>
+	   <div style="position:absolute; left:1280px; top:855px">
+	     <a href="/function/calendar.jv">
+	        <img alt="login2" src="/style/설정하러.png">	     
+	     </a>
+	   </div>
 	</div>
-	
-	
-	<div style="position: relative;">
-	   <img alt="join" src="/style/가입문2.png">
-	  <div style="position: absolute; left:545px; height: 10px;">
-	 <a href="/user/join.jv"><input type="image" src="/style/회원가입하러.png"></a>
-	  </div>
-	  <div style="position: absolute; left:1280px;">
-	   <a href="/user//login.jv"><input type="image" src="/style/설정하러.png"></a>
-	  </div>
-	</div>
+      
+
 	
 <script type='text/javascript'>
 
