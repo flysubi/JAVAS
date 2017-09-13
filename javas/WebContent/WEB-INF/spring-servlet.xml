@@ -39,13 +39,15 @@
 	</bean>
 	<!-- DBCP setting -->
  
-<!-- 	<bean class="com.mchange.v2.c3p0.ComboPooledDataSource" id="ds"> -->
-<!-- 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver" /> -->
-<!-- 		<property name="user" value="javas" /> -->
-<!-- 		<property name="password" value="1q2w3e4r" /> -->
-<!-- 		<property name="jdbcUrl" value="jdbc:oracle:thin:@javas-db-instance1.ceivtxuvpaot.us-east-2.rds.amazonaws.com:1521:orcl" /> -->
-<!-- 	</bean> -->
-
+ 	<!-- 
+	<bean class="com.mchange.v2.c3p0.ComboPooledDataSource" id="ds">
+		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="user" value="javas" />
+		<property name="password" value="1q2w3e4r" />
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@javas-db-instance1.ceivtxuvpaot.us-east-2.rds.amazonaws.com:1521:orcl" />
+	</bean>
+	-->
+	 
 	<bean class="com.mchange.v2.c3p0.ComboPooledDataSource" id="ds">
 
 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"/>

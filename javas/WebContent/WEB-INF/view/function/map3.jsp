@@ -3,8 +3,7 @@
 <html>
 <head>
 <script type="text/javascript"
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLmh6ZJBgbqRo7N5muFms65pBzt4j4uJg&sensor=true">
-	
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLmh6ZJBgbqRo7N5muFms65pBzt4j4uJg&sensor=true">	
 </script>
 <script type="text/javascript">
 	var directionsDisplay;
@@ -43,7 +42,6 @@
 			// Geolocation API에 액세스할 수 있는지를 확인
 			if (navigator.geolocation) {
 				//위치 정보를 정기적으로 얻기
-
 				var id = navigator.geolocation
 						.watchPosition(function(pos) {
 							coords = {
@@ -51,7 +49,7 @@
 								"lng" : pos.coords.longitude,
 							};
 							var geocoder = new google.maps.Geocoder();
-
+							alert(geocoder);
 							var latlng = new google.maps.LatLng(coords.lat,
 									coords.lng);
 
@@ -64,15 +62,15 @@
 									if (results[1]) {
 
 										address = results[3].formatted_address;
-
+										
 										$('#latitude').html(coords.lat); // 위도 
 										$('#longitude').html(coords.lng); // 경도
 										$('#address').html(address); // 주소
 
 									}
-
+                                    alert(coords);
 									src = new google.maps.LatLng(coords.lat,
-											coords.lng) // 서울
+											coords.lng); // 서울
 								} else {
 
 									alert("Geocoder failed due to: " + status);
@@ -107,12 +105,12 @@
 		marker = new google.maps.Marker({
 			position : dest,
 			map : map,
-			title : titlename
+			title : titlename,
 		});
-		marker.setMap(map)
+		marker.setMap(map);
 	}
 	function unsetMarker(marker) {
-		marker.setMap(null)
+		marker.setMap(null);
 	}
 	function procMapControl(response) {
 		dest = new google.maps.LatLng(
@@ -154,7 +152,6 @@
 		directionsDisplay.setMap(map);
 	}
 	function calcRoute(src, dest) {
-
 		alert(src);
 		alert(dest);
 		var selectedMode = document.getElementById("mode").value;
@@ -179,9 +176,9 @@
 		
 		<div class="jumbotron">
 			<form class="form-nheo">
-				<label for="Address" class="sr-only">Where to go ?</label> <input
+				<label for="Address" class="sr-only">도착지</label> <input
 					type="name" name="address" id="address" class="form-control"
-					placeholder="Where to go ?" required autofocus>
+					placeholder="도착지" required autofocus>
 
 				<button id="btnnheo" class="btn btn-lg btn-primary btn-block"
 					type="button">Submit</button>

@@ -57,6 +57,7 @@
 				<ul class="dropdown-menu">
 					<li><a href="/function/weather.jv">날씨</a></li>
 					<li><a href="/function/calendar.jv">캘린더</a></li>
+					<li><a href="/function/map.jv">길찾기</a></li>
 					<li><a href="/function/fitness.jv">건강</a></li>
 					</ul></li>
 
