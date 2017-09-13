@@ -56,7 +56,6 @@
 		<property name="jdbcUrl" value="jdbc:oracle:thin:@192.168.10.70:1521:xe"/>
 	</bean>
 	 
-	 
 	<!-- mybatis setting -->
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="ds" />
