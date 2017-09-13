@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="fitness">
-	<insert id="setMyFit" parameterType="java.util.HashMap">
-			insert into fitness values(#{id}, #{cm}, #{kg}, #{bmi}, #{sw}, #{ac})
+	<insert id="setMyFit" parameterType="java.lang.String">
+		insert into fitness(id) values(#{id})
+	</insert>
+	<insert id="myWeight" parameterType="java.util.HashMap">
+		insert into myweight values(myweight_seq.nextval, #{id}, #{kg}, sysdate)
 	</insert>
 	<select id="getMyFit" parameterType="java.lang.String" resultType="java.util.HashMap">
 		select * from fitness where id=#{id}
@@ -10,4 +13,49 @@
 	<update id="myFitUpdate" parameterType="java.util.HashMap">
 		update fitness set height=#{cm}, weight=#{kg}, bmi=#{bmi}, sw=#{sw}, ac=#{ac} where id=#{id}
 	</update>
+	<select id="calSort" resultType="java.util.HashMap">
+		select sort from calorie group by SORT order by sort
+	</select>
+	<select id="calName" resultType="java.util.HashMap" parameterType="java.lang.String">
+		select name from calorie where sort=#{sort}
+	</select>
+	<select id="calKcal" resultType="java.lang.Integer" parameterType="java.lang.String">
+		select kcal from calorie where name=#{name}
+	</select>
+	<insert id="myMenu" parameterType="java.util.HashMap">
+		insert into mymenu values(#{id}, sysdate, #{name}, #{kcal},mymenu_seq.nextval)
+	</insert>
+	<select id="totalCal" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select sum(kcal) as kcal from mymenu where to_char(edate)=to_char(sysdate) and id=#{id}
+	</select>
+	<select id="todayMenu" parameterType="java.lang.String" resultType="java.util.HashMap">
+		select * from mymenu where to_char(edate)=to_char(sysdate) and id = #{id}
+	</select>
+	<delete id="myMenuDel" parameterType="java.lang.Integer">
+		delete from mymenu where num=#{num}
+	</delete>
+	<select id="exerSort" resultType="java.util.HashMap">
+		select sort from exercise group by SORT order by sort
+	</select>
+	<select id="exerName" resultType="java.util.HashMap" parameterType="java.lang.String">
+		select kg from exercise where sort=#{sort}
+	</select>
+	<select id="exerKcal" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+		select kcal from exercise where sort=#{sort} and kg=#{kg}
+	</select>
+	<insert id="myExercise" parameterType="java.util.HashMap">
+		insert into myexercise values(MYEXERCISE_SEQ.NEXTVAL,#{id}, sysdate, #{sort}, #{kcal})
+	</insert>
+	<select id="totalExer" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select sum(kcal) as kcal from myexercise where to_char(edate)=to_char(sysdate) and id=#{id}
+	</select>
+	<select id="todayExer" parameterType="java.lang.String" resultType="java.util.HashMap">
+		select * from myexercise where to_char(edate)=to_char(sysdate) and id = #{id}
+	</select>
+	<delete id="myExerDel" parameterType="java.lang.Integer">
+		delete from myexercise where num=#{num}
+	</delete>
+	<select id="WeightGraph" parameterType="java.lang.String" resultType="java.util.HashMap">
+		select w.*,f.sw as sw from MYWEIGHT w join FITNESS f on w.id = f.id where w.id=#{id}
+	</select>
 </mapper>
