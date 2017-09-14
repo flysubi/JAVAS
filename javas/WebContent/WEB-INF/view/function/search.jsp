@@ -6,21 +6,23 @@
  <script type="text/javascript">
     var map, places, iw;
     var markers = [];
-    var autocomplete;
+    var searchbox;
  
     function initialize() {
         var myLatlng = new google.maps.LatLng(37.566535, 126.97796919999996);
         var myOptions = {
-            zoom: 14,
+            zoom: 17,
             center: myLatlng,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
         places = new google.maps.places.PlacesService(map);
         google.maps.event.addListener(map, 'tilesloaded', tilesLoaded);
-        autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'));
-        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+        //autocomplete = new google.maps.places.Autocomplete(document.getElementById('searchbox'));
+        searchbox = new google.maps.places.SearchBox(document.getElementById("searchbox"));
+        google.maps.event.addListener(searchbox, 'place_changed', function () {
             showSelectedPlace();
+        alert(searchbox);
         });
     }
  
@@ -34,7 +36,7 @@
     function showSelectedPlace() {
         clearResults();
         clearMarkers();
-        var place = autocomplete.getPlace();
+        var place = searchbox.getPlace();
         alert(place.geometry.location);
         map.panTo(place.geometry.location);
         markers[0] = new google.maps.Marker({
@@ -49,12 +51,10 @@
  
     function search() {
         var type;
-        for (var i = 0; i < document.controls.type.length; i++) {
-            if (document.controls.type[i].checked) {
-                type = document.controls.type[i].value;
-            }
-        }
-        autocomplete.setBounds(map.getBounds());
+        type = searchbox;
+            
+        
+        searchbox.setBounds(map.getBounds());
         var search = {
             bounds: map.getBounds()
         };
@@ -163,9 +163,10 @@
         overflow: hidden;
     }
     #map_canvas {
-        float: left;
-        width: 820px;
-        height: 406px;
+        float: right;
+        width: 700px;
+        height: 500px;
+        align: left;
     }
     #listing {
         float: left;
@@ -190,16 +191,19 @@
     #locationField {
         margin-left: 1px;
     }
-    #autocomplete {
-        width: 516px;
+    #searchbox {
+        float: left
+        heigtht: 20px;
+        width: 200px;
         border: 1px solid #ccc;
     }
 </style>
 
-<div id="locationField">
-    <input id="autocomplete" type="text">
-</div>
+
 <div id="map_canvas"></div>
+<div id="locationField">
+    <input id="searchbox" type="text">
+</div>
 <div id="controls">
     <form name="controls">
         <input type="radio" name="type" value="establishment" onclick="search()" checked="checked">기관, 시설
@@ -211,8 +215,7 @@
         <input type="radio" name="type" value="subway_station" onclick="search()">지하철
    		<br>
         <input type="radio" name="type" value="lodging" onclick="search()">숙박업소</form>     
-		<br>
-        <input type="radio" name="type" value="chicken" onclick="search()">치킨</form>
+		
 </div>
 <div id="listing">
     <table id="results"></table>
