@@ -52,10 +52,31 @@
 	<div id="slidebox" style="position: relative;">
 		<ul id="slider">
 			<li><img alt="main" src="/style/새메인.png"/></li>
-			<li><img alt="wader" src="/style/기능.png">
-			 <div style="position:absolute; left:665px; height:310px; bottom:0px;">
-              <p id="realTimer"></p>
-             </div>
+			<li>
+			              
+              <div style="position: absolute; left: 300px; height:400px; bottom: 0px;">
+              <a href="/function/weather.jv">
+               <img alt="lain" src="/style/날씨예보.png" style="width: 100px;height:100px;">
+              </a>
+              </div>
+              
+              <div style="position: absolute; left:480px; height:150px; bottom: 0px;">
+              <a href="/function/calendar.jv">
+               <img alt="callender" src="/style/캘랜더.png" style="width:90px; height:90px;">
+              </a>
+              </div>
+              
+                 <div style="position: absolute; left:1150px; height:300px; bottom: 0px;">
+              <a href="/function/map.jv">
+               <img alt="map" src="/style/지도.png" style="width:120px;height:120px;">
+              </a>
+              </div>
+			
+			 <img alt="wader" src="/style/기능.png">
+			
+			 <div style="position:absolute; left:665px; height:310px; bottom: 0px;">		
+              <p id="realTimer"></p>     
+             </div> 
 			</li>
 		</ul>
 	</div>
