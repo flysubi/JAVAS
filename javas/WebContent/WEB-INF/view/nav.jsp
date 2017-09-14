@@ -41,6 +41,7 @@
                   <li><a href="/user/logout.jv" style="color: #939393;"><span class="glyphicon glyphicon-log-out"></span> 로그아웃</a></li>
             </ul>
          </c:otherwise>
+
 		</c:choose>
 
 	</div>
@@ -54,6 +55,7 @@
 		<li><a href="#">메뉴얼</a></li>
 			<li><a href="/question/list.jv">Q&A</a></li>
 			<li><a href="/freetalk/allTalks.jv">공유게시판</a></li>
+
 			<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">JAVAS<span class="caret"></span></a>
 				<ul class="dropdown-menu">
