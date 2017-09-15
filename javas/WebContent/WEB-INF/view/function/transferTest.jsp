@@ -12,7 +12,7 @@
 
 	<script type="text/javascript"
 		src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=JQJCPgBIgJSijQ4wqJJi&submodules=geocoder"></script>
-	
+
 	<script type="text/javascript">
 		var data;
 		var mapOptions = {
@@ -44,34 +44,81 @@
 					callMapObjApiAJAX((JSON.parse(xhr.responseText))["result"]["path"][0].info.mapObj);
 					var result = data["result"]["path"];
 					var time = result[0].info.totalTime;
-					var transit = result[0].info.busTransitCount + result[0].info.subwayTransitCount;
+					var transit = result[0].info.busTransitCount
+							+ result[0].info.subwayTransitCount;
 					var walk = result[0].info.totalWalk;
-					var j;
-					
-					
-					  
+					var j = 0;
 					
 					$("#time").click(function() {
-						for(i=0; i<result.lengthl;i++){
-							if(time < result[i].info.totalTime) {
-								j = i;
-							}
+						for (i = 1; i < result.length; i++) {
 							
+							if (time > result[i].info.totalTime) {
+								j = i;							}
 						}
+						alert(j);
+						alert(result[j].info.totalTime);
 						$.ajax({
 							url : "/function/transferDataAjax.jv",
 							data : {
-							"transfer" : JSON.stringify(result[j]),
-							}	
-						}).done(function(rst){
-							
+								"transfer" : JSON.stringify(result[j]),
+							}
+						}).done(function(rst) {
+
 						});
 					});
 					
-					
-					
-				}
+					$("#transit").click(function() {
+						cnt = 0;
+						var arr = [];
+						var num = [];
+						for (i = 1; i < result.length; i++) {
+							
+							if ( transit > (result[i].info.busTransitCount + result[i].info.subwayTransitCount)) {
+								
+								num[cnt] = i; 
+								arr[cnt] = result[i].info.totalTime; 
+								cnt += 1;
+								
+							
+							}
+						}
+						alert(num);
+						time = arr[0];
+						j = num[0];
+						for(i=1;i<arr.length;i++) {
+							if(time > arr[i]) {
+								j = num[i];
+								
+							}
+						}
+						alert(j);
+						$.ajax({
+							url : "/function/transferDataAjax.jv",
+							data : {
+								"transfer" : JSON.stringify(result[j]),
+							}
+						}).done(function(rst) {
+
+						});
+					});
 				
+					$("#walk").click(function() {
+						for (i = 1; i < result.length; i++) {
+							if (walk > result[i].info.totalWalk ) {
+								j = i;			
+							}
+						}
+						alert(j);
+						$.ajax({
+							url : "/function/transferDataAjax.jv",
+							data : {
+								"transfer" : JSON.stringify(result[j]),
+							}
+						}).done(function(rst) {
+
+						});
+					});
+				}
 			}
 		}
 
@@ -167,7 +214,7 @@
 			}
 		}
 	</script>
-	<button id="time">최단시간</button> 
+	<button id="time">최단시간</button>
 	<button id="transit">최소환승</button>
 	<button id="walk">최소보행</button>
 </body>

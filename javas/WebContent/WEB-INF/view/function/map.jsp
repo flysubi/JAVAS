@@ -6,6 +6,7 @@
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLmh6ZJBgbqRo7N5muFms65pBzt4j4uJg&sensor=true">	
 </script>
 <script type="text/javascript">
+
 	var directionsDisplay;
 	var directionsService = new google.maps.DirectionsService();
 	var src;
@@ -66,6 +67,27 @@
 								}
 								src = new google.maps.LatLng(coords.lat,
 										coords.lng) 
+							
+								var mapProp = {
+									//center: 서울
+									center : new google.maps.LatLng(coords.lat, coords.lng),
+									zoom : 17,
+									panControl : true,
+									zoomControl : true,
+									mapTypeControl : true,
+									scaleControl : true,
+									streetViewControl : true,
+									overviewMapControl : true,
+									rotateControl : true,
+									mapTypeId : google.maps.MapTypeId.ROADMAP,
+								};
+
+								map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+								directionsDisplay.setMap(map);
+								directionsDisplay.setPanel(document.getElementById("directionsPannel"));
+							
+							
+							
 							});
 						});
 				$('#btnStop').click(function() {
@@ -138,10 +160,10 @@
 		}
 		calcRoute(src, dest);
 		directionsDisplay.setMap(map);
+		console.log(src);
+		console.log(dest);
 	}
 	function calcRoute(src, dest) {
-		alert(src);
-		alert(dest);
 		var selectedMode = document.getElementById("mode").value;
 		var request = {
 			origin : src,
@@ -159,33 +181,58 @@
 	}
 </script>
 </head>
-
+<style type="text/css">
+    html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: arial;
+        font-size: 13px;
+        overflow: hidden;
+    }
+    #map_canvas {
+        float: right;
+        width: 820px;
+        height: 406px;
+    }
+    #listing {
+        float: left;
+        margin-left: 1px;
+        width: 205px;
+        height: 326px;
+        overflow: auto;
+        cursor: pointer;
+    }
+    #controls {
+        padding: 5px;
+    }
+    .placeIcon {
+        width: 16px;
+        height: 16px;
+        margin: 2px;
+    }
+    #results {
+        border-collapse: collapse;
+        width: 184px;
+    }
+    #locationField {
+        margin-left: 1px;
+    }
+    #autocomplete {
+        width: 516px;
+        border: 1px solid #ccc;
+    }
+</style>
 <body>
-	<div class="container">
 
-		<div class="jumbotron">
-			<form class="form-nheo">
-				<label for="Address" class="sr-only">도찾지</label> <input type="name"
-					name="address" id="address" class="form-control" placeholder="도착지"
-					required autofocus>
-
-				<button id="btnnheo" class="btn btn-lg btn-primary btn-block"
-					type="button">길찾기</button>
-			</form>
+	<div id="direction">		
+		<div float="left" >
+		<input type="text" name="address" id="address" class="form-control" style="width: 250px;">
 		</div>
-		<div>
-			<strong>Travel Type </strong> <select id="mode"
-				onchange="calcRoute();">
-				<option value="DRIVING">Driving</option>
-				<option value="WALKING">Walking</option>
-				<option value="BICYCLING">Bicycling</option>
-				<option value="TRANSIT">Transit</option>
-			</select>
-		</div>
-
-		<div id="googleMap" style="width: 100%; height: 380px;"></div>
-		<div id="directionsPannel" style="width: 30%; height: 100%;"></div>
-		<input type="text" name="" size="40" value="입력값 오른쪽 정렬" style="text-align: right;">
+		
+		<div id="googleMap" float="right" style="width: 100%; height: 100%;"></div>
+		<div id="directionsPannel" style="width: 20%; height: 100%;"></div>
+		
 	</div>
 </body>
 
@@ -206,6 +253,10 @@
 			});
 		});
 	});
+	
+	
+		
+	
 </script>
 </html>
 
