@@ -1,141 +1,147 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <html>
 <head>
-<script type="text/javascript"
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLmh6ZJBgbqRo7N5muFms65pBzt4j4uJg&sensor=true">
-    </script>
-<script type="text/javascript">
-    var directionsDisplay;
-    var directionsService = new google.maps.DirectionsService();
-    var map;
-	var coords;
-	var address;
- 
-    function initialize() {
-    	directionsDisplay = new google.maps.DirectionsRenderer();
-	    
-    	$(function() {
-    		// Geolocation API에 액세스할 수 있는지를 확인
-    		if (navigator.geolocation) {
-    			//위치 정보를 정기적으로 얻기
-    		
-    			var id = navigator.geolocation.watchPosition(function(pos) {
-    				coords = {
-    					"lat" : pos.coords.latitude,
-    					"lng" : pos.coords.longitude,
-    				};
-    				var geocoder = new google.maps.Geocoder();
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+<title>Places Searchbox</title>
+<style>
+/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+#map {
+	height: 100%;
+}
+/* Optional: Makes the sample page fill the window. */
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
 
-    				var latlng = new google.maps.LatLng(coords.lat, coords.lng);
+.controls {
+	margin-top: 10px;
+	border: 1px solid transparent;
+	border-radius: 2px 0 0 2px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	height: 32px;
+	outline: none;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
 
-    				geocoder.geocode({
-    					'latLng' : latlng
-    				}, function(results, status) {
+#pac-input {
+	background-color: #fff;
+	font-family: Roboto;
+	font-size: 15px;
+	font-weight: 300;
+	margin-left: 12px;
+	padding: 0 11px 0 13px;
+	text-overflow: ellipsis;
+	width: 300px;
+}
 
-    					if (status == google.maps.GeocoderStatus.OK) {
+#pac-input:focus {
+	border-color: #4d90fe;
+}
 
-    						if (results[1]) {
+.pac-container {
+	font-family: Roboto;
+}
 
-    							address = results[3].formatted_address;
+#type-selector {
+	color: #fff;
+	background-color: #4d90fe;
+	padding: 5px 11px 0px 11px;
+}
 
-    							$('#latitude').html(coords.lat); // 위도 
-    							$('#longitude').html(coords.lng); // 경도
-    							$('#address').html(address); // 주소
-    							
-    						}
+#type-selector label {
+	font-family: Roboto;
+	font-size: 13px;
+	font-weight: 300;
+}
 
-    					} else {
-
-    						alert("Geocoder failed due to: " + status);
-
-    					}
-
-    				});
-
-    				
-    		    	var now = new google.maps.LatLng(coords.lat, coords.lng);
-    			    alert(now);
-    		    	var mapOptions = {
-    			      zoom:17,
-    			      mapTypeId: google.maps.MapTypeId.ROADMAP,
-    			      center: now,
-    			    }
-    			    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-    			    directionsDisplay.setMap(map);
-    			    
-    			    var marker = new google.maps.Marker({
-    					position : now,
-    					map : map
-    				});
-    			   			    
-    			});
-
-    			$('#btnStop').click(function() {
-    				navigator.geolocation.clearWatch(id);
-    			});
-
-    		} else {
-    			alert("이 브라우저에서는 Geolocation이 지원되지 않습니다.")
-    		}
-
-    	}); 	
-    	
-    	
-	}
-    
-    function calcRoute() {
-        var start = document.getElementById('start').value;
-        var end = document.getElementById('end').value;
-        var mode = document.getElementById('mode').value;
-   
-        var request = {
-            origin:address,
-            destination:end,
-            travelMode: eval("google.maps.DirectionsTravelMode."+mode)
-        };
-        
-        alert(request.origin);
-        
-        directionsService.route(request, function(response, status) {
-          alert(status);  // 확인용 Alert..미사용시 삭제
-          if (status == google.maps.DirectionsStatus.OK) {
-              directionsDisplay.setDirections(response);
-             
-          }
-        });
-      }
-   
- 
-   	google.maps.event.addDomListener(window, 'load', initialize);
-    		
-	    		   
-    </script>
+#target {
+	width: 345px;
+}
+</style>
 </head>
 <body>
-	<div id="panel">
-		<b>Start: </b> <input type="text" id="start" /> <b>End: </b> <input
-			type="text" id="end" />
-		<div>
-			<strong>Mode of Travel: </strong> <select id="mode">
-				<option value="DRIVING">Driving</option>
-				<option value="WALKING">Walking</option>
-				<option value="BICYCLING">Bicycling</option>
-				<option value="TRANSIT">Transit</option>
-			</select> <input type="button" value="길찾기" onclick="Javascript:calcRoute();" />
-		</div>
-	</div>
-	<div align="center">
-		<div id="map-canvas" style="width: 460px; height: 380px;"></div>
+	<input id="pac-input" class="controls" type="text" placeholder="Search Box">
+    <div id="map"></div>
+	<script type="text/javascript">
+		function initAutocomplete() {
+			var map = new google.maps.Map(document.getElementById('map'), {
+				center : {
+					lat : -33.8688,
+					lng : 151.2195
+				},
+				zoom : 13,
+				mapTypeId : 'roadmap'
+			});
 
-		위도:<span id="latitude" name="lat"></span>
-		</li> 경도:<span id="longitude" name="lng"></span>
-		</li> 주소:<span id="address" name="add"></span>
-		</li>
-		</ul>
-	</div>
+			// Create the search box and link it to the UI element.
+			var input = document.getElementById('pac-input');
+			var searchBox = new google.maps.places.SearchBox(input);
+			map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
+			// Bias the SearchBox results towards current map's viewport.
+			map.addListener('bounds_changed', function() {
+				searchBox.setBounds(map.getBounds());
+			});
+
+			var markers = [];
+			// Listen for the event fired when the user selects a prediction and retrieve
+			// more details for that place.
+			searchBox.addListener('places_changed', function() {
+				var places = searchBox.getPlaces();
+
+				if (places.length == 0) {
+					return;
+				}
+
+				// Clear out the old markers.
+				markers.forEach(function(marker) {
+					marker.setMap(null);
+				});
+				markers = [];
+
+				// For each place, get the icon, name and location.
+				var bounds = new google.maps.LatLngBounds();
+				places.forEach(function(place) {
+					if (!place.geometry) {
+						console.log("Returned place contains no geometry");
+						return;
+					}
+					var icon = {
+						url : place.icon,
+						size : new google.maps.Size(71, 71),
+						origin : new google.maps.Point(0, 0),
+						anchor : new google.maps.Point(17, 34),
+						scaledSize : new google.maps.Size(25, 25)
+					};
+
+					// Create a marker for each place.
+					markers.push(new google.maps.Marker({
+						map : map,
+						icon : icon,
+						title : place.name,
+						position : place.geometry.location
+					}));
+
+					if (place.geometry.viewport) {
+						// Only geocodes have viewport.
+						bounds.union(place.geometry.viewport);
+					} else {
+						bounds.extend(place.geometry.location);
+					}
+				});
+				map.fitBounds(bounds);
+			});
+		}
+	</script>
+	
+	 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLmh6ZJBgbqRo7N5muFms65pBzt4j4uJg&libraries=places&callback=initAutocomplete"
+         async defer></script>	
+	
 </body>
 </html>
-
