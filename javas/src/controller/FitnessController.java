@@ -1,5 +1,6 @@
 package controller;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import javax.servlet.http.HttpSession;
@@ -194,7 +195,34 @@ public class FitnessController {
 		ModelAndView mav = new ModelAndView();
 		String id = (String)session.getAttribute("auth");
 		List<Map> list = fdao.WeightGraph(id);
+		List<Map> list2 = fdao.graphCal(id);
+		Map map = fdao.getMyFit(id);
+		SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+        Date date2 = new Date();
+        long l = date2.getTime();
+        Date date = new Date(l-86400000);
+        
+        int length = 6;
+        int length2 = 6;
+        String wg = df.format(date);
+        String gc = df.format(date);
+        if(!list.isEmpty()) {
+        	length = 6-list.size();
+        	wg = (String)(list.get(list.size()-1)).get("D");
+        }
+        if(!list2.isEmpty()) {
+        	length2 = 6-list2.size();
+        	gc = (String)(list2.get(list2.size()-1)).get("EDATE");
+        }
+        
+			mav.addObject("length", length);
+			mav.addObject("length2", length2);
+			mav.addObject("map",map);
 			mav.addObject("list", list);
+			mav.addObject("list2", list2);
+			mav.addObject("wg",wg);
+			mav.addObject("gc", gc);
+			
 		return mav;
 	}
 

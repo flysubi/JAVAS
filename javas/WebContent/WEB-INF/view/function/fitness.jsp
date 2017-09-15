@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<script type="text/javascript"
+	src="https://www.gstatic.com/charts/loader.js"></script>
 <jsp:useBean id="toDay" class="java.util.Date" />
 <style>
 input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button
@@ -9,7 +11,11 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 	-webkit-appearance: none;
 	margin: 0;
 }
+.font {
+/* 	font-family: 나눔바른펜;  */
+}
 </style>
+<div class="font">
 <div>
 	<h3 style="padding-bottom: 15px;">
 		TODAY 
@@ -20,53 +26,13 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 
 <!-- 그래프 Modal -->
 <div id="modal-testNew3" class="modal fade" tabindex="-1" role="dialog">
-	<div class="modal-dialog" style="width: 450px; height: 700px">
+	<div class="modal-dialog" style="width: 900px; height: 700px">
 		<div id="modal-content3" class="modal-content"></div>
 	</div>
 </div>
 
-
-<div class="col-xs-4 col-md-4" >
-	<h3 align="center">오늘의 식단</h3>
-	<div style="padding-top: 10px;">
-		<button class="btn btn-default" id="myBtn">식사를 기록하세요.</button>
-	</div>
-	<div style="padding-top: 10px;">
-		<c:forEach var="i" items="${list }">
-			<p>
-				<a href="javascript:myMenuDel(${i.NUM })"
-					style="color: LightSkyBlue;"><span
-					class="glyphicon glyphicon-remove"></span></a> <span
-					style="font-size: 13pt;">${i.NAME}</span> <small>${i.KCAL}kcal</small>
-			</p>
-		</c:forEach>
-		<hr />
-		<div class="col-xs-6 col-md-6" align="right">
-			<b>총</b>
-		</div>
-		<div class="col-xs-6 col-md-6">
-			<c:choose>
-				<c:when test="${total gt map.AC}">
-					<b style="color: red;">${total}kcal</b>
-				</c:when>
-				<c:otherwise>
-					<b style="color: Blue;">${total}kcal</b>
-				</c:otherwise>
-			</c:choose>
-			/ <small>${map.AC}kcal</small>
-		</div>
-	</div>
-</div>
-
-<!-- 식사 Modal -->
-<div id="modal-testNew" class="modal fade" tabindex="-1" role="dialog">
-	<div class="modal-dialog" style="width: 450px; height: 700px">
-		<div id="modal-content" class="modal-content"></div>
-	</div>
-</div>
-
 <div class="col-xs-4 col-md-4">
-	<h3 align="center">MY FITNESS</h3>
+	<h3 align="left">MY FITNESS</h3>
 	<c:if test="${map.AC eq null }">
 		<b style="color: red;">Fitness 정보를 입력해주세요.</b>
 	</c:if>
@@ -86,7 +52,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 		</div>
 	</form>
 	<hr />
-	<h3 align="center">MY FIT_INFO</h3>
+	<h3 align="left">MY FIT_INFO</h3>
 	<div style="padding-top: 10px;">
 		<h4 style="padding-top: 10px;">
 			<span class="glyphicon glyphicon-scale"></span> 표준체중 <small>
@@ -122,13 +88,50 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 </div>
 
 <div class="col-xs-4 col-md-4" >
-	<h3 align="center">오늘의 운동</h3>
+	<h3 align="left" style=" padding-left: 120px;">오늘의 식단</h3>
+	<div style="padding-top: 10px; text-align: left; padding-left: 120px;">
+		<button class="btn btn-default" id="myBtn">식사를 기록하세요.</button>
+	</div>
 	<div style="padding-top: 10px;">
-		<button class="btn btn-default" id="myBtn2">운동을 기록하세요.</button>
+		<c:forEach var="i" items="${list }">
+			<p style="text-align: left; padding-left: 120px; ">
+				<a href="javascript:myMenuDel(${i.NUM })"
+					style="color: LightSkyBlue;"><span
+					class="glyphicon glyphicon-remove"></span></a> <span
+					style="font-size: 13pt;">${i.NAME}</span> <small>${i.KCAL}kcal</small>
+			</p>
+		</c:forEach>
+		<hr />
+		<div  align="right" style="padding-right: 50px;">
+			<c:choose>
+				<c:when test="${total gt map.AC}">
+					<b style="color: red;">${total}kcal</b>
+				</c:when>
+				<c:otherwise>
+					<b style="color: Blue;">${total}kcal</b>
+				</c:otherwise>
+			</c:choose>
+			/ <small>${map.AC}kcal</small>
+		</div>
+	</div>
+</div>
+
+<!-- 식사 Modal -->
+<div id="modal-testNew" class="modal fade" tabindex="-1" role="dialog">
+	<div class="modal-dialog" style="width: 450px; height: 700px">
+		<div id="modal-content" class="modal-content"></div>
+	</div>
+</div>
+
+
+<div class="col-xs-4 col-md-4 " >
+	<h3 align="left" style=" padding-left: 120px;">오늘의 운동</h3>
+	<div style="padding-top: 10px; text-align: left; padding-left: 120px; ">
+		<button class="btn btn-default" id="myBtn2" >운동을 기록하세요.</button>
 	</div>
 	<div style="padding-top: 10px;">
 		<c:forEach var="i" items="${list2 }">
-			<p>
+			<p style="text-align: left; padding-left: 120px; ">
 				<a href="javascript:myExerDel(${i.NUM })"
 					style="color: LightSkyBlue;"><span
 					class="glyphicon glyphicon-remove"></span></a> <span
@@ -136,11 +139,8 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 			</p>
 		</c:forEach>
 		<hr />
-		<div class="col-xs-6 col-md-6" align="right">
-			<b>총</b>
-		</div>
-		<div class="col-xs-6 col-md-6">
-			<b style="color: Blue;">${total2}kcal</b>
+		<div align="right" style="padding-right: 50px;">
+			<b style="color: Blue; ">${total2}kcal</b>
 		</div>
 	</div>
 </div>
@@ -150,6 +150,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 	<div class="modal-dialog" style="width: 450px; height: 700px">
 		<div id="modal-content2" class="modal-content"></div>
 	</div>
+</div>
 </div>
 
 <script>

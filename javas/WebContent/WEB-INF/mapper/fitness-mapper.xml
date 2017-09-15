@@ -7,6 +7,12 @@
 	<insert id="myWeight" parameterType="java.util.HashMap">
 		insert into myweight values(myweight_seq.nextval, #{id}, #{kg}, sysdate)
 	</insert>
+	<select id="inputKg" parameterType="java.lang.String" resultType="java.util.HashMap">
+		select * from MYWEIGHT where id=#{id} and to_char(sysdate)=to_char(wdate)
+	</select>
+	<delete id="delKg" parameterType="java.math.BigDecimal">
+		delete from myweight where num=#{num}
+	</delete>
 	<select id="getMyFit" parameterType="java.lang.String" resultType="java.util.HashMap">
 		select * from fitness where id=#{id}
 	</select>
@@ -56,6 +62,16 @@
 		delete from myexercise where num=#{num}
 	</delete>
 	<select id="WeightGraph" parameterType="java.lang.String" resultType="java.util.HashMap">
-		select w.*,f.sw as sw from MYWEIGHT w join FITNESS f on w.id = f.id where w.id=#{id}
+		<![CDATA[
+		select * from (select w.*,f.sw as sw,to_char(wdate,'YYYY/MM/DD') as d from MYWEIGHT w join FITNESS f on w.id = f.id where w.id=#{id} order by d) where rownum <=7
+		]]>
+	</select>
+	<select id="graphCal" parameterType="java.lang.String" resultType="java.util.HashMap">
+		<![CDATA[
+		select * from (select nvl(m.mdate,edate) as mdate, nvl(e.edate,mdate) as edate, (nvl(m.kcal,0)-nvl(e.kcal,0)) as k  from 
+		(select to_char(edate,'YYYY/MM/DD') as mdate ,sum(kcal) as kcal from MYMENU where id=#{id} group by to_char(edate,'YYYY/MM/DD')) m full join
+		(select to_char(edate,'YYYY/MM/DD') as edate ,sum(kcal) as kcal from MYEXERCISE where id=#{id} group by to_char(edate,'YYYY/MM/DD')) e 
+			on m.mdate=e.edate order by mdate) where rownum <= 7
+			]]>
 	</select>
 </mapper>
