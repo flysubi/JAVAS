@@ -3,8 +3,11 @@ package controller;
 import java.util.Collection;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,32 +18,14 @@ import org.springframework.web.servlet.ModelAndView;
 public class MapController {
 	
 	@RequestMapping("/map.jv")
-	public ModelAndView map() {
+	public ModelAndView map(HttpSession session) {
 		ModelAndView mav = new ModelAndView("t_el");
 			mav.addObject("section", "/function/map");
+			session.setAttribute("title", "±Ê√£±‚");
 		return mav; 
 	}
 	
-	@RequestMapping("/map1.jv")
-	public ModelAndView mapTest() {
-		ModelAndView mav = new ModelAndView("t_el");
-			mav.addObject("section", "/function/map1");
-		return mav; 
-	}
 	
-	@RequestMapping("/map2.jv")
-	public ModelAndView mapTest1() {
-		ModelAndView mav = new ModelAndView("t_el");
-			mav.addObject("section", "/function/map2");
-		return mav; 
-	}
-	
-	@RequestMapping("/map3.jv")
-	public ModelAndView mapTest2() {
-		ModelAndView mav = new ModelAndView("t_el");
-			mav.addObject("section", "/function/map3");
-		return mav; 
-	}
 
 
 			

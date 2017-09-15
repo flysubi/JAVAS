@@ -27,7 +27,7 @@ public class WeatherController {
 	public ModelAndView toJoin(HttpSession session) {
 		ModelAndView mav = new ModelAndView("t_el");
 		mav.addObject("section", "function/weather");
-		session.setAttribute("title", "³¯¾¾¾Ë¸²");
+		session.setAttribute("title", "³¯¾¾");
 		return mav;
 	}
 	@RequestMapping("weatherCodeAjax.jv")
