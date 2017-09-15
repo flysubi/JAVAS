@@ -237,10 +237,19 @@ public class FitnessDao {
 	public boolean myWeight(Map map) {
 		SqlSession session = factory.openSession();
 		try {
-			session.insert("fitness.myWeight",map);
+			Map map2 = session.selectOne("fitness.inputKg",(String)map.get("id"));
+			try {
+				if(map2 != null) {
+					session.delete("fitness.delKg",map2.get("NUM"));
+				} 
+				session.insert("fitness.myWeight",map);
+				
+			} catch(Exception e) {
+				System.out.println("[fitness] myWeight error ... "+e.toString());
+			}
 			return true;
 		} catch(Exception e) {
-			System.out.println("[fitness] myWeight error ... "+e.toString());
+			System.out.println("[fitness] myWeight2 error ... "+e.toString());
 			return false;
 		} finally {
 			session.close();
@@ -254,6 +263,19 @@ public class FitnessDao {
 			return list;
 		} catch(Exception e) {
 			System.out.println("[fitness] WeightGraph error ... "+e.toString());
+			return null;
+		} finally {
+			session.close();
+		}
+	}
+	
+	public List<Map> graphCal(String id) {
+		SqlSession session = factory.openSession();
+		try {
+			List<Map> list = session.selectList("fitness.graphCal",id);
+			return list;
+		} catch(Exception e) {
+			System.out.println("[fitness] graphCal error ... "+e.toString());
 			return null;
 		} finally {
 			session.close();

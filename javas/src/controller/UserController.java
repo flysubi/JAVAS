@@ -122,7 +122,7 @@ public class UserController {
 		String id = (String) session.getAttribute("auth");
 		Map point = new HashMap();
 		point.put("id", id);
-		point.put("point", 10);
+		point.put("point", 100);
 		point.put("content", "login");
 		boolean bb = pdao.pointUp(point);
 		Map getPoint = pdao.getPoint(id);

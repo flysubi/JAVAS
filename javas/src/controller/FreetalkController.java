@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import model.FreetalkDao;
@@ -192,6 +193,39 @@ public class FreetalkController {
 		map.put("flag", flag);
 		return map;
 	}
+	
+	@RequestMapping("/upload.jv")
+	public ModelAndView imageUpload(@RequestParam (name="upload") MultipartFile f,
+			@RequestParam Map map) {
+//					throws IllegalStateException, IOException {
+		System.out.println(map);
+		System.out.println(f.getContentType());
+		System.out.println(f.getName());
+		System.out.println(f.getOriginalFilename());
+		ModelAndView mav = new ModelAndView();		
+//		if(!f.isEmpty() && f.getContentType().startsWith("image")) {
+//			String path = application.getRealPath("/freetalk");
+//			File dir = new File(path);
+//			if(!dir.exists()) {
+//				dir.mkdirs();
+//			}
+//			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+//			String of = f.getOriginalFilename();
+//			
+//			String fileName = sdf.format(System.currentTimeMillis())+"."
+//					+of.substring(of.lastIndexOf(".")+1);
+//			File target = new File(dir, fileName);
+//			f.transferTo(target);
+//			
+//			mav.addObject("result", true);
+//			mav.addObject("imageUrl", "/freetalk/"+fileName);	// 변경할 수 있는 구조
+//			mav.addObject("funcNum", map.get("CKEditorFuncNum"));	// 어쩔 수 없이 등록
+//		} else {
+//			mav.addObject("result", false);
+//		}
+		return mav;
+	}
+	
 	
 	
 }
