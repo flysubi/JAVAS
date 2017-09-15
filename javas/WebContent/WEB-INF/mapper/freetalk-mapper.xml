@@ -42,6 +42,9 @@
 	<insert id="loveUp" parameterType="java.util.HashMap">
 		insert into love values(#{num}, #{id})
 	</insert>
+	<update id="recommend" parameterType="java.lang.Integer">
+		 update freetalk set recommend=recommend+1 where num=#{num}
+	</update>
 	<delete id="talkDel" parameterType="java.lang.Integer">
 		delete from freetalk where num=#{num}
 	</delete>
