@@ -38,23 +38,14 @@
 		</property>
 	</bean>
 	<!-- DBCP setting -->
-<<<<<<< HEAD
-=======
- 
->>>>>>> branch 'sims' of https://github.com/flysubi/JAVAS
- 	<!-- 
 	<bean class="com.mchange.v2.c3p0.ComboPooledDataSource" id="ds">
 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver" />
 		<property name="user" value="javas" />
 		<property name="password" value="1q2w3e4r" />
 		<property name="jdbcUrl" value="jdbc:oracle:thin:@javas-db-instance1.ceivtxuvpaot.us-east-2.rds.amazonaws.com:1521:orcl" />
 	</bean>
-<<<<<<< HEAD
-	 -->
-=======
-	-->
->>>>>>> branch 'sims' of https://github.com/flysubi/JAVAS
-	 
+
+	<!-- 	 
 	<bean class="com.mchange.v2.c3p0.ComboPooledDataSource" id="ds">
 
 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"/>
@@ -62,11 +53,8 @@
 		<property name="password" value="oracle"/>
 		<property name="jdbcUrl" value="jdbc:oracle:thin:@192.168.10.70:1521:xe"/>
 	</bean>
-<<<<<<< HEAD
-	
-=======
->>>>>>> branch 'sims' of https://github.com/flysubi/JAVAS
-	 
+	-->
+		 
 	<!-- mybatis setting -->
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="ds" />
@@ -79,11 +67,8 @@
 				<value>/WEB-INF/mapper/memo-mapper.xml</value>
 				<value>/WEB-INF/mapper/calendar-mapper.xml</value>
 				<value>/WEB-INF/mapper/weather-mapper.xml</value>
-<<<<<<< HEAD
 				<value>/WEB-INF/mapper/asset-mapper.xml</value>
-=======
 				<value>/WEB-INF/mapper/fitness-mapper.xml</value>
->>>>>>> branch 'sims' of https://github.com/flysubi/JAVAS
 			</list>
 		</property>
 	</bean>

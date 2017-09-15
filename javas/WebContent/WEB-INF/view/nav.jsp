@@ -60,11 +60,8 @@
 					<li><a href="/function/weather.jv">날씨</a></li>
 					<li><a href="/function/calendar.jv">캘린더</a></li>
 					<li><a href="/function/map.jv">길찾기</a></li>
-<<<<<<< HEAD
 					<li><a href="/function/asset.jv">자산관리</a></li>
-=======
 					<li><a href="/function/fitness.jv">건강</a></li>
->>>>>>> branch 'sims' of https://github.com/flysubi/JAVAS
 					</ul></li>
 
 		</ul>
