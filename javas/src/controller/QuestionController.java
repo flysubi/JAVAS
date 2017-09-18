@@ -64,6 +64,14 @@ public class QuestionController {
 		mav.addObject("section", "/question/boardwrite");
 		return mav;
 	}
+	
+	@RequestMapping("/test.jv")
+	public ModelAndView test() {
+		ModelAndView mav = new ModelAndView("t_el");
+		mav.addObject("title","Q&A");
+		mav.addObject("section", "/question/test");
+		return mav;
+	}
 
 	@RequestMapping("/writeExec.jv")
 	public ModelAndView boardWriteExec(@RequestParam Map<String, Object> map, HttpSession session) {
