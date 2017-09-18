@@ -50,7 +50,7 @@
 		</ul>
 		<ul class="nav navbar-nav navbar-right" style="font-size: 14pt; margin-top: 17px; font-weight: 600;">
 
-		<li><a href="/menuer.jsp">메뉴얼</a></li>
+		<li><a href="/menuer.jv">메뉴얼</a></li>
 			<li><a href="/question/list.jv">Q&A</a></li>
 			<li><a href="/freetalk/allTalks.jv">공유게시판</a></li>
 

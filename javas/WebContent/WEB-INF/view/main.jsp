@@ -80,16 +80,17 @@
 		</ul>
 	</div>
 	<div style="position: relative;">
-	  <img alt="javas" src="/style/javas1.png">
+	  <img alt="javas" src="/style/javas2.png">
 	  <img alt="good" src="/style/좋은점.png">
-	  <img alt="join" src="/style/가입문2.png">
+	  <img alt="join" src="/style/가입문.png">
+	  
 	  <div style="position: absolute; left: 550px;  top:855px;">
 	       <a href="/user/join.jv">
 	         <img alt="join2" src="/style/회원가입하러.png">
 	       </a>
 	   </div>
 	   <div style="position:absolute; left:1280px; top:855px">
-	     <a href="/function/calendar.jv">
+	     <a href="/menuer.jv">
 	        <img alt="login2" src="/style/설정하러.png">	     
 	     </a>
 	   </div>
