@@ -40,10 +40,6 @@
   	  	var y = new Date().getYear()+1900;
   	  	
   	  	
-  	  	for(var i=0;i<${count};i++) {
-  	 				  		 
-  	  		
-  	  	}
   	  	
 		var data = google.visualization.arrayToDataTable([ ['나이별회원분포도', ''], 
 			[ '10대', mc],	[ '20대', wc ], [ '30대', nc ], [ '30대', nc ], [ '30대', nc ], [ '40대', nc ], [ '50대', nc ], [ '60대이상', nc ], [ '무응답', nc ] ]);

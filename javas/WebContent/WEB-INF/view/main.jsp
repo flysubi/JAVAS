@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -52,24 +51,46 @@
 	<div id="slidebox" style="position: relative;">
 		<ul id="slider">
 			<li><img alt="main" src="/style/새메인.png"/></li>
-			<li><img alt="wader" src="/style/기능.png">
-			 <div style="position:absolute; left:665px; height:310px; bottom:0px;">
-              <p id="realTimer"></p>
-             </div>
+			<li>
+			              
+              <div style="position: absolute; left: 300px; height:400px; bottom: 0px;">
+              <a href="/function/weather.jv">
+               <img alt="lain" src="/style/날씨예보.png" style="width: 100px;height:100px;">
+              </a>
+              </div>
+              
+              <div style="position: absolute; left:480px; height:150px; bottom: 0px;">
+              <a href="/function/calendar.jv">
+               <img alt="callender" src="/style/캘랜더.png" style="width:90px; height:90px;">
+              </a>
+              </div>
+              
+                 <div style="position: absolute; left:1150px; height:300px; bottom: 0px;">
+              <a href="/function/map.jv">
+               <img alt="map" src="/style/지도.png" style="width:120px;height:120px;">
+              </a>
+              </div>
+			
+			 <img alt="wader" src="/style/기능.png">
+			
+			 <div style="position:absolute; left:665px; height:310px; bottom: 0px;">		
+              <p id="realTimer"></p>     
+             </div> 
 			</li>
 		</ul>
 	</div>
 	<div style="position: relative;">
-	  <img alt="javas" src="/style/javas1.png">
+	  <img alt="javas" src="/style/javas2.png">
 	  <img alt="good" src="/style/좋은점.png">
-	  <img alt="join" src="/style/가입문2.png">
+	  <img alt="join" src="/style/가입문.png">
+	  
 	  <div style="position: absolute; left: 550px;  top:855px;">
 	       <a href="/user/join.jv">
 	         <img alt="join2" src="/style/회원가입하러.png">
 	       </a>
 	   </div>
 	   <div style="position:absolute; left:1280px; top:855px">
-	     <a href="/function/calendar.jv">
+	     <a href="/menuer.jv">
 	        <img alt="login2" src="/style/설정하러.png">	     
 	     </a>
 	   </div>

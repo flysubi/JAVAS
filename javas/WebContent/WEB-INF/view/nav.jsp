@@ -65,6 +65,7 @@
 
 	</div>
 
+<<<<<<< HEAD
 	<hr style="background-color: #939393; margin: 0" />
 	<c:choose>
 		<c:when test="${auth eq 'admin'}">
@@ -76,6 +77,21 @@
 				</ul>
 				<ul class="nav navbar-nav navbar-right"
 					style="font-size: 14pt; margin-top: 17px; font-weight: 600;">
+=======
+		<li><a href="/menuer.jv">메뉴얼</a></li>
+			<li><a href="/question/list.jv">Q&A</a></li>
+			<li><a href="/freetalk/allTalks.jv">공유게시판</a></li>
+
+			<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#">JAVAS<span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="/function/weather.jv">날씨</a></li>
+					<li><a href="/function/calendar.jv">캘린더</a></li>
+					<li><a href="/function/map.jv">길찾기</a></li>
+					<li><a href="/function/asset.jv">자산관리</a></li>
+					<li><a href="/function/fitness.jv">건강</a></li>
+					</ul></li>
+>>>>>>> branch 'master' of https://github.com/flysubi/JAVAS.git
 
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="#">게시판관리<span class="caret"></span></a>

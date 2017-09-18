@@ -38,14 +38,23 @@
 		</property>
 	</bean>
 	<!-- DBCP setting -->
+<<<<<<< HEAD
  	<!-- 
+=======
+    <!-- 
+>>>>>>> branch 'master' of https://github.com/flysubi/JAVAS.git
 	<bean class="com.mchange.v2.c3p0.ComboPooledDataSource" id="ds">
 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver" />
 		<property name="user" value="javas" />
 		<property name="password" value="1q2w3e4r" />
 		<property name="jdbcUrl" value="jdbc:oracle:thin:@javas-db-instance1.ceivtxuvpaot.us-east-2.rds.amazonaws.com:1521:orcl" />
 	</bean>
+<<<<<<< HEAD
 	 -->
+=======
+     -->
+	
+>>>>>>> branch 'master' of https://github.com/flysubi/JAVAS.git
 	 
 	<bean class="com.mchange.v2.c3p0.ComboPooledDataSource" id="ds">
 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"/>
@@ -54,7 +63,11 @@
 		<property name="jdbcUrl" value="jdbc:oracle:thin:@192.168.10.70:1521:xe"/>
 	</bean>
 	
+<<<<<<< HEAD
 	 
+=======
+
+>>>>>>> branch 'master' of https://github.com/flysubi/JAVAS.git
 	<!-- mybatis setting -->
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="ds" />
