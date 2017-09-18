@@ -48,7 +48,6 @@
 	 -->
 	 
 	<bean class="com.mchange.v2.c3p0.ComboPooledDataSource" id="ds">
-
 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"/>
 		<property name="user" value="javas"/>
 		<property name="password" value="oracle"/>
