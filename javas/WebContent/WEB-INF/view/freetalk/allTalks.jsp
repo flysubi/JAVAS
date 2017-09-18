@@ -62,7 +62,7 @@ table {
 					<input type="text" class="w3-input w3-border "
 						value="${param.search eq null ? '' : param.search}"
 						placeholder="Search" name="search"
-						style="width: 195px;   background-image: url('searchicon.png');"></div>
+						style="width: 195px; "></div>
 						<div class="w3-third w3-container">  
 					<button type="submit" class="w3-button w3-white w3-border ">
 						검색 <span class="glyphicon glyphicon-search"></span>
@@ -161,7 +161,7 @@ table {
 		location.href='/freetalk/allTalks.jv';
 	}
 	
-	if(${sessionScope.auth} !=  null) {
+	if(${sessionScope.auth ne null}) {
 		var openModal = function openModal(num) {
 			$.ajax({
 				"url" :"/freetalk/commModal.jv?num="+num
