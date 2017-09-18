@@ -1,31 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style>
 .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover
 	{
 	background-color: silver;
 }
 
-a {
+. {
 	color: #6aa563;
 	font-weight: 700;
 }
-
- 
-
 </style>
 
 <div class="row" style="margin-top: 30px;">
-	<div class="col-md-2" id="d" style="margin-top: 30px; margin-left: 0px;">
+	<div class="col-md-2" id="d"
+		style="margin-top: 30px; margin-left: 0px;">
 		<ul class="nav nav-pills">
-			<button type="button"
+			<a href="/memo/write.jv"><button type="button"
 				style="width: 100px; height: 30px; background-color: #5bc0de; color: white; border: 1px solid #5bc0de; font-size: 15px; position: absolute; left: 0px;"
-				onclick="location.href='/memo/write.jv'">쪽지쓰기</button>
+				onclick="location.href='/memo/write.jv?'">쪽지쓰기</button></a>
 			<button type="button"
 				style="width: 100px; height: 30px; background-color: #5bc0de; color: white; border: 1px solid #5bc0de; font-size: 15px; position: absolute; left: 100px;"
-				onclick="location.href='/memo/mywrite.jv'">내게쓰기</button>
+				onclick="location.href='/memo/write.jv?my=${auth}'">내게쓰기</button>
 		</ul>
 
 		<ul class="nav nav-pills nav-stacked" style="margin-top: 50px;">
@@ -39,10 +38,9 @@ a {
 				style="margin-left: 0px;"><a href="#">쪽지보관함</a></li>
 		</ul>
 	</div>
-	
+
 	<div class="col-md-10" id="d2">
 		<tiles:insertAttribute name="section" />
-		<button type="button" id="c"></button>
 	</div>
 
 </div>

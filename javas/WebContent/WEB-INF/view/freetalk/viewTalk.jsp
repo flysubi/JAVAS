@@ -5,73 +5,110 @@
 <style>
 .well {
 	background: white;
+	border-radius: 0px;
+	margin-top: 15px;
+}
+
+.w3-border {
+	border: 0px solid #ccc !important;
 }
 </style>
-<!-- <div class="well"> -->
-<h3 style="text-align: left; padding-left: 200px;">
-	${sessionScope.map.TITLE}
-	<c:if test="${sessionScope.map.WRITER eq sessionScope.auth }">
-		<a href="/freetalk/talkDel.jv?num=${sessionScope.map.NUM}"
-			style="color: red;"><span class="glyphicon glyphicon-remove"></span></a>
-	</c:if>
-</h3>
-<p style="text-align: left; padding-left: 200px; font-size: 12pt;">
-	작성자 : ${sessionScope.map.WRITER } | 작성일 :
-	<fmt:formatDate value="${sessionScope.map.WRITEDATE}"
-		pattern="yy-MM-dd" />
-	<c:choose>
-		<c:when test="${sessionScope.map.DIFF lt 1}">
-			<c:choose>
-				<c:when test="${sessionScope.map.DIFF * 1440 gt 60}">
-					<small><fmt:formatNumber
-							value="${sessionScope.map.DIFF * 24}" pattern="#,###" />시간 전</small>
-				</c:when>
-				<c:otherwise>
-					<small><fmt:formatNumber
-							value="${sessionScope.map.DIFF * 1440}" pattern="#,###" />분 전</small>
-				</c:otherwise>
-			</c:choose>
-		</c:when>
-		<c:when test="${sessionScope.map.DIFF lt 365}">
-			<small><fmt:formatNumber value="${sessionScope.map.DIFF}"
-					pattern="#,###" />일 전</small>
-		</c:when>
-		<c:otherwise>
-			<small><fmt:formatNumber
-					value="${sessionScope.map.DIFF div 365}" pattern="#,###" />년 전</small>
-		</c:otherwise>
+<div class="well row ">
+	<div class="row">
+		<div class="col-xs-6 col-md-6">
+			<h3 style="text-align: left; padding-left: 200px;">
+				${sessionScope.map.TITLE}
+				<c:if test="${sessionScope.map.WRITER eq sessionScope.auth }">
+					<a href="/freetalk/talkDel.jv?num=${sessionScope.map.NUM}"
+						style="color: red;"><span class="glyphicon glyphicon-remove"></span></a>
+				</c:if>
 
-	</c:choose>
-	<button type="submit" class="btn" id="like"
-		value="${sessionScope.map.NUM }"
-		style="color: red; background-color: white; font-size: 10pt; padding-left: 3; padding-right: 3; padding-bottom: 1; padding-top: 0; border: 1px solid gray;">
-		<c:choose>
-			<c:when test="${b}">♥</c:when>
-			<c:otherwise>♡</c:otherwise>
-		</c:choose>
-		<span style="color: black;">${love}</span>
-	</button>
-</p>
-<div class="col-xs-0 col-md-2"></div>
-<div class="col-xs-12 col-md-8">
-	<pre
-		style="background-color: white; text-align: left; border-color: white; font-family: HelveticaNeue, '나눔바른고딕', NanumBarunGothic, AppleSDGothicNeo-Regular, sans-serif;">${sessionScope.map.CONTENT}</pre>
-</div>
-<div class="col-xs-0 col-md-2"></div>
-<hr style="background-color: silver; height: 1px; width: 65%" />
-<p style="text-align: left; padding-left: 200px;">댓글</p>
-<div class="col-xs-0 col-md-2"></div>
-<div class=" well col-xs-12 col-md-8">
-	<div id="list"></div>
-	<div class="form-group">
-		<textarea rows="2" cols="70"
-			style="vertical-align: bottom; height: 60;" class="input-control"
-			id="comment" name="content" placeholder="내용을 입력해주세요."></textarea>
-		<button id="suc" type="submit" class="btn btn-default"
-			style="height: 60;">등록</button>
+			</h3>
+		</div>
+		<c:if test="${sessionScope.map.FILENAME ne null}">
+			<div class="col-xs-6 col-md-6">
+				<h3 align="right" style="padding-right: 250px;">
+					<a href="/freetalk/down.jv?n=${param.num}"> <span
+						class="glyphicon glyphicon-download-alt"></span>
+					</a>
+				</h3>
+			</div>
+		</c:if>
 	</div>
+	<p style="text-align: left; padding-left: 200px; font-size: 12pt;">
+		작성자 : ${sessionScope.map.WRITER } | 작성일 :
+		<fmt:formatDate value="${sessionScope.map.WRITEDATE}"
+			pattern="yy-MM-dd" />
+		<c:choose>
+			<c:when test="${sessionScope.map.DIFF lt 1}">
+				<c:choose>
+					<c:when test="${sessionScope.map.DIFF * 1440 gt 60}">
+						<small><fmt:formatNumber
+								value="${sessionScope.map.DIFF * 24}" pattern="#,###" />시간 전</small>
+					</c:when>
+					<c:otherwise>
+						<small><fmt:formatNumber
+								value="${sessionScope.map.DIFF * 1440}" pattern="#,###" />분 전</small>
+					</c:otherwise>
+				</c:choose>
+			</c:when>
+			<c:when test="${sessionScope.map.DIFF lt 365}">
+				<small><fmt:formatNumber value="${sessionScope.map.DIFF}"
+						pattern="#,###" />일 전</small>
+			</c:when>
+			<c:otherwise>
+				<small><fmt:formatNumber
+						value="${sessionScope.map.DIFF div 365}" pattern="#,###" />년 전</small>
+			</c:otherwise>
+
+		</c:choose>
+		<button type="submit" class="btn" id="like"
+			value="${sessionScope.map.NUM }"
+			style="color: red; background-color: white; font-size: 10pt; padding-left: 3; padding-right: 3; padding-bottom: 1; padding-top: 0; border: 1px solid gray;">
+			<c:choose>
+				<c:when test="${b}">♥</c:when>
+				<c:otherwise>♡</c:otherwise>
+			</c:choose>
+			<span style="color: black;">${love}</span>
+		</button>
+	</p>
+
+	<div class="col-xs-0 col-md-2"></div>
+	<div class="col-xs-12 col-md-8">
+		<pre
+			style="background-color: white; text-align: left; border-color: white; font-family: HelveticaNeue, '나눔바른고딕', NanumBarunGothic, AppleSDGothicNeo-Regular, sans-serif;">${sessionScope.map.CONTENT}</pre>
+	</div>
+	<div class="col-xs-0 col-md-2"></div>
+	<hr
+		style="background-color: silver; height: 1px; width: 65%; margin-left: 17%; margin-right: 17%;" />
+	<p style="text-align: left; padding-left: 200px;">
+		댓글
+		<c:if test="${CNT ne null }">
+			<b style="color: orange;"> ${CNT}</b>
+		</c:if>
+	</p>
+	<div class="row">
+		<div class="col-xs-0 col-md-2"></div>
+		<div class=" well col-xs-12 col-md-8">
+			<div id="list"></div>
+			<div class="form-group">
+				<textarea rows="2" cols="70"
+					style="vertical-align: bottom; height: 60;" class="input-control"
+					id="comment" name="content" placeholder="내용을 입력해주세요."></textarea>
+				<button id="suc" type="submit" class="btn btn-default"
+					style="height: 60;">등록</button>
+			</div>
+		</div>
+		<div class="col-xs-0 col-md-2"></div>
+	</div>
+	<div class="col-xs-0 col-md-2"></div>
+	<div class=" col-xs-12 col-md-8" align="right">
+		<button class="w3-button w3-white w3-border" onclick="before(${param.NUM})">◀</button> 
+		<button class="w3-button w3-white w3-border" id="allVeiw">목록</button>
+		<button class="w3-button w3-white w3-border" onclick="before(${param.NUM})">▶</button>
+	</div>
+	<div class="col-xs-0 col-md-2"></div>
 </div>
-<div class="col-xs-0 col-md-2"></div>
 <script>
 	var list = function() {
 		$
@@ -97,7 +134,7 @@
 								}
 								table += "<br/>";
 								table += rst[i].CONTENT + "</p>"
-								table += "<hr style=\"background-color:silver; height: 1px; width: 80%\"/>";
+								table += "<hr style=\"background-color:silver; height: 1px; width: 80%;  margin-left: 10%; margin-right: 1	0%;\"/>";
 							}
 							$("#list").html(table);
 						});
@@ -129,9 +166,7 @@
 			list();
 		});
 	}
-</script>
 
-<script>
 	$("#like").on(
 			"click",
 			function() {
@@ -153,5 +188,31 @@
 							}
 						});
 			});
+
+	function before(num) {
+		window.alert("dd작동");
+		$.ajax({
+			url : "/freetalk/allTalks.jv",
+			data : {
+				"num" :num,
+				"page" : "be",
+			}
+		});
+	}
+	
+	function after(num) {
+		window.alert("ffff작동");
+		$.ajax({
+			url : "/freetalk/allTalks.jv",
+			data : {
+				"num" : this.value,
+				"page" : "af",
+			}
+		});
+	}
+	$('#allVeiw').on('click', function() {
+		window.alert("작동");
+		location.href='/freetalk/allTalks.jv';
+	});
 </script>
 
