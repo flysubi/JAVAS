@@ -14,7 +14,7 @@
 			<b>${i.WRITER}</b> | ${i.FC}
 			<c:if test="${i.WRITER eq sessionScope.auth}">
 				<c:if test="${i.WRITER eq sessionScope.auth}">
-				<a href="javascript:commDel(${i.NUM },'${i.WRITER}',${i.FT_NUM })" style="color: red";><span class="glyphicon glyphicon-remove"></span></a>
+				<a href="javascript:commDel(${i.NUM },'${i.WRITER}',${i.FT_NUM })" style="color: red;"><span class="glyphicon glyphicon-remove"></span></a>
 			</c:if>
 			</c:if>
 			<br/> ${i.CONTENT}

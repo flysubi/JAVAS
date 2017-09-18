@@ -74,15 +74,12 @@
 <div class="col-xs-0 col-md-2"></div>
 <script>
 	var list = function() {
-		$
-				.ajax({
+		$.ajax({
 					url : "/freetalk/commentsAjax.jv",
 					data : {
 						"num" : "${param.num}",
 					}
-				})
-				.done(
-						function(rst) {
+				}).done( function(rst) {
 							console.log(rst);
 							var table = "";
 							for (var i = 0; i < rst.length; i++) {

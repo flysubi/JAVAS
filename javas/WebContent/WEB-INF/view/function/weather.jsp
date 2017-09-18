@@ -40,7 +40,7 @@ th {
 		style="width: 80%; border: 1px solid gray; table-layout: fixed;">
 	</table>
 </div>
-</body>
+ </body>
 </html>
 <script>
 
