@@ -36,7 +36,7 @@ public class AssetController {
 	
 	@ResponseBody
 	@RequestMapping("/assetListAjax.jv")
-	public List assetListAjax(@RequestParam(name="first") String first, 
+	public List<Map<String, Object>> assetListAjax(@RequestParam(name="first") String first, 
 			@RequestParam(name="last") String last, HttpSession session) {
 		List<Map<String, Object>> list = new ArrayList<>();
 		Map<String, Object> map = new HashMap<>();
@@ -44,6 +44,32 @@ public class AssetController {
 		map.put("last", last);
 		map.put("id", session.getAttribute("auth"));
 		list = adao.getAsset(map);
+		return list;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/assetListIAjax.jv")
+	public List<Map<String, Object>> assetListIAjax(@RequestParam(name="first") String first, 
+			@RequestParam(name="last") String last, HttpSession session) {
+		List<Map<String, Object>> list = new ArrayList<>();
+		Map<String, Object> map = new HashMap<>();
+		map.put("first", first);
+		map.put("last", last);
+		map.put("id", session.getAttribute("auth"));
+		list = adao.getAssetI(map);
+		return list;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/assetListEAjax.jv")
+	public List<Map<String, Object>> assetListEAjax(@RequestParam(name="first") String first, 
+			@RequestParam(name="last") String last, HttpSession session) {
+		List<Map<String, Object>> list = new ArrayList<>();
+		Map<String, Object> map = new HashMap<>();
+		map.put("first", first);
+		map.put("last", last);
+		map.put("id", session.getAttribute("auth"));
+		list = adao.getAssetE(map);
 		return list;
 	}
 }

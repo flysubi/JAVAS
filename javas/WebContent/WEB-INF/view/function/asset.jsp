@@ -144,31 +144,41 @@ td {
 	
 	google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChart);
+	
+    var getChart() {
+    	$.ajax({
+    		url : "/function/assetListIAjax.jv",
+			data : {
+				"first" : first,
+				"last" : last
+			}
+    	}).done(function(rst){
+    		function drawChart() {
+    		      var data = google.visualization.arrayToDataTable([
+    		        ['Task', 'Hours per Day'],
+    		        ['Work',     11],
+    		        ['Eat',      2],
+    		        ['Commute',  2],
+    		        ['Watch TV', 2],
+    		        ['Sleep',    7]
+    		      ]);
 
-    function drawChart() {
+    		      var options = {
+    		        title: '지출현황',
+    		        pieHole: 0.5,
+    		        titleTextStyle : {
+    		        	fontSize: 24,
+    		        	bold: false
+    		        	
+    		        }
+    		      };
 
-      var data = google.visualization.arrayToDataTable([
-        ['Task', 'Hours per Day'],
-        ['Work',     11],
-        ['Eat',      2],
-        ['Commute',  2],
-        ['Watch TV', 2],
-        ['Sleep',    7]
-      ]);
-
-      var options = {
-        title: '지출현황',
-        pieHole: 0.5,
-        titleTextStyle : {
-        	fontSize: 24,
-        	bold: false
-        	
-        }
-      };
-
-      var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-      var chart2 = new google.visualization.PieChart(document.getElementById('piechart2'));
-      chart.draw(data, options);
-      chart2.draw(data, options);
+    		      var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+    		      var chart2 = new google.visualization.PieChart(document.getElementById('piechart2'));
+    		      chart.draw(data, options);
+    		      chart2.draw(data, options);
+    		  }
+    	});
     }
+    
 </script>	

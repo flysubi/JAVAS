@@ -31,4 +31,10 @@
 	 	<select id="getAsset" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 	 		select * from asset where id=#{id} and adate between #{first} and #{last} order by adate asc
 	 	</select>
+	 	<select id="getAssetI" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+	 		select icontent, sum(income) sum from asset where id=#{id} and adate between #{first} and #{last} group by icontent
+	 	</select>
+	 	<select id="getAssetE" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+	 		select econtent, sum(expense) sum from asset where id=#{id} and adate between #{first} and #{last} group by econtent
+	 	</select>
  </mapper>
