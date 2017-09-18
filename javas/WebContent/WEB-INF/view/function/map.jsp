@@ -86,7 +86,7 @@
 								directionsDisplay.setMap(map);
 								directionsDisplay.setPanel(document.getElementById("directionsPannel"));
 							
-							
+									
 							
 							});
 						});

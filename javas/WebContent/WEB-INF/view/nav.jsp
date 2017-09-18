@@ -39,6 +39,7 @@
                   <li><a href="/user/logout.jv" style="color: #939393;"><span class="glyphicon glyphicon-log-out"></span> 로그아웃</a></li>
             </ul>
          </c:otherwise>
+
 		</c:choose>
 
 	</div>
@@ -52,12 +53,14 @@
 		<li><a href="#">메뉴얼</a></li>
 			<li><a href="/question/list.jv">Q&A</a></li>
 			<li><a href="/freetalk/allTalks.jv">공유게시판</a></li>
+
 			<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">JAVAS<span class="caret"></span></a>
 				<ul class="dropdown-menu">
 					<li><a href="/function/weather.jv">날씨</a></li>
 					<li><a href="/function/calendar.jv">캘린더</a></li>
 					<li><a href="/function/map.jv">길찾기</a></li>
+					<li><a href="/function/asset.jv">자산관리</a></li>
 					<li><a href="/function/fitness.jv">건강</a></li>
 					</ul></li>
 
@@ -65,7 +68,7 @@
 	</div>
 </div>
 <c:if test="${nav ne 'on'}">
-	<div style="background-color: LightSkyBlue; margin-top: 0; padding-left: 218px;">
+	<div style="background-color: Lavender; margin-top: 0; padding-left: 218px;">
 		<h1 style="margin: 0; color: white; font-size: 14pt; padding-top: 10px; padding-bottom: 10px; padding-left:2px;">${title }</h1>
 	</div>
 </c:if>

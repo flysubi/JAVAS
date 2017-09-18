@@ -202,17 +202,18 @@ public class FitnessController {
         long l = date2.getTime();
         Date date = new Date(l-86400000);
         
-        int length = 6;
-        int length2 = 6;
+        int length = 0;
+        int length2 = 0;
         String wg = df.format(date);
         String gc = df.format(date);
-        if(!list.isEmpty()) {
-        	length = 6-list.size();
-        	wg = (String)(list.get(list.size()-1)).get("D");
-        }
-        if(!list2.isEmpty()) {
-        	length2 = 6-list2.size();
-        	gc = (String)(list2.get(list2.size()-1)).get("EDATE");
+        	
+        	if(!list.isEmpty() && list.size() <= 6) {
+        		length = 6-list.size();
+        		wg = (String)(list.get(list.size()-1)).get("D");
+        	}
+        	if(!list2.isEmpty() && list2.size() <= 6) {
+        		length2 = 6-list2.size();
+        		gc = (String)(list2.get(list2.size()-1)).get("EDATE");
         }
         
 			mav.addObject("length", length);

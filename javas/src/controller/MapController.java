@@ -6,8 +6,11 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +25,7 @@ public class MapController {
 	public ModelAndView map(HttpSession session) {
 		ModelAndView mav = new ModelAndView("t_el");
 			mav.addObject("section", "/function/map");
+			session.setAttribute("title", "길찾기");
 			mav.addObject("title", "길찾기");
 		return mav; 
 	}
@@ -32,14 +36,11 @@ public class MapController {
 			mav.addObject("section", "/function/transferTest");
 		return mav; 
 	}
-	
-	@RequestMapping("/map1.jv")
 	public ModelAndView map1() {
 		ModelAndView mav = new ModelAndView("t_el");
 			mav.addObject("section", "/function/map1");
 		return mav; 
 	}
-	
 	@RequestMapping("/search.jv")
 	public ModelAndView searchMap(HttpSession session) {
 		ModelAndView mav = new ModelAndView("t_el");

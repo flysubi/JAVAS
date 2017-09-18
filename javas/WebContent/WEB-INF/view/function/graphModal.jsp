@@ -9,7 +9,7 @@
 </div>
 
 <div class="modal-body" style="padding-left: 0px;">
-<div id="chart_div"  ></div>
+<div id="chart_div"></div>
 <div id="chart_div2"></div>
 </div>
 
@@ -43,10 +43,12 @@ function drawBasic() {
     	  <c:forEach var="g" items="${list}" >
     	  [ "${g.D}",${g.KG} , ${g.SW} ],
         </c:forEach>
+    	  <c:if test="${length gt 0}">
     	  <c:forEach var="i" begin="0" end="${length}" step="1" varStatus="vs">
           [ar[${i}] , null , null]
           	<c:if test="${!vs.last }"> , </c:if>
           </c:forEach>
+          </c:if>
     	  
     	  
       ]);
@@ -100,10 +102,12 @@ function drawBasic2() {
     	  <c:forEach var="g" items="${list2}">
     	  [ "${g.EDATE}", ${g.K} , ${map.AC} ],
         </c:forEach>
-    	  <c:forEach var="i" begin="0" end="${length2}" step="1" varStatus="vs">
-          [ar[${i}] , null , null]
-          	<c:if test="${!vs.last }"> , </c:if>
-          </c:forEach>
+    	  <c:if test="${length2 gt 0}">
+	    	  <c:forEach var="i" begin="0" end="${length2}" step="1" varStatus="vs">
+    	      [ar[${i}] , null , null]
+        	  	<c:if test="${!vs.last }"> , </c:if>
+          	</c:forEach>
+    	  </c:if>
       ]);
 
       var options = {
