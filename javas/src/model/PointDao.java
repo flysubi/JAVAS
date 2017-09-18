@@ -31,9 +31,14 @@ public class PointDao {
 		SqlSession session = factory.openSession();
 		try {
 			int n = session.insert("point.commPointUp",map);
-			if(n ==1) {
-				session.insert("point.pointUp",map);
-				return false;
+			try {
+				if(n ==1) {
+					session.insert("point.pointUp",map);
+					return false;
+				}
+				
+			}catch(Exception e) {
+				System.out.println("[pointDao commPointUp2222 error ... ]"+e.toString());	
 			}
 			return true;
 		}catch(Exception e) {
