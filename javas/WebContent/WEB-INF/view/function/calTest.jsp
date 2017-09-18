@@ -43,12 +43,18 @@
 								<small><fmt:formatDate value="${i.CDATE}" pattern="yyyy년 MM월 dd일" /></small>
 							</p>
 						</c:forEach>
+						<c:if test="${empty today}">
+							<p>오늘의 일정이 없습니다.</p>
+						</c:if>
 						</div>
 						<div class="col-sm-7">
 						<h3><span class="glyphicon glyphicon-ok"></span> D-day</h3>
 						<c:forEach var="i" items="${dday}">
 							<p><b>${i.TITLE}</b>까지D${i.DD}일남았습니다.</p>
 						</c:forEach>
+						<c:if test="${empty dday}">
+							<p>설정해둔 D-day가 없습니다.</p>
+						</c:if>
 						</div>
 					</div>
 				</div>

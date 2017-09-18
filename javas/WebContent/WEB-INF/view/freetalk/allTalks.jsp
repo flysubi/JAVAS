@@ -76,7 +76,7 @@
 <div align="center">
 	<form action="/freetalk/allTalks.jv">
 		<div class="input-group">
-			<span><input type="text" class="form-control"
+			<span><input type="text" class="form-control" value="${param.search eq null ? '' : param.search}"
 				placeholder="Search" name="search" style="width: 250px;"></span>&nbsp;
 			<button type="submit" class="btn bt">
 				검색 <span class="glyphicon glyphicon-search"></span>
