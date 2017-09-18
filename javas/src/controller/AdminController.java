@@ -28,33 +28,28 @@ public class AdminController {
 		int wc = 0;
 		int nc = 0;
 
-		int c1 = 0;
-		int c2 = 0;
-		int c3 = 0;
-		int c4 = 0;
-		int c5 = 0;
-		int c6 = 0;
-		int dc = 0;
 
 		for (int i = 0; i < list.size(); i++) {
 			Map<String, Object> map = list.get(i);
 			System.out.println(map.get("GENDER"));
 			// map에 담긴 data를 꺼내어 변경 후 변수 result에 저장
-			if (map.get("GENDER").equals("남")) {
-				mc += 1;
-			} else if (map.get("GENDER").equals("여")) {
-				wc += 1;
-			} else if (map.get("GENDER") == null) {
-				nc += 1;
-			}
-		}
-		
-		System.out.println(mc);
 
+			if (map.get("GENDER") == null) {
+				nc += 1;
+			} else {
+				if (map.get("GENDER").equals("남")) {
+					mc += 1;
+				} else {
+					wc += 1;
+				}
+			}
+
+		}
 		mav.addObject("list", list);
+		mav.addObject("count", c);
 		mav.addObject("man", mc);
 		mav.addObject("woman", wc);
-		mav.addObject("not", nc);
+		mav.addObject("no", nc);
 		mav.addObject("section", "/admin/statistics");
 		return mav;
 	}

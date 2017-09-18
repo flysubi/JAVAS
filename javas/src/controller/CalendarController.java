@@ -38,9 +38,9 @@ public class CalendarController {
 
 	@RequestMapping("/addCal.jv")
 	public ModelAndView addCal(@RequestParam Map map, @RequestParam(name = "income", defaultValue = "0") int[] income,
-			@RequestParam(name = "icontent", defaultValue = "기타") String[] icontent,
+			@RequestParam(name = "icontent", defaultValue = "기타수입") String[] icontent,
 			@RequestParam(name = "expense", defaultValue = "0") int[] expense,
-			@RequestParam(name = "econtent", defaultValue = "기타") String[] econtent, HttpSession session) {
+			@RequestParam(name = "econtent", defaultValue = "기타지출") String[] econtent, HttpSession session) {
 		String id = (String) session.getAttribute("auth");
 		map.put("id", id);
 		if (map.get("dday") != null) {
