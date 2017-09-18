@@ -18,6 +18,14 @@
 		</put-attribute>
 	</definition>
 	
+	<definition name="t_el_menuer" >
+		<put-attribute name="section">
+		 <definition>
+				<put-attribute name="section" expression="/WEB-INF/view/${section}.jsp" />
+		</definition>
+		</put-attribute>
+	</definition>
+	
 	<definition name="t_el_memo" extends="t_base">
 		<put-attribute name="section">
 			<definition template="/WEB-INF/view/memo/template.jsp">

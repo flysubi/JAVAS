@@ -160,8 +160,9 @@ td {
         title: '지출현황',
         pieHole: 0.5,
         titleTextStyle : {
-        	fontSize: 30,
+        	fontSize: 24,
         	bold: false
+        	
         }
       };
 

@@ -65,7 +65,7 @@ public class LoginFilter extends HttpFilter{
       if(session.getAttribute("auth") != null || b) {
          chain.doFilter(req, resp);
       }else {
-         resp.sendRedirect("/user/login.sz");
+         resp.sendRedirect("/user/login.jv");
       }
       
       

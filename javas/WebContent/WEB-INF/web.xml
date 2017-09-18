@@ -50,7 +50,7 @@
 
 <filter>
 		<filter-name>access</filter-name>
-		<filter-class>filter.access</filter-class>
+		<filter-class>filter.LoginFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>access</filter-name>

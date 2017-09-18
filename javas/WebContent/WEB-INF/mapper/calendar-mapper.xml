@@ -7,7 +7,7 @@
 	</insert>
 	<select id="getCal" resultType="java.util.HashMap" parameterType="java.lang.String">
 		(select c.*, to_Char(c.cdate,'YYYY-MM-DD') CC, to_date(to_char(sysdate)) - cdate DD, a.* 
-		from calendar c join (SELECT cnum, LISTAGG(income, ',') WITHIN GROUP (ORDER BY income) income,
+		from calendar c left join (SELECT cnum, LISTAGG(income, ',') WITHIN GROUP (ORDER BY income) income,
  		LISTAGG(icontent, ',') WITHIN GROUP (ORDER BY icontent) icontent,
  		LISTAGG(expense, ',') WITHIN GROUP (ORDER BY expense) expense,
  		LISTAGG(econtent, ',') WITHIN GROUP (ORDER BY econtent) econtent,
