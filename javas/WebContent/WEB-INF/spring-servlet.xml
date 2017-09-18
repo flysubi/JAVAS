@@ -38,7 +38,7 @@
 		</property>
 	</bean>
 	<!-- DBCP setting -->
-	<!-- 
+<!-- 
 	<bean class="com.mchange.v2.c3p0.ComboPooledDataSource" id="ds">
 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver" />
 		<property name="user" value="javas" />
@@ -47,11 +47,14 @@
 			value="jdbc:oracle:thin:@javas-db-instance1.ceivtxuvpaot.us-east-2.rds.amazonaws.com:1521:orcl" />
 	</bean>
 	 -->
-
-	 <bean class="com.mchange.v2.c3p0.ComboPooledDataSource" id="ds"> <property 
-		name="driverClass" value="oracle.jdbc.driver.OracleDriver"/> <property name="user" 
-		value="javas"/> <property name="password" value="oracle"/> <property name="jdbcUrl" 
-		value="jdbc:oracle:thin:@192.168.10.70:1521:xe"/> </bean>
+	 
+	<bean class="com.mchange.v2.c3p0.ComboPooledDataSource" id="ds">
+		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="user" value="javas"/>
+		<property name="password" value="oracle"/>
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@192.168.10.70:1521:xe"/>
+	</bean>
+	
 	<!-- mybatis setting -->
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="ds" />

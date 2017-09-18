@@ -28,7 +28,7 @@
 	 	<delete id="deleteAsset" parameterType="java.lang.Integer">
 	 		delete from asset where cnum=#{n} 
 	 	</delete>
-	 	<select id="getAsset">
-	 		select * from asset where id=#{id} order by adate asc
+	 	<select id="getAsset" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+	 		select * from asset where id=#{id} and adate between #{first} and #{last} order by adate asc
 	 	</select>
  </mapper>

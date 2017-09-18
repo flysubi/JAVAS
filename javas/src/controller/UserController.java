@@ -102,7 +102,7 @@ public class UserController {
 	
 	@RequestMapping("/emailAuth.jv")
 	public void emailAuth(@RequestParam(name = "key", defaultValue = "0") String key, HttpSession session) {
-		if (((String) session.getAttribute("code")).equals(key)) {
+		if (((String)session.getAttribute("code")).equals(key)) {
 			jsh.sendMessage("true");
 		} else {
 			jsh.sendMessage("false");

@@ -71,10 +71,10 @@ public class AssetDao {
 		}
 	}
 	
-	public List<Map> getAsset(String id) {
+	public List<Map<String, Object>> getAsset(Map map) {
 		SqlSession session = factory.openSession();
 		try {
-			List<Map> list = session.selectList("asset.getAsset",id);
+			List<Map<String, Object>> list = session.selectList("asset.getAsset", map);
 			return list;
 		} catch(Exception e) {
 			e.printStackTrace();

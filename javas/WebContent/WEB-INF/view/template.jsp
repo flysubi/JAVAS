@@ -51,9 +51,9 @@ body {
 		<tiles:insertAttribute name="section"/>
 	</section>
 	</c:otherwise>
-	</c:choose>
-	<footer style="background-color: black; color:white; padding:32; width: 1600px; ">
-		<tiles:insertAttribute name="footer"/>
+	</c:choose> 
+	<footer style="background-color: white; color:black; padding:32; width: 1600px; "> 
+		<tiles:insertAttribute name="footer"/> 
 	</footer>
 </body>
 </html>

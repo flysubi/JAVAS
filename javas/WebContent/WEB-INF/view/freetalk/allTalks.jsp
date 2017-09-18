@@ -161,13 +161,15 @@ table {
 		location.href='/freetalk/allTalks.jv';
 	}
 	
-	var openModal = function openModal(num) {
-		$.ajax({
-			"url" :"/freetalk/commModal.jv?num="+num
-		}).done(function(result) {
-			$("#modal-content").html(result);
-			$("#modal-testNew").modal();
-		});
+	if(${sessionScope.auth} !=  null) {
+		var openModal = function openModal(num) {
+			$.ajax({
+				"url" :"/freetalk/commModal.jv?num="+num
+			}).done(function(result) {
+				$("#modal-content").html(result);
+				$("#modal-testNew").modal();
+			});
+		}
 	}
 
 if(${num ne null}) {
