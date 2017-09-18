@@ -39,10 +39,11 @@ public class MemoController {
 	}	
 	
 	@RequestMapping("/write.jv")
-	public ModelAndView memosend(@RequestParam (name= "w", required= false) String w) {
+	public ModelAndView memosend(@RequestParam (name= "w", required= false) String w, @RequestParam (name= "my", required= false) String my) {
 		ModelAndView mav = new ModelAndView("t_el_memo");
 		mav.addObject("title","ÂÊÁö");
 		mav.addObject("w", w);
+		mav.addObject("my", my);
 		mav.addObject("section", "/memo/memowrite");
 		mav.addObject("name", "write");
 		return mav;

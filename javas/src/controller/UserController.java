@@ -102,7 +102,7 @@ public class UserController {
 	
 	@RequestMapping("/emailAuth.jv")
 	public void emailAuth(@RequestParam(name = "key", defaultValue = "0") String key, HttpSession session) {
-		if (((String) session.getAttribute("code")).equals(key)) {
+		if (((String)session.getAttribute("code")).equals(key)) {
 			jsh.sendMessage("true");
 		} else {
 			jsh.sendMessage("false");
@@ -122,7 +122,7 @@ public class UserController {
 		String id = (String) session.getAttribute("auth");
 		Map point = new HashMap();
 		point.put("id", id);
-		point.put("point", 10);
+		point.put("point", 100);
 		point.put("content", "login");
 		boolean bb = pdao.pointUp(point);
 		Map getPoint = pdao.getPoint(id);
@@ -177,7 +177,6 @@ public class UserController {
 				point.put("content", "login");
 				boolean bb = pdao.pointUp(point);
 				int c = mm.countAll(id);
-				System.out.println("count : " + c);
 				session.setAttribute("memo", c);
 				Map getPoint = pdao.getPoint(id);
 				session.setAttribute("point", getPoint.get("POINT"));

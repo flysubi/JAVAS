@@ -6,7 +6,12 @@
 		#{time, jdbcType=VARCHAR}, calendar_seq.nextval, #{color}, #{dday})
 	</insert>
 	<select id="getCal" resultType="java.util.HashMap" parameterType="java.lang.String">
-		select c.*,  to_Char(c.cdate,'YYYY-MM-DD') CC, to_date(to_char(sysdate)) - cdate DD from calendar c where id=#{id}
+		(select c.*, to_Char(c.cdate,'YYYY-MM-DD') CC, to_date(to_char(sysdate)) - cdate DD, a.* 
+		from calendar c left join (SELECT cnum, LISTAGG(income, ',') WITHIN GROUP (ORDER BY income) income,
+ 		LISTAGG(icontent, ',') WITHIN GROUP (ORDER BY icontent) icontent,
+ 		LISTAGG(expense, ',') WITHIN GROUP (ORDER BY expense) expense,
+ 		LISTAGG(econtent, ',') WITHIN GROUP (ORDER BY econtent) econtent,
+ 		LISTAGG(num, ',') WITHIN GROUP (ORDER BY num) anum FROM asset GROUP BY cnum) a on c.num = a.cnum where id=#{id})
 	</select>
 	<update id="updateCal" parameterType="java.util.HashMap">
 		update calendar set title=#{title}, cdate=#{date},
