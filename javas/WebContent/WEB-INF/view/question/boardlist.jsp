@@ -4,6 +4,10 @@
 	rel="stylesheet">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
 .btn {
     border: none;
@@ -17,8 +21,14 @@
 	 border : 1px solid gray;
 }
 </style>
-<div style="padding-bottom: 10px;">
-	<div class="input-group" style="padding-bottom: 15px; padding-top: 15px;">
+ <div class="btn-group bt-group-justified" style="float: left" >
+    <button type="button" class="btn bt">질문</button>
+    <button type="button" class="btn bt">자주묻는질문</button>
+    <button type="button" class="btn bt">해결된질문</button>
+    <button type="button" class="btn bt" style="width: 150px;"></button>
+  </div>
+<div>
+	<div class="input-group" style="padding-bottom: 15px; padding-top: 20px;  ">
 	</div>
 	<div class="table-responsive">
 		<table class="table">

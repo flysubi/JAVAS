@@ -29,9 +29,9 @@
 					<li><a href="/user/login.jv"  style="color: #939393;"> <span class="glyphicon glyphicon-log-in"></span> 로그인</a></li>
 				</ul>
 			</c:when>
-			<c:otherwise>
+		<c:otherwise>
             <ul class="nav navbar-nav">
-               <li><p class="navbar-text" style="color: black;"><b><i>${auth }</i></b>님 환영합니다 (${point} P)</p></li>
+               <li><p class="navbar-text" style="color: black;">${auth }님 환영합니다 (${point} P)</p></li>
             </ul>
             <ul class="nav navbar-nav navbar-right" >
                   <li><a href="/memo/list.jv" style="color: #939393;"><span class="glyphicon glyphicon-envelope"></span> 쪽지함 ${memo }</a></li>
@@ -39,6 +39,7 @@
                   <li><a href="/user/logout.jv" style="color: #939393;"><span class="glyphicon glyphicon-log-out"></span> 로그아웃</a></li>
             </ul>
          </c:otherwise>
+
 		</c:choose>
 
 	</div>
@@ -53,12 +54,14 @@
 			<li><a href="/question/list.jv">Q&A</a></li>
 			<li><a href="/freetalk/allTalks.jv">공유게시판</a></li>
 
-			<li><a href="/">JAVAS</a></li>
 			<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">JAVAS<span class="caret"></span></a>
 				<ul class="dropdown-menu">
 					<li><a href="/function/weather.jv">날씨</a></li>
 					<li><a href="/function/calendar.jv">캘린더</a></li>
+					<li><a href="/function/map.jv">길찾기</a></li>
+					<li><a href="/function/asset.jv">자산관리</a></li>
+					<li><a href="/function/fitness.jv">건강</a></li>
 					</ul></li>
 
 		</ul>

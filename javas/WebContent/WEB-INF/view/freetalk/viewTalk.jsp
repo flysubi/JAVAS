@@ -9,14 +9,14 @@
 </style>
 <!-- <div class="well"> -->
 <h3 style="text-align: left; padding-left: 200px;">
-${sessionScope.map.TITLE}
-<c:if test="${sessionScope.map.WRITER eq sessionScope.auth }">
-	<a href="/freetalk/talkDel.jv?num=${sessionScope.map.NUM}">X</a>
-</c:if>
+	${sessionScope.map.TITLE}
+	<c:if test="${sessionScope.map.WRITER eq sessionScope.auth }">
+		<a href="/freetalk/talkDel.jv?num=${sessionScope.map.NUM}"
+			style="color: red;"><span class="glyphicon glyphicon-remove"></span></a>
+	</c:if>
 </h3>
 <p style="text-align: left; padding-left: 200px; font-size: 12pt;">
-	작성자 : ${sessionScope.map.WRITER }
-	| 작성일 :
+	작성자 : ${sessionScope.map.WRITER } | 작성일 :
 	<fmt:formatDate value="${sessionScope.map.WRITEDATE}"
 		pattern="yy-MM-dd" />
 	<c:choose>
@@ -43,19 +43,23 @@ ${sessionScope.map.TITLE}
 
 	</c:choose>
 	<button type="submit" class="btn" id="like"
-		value="${sessionScope.map.NUM }" style="color: red; background-color: white; font-size: 10pt;
-			padding-left:3; padding-right:3; padding-bottom: 1;padding-top:0; border: 1px solid gray;">
-			<c:choose>	<c:when test="${b}">♥</c:when><c:otherwise>♡</c:otherwise></c:choose>
-			<span style="color: black;">${love}</span></button>
+		value="${sessionScope.map.NUM }"
+		style="color: red; background-color: white; font-size: 10pt; padding-left: 3; padding-right: 3; padding-bottom: 1; padding-top: 0; border: 1px solid gray;">
+		<c:choose>
+			<c:when test="${b}">♥</c:when>
+			<c:otherwise>♡</c:otherwise>
+		</c:choose>
+		<span style="color: black;">${love}</span>
+	</button>
 </p>
 <div class="col-xs-0 col-md-2"></div>
 <div class="col-xs-12 col-md-8">
-	<pre style="background-color: white; text-align: left; border-color: white;
-		font-family: HelveticaNeue,'나눔바른고딕',NanumBarunGothic,AppleSDGothicNeo-Regular,sans-serif;">${sessionScope.map.CONTENT}</pre>
+	<pre
+		style="background-color: white; text-align: left; border-color: white; font-family: HelveticaNeue, '나눔바른고딕', NanumBarunGothic, AppleSDGothicNeo-Regular, sans-serif;">${sessionScope.map.CONTENT}</pre>
 </div>
 <div class="col-xs-0 col-md-2"></div>
-<hr style="background-color:silver; height: 1px; width: 65%"/>
-	<p style="text-align: left; padding-left: 200px;">댓글</p>
+<hr style="background-color: silver; height: 1px; width: 65%" />
+<p style="text-align: left; padding-left: 200px;">댓글</p>
 <div class="col-xs-0 col-md-2"></div>
 <div class=" well col-xs-12 col-md-8">
 	<div id="list"></div>
@@ -75,17 +79,20 @@ ${sessionScope.map.TITLE}
 					data : {
 						"num" : "${param.num}",
 					}
-				})
-				.done(
-						function(rst) {
+				}).done( function(rst) {
 							console.log(rst);
 							var table = "";
 							for (var i = 0; i < rst.length; i++) {
 								table += "<p style=\"text-align: left; padding-left:80px;\"><b>"
-										+ rst[i].WRITER
-										+ "</b> | "
-										+ rst[i].FC
-										+ "</br>";
+										+ rst[i].WRITER + "</b> | " + rst[i].FC;
+								if (rst[i].WRITER == ("${sessionScope.auth}")) {
+									table += " <a href=\"javascript:commDel("
+											+ rst[i].NUM
+											+ ",'"
+											+ rst[i].WRITER
+											+ "')\" style=\"color: red;\"><span class=\"glyphicon glyphicon-remove\"></span></a>";
+								}
+								table += "<br/>";
 								table += rst[i].CONTENT + "</p>"
 								table += "<hr style=\"background-color:silver; height: 1px; width: 80%\"/>";
 							}
@@ -107,24 +114,41 @@ ${sessionScope.map.TITLE}
 			$("#comment").val("");
 		});
 	});
+
+	function commDel(num, writer) {
+		$.ajax({
+			url : "/freetalk/commDel.jv",
+			data : {
+				"num" : num,
+				"writer" : writer,
+			}
+		}).done(function() {
+			list();
+		});
+	}
 </script>
 
 <script>
-	$("#like").on("click", function() {
-		$.ajax({
-			url : "/freetalk/loveAjax.jv",
-			data : {
-				"num" : this.value,
-				"writer" : " ${sessionScope.map.WRITER }",
-			}
-		}).done(function(rst) {
-			if (rst.result) {
-				window.alert("추천 성공");
-				$("#like").html("♥ <span style=\"color: black;\">"+rst.cnt+"</span>"); 
-			} else {
-				window.alert("추천 실패\n이미 추천이 되어있는 글입니다.");
-			}
-		});
-	});
+	$("#like").on(
+			"click",
+			function() {
+				$.ajax({
+					url : "/freetalk/loveAjax.jv",
+					data : {
+						"num" : this.value,
+						"writer" : " ${sessionScope.map.WRITER }",
+					}
+				}).done(
+						function(rst) {
+							if (rst.result) {
+								window.alert("추천 성공");
+								$("#like").html(
+										"♥ <span style=\"color: black;\">"
+												+ rst.cnt + "</span>");
+							} else {
+								window.alert("추천 실패\n이미 추천이 되어있는 글입니다.");
+							}
+						});
+			});
 </script>
 

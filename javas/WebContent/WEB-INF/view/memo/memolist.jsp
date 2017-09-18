@@ -24,7 +24,7 @@
 				<thead>
 					<tr class="Info">
 						<td style="width: 6%;" align="center"><input type="checkbox"
-							id="delAll"/></td>
+							id="all"/></td>
 						<td style="width: 15%">보낸이</td>
 						<td style="width: 60%">내용</td>
 						<td style="width: 20%">보낸날짜</td>
@@ -34,10 +34,11 @@
 					<tbody>
 						<c:forEach items="${list }" var="i">
 							<tr>
-								<td align="center"><input type="checkbox" class="chk" id="delAll"
-									name="num" value="${i.NUM}" /></td>
-								<td><a href="/memo/write.jv?target=${i.SENDER }">${i.SENDER}</a></td>
-								<td>${i.CONTENT}</td>
+								<td align="center"><input type="checkbox" class="chk" id="item"
+									name="num" value="${i.FT_NUM}" /></td>
+								<td><a href="/memo/write.jv?target=${i.FT_SENDER }">${i.FT_SENDER}</a></td>
+								<td><a href="/memo/detail.jv=${i.FT_NUM}">${i.FT_CONTENT}</td>
+								<td>${i.FT_DATE}</td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -59,17 +60,22 @@
 	</div>
 </div>
 <script>
-	document.getElementById("delAll").onclick = function() {
-		var col = document.getElementsByClassName("chk");
-		var b = document.getElementById("delAll").checked;
-		if (b) {
-			for (var i = 0; i < col.length; i++) {
-				col[i].checked = true;
-			}
-		} else {
-			for (var e = 0; e < col.length; e++) {
-				col[e].checked = false;
-			}
-		}
+document.getElementById("all").onchange = function() {
+	var flag = this.checked;
+	var items = document.getElementsByClassName("chk");
+	for(var i=0; i<items.length; i++) {
+		items[i].checked= flag;
 	}
+}
+
+var item = document.getElementsByClassName("chk");
+for(var i =0 ; i<item.length; i++) {
+	item[i].onchange = function() {
+		if(this.checked== false) {
+			document.getElementById("all").checked= false;
+		}			
+	}
+}
+
+	
 </script>

@@ -4,17 +4,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="memo">
 	<insert id="send" parameterType="java.util.HashMap">
-		insert into memo values (MEMO_SEQ.NEXTVAL, #{reciver}, #{id}, #{ta})
+		insert into memo values (MEMO_SEQ.NEXTVAL,#{id}, #{receiver}, #{ta}, sysdate)
 	</insert>
 	
 	<select id="list" parameterType="java.lang.String" resultType="java.util.HashMap">
-		select * from memo where receiver = #{id } ORDER by num desc
+		select * from memo where ft_receiver = #{id} and ft_sender != #{id} ORDER by ft_num desc 
 	</select>
 	
+	<select id="mylist" parameterType="java.lang.String" resultType="java.util.HashMap">
+		select from memo where ft_receiver = #{id } and ft_s0ender = #{id } ORDER by num desc
+	</select>
+	
+	<select id="countAll" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(*) from memo where ft_receiver = #{id } and ft_sender != #{id} 
+	</select>
+	
+	<select id="myCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+		select count(*) from memo where ft_receiver = #{id } and ft_sender = #{id } 
+	</select>
+	
+	<insert id="readMemo" parameterType="java.util.HashMap">
+		insert into rmemo values (MEMO_SEQ.NEXTVAL,#{id}, #{receiver}, #{ta}, sysdate)
+	</insert>	
+	
+	<insert id="saveMemo" parameterType="java.util.HashMap">
+		insert into smemo values (MEMO_SEQ.NEXTVAL,#{id}, #{receiver}, #{ta}, sysdate)
+	</insert>
+	
 	<delete id="delete" parameterType="java.util.HashMap">
-		delete memo where receiver = #{id} and
+		delete memo where ft_receiver = #{id} and
 		<foreach collection="arr" item="num" separator=" or " open="(" close=")">
-		num = #{num }
+		ft_num = #{num }
+		</foreach>
+	</delete>
+	
+	<delete id="saveDelete" parameterType="java.util.HashMap">
+		delete smemo where ft_receiver = #{id} and
+		<foreach collection="arr" item="num" separator=" or " open="(" close=")">
+		ft_num = #{num }
 		</foreach>
 	</delete>
 </mapper>

@@ -4,25 +4,32 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <style>
 .btn {
-    border: none;
-    color: white;
-    font-size: 15px;
-    cursor: pointer;
+	border: none;
+	color: white;
+	font-size: 15px;
+	cursor: pointer;
 }
+
 .bt {
-	background-color: white; 
+	background-color: white;
 	color: black;
-	 border : 1px solid gray;
-} 
+	border: 1px solid gray;
+}
 </style>
 <div style="padding-bottom: 10px;">
-	<div class="input-group" style="padding-bottom: 15px; padding-top: 15px;">
+	<div class="input-group"
+		style="padding-bottom: 15px; padding-top: 15px;">
 		<form action="/freetalk/allTalks.jv" id="submit">
-			<select style="width: 223px;" class="form-control" name="category" id="category">
-				<option value="" class="form-control" ${"all" eq param.category ? 'selected' : ''}>카테고리별 검색</option>
-				<option value="교통" class="form-control" ${"교통" eq param.category ? 'selected' : ''}>교통</option>
-				<option value=PC관리 class="form-control" ${"PC관리" eq param.category ? 'selected' : ''}>PC관리</option>
-				<option value="인터넷" class="form-control" ${"인터넷" eq param.category ? 'selected' : ''}>인터넷</option>
+			<select style="width: 223px;" class="form-control" name="category"
+				id="category">
+				<option value="" class="form-control"
+					${"all" eq param.category ? 'selected' : ''}>카테고리별 검색</option>
+				<option value="교통" class="form-control"
+					${"교통" eq param.category ? 'selected' : ''}>교통</option>
+				<option value=PC관리 class="form-control"
+					${"PC관리" eq param.category ? 'selected' : ''}>PC관리</option>
+				<option value="인터넷" class="form-control"
+					${"인터넷" eq param.category ? 'selected' : ''}>인터넷</option>
 			</select>
 		</form>
 	</div>
@@ -43,9 +50,12 @@
 					<tr>
 						<td>${m.NUM}</td>
 						<td>${m.CATEGORY}</td>
-						<td><a href="/freetalk/viewTalk.jv?num=${m.NUM}">${m.TITLE}</a>
-							<c:if test="${m.CNT ne null }">[${m.CNT}]</c:if></td>
-						<td>${m.WRITER eq null ? '(알수없음)' : m.WRITER}</td>
+						<td><a href="/freetalk/viewTalk.jv?num=${m.NUM}"
+							style="color: black;">${m.TITLE}</a> <c:if
+								test="${m.CNT ne null }">
+								<a href="javascript:openModal(${m.NUM })"	style="color: orange">[${m.CNT}]</a>
+							</c:if></td>
+						<td><a href="/memo/write.jv?w=${m.WRITER}">${m.WRITER eq null ? '(알수없음)' : m.WRITER}</a></td>
 						<td style="text-align: center;"><fmt:formatNumber
 								value="${m.RECOMMEND}" pattern="#,###" var="t" />${t }</td>
 					</tr>
@@ -56,7 +66,9 @@
 	<c:if test="${empty list}">게시글이 없습니다.</c:if>
 	<div style="padding-right: 0px; padding-bottom: 10px;" align="right">
 		<a href="/freetalk/addNew.jv">
-			<button type="button" class="btn bt">글쓰기 <span class="glyphicon glyphicon-pencil"></span></button>
+			<button type="button" class="btn bt">
+				글쓰기 <span class="glyphicon glyphicon-pencil"></span>
+			</button>
 		</a>
 	</div>
 </div>
@@ -64,9 +76,11 @@
 <div align="center">
 	<form action="/freetalk/allTalks.jv">
 		<div class="input-group">
-			<span><input type="text" class="form-control"
+			<span><input type="text" class="form-control" value="${param.search eq null ? '' : param.search}"
 				placeholder="Search" name="search" style="width: 250px;"></span>&nbsp;
-			<button type="submit" class="btn bt">검색 <span class="glyphicon glyphicon-search"></span></button>
+			<button type="submit" class="btn bt">
+				검색 <span class="glyphicon glyphicon-search"></span>
+			</button>
 		</div>
 	</form>
 
@@ -78,8 +92,32 @@
 	</ul>
 </div>
 
+
+<div id="modal-testNew" class="modal fade" tabindex="-1" role="dialog">
+	<div class="modal-dialog" style="width: 700px; height: 700px">
+		<div id="modal-content" class="modal-content"></div>
+	</div>
+</div>
+
+
 <script>
 	$("#category").on("change", function() {
 		$("#submit").submit();
 	});
+	
+	var openModal = function openModal(num) {
+		$.ajax({
+			"url" :"/freetalk/commModal.jv?num="+num
+		}).done(function(result) {
+			$("#modal-content").html(result);
+			$("#modal-testNew").modal();
+		});
+	}
+
+if(${num ne null}) {
+	 openModal(${num});
+	 
+	 
+}
+
 </script>
