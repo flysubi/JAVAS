@@ -136,9 +136,7 @@
 	</c:choose>
 </div>
 <c:if test="${nav ne 'on'}">
-	<div
-		style="background-color: LightSkyBlue; margin-top: 0; padding-left: 218px;">
-		<h1
-			style="margin: 0; color: white; font-size: 14pt; padding-top: 10px; padding-bottom: 10px; padding-left: 2px;">${title }</h1>
+	<div style="background-color: Lavender; margin-top: 0; padding-left: 218px;">
+		<h1 style="margin: 0; color: white; font-size: 14pt; padding-top: 10px; padding-bottom: 10px; padding-left:2px;">${title }</h1>
 	</div>
 </c:if>

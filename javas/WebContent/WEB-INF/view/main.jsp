@@ -48,7 +48,7 @@
 </style>
 
 <body style="position:relative;">
-	<div id="slidebox" style="position: relative;">
+	<div id="slidebox" style="position: relative; width: 100%;">
 		<ul id="slider">
 			<li><img alt="main" src="/style/새메인.png"/></li>
 			<li>
@@ -79,7 +79,7 @@
 			</li>
 		</ul>
 	</div>
-	<div style="position: relative;">
+	<div style="position: relative; width: 100%;">
 	  <img alt="javas" src="/style/javas2.png">
 	  <img alt="good" src="/style/좋은점.png">
 	  <img alt="join" src="/style/가입문.png">

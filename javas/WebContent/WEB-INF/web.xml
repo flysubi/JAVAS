@@ -55,4 +55,18 @@
 </security-constraint>
 
 
+<filter>
+		<filter-name>access</filter-name>
+		<filter-class>filter.LoginFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>access</filter-name>
+		<url-pattern>/function/*</url-pattern>
+		<url-pattern>/memo/*</url-pattern>
+		<url-pattern>/question/*</url-pattern>
+		<url-pattern>/alert/*</url-pattern>
+		<url-pattern>/user/userInfo</url-pattern>
+		<url-pattern>/freetalk/*</url-pattern>
+	</filter-mapping>
+
 </web-app>

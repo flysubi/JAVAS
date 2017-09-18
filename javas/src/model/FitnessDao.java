@@ -92,6 +92,7 @@ public class FitnessDao {
 	}
 	
 	public boolean myMenu(Map map) {
+		System.out.println(map);
 		SqlSession session = factory.openSession();
 		try {
 			session.update("fitness.myMenu",map);

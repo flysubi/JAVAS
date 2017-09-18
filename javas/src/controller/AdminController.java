@@ -31,7 +31,7 @@ public class AdminController {
 
 		for (int i = 0; i < list.size(); i++) {
 			Map<String, Object> map = list.get(i);
-			System.out.println(map.get("GENDER"));
+			
 			// map에 담긴 data를 꺼내어 변경 후 변수 result에 저장
 
 			if (map.get("GENDER") == null) {

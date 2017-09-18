@@ -65,8 +65,8 @@ b {
 					<label class="radio-inline" style="font-size: 20px;"><input type="radio" name="gender" value="남" style="height: 20px; width: 20px;"> 남자</label>
 					<label class="radio-inline" style="font-size: 20px;"><input type="radio" name="gender" value="여" style="height: 20px; width: 20px;"> 여자</label>
 					</div>
-					<button type="submit" class="btn bnt-default" id="join" style="background-color: LightSkyBlue; color: white; font-weight: 900; width: 49%;">가입하기</button>
-					<button type="reset" class="btn bnt-default" style="background-color: LightSkyBlue; color: white; font-weight: 900;  width: 49%;">다시작성</button>
+					<button type="submit" class="btn bnt-default" id="join" style="background-color: Plum; color: white; font-weight: 900; width: 49%;">가입하기</button>
+					<button type="reset" class="btn bnt-default" style="background-color: Plum; color: white; font-weight: 900;  width: 49%;">다시작성</button>
 				</form>
 				
 				<a href="/user/findUser.jv">아이디찾기</a>

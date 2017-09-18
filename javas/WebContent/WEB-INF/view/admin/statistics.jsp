@@ -5,8 +5,7 @@
 	src="https://www.gstatic.com/charts/loader.js"></script>
 <h3>회원통계</h3>
 <div id="chart_div" style="width: 900px; height: 500px;"></div>
-<<<<<<< HEAD
-
+<div id="chart_div2" style="width: 900px; height: 500px;"></div>
 
 <script type="text/javascript">
 	google.charts.load("current", {
@@ -29,9 +28,8 @@
 				.getElementById('chart_div'));
 		chart.draw(data, options);
 	}
-<div id="chart_div2" style="width: 900px; height: 500px;"></div>
 
-<script type="text/javascript">
+
 	google.charts.load("current", {
 		packages : [ "corechart" ]
 	});
@@ -64,6 +62,7 @@
 		
   	  	var y = new Date().getYear()+1900;
   	  	
+  	  	console.log("${list(1).year}");
   	  	
   	  	
 		var data = google.visualization.arrayToDataTable([ ['나이별회원분포도', ''], 
