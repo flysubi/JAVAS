@@ -16,35 +16,12 @@
 		  
   	  
 		
-		var data = google.visualization.arrayToDataTable([ ['남여성별', 'Hours per Day'], 
-			[ '남성', ${man}],	[ '여성', ${woman} ], [ '무응답', ${not} ] ]);
-
-		var options = {
-			title : '남여성비',
-			pieHole : 0.4,
-		};
-
-		var chart = new google.visualization.PieChart(document
-				.getElementById('chart_div'));
-		chart.draw(data, options);
-	}
-
-
-	google.charts.load("current", {
-		packages : [ "corechart" ]
-	});
-	google.charts.setOnLoadCallback(drawChart);
-	function drawChart() {
-		  
-  	  	var mc = ${man};
-  	  	var wc = ${woman};
-  	  	var nc = ${no};
-		
 		var data = google.visualization.arrayToDataTable([ ['남여성별회원분포도', ''], 
-			[ '남성', mc],	[ '여성', wc ], [ '무응답', nc ] ]);
+			['남성', ${man}],	['여성', ${woman}], ['무응답', ${no}] 
+		]);
 
 		var options = {
-			title : '남여성비',
+			title : '남여성별분포도',
 			pieHole : 0.4,
 		};
 
@@ -58,18 +35,18 @@
 	});
 	google.charts.setOnLoadCallback(drawChart2);
 	function drawChart2() {
-		var age = 0;  
 		
-  	  	var y = new Date().getYear()+1900;
+  	 	
   	  	
-  	  	console.log("${list(1).year}");
+  	  	
+  	  	
   	  	
   	  	
 		var data = google.visualization.arrayToDataTable([ ['나이별회원분포도', ''], 
-			[ '10대', mc],	[ '20대', wc ], [ '30대', nc ], [ '30대', nc ], [ '30대', nc ], [ '40대', nc ], [ '50대', nc ], [ '60대이상', nc ], [ '무응답', nc ] ]);
+			[ '10대', ${cnt1}],	[ '20대', ${cnt2} ], [ '30대', ${cnt3} ], [ '40대', ${cnt4}], [ '50대', ${cnt5} ], [ '60대이상', ${cnt6} ], [ '무응답', ${cnt7} ] ]);
 
 		var options = {
-			title : '남여성비',
+			title : '연령별분포도',
 			pieHole : 0.4,
 		};
 

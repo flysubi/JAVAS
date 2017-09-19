@@ -95,6 +95,19 @@ public class UserDao {
 			return false;
 		}
 	}
+	
+	public int logindate(String id) {
+		try {
+			SqlSession session = factory.openSession();
+			int rst = session.update("user.logindate", id);
+			return rst;
+		}catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+		
+	}
+	
 
 	public boolean emailCheck(String email) {
 		try {

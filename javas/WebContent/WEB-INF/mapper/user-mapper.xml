@@ -10,7 +10,7 @@
 	 		select * from member where id=#{id}
 	 	</select>
 	 	<insert id="join_step1" parameterType="java.util.HashMap">
-	 		insert into member values(#{id}, #{pass}, #{email})
+	 		insert into member values(#{id}, #{pass}, #{email}, sysdate, sysdate)
 	 	</insert>
 	 	<insert id="join_step2" parameterType="java.util.HashMap">
 	 		insert into info values(#{id}, #{name, jdbcType=VARCHAR},
@@ -20,6 +20,7 @@
 	 	<select id="login" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 	 		select * from member where id=#{id} and password=#{pass}
 	 	</select>
+	 	
 	 	<select id="userInfo" parameterType="java.lang.String" resultType="java.util.HashMap">
 	 		select member.*, info.* from member join info 
      		on member.id=info.id where member.id=#{id}
@@ -31,5 +32,9 @@
 	 		update info set name=#{name, jdbcType=VARCHAR}, gender=#{gender, jdbcType=VARCHAR},
 	 		year=#{year, jdbcType=INTEGER}, month=#{month, jdbcType=INTEGER},
 	 		day=#{day, jdbcType=INTEGER} where id=#{id}
+	 	</update>
+	 	<update id="logindate" parameterType="java.lang.String">
+	 		update member set logindate = sysdate where id=#{id}
+	 	
 	 	</update>
  </mapper>

@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,7 +15,24 @@ public class AdminDao {
 
 	@Autowired
 	SqlSessionFactory factory;
+	
+	public boolean login(Map map) {
+		SqlSession session = factory.openSession();
+		try {
+			System.out.println("login : " + map);
+			HashMap rst = session.selectOne("admin.login", map);
+			
+			return rst != null;
+		} catch (Exception e) {
+			e.getStackTrace();
+			return false;
+		} finally {
+			session.close();
+		}
+		
+	}
 
+	
 	
 	public List<Map<String, Object>> statics() {
 		List<Map<String, Object>> list = new ArrayList<>();

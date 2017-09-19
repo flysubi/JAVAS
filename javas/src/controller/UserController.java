@@ -181,6 +181,7 @@ public class UserController {
 				session.setAttribute("memo", c);
 				Map getPoint = pdao.getPoint(id);
 				session.setAttribute("point", getPoint.get("POINT"));
+				int rst = udao.logindate(id);
 
 			}
 
