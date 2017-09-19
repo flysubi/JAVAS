@@ -52,6 +52,7 @@ body {
 	</section>
 	</c:otherwise>
 	</c:choose> 
+		<hr/>
 	<footer style="background-color: white; color:black; padding:32; width: 1600px; "> 
 		<tiles:insertAttribute name="footer"/> 
 	</footer>

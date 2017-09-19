@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<html>
-<head>
 <script type="text/javascript"
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLmh6ZJBgbqRo7N5muFms65pBzt4j4uJg&sensor=true">	
 </script>
@@ -10,7 +8,7 @@
 	var directionsDisplay;
 	var directionsService = new google.maps.DirectionsService();
 	var src;
-	var dest;
+	var dest; 
 	var marker;
 	var map;
 	var coords;
@@ -180,7 +178,6 @@
 		});
 	}
 </script>
-</head>
 <style type="text/css">
     html, body {
         margin: 0;
@@ -258,5 +255,4 @@
 		
 	
 </script>
-</html>
 

@@ -52,7 +52,7 @@
 
 		<li><a href="/menuer.jv">메뉴얼</a></li>
 			<li><a href="/question/list.jv">Q&A</a></li>
-			<li><a href="/freetalk/allTalks.jv">공유게시판</a></li>
+			<li><a href="/freetalk/allTalks.jv">공유게시판</a></li> 
 
 			<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">JAVAS<span class="caret"></span></a>

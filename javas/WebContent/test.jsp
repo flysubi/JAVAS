@@ -88,7 +88,7 @@ $("#wbt").click(function(){
 						"message" : message
 					}
 				}).done(function(rst3){
-					var audio = new Audio("/tts//"+rst3);
+					var audio = new Audio("/voice//"+rst3);
 					audio.play();
 					deleteFile(rst3);
 				});

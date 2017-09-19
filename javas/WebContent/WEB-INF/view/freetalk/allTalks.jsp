@@ -27,7 +27,7 @@ table {
 <div class="col-xs-1 col-md-1"></div>
 	<div align="left" class="row well col-xs-10 col-md-10"
 		style="padding-bottom: 10px; padding-top: 10px;  ">
-			<form action="/freetalk/allTalks.jv" id="submit" method="post">
+			<form action="/freetalk/allTalks.jv" id="submit" >
 		<div class="col-xs-3 col-md-3">
 				<select style="width: 223px;" class="w3-select w3-border"
 					name="category" id="category">
@@ -135,7 +135,7 @@ table {
 	<ul class="pagination">
 		<c:forEach var="i" begin="1" end="${size}">
 			<li class="${i eq page ? 'active' :'' }"><a
-				href="/freetalk/allTalks.jv?p=${i }&category=${param.category}">${i}</a></li>
+				href="/freetalk/allTalks.jv?p=${i }&category=${param.category}&sequence=${param.sequence }&option=${param.option }&search=${param.search}">${i}</a></li>
 		</c:forEach>
 	</ul>
 </div>

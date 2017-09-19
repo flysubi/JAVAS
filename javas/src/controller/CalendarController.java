@@ -11,6 +11,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import model.AssetDao;
 import model.CalendarDao;
@@ -161,5 +162,12 @@ public class CalendarController {
 		mav.addObject("today", today);
 		mav.addObject("section", "function/calTest");
 		return mav;
+	}
+	
+	@RequestMapping("/calTtsAjax.jv")
+	@ResponseBody
+	public List calTtsAjax() {
+		List<Map> list  = cdao.todayCal();
+		return list;
 	}
 }
