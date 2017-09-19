@@ -83,7 +83,6 @@ public class AssetDao {
 			session.close();
 		}
 	}
-	
 	public List<Map<String, Object>> getAssetI(Map map) {
 		SqlSession session = factory.openSession();
 		try {
