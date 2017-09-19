@@ -70,6 +70,10 @@
 				<value>/WEB-INF/mapper/asset-mapper.xml</value>
 				<value>/WEB-INF/mapper/fitness-mapper.xml</value>
 				<value>/WEB-INF/mapper/admin-mapper.xml</value>
+<<<<<<< HEAD
+=======
+				<value>/WEB-INF/mapper/asset-mapper.xml</value>
+>>>>>>> branch 'master' of https://github.com/flysubi/JAVAS
 			</list>
 		</property>
 	</bean>
