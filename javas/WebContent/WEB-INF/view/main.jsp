@@ -91,7 +91,7 @@
 	   </div>
 	   <div style="position:absolute; left:1280px; top:855px">
 	     <a href="/menuer.jv">
-	        <img alt="login2" src="/style/설정하러.png">	     
+	        <img alt="login2" src="/style/메뉴얼로.png">	     
 	     </a>
 	   </div>
 	</div>

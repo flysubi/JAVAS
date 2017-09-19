@@ -30,6 +30,8 @@ body {
 	font-family:HelveticaNeue,'나눔바른고딕',NanumBarunGothic,AppleSDGothicNeo-Regular,sans-serif;
 	
 }
+.fusion-footer-widget-area {border-top:1px; color: black;}
+
 </style>
 <body>
 	<nav>
@@ -51,7 +53,7 @@ body {
 	</section>
 	</c:otherwise>
 	</c:choose>
-	<footer style="background-color: black; color:white; padding:32; width: 1600px; ">
+	<footer style="background-color: white; color:black; padding:32; width: 1600px;">
 		<tiles:insertAttribute name="footer"/>
 	</footer>
 </body>
