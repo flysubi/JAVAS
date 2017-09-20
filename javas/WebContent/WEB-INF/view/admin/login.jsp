@@ -1,23 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<html>
-<head>
-<title>Insert title here</title>
 <style type="text/css">
 b {
 	font-size: 16pt;
 }
 </style>
-</head>
 
-<body>
+
+
 	<div style="margin-top: 100px;"></div>
 	<div align="center" class="row">
 		<div class="col-ss-0 col-sm-4"></div>
 		<div class="col-ss-12 col-sm-4">
 			<div class="form-group">
-				<form action="/user/loginResult.jv" class="form-signin"
+				<form action="/admin/loginResult.jv" class="form-signin"
 					method="post">
 					<!-- 컨트롤러로 보냄 -->
 					<div class="input-group">
@@ -47,5 +44,3 @@ b {
 		</div>
 		<div class="col-ss-0 col-sm-4"></div>
 	</div>
-</body>
-</html>

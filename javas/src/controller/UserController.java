@@ -160,7 +160,6 @@ public class UserController {
 				resp.addCookie(c);
 			}
 			if (session.getAttribute("logo") == null) {
-				System.out.println(session.getAttribute("logo"));
 				mav.setViewName("redirect:/");
 			} else {
 				mav.setViewName("redirect:/" + session.getAttribute("logo"));

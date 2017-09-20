@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
@@ -15,9 +16,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import model.AdminDao;
+import model.MemoModel;
+import model.PointDao;
 
 @Controller
 @RequestMapping("/admin")
@@ -29,12 +33,12 @@ public class AdminController {
 	@RequestMapping("/login.jv")
 	public ModelAndView toLogin(HttpSession session) {
 		ModelAndView mav = new ModelAndView("t_el");
-		mav.addObject("section", "user/login");
+		mav.addObject("section", "admin/login");
 		session.setAttribute("title", "관리자로그인");
 		mav.addObject("height", "52%");
 		return mav;
 	}
-	
+
 	@RequestMapping("/loginResult.jv")
 	public ModelAndView toLoginResult(@RequestParam Map map, HttpSession session, HttpServletResponse resp,
 			HttpServletRequest req) {
@@ -48,12 +52,7 @@ public class AdminController {
 				c.setPath("/");
 				resp.addCookie(c);
 			}
-			if (session.getAttribute("logo") == null) {
-				System.out.println(session.getAttribute("logo"));
-				mav.setViewName("redirect:/");
-			} else {
-				mav.setViewName("redirect:/" + session.getAttribute("logo"));
-			}
+			mav.setViewName("redirect:/");
 			session.setAttribute("auth", map.get("id"));
 			return mav;
 		} else {
@@ -63,10 +62,31 @@ public class AdminController {
 			return mav;
 		}
 	}
-	
-	
-	
-	
+
+	@RequestMapping("/logout.jv")
+	public String logout(HttpSession session, HttpServletResponse resp) throws IOException {
+		// ModelAndView mav = new ModelAndView("t_base");
+
+		Cookie c = new Cookie("login", (String) session.getAttribute("auth"));
+		c.setPath("/");
+		c.setMaxAge(0);
+		resp.addCookie(c);
+		session.invalidate();
+		return "redirect:/";
+	}
+
+	@RequestMapping("/member")
+	public ModelAndView member() {
+		ModelAndView mav = new ModelAndView("t_el");
+
+		List<Map<String, Object>> list = adao.member();
+		System.out.println(list);
+		mav.addObject("section", "admin/member");
+		mav.addObject("list", list);
+		return mav;
+
+	}
+
 	@RequestMapping("/statistics.jv")
 	public ModelAndView statics() {
 		ModelAndView mav = new ModelAndView("t_el");
@@ -102,16 +122,16 @@ public class AdminController {
 			}
 
 			int age = 0;
-			
+
 			int y = new Date().getYear() + 1900;
 			System.out.println(y);
-			if (map.get("YEAR") == null) { 
+			if (map.get("YEAR") == null) {
 				cnt7++;
-			}else {
-				age = y - ((BigDecimal)map.get("YEAR")).intValue();
-				
-				System.out.println(age);			
-			
+			} else {
+				age = y - ((BigDecimal) map.get("YEAR")).intValue();
+
+				System.out.println(age);
+
 				if (age >= 10 && age < 20) {
 					cnt1++;
 				} else if (age >= 20 && age < 30) {
@@ -124,7 +144,7 @@ public class AdminController {
 					cnt5++;
 				} else {
 					cnt6++;
-				} 
+				}
 			}
 		}
 
@@ -142,4 +162,29 @@ public class AdminController {
 
 		return mav;
 	}
+	
+
+	@RequestMapping("/pointModal.jv")
+	public ModelAndView commModal(@RequestParam (name="id") String id, HttpSession session ) {
+		ModelAndView mav = new ModelAndView();
+		List<Map> list = adao.getPoint(id);
+		
+		mav.addObject("list",list);
+			return mav;
+	}
+	
+	@RequestMapping("/Del.jv")
+	@ResponseBody
+	public Map commDel(@RequestParam (name="num",defaultValue="-1") int num, HttpSession session) {
+		Map map = new HashMap<>();
+		boolean flag = false;
+		String admin = (String)session.getAttribute("auth");
+		if(admin.equals("admin")) {
+			flag = adao.pointDel(num);
+		}
+		map.put("flag", flag);
+		return map;
+	}
+	
+
 }

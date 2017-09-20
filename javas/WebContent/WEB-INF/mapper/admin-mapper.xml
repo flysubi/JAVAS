@@ -20,10 +20,24 @@
 		select * from member where id = #{id}
 	</select>
 
+	<select id="member" resultType="java.util.HashMap">
+		select * from (select * from
+		member natural join info) natural join (select id, sum(point) as point
+		from point group by id)
+	</select>
+
 	<delete id="userDelete" parameterType="java.lang.String">
 		delete info where id =
 		#{id}
 	</delete>
 
+	<select id="point" parameterType="java.lang.String" resultType="java.util.HashMap">
+		select * from point where id = #{id}
+	</select>
+
+	<delete id="pointDel" parameterType="java.lang.Integer">
+		delete from point where
+		num=#{num}
+	</delete>
 
 </mapper>

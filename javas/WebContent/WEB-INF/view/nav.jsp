@@ -44,7 +44,7 @@
 							class="glyphicon glyphicon-envelope"></span> 쪽지함 ${memo }</a></li>
 					<li><a href="/user/userInfo.jv" style="color: #939393;"><span
 							class="glyphicon glyphicon-wrench"></span> 정보수정</a></li>
-					<li><a href="/user/logout.jv" style="color: #939393;"><span
+					<li><a href="/admin/logout.jv" style="color: #939393;"><span
 							class="glyphicon glyphicon-log-out"></span> 로그아웃</a></li>
 				</ul>
 			</c:when>
@@ -65,11 +65,6 @@
 		</c:choose>
 
 	</div>
-<<<<<<< HEAD
-
-=======
-
->>>>>>> branch 'master' of https://github.com/flysubi/JAVAS
 	<hr style="background-color: #939393; margin: 0" />
 	<c:choose>
 		<c:when test="${auth eq 'admin'}">
@@ -79,13 +74,10 @@
 					<li><a href="/" style="padding-left: 0;"><img alt="javas"
 							src="/style/javas.png"></a>
 				</ul>
-<<<<<<< HEAD
 				<ul class="nav navbar-nav navbar-right"
 					style="font-size: 14pt; margin-top: 17px; font-weight: 600;">
 		
-=======
 				<ul class="nav navbar-nav navbar-right">
->>>>>>> branch 'master' of https://github.com/flysubi/JAVAS
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="#">게시판관리<span class="caret"></span></a>
 						<ul class="dropdown-menu">
@@ -96,7 +88,7 @@
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="#">회원관리<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="/function/weather.jv">회원탈퇴</a></li>
+							<li><a href="/admin/member.jv">회원명부</a></li>
 							<li><a href="/admin/statistics.jv">회원통계</a></li>
 							<li><a href="/function/map.jv">포인트관리</a></li>
 						</ul></li>
