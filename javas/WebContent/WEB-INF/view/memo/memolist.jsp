@@ -29,11 +29,11 @@ table {
 	background: white;
 }
 </style>
-
+<div class="row" style="padding-bottom: 10px; padding-top: 10px;">
 	<div class="col-xs-1 col-md-1"></div>
 	<div align="left" class="row well col-xs-10 col-md-10"
 		style="padding-bottom: 10px; padding-top: 10px;">
-		<form action="/freetalk/allTalks.jv" id="submit" method="post">
+		<form action="/memo/list.jv" id="submit" method="post">
 			<div class="col-xs-3 col-md-3">
 				<select style="width: 223px;" class="w3-select w3-border"
 					name="category" id="category">
