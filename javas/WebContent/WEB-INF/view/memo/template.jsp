@@ -33,9 +33,9 @@
 			<li class="${active eq 'mylist' ? 'active' : '' }" align="left"
 				style="margin-left: 0px;"><a href="/memo/mylist.jv">내게쓴쪽지함&nbsp;${sessionScope.mymemo }</a></li>
 			<li class="${active eq 'sendlist' ? 'active' : '' }" align="left"
-				style="margin-left: 0px;"><a href="/memo/mywrite">읽은쪽지함</a></li>
+				style="margin-left: 0px;"><a href="/memo/mysend">보낸쪽지함&nbsp;${sessionScope.mysend }</a></li>
 			<li class="${active eq 'savelist' ? 'active' : '' }" align="left"
-				style="margin-left: 0px;"><a href="#">쪽지보관함</a></li>
+				style="margin-left: 0px;"><a href="/memo/savelist">쪽지보관함&nbsp;${sessionScope.smemo }</a></li>
 		</ul>
 	</div>
 

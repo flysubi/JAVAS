@@ -31,10 +31,11 @@ public class IndexController {
 					session.setAttribute("point", point.get("POINT"));
 				}
 		
-				mav.addObject("nav", "on");
+				
 	
 				
 			}
+			mav.addObject("nav", "on");
 			return mav;
 	
 	}

@@ -37,7 +37,7 @@ b {
 							<input type="checkbox" name="keep" />로그인 상태 유지
 						</span>
 					<span style="float: right;">
-						<a href="/user/findUser.jv">아이디/비밀번호 찾기</a>
+						관리자모드
 					</span>
 				</form>
 			</div>

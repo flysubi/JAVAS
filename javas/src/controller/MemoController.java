@@ -36,7 +36,52 @@ public class MemoController {
 			mav.addObject("name", "list");
 			mav.addObject("list", list);
 		return mav;
-	}	
+	}
+	
+	@RequestMapping("/mylist.jv")
+	public ModelAndView memolist(HttpSession session) {
+		String id = (String)session.getAttribute("auth");
+		List<Map<String, String>> list = mm.mylist(id);
+		int mc = mm.myCount(id);
+		session.setAttribute("mymemo", mc);
+		ModelAndView mav = new ModelAndView("t_el_memo");
+			mav.addObject("active", "list");
+			mav.addObject("section", "/memo/memolist");
+			mav.addObject("title","쪽지");
+			mav.addObject("name", "list");
+			mav.addObject("list", list);
+		return mav;
+	}
+	
+	@RequestMapping("/mysend.jv")
+	public ModelAndView memolist(HttpSession session) {
+		String id = (String)session.getAttribute("auth");
+		List<Map<String, String>> list = mm.mylist(id);
+		int mc = mm.mySendCount(id);
+		session.setAttribute("mysendcount", sc);
+		ModelAndView mav = new ModelAndView("t_el_memo");
+			mav.addObject("active", "list");
+			mav.addObject("section", "/memo/memolist");
+			mav.addObject("title","쪽지");
+			mav.addObject("name", "list");
+			mav.addObject("list", list);
+		return mav;
+	}
+	
+	@RequestMapping("/savelist.jv")
+	public ModelAndView memolist(HttpSession session) {
+		String id = (String)session.getAttribute("auth");
+		List<Map<String, String>> list = mm.slist(id);
+		int mc = mm.saveCount(id);
+		session.setAttribute("savememo", sm);
+		ModelAndView mav = new ModelAndView("t_el_memo");
+			mav.addObject("active", "list");
+			mav.addObject("section", "/memo/memolist");
+			mav.addObject("title","쪽지");
+			mav.addObject("name", "list");
+			mav.addObject("list", list);
+		return mav;
+	}
 	
 	@RequestMapping("/write.jv")
 	public ModelAndView memosend(@RequestParam (name= "w", required= false) String w, @RequestParam (name= "my", required= false) String my) {

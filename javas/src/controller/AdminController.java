@@ -34,6 +34,7 @@ public class AdminController {
 	public ModelAndView toLogin(HttpSession session) {
 		ModelAndView mav = new ModelAndView("t_el");
 		mav.addObject("section", "admin/login");
+		mav.addObject("title", "관리자로그인");
 		mav.addObject("height", "52%");
 		return mav;
 	}
