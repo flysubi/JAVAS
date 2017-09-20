@@ -59,9 +59,9 @@
 					<ul class="nav nav-pills">
 						<li class="active"><a href="#1a" data-toggle="tab">Overview</a>
 						</li>
-						<li><a href="#2a" data-toggle="tab">Using nav-pills</a></li>
-						<li><a href="#3a" data-toggle="tab">Applying clearfix</a></li>
-						<li><a href="#4a" data-toggle="tab">Background color</a></li>
+						<li><a href="#2a" data-toggle="tab">F&Q</a></li>
+						<li><a href="#3a" data-toggle="tab">Q&A</a></li>
+						<li><a href="#4a" data-toggle="tab">나의 Q&A</a></li>
 					</ul>
 				</div>
 			</div>

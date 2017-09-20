@@ -86,6 +86,21 @@ public class AdminDao {
 		return list;
 	}
 	
+	public boolean memberDel(String id) {
+		SqlSession session = factory.openSession();
+		try {
+			session.delete("admin.memberDel", id);
+			return true;
+		} catch (Exception e) {
+			System.out.println("[admin] memberDel error ... " + e.toString());
+			return false;
+		} finally {
+			session.close();
+		}
+	}
+	
+	
+	
 	public List<Map> getPoint(String id) {
 		SqlSession session = factory.openSession();
 		try {

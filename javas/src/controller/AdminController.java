@@ -80,7 +80,6 @@ public class AdminController {
 		ModelAndView mav = new ModelAndView("t_el");
 
 		List<Map<String, Object>> list = adao.member();
-		System.out.println(list);
 		mav.addObject("section", "admin/member");
 		mav.addObject("list", list);
 		return mav;
@@ -162,6 +161,20 @@ public class AdminController {
 
 		return mav;
 	}
+	
+	@RequestMapping("/memberDel") 
+	public Map memberDel(@RequestParam (name="id" ) String id, HttpSession session) {
+		System.out.println(id);
+		Map map = new HashMap<>();
+		boolean flag = false;
+		String admin = (String)session.getAttribute("auth");
+		if(admin.equals("admin")) {
+			flag = adao.memberDel(id);
+		}
+		map.put("flag", flag);
+		return map;
+	}
+	
 	
 
 	@RequestMapping("/pointModal.jv")
