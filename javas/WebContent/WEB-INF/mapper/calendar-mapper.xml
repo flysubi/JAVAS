@@ -11,7 +11,7 @@
  		LISTAGG(icontent, ',') WITHIN GROUP (ORDER BY icontent) icontent,
  		LISTAGG(expense, ',') WITHIN GROUP (ORDER BY expense) expense,
  		LISTAGG(econtent, ',') WITHIN GROUP (ORDER BY econtent) econtent,
- 		LISTAGG(num, ',') WITHIN GROUP (ORDER BY num) anum FROM asset GROUP BY cnum) a on c.num = a.cnum where id=#{id})
+ 		LISTAGG(num, ',') WITHIN GROUP (ORDER BY num) anum FROM asset GROUP BY cnum) a on c.num = a.cnum where id=#{id} ) 
 	</select>
 	<update id="updateCal" parameterType="java.util.HashMap">
 		update calendar set title=#{title}, cdate=#{date},
@@ -27,7 +27,7 @@
 		where id=#{id} and dday='true' order by cdate ) where rownum <=3 and dd < 0
 		]]>
 	</select>
-	<select id="todayCal" resultType="java.util.HashMap">
-		select * from calendar where cdate = to_char(sysdate)
+	<select id="todayCal" resultType="java.util.HashMap" parameterType="java.lang.String">
+		select * from calendar where cdate = to_char(sysdate) and id=#{id} order by ctime
 	</select>
 </mapper>

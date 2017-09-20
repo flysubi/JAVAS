@@ -11,8 +11,8 @@
 	</insert>
 	<!-- 특정 -->
 	<select id="getTalks"  resultType="java.util.HashMap" parameterType="java.util.HashMap">
-		select * from ( select rownum as r, tmp.* from (select * from (select f.*, c.*, to_char(sysdate) as today, to_char(writedate) as freeday from freetalk f left join 
-	(select ft_num,count(*) as cnt from comments group by ft_num) c on f.num = c.ft_num)
+			select * from ( select rownum as r, tmp.* from (select * from (select f.*, c.*, to_char(sysdate) as today, to_char(writedate) as freeday from freetalk f left join 
+		(select ft_num,count(*) as cnt from comments group by ft_num) c on f.num = c.ft_num)
 			<choose>
          <when test="option != '' and option != null">
             <choose>
@@ -51,7 +51,6 @@
             </choose>
          </when>
       </choose>
-		order by num desc ) tmp ) where r between #{start} and #{end}
 		<choose>
 			<when test="sequence != '' and sequence != null">
 			<choose>
@@ -63,8 +62,15 @@
 				</otherwise>
 			</choose>
 			</when>
+			<otherwise>
+			order by num desc
+			</otherwise>
 		</choose>
+		 ) tmp ) where r between #{start} and #{end}
 	</select>
+	
+	
+	
 	<select id="countAll" resultType="java.lang.Integer" parameterType="java.util.HashMap">
 		select count(*) from freetalk 
 		<choose>

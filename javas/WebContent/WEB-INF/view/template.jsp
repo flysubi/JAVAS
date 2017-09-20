@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"  %>
@@ -31,10 +30,8 @@ body {
 	font-family:HelveticaNeue,'나눔바른고딕',NanumBarunGothic,AppleSDGothicNeo-Regular,sans-serif;
 	
 }
-.fusion-footer-widget-area {border-top:1px; color: black;}
-
 </style>
-<body>
+<body >
 	<nav>
 		<tiles:insertAttribute name="nav"/> <!-- value값 include -->
 	</nav>
@@ -53,11 +50,10 @@ body {
 		<tiles:insertAttribute name="section"/>
 	</section>
 	</c:otherwise>
-
-	</c:choose>
-	<footer style="background-color: white; color:black; padding:32; width: 1600px;">
-		<tiles:insertAttribute name="footer"/>
-
+	</c:choose> 
+		<hr style="margin: ;"/>  
+	<footer style="background-color: white; color:black; padding: 5px;">  
+		<tiles:insertAttribute name="footer"/>  
 	</footer>
 </body>
 </html>
