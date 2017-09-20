@@ -91,18 +91,15 @@
 </style>
 
 <body style="position:relative;">
-<<<<<<< HEAD
 	<div id="slidebox" style="position: relative;">
 		<ul id="slider">
 			<li><img alt="main" src="/style/새메인.png"/></li>
 			<li>            
-=======
    <div id="slidebox" style="position: relative;">
       <ul id="slider">
          <li><img alt="main" src="/style/새메인.png"/></li>
          <li>
                        
->>>>>>> branch 'master' of https://github.com/flysubi/JAVAS.git
               <div style="position: absolute; left: 300px; height:400px; bottom: 0px;">
                <button 
                 style="background-color: transparent; border: none;"
@@ -151,7 +148,6 @@
           <div style="position:absolute; left:665px; height:310px; bottom: 0px;">      
               <p id="realTimer"></p>     
              </div> 
-<<<<<<< HEAD
 			</li>
 		</ul>
 	</div>
@@ -171,27 +167,6 @@
 	     </a>
 	   </div>
 	</div>
-=======
-         </li>
-      </ul>
-   </div>
-   <div style="position: relative;">
-     <img alt="javas" src="/style/javas2.png">
-     <img alt="good" src="/style/좋은점.png">
-     <img alt="join" src="/style/가입문.png">
-     
-     <div style="position: absolute; left: 550px;  top:855px;">
-          <a href="/user/join.jv">
-            <img alt="join2" src="/style/회원가입하러.png">
-          </a>
-      </div>
-      <div style="position:absolute; left:1280px; top:855px">
-        <a href="/menuer.jv">
-           <img alt="login2" src="/style/설정하러.png">        
-        </a>
-      </div>
-   </div>
->>>>>>> branch 'master' of https://github.com/flysubi/JAVAS.git
       
 
    
@@ -298,7 +273,6 @@ var tag = document.getElementById( "realTimer" );
 
      tag.innerHTML = timer(); 
 
-<<<<<<< HEAD
 setInterval ( function() { tag.innerHTML = timer(); } , 1000 ); 
 
 
@@ -324,6 +298,3 @@ $(function(){
 </html>
 
 
-=======
-setInterval ( function() { tag.innerHTML = timer(); } , 1000 ); 
->>>>>>> branch 'master' of https://github.com/flysubi/JAVAS.git
