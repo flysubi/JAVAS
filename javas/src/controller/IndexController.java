@@ -22,13 +22,20 @@ public class IndexController {
 		ModelAndView mav = new ModelAndView("t_base");
 		
 		String id = (String)session.getAttribute("auth");
-		if(id != null) {
-			Map point = pdao.getPoint(id);
-			session.setAttribute("point", point.get("POINT"));
-		}
-		
-		mav.addObject("nav", "on");
-		return mav;
-	}
 	
+			if(id != null) {
+				if(!id.equals("admin")) {
+					
+				
+					Map point = pdao.getPoint(id);
+					session.setAttribute("point", point.get("POINT"));
+				}
+		
+				mav.addObject("nav", "on");
+	
+				
+			}
+			return mav;
+	
+	}
 }

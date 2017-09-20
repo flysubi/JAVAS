@@ -7,6 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <link rel="shortcut icon" href="/style/favicon.ico" type="image/x-icon" />
 
@@ -52,9 +53,11 @@ body {
 		<tiles:insertAttribute name="section"/>
 	</section>
 	</c:otherwise>
+
 	</c:choose>
 	<footer style="background-color: white; color:black; padding:32; width: 1600px;">
 		<tiles:insertAttribute name="footer"/>
+
 	</footer>
 </body>
 </html>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:websocket="http://www.springframework.org/schema/websocket"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd
@@ -9,19 +8,20 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	<mvc:annotation-driven /> <!-- mvc를 쓰는데있어서 필요한 객체 몇개를 한꺼번에 활성화시켜주는 태그 -->
-	<mvc:default-servlet-handler/> 
+	<mvc:default-servlet-handler />
 	<context:component-scan base-package="controller" />
 	<context:component-scan base-package="model" />
 	<context:component-scan base-package="handler" />
-	<!-- webSocket handler 등록  / Intercepter-->
+	<context:component-scan base-package="view" />
+	<!-- webSocket handler 등록 / Intercepter -->
 	<websocket:handlers>
-		<websocket:mapping handler="joinSocketHandler" path="/ws/join.ws"/>
+		<websocket:mapping handler="joinSocketHandler" path="/ws/join.ws" />
 	</websocket:handlers>
-	
+
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<constructor-arg name="prefix" value="/WEB-INF/view/" />
-		<constructor-arg name="suffix" value=".jsp" /> 
+		<constructor-arg name="suffix" value=".jsp" />
 		<property name="order" value="3" />
 	</bean>
 	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
@@ -38,16 +38,18 @@
 		</property>
 	</bean>
 	<!-- DBCP setting -->
-    <!-- 
+	
+	<!-- 
 	<bean class="com.mchange.v2.c3p0.ComboPooledDataSource" id="ds">
 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver" />
 		<property name="user" value="javas" />
 		<property name="password" value="1q2w3e4r" />
-		<property name="jdbcUrl" value="jdbc:oracle:thin:@javas-db-instance1.ceivtxuvpaot.us-east-2.rds.amazonaws.com:1521:orcl" />
+		<property name="jdbcUrl"
+			value="jdbc:oracle:thin:@javas-db-instance1.ceivtxuvpaot.us-east-2.rds.amazonaws.com:1521:orcl" />
 	</bean>
-     -->
-	
+	-->
 	 
+	
 	<bean class="com.mchange.v2.c3p0.ComboPooledDataSource" id="ds">
 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"/>
 		<property name="user" value="javas"/>
@@ -55,12 +57,11 @@
 		<property name="jdbcUrl" value="jdbc:oracle:thin:@192.168.10.70:1521:xe"/>
 	</bean>
 	
-
 	<!-- mybatis setting -->
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="ds" />
 		<property name="mapperLocations">
-			<list>				
+			<list>
 				<value>/WEB-INF/mapper/freetalk-mapper.xml</value>
 				<value>/WEB-INF/mapper/question-mapper.xml</value>
 				<value>/WEB-INF/mapper/user-mapper.xml</value>
@@ -70,20 +71,28 @@
 				<value>/WEB-INF/mapper/weather-mapper.xml</value>
 				<value>/WEB-INF/mapper/asset-mapper.xml</value>
 				<value>/WEB-INF/mapper/fitness-mapper.xml</value>
+				<value>/WEB-INF/mapper/admin-mapper.xml</value>
 			</list>
 		</property>
 	</bean>
-	<!--  mailSender -->
+	<!-- mailSender -->
 	<bean class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="smtp.gmail.com"/>
-		<property name="port" value="587"/>
-		<property name="username" value="JavasManager"/>
-		<property name="password" value="oracle123"/>
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="JavasManager" />
+		<property name="password" value="oracle123" />
 		<property name="javaMailProperties">
 			<props>
 				<prop key="mail.smtp.auth">true</prop>
 				<prop key="mail.smtp.starttls.enable">true</prop>
 			</props>
 		</property>
+	</bean>
+
+	<!-- multipart -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="uploadTempDir" value="/temp" />
+		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
 </beans>

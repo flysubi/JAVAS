@@ -30,6 +30,7 @@ public class CalendarController {
 		String id = (String) session.getAttribute("auth");
 		ModelAndView mav = new ModelAndView("t_el");
 		List<Map> list = cdao.getCal(id);
+		System.out.println(list);
 		mav.addObject("list", list);
 		mav.addObject("title", "Ä¶¸°´õ");
 		mav.addObject("section", "function/calendar");

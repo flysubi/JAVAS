@@ -12,12 +12,12 @@
 	<h2>게시글 쓰기</h2>
 	<div class="col-xs-0 col-md-1"></div>
 	<div class="col-xs-12 col-md-10">
-		<form action="/freetalk/addNewExec.jv" method="post">
+		<form action="/freetalk/addNewExec.jv" method="post" enctype="multipart/form-data">
 			<div class="form-group" align="left">
-				<div class="input-group">
+				<div class="input-group"> 
 					<select style="width: 223px;" class="form-control" name="cate">
-						<option value="" class="form-control">카테고리 선택하기</option>
-						<c:forTokens var="t" items="PC관리,인터넷,기타" delims=",">
+						<option value="" class="form-control" disabled selected>카테고리 선택하기</option>
+						<c:forTokens var="t" items="날씨,캘린더,길찾기,자산관리,건강,기타" delims=",">
 							<option value="${t}" class="form-control">${t}</option>
 						</c:forTokens>
 					</select>
@@ -32,6 +32,11 @@
 				<textarea id="summernote" rows="10" class="form-control"
 					name="content" placeholder="내용을 입력해주세요."></textarea>
 			</div>
+			<div class="form-group" align="left">
+				<input id="f" type="file" style="display: none" name="f"/>
+				<button type="button" id="add" class="btn btn-default" >첨부</button>
+				<label id="fn"></label>
+			</div>
 			<div class="form-group">
 				<button id="sbt" type="submit" class="btn btn-default"
 					style="width: 100%">확인</button>
@@ -41,38 +46,46 @@
 	<div class="col-xs-0 col-md-1"></div>
 </div>
 
+ 
 <script type="text/javascript">
     $(document).ready(function() {
       $('#summernote').summernote({
         height: 300,
-        minHeight: null,
-        maxHeight: null,
-        focus: true,
         callbacks: {
-          onImageUpload: function(files, editor, welEditable) {
-            for (var i = files.length - 1; i >= 0; i--) {
-              sendFile(files[i], this);
-            }
-          }
-        }
+        	onImageUpload: function(files, editor, welEditable) {
+                for (var i = files.length - 1; i >= 0; i--) {
+                  sendFile(files[i], this);
+                }
+        	}
+        },
       });
     });
     
     function sendFile(file, el) {
-      var form_data = new FormData();
-      form_data.append('file', file);
-      $.ajax({
-        data: form_data,
-        type: "POST",
-        url: '/image',
-        cache: false,
-        contentType: false,
-        enctype: 'multipart/form-data',
-        processData: false,
-        success: function(url) {
-          $(el).summernote('editor.insertImage', url);
-          $('#imageBoard > ul').append('<li><img src="'+url+'" width="480" height="auto"/></li>');
-        }
-      });
-    }
+        var form_data = new FormData();
+        form_data.append('file', file);
+        $.ajax({
+          data: form_data,
+          type: "POST",
+          url: '/freetalk/upload.jv',
+          cache: false,
+          contentType: false,
+          enctype: 'multipart/form-data',
+          processData: false,
+          success: function(url) {
+            $(el).summernote('editor.insertImage', url);
+            $('#imageBoard > ul').append('<li><img src="'+url+'" width="480" height="auto"/></li>');
+          }
+        });
+      } 
+    
+    $("#add").click(function() {
+		$("#f").click();
+	});
+	$("#f").change (function() {
+		$("#fn").html(this.value);
+	});
+
 </script>
+
+

@@ -28,8 +28,8 @@ b {
 								type="password" class="form-control" name="pass"
 								placeholder="비밀번호" required="required"
 								style="width: 73%; height: 50px;">
-							<button type="submit" class="btn bnt-default"
-								style="background-color: LightSkyBlue; color: white; font-weight: 900; height: 100px; width: 27%; font-size: 16px;">로그인</button>
+							<button type="submit" class="btn bnt-default" 
+								style="background-color: Plum; color: white; font-weight: 900; height: 100px; width: 27%; font-size: 16px;">로그인</button>
 						</div>
 						<c:if test="${lfalse ne null }">
 							<span style="color: red; float: left;">아이디 또는 비밀번호가 잘못되었습니다.</span><br/><span style="color: red; float: left; padding-bottom: 5px;">다시

@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!-- Modal -->
 <div class="modal-header" id="myModal">
 	<button type="button" class="close" data-dismiss="modal">&times;</button>
 	<h4 class="modal-title">댓글</h4>
 </div>
 <div class="modal-body">
-	<hr style="background-color: silver; height: 1px; width: 80%" />
+	<hr style="background-color: silver; height: 1px; width: 80%; margin-left: 10%; margin-right: 10%;"/>
 	<c:forEach var="i" items="${list}">
 		<p style="text-align: left; padding-left: 80px;">
 			<b>${i.WRITER}</b> | ${i.FC}
@@ -19,7 +18,7 @@
 			</c:if>
 			<br/> ${i.CONTENT}
 		</p>
-		<hr style="background-color: silver; height: 1px; width: 80%" />
+		<hr style="background-color: silver; height: 1px; width: 80%;  margin-left: 10%; margin-right: 10%;" />
 	</c:forEach>
 </div>
 <script>

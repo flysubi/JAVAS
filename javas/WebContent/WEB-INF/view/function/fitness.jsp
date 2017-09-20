@@ -14,17 +14,21 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 .font {
 /* 	font-family: 나눔바른펜;  */
 }
+img {
+    vertical-align: baseline;
+}
+a:HOVER {
+	color: gray;
+}
 </style>
 <div class="font">
-<div>
-	<h3 style="padding-bottom: 15px;">
-		TODAY 
-		<fmt:formatDate value="${toDay}" pattern="yyyy-MM-dd" />
-		<button class="btn btn-default" id="myBtn3">My Graph</button>
-	</h3>
+<div align="left" style="padding-top: 15px;">
+	<h3>    
+		<fmt:formatDate value="${toDay}" pattern="yyyy년 MM월 dd일" />  
+	</h3> 
 </div>
 
-<!-- 그래프 Modal -->
+<!-- 그래프 Modal --> 
 <div id="modal-testNew3" class="modal fade" tabindex="-1" role="dialog">
 	<div class="modal-dialog" style="width: 900px; height: 700px">
 		<div id="modal-content3" class="modal-content"></div>
@@ -32,7 +36,14 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 </div>
 
 <div class="col-xs-4 col-md-4">
-	<h3 align="left">MY FITNESS</h3>
+<div align="center" style="padding-top: 15px; padding-left: 47px;">
+	<span style="font-size: 20pt;"  >    
+		오늘의 체중
+	</span>  
+		<a href="javascript:graph()" >
+		<img align="top" src="/icon/graph2.png" onmouseover="this.src='/icon/graph.png'" onmouseout="this.src='/icon/graph2.png'"></img>
+		</a>
+</div>
 	<c:if test="${map.AC eq null }">
 		<b style="color: red;">Fitness 정보를 입력해주세요.</b>
 	</c:if>
@@ -48,12 +59,13 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 				style="width: 100px;" />
 		</div>
 		<div class="form-group" align="center" style="padding-top: 20px;">
-			<button type="submit" class="form-control" style="width: 100px;">저장하기</button>
-		</div>
-	</form>
+			<button type="submit" class="w3-button w3-deep-purple w3-hover-deep-purple" style="width: 100px;">저장하기</button>
+		</div> 
+	</form> 
 	<hr />
-	<h3 align="left">MY FIT_INFO</h3>
-	<div style="padding-top: 10px;">
+	  
+<!-- 	<h3 align="left">MY FIT_INFO</h3> -->
+	<div style="padding-top: 10px; text-align: left;">
 		<h4 style="padding-top: 10px;">
 			<span class="glyphicon glyphicon-scale"></span> 표준체중 <small>
 				${map.SW}kg</small>
@@ -87,13 +99,21 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 
 </div>
 
+<img src="기본이미지주소" onmouseover="this.src='마우스올렸을때 바뀔이미지주소'" onmouseout="this.src='기본이미지주소'" border="0">
+
+
 <div class="col-xs-4 col-md-4" >
-	<h3 align="left" style=" padding-left: 120px;">오늘의 식단</h3>
-	<div style="padding-top: 10px; text-align: left; padding-left: 120px;">
-		<button class="btn btn-default" id="myBtn">식사를 기록하세요.</button>
-	</div>
-	<div style="padding-top: 10px;">
-		<c:forEach var="i" items="${list }">
+<div align="center" style="padding-top: 15px; padding-left: 47px;">
+	<span style="font-size: 20pt;"  >    
+		오늘의 식단
+	</span>  
+		<a href="javascript:meal()" >
+		<img align="top" src="/icon/meal2.png" onmouseover="this.src='/icon/meal.png'" onmouseout="this.src='/icon/meal2.png'"></img>
+		</a>
+</div>
+	<div style="padding-top: 10px;"> 
+	<div style=" overflow: auto; width:350px; height:300px;">
+		<c:forEach var="i" items="${list }"> 
 			<p style="text-align: left; padding-left: 120px; ">
 				<a href="javascript:myMenuDel(${i.NUM })"
 					style="color: LightSkyBlue;"><span
@@ -101,6 +121,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 					style="font-size: 13pt;">${i.NAME}</span> <small>${i.KCAL}kcal</small>
 			</p>
 		</c:forEach>
+		</div>
 		<hr />
 		<div  align="right" style="padding-right: 50px;">
 			<c:choose>
@@ -123,13 +144,17 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 	</div>
 </div>
 
-
 <div class="col-xs-4 col-md-4 " >
-	<h3 align="left" style=" padding-left: 120px;">오늘의 운동</h3>
-	<div style="padding-top: 10px; text-align: left; padding-left: 120px; ">
-		<button class="btn btn-default" id="myBtn2" >운동을 기록하세요.</button>
-	</div>
+	<div align="center" style="padding-top: 15px; padding-left: 47px;">
+	<span style="font-size: 20pt;"  >    
+		오늘의 운동
+	</span>  
+		<a href="javascript:exercise()" >
+		<img align="top" src="/icon/fitness2.png" onmouseover="this.src='/icon/fitness.png'" onmouseout="this.src='/icon/fitness2.png'"></img>
+		</a>
+</div>
 	<div style="padding-top: 10px;">
+	<div style=" overflow: auto; width:350px; height:300px;">
 		<c:forEach var="i" items="${list2 }">
 			<p style="text-align: left; padding-left: 120px; ">
 				<a href="javascript:myExerDel(${i.NUM })"
@@ -138,6 +163,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 					style="font-size: 13pt;">${i.NAME}</span> <small>${i.KCAL}kcal</small>
 			</p>
 		</c:forEach>
+		</div>
 		<hr />
 		<div align="right" style="padding-right: 50px;">
 			<b style="color: Blue; ">${total2}kcal</b>
@@ -165,32 +191,33 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 				$(this).val($(this).val().substring(0, 3));
 			}
 		});
-		$("#myBtn").click(function() {
-			$.ajax({
-				"url" : "/function/fitnessModal.jv"
-			}).done(function(result) {
-				$("#modal-content").html(result);
-				$("#modal-testNew").modal();
-			});
-		});
-		$("#myBtn2").click(function() {
-			$.ajax({
-				"url" : "/function/exerciseModal.jv"
-			}).done(function(result) {
-				$("#modal-content2").html(result);
-				$("#modal-testNew2").modal();
-			});
-		});
-		$("#myBtn3").click(function() {
+
+	});
+		function graph() {
 			$.ajax({
 				"url" : "/function/graphModal.jv"
 			}).done(function(result) {
 				$("#modal-content3").html(result);
 				$("#modal-testNew3").modal();
 			});
-		});
-
-	});
+		}
+		
+		function meal() {
+			$.ajax({
+				"url" : "/function/fitnessModal.jv"
+			}).done(function(result) {
+				$("#modal-content").html(result);
+				$("#modal-testNew").modal();
+			});
+		}
+		function exercise() {
+			$.ajax({
+				"url" : "/function/exerciseModal.jv"
+			}).done(function(result) {
+				$("#modal-content2").html(result);
+				$("#modal-testNew2").modal();
+			});
+		}
 
 	function myMenuDel(num) {
 		$.ajax({

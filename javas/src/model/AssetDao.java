@@ -83,4 +83,29 @@ public class AssetDao {
 			session.close();
 		}
 	}
+	public List<Map<String, Object>> getAssetI(Map map) {
+		SqlSession session = factory.openSession();
+		try {
+			List<Map<String, Object>> list = session.selectList("asset.getAssetI", map);
+			return list;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			session.close();
+		}
+	}
+	
+	public List<Map<String, Object>> getAssetE(Map map) {
+		SqlSession session = factory.openSession();
+		try {
+			List<Map<String, Object>> list = session.selectList("asset.getAssetE", map);
+			return list;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			session.close();
+		}
+	}
 }
