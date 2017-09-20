@@ -3,6 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <style>
+
 .w3-table td, .w3-table th, .w3-table-all td, .w3-table-all th {
 	text-align: center;
 }
@@ -22,7 +23,6 @@
 
 table {
 	font-size: small;
-	
 }
 
 .well {
@@ -33,20 +33,31 @@ table {
 	<div class="col-xs-1 col-md-1"></div>
 	<div align="left" class="row well col-xs-10 col-md-10"
 		style="padding-bottom: 10px; padding-top: 10px;">
-		<form action="/memo/list.jv" id="submit" method="post">
+		<form action="/freetalk/allTalks.jv" id="submit" method="post">
 			<div class="col-xs-3 col-md-3">
 				<select style="width: 223px;" class="w3-select w3-border"
 					name="category" id="category">
-					<option value="" disabled selected>쪽지 검색</option>
+					<option value="" disabled selected>카테고리 검색</option>
 					<option value="" ${"" eq param.category ? 'selected' : ''}>전체
 						카테고리 선택</option>
-					<option value="전체쪽지" ${"전체쪽지" eq param.category ? 'selected' : ''}>전체쪽지</option>
-					<option value="받은쪽지" ${"받은쪽지" eq param.category ? 'selected' : ''}>받은쪽지</option>
-					<option value="보낸쪽지" ${"보낸쪽지" eq param.category ? 'selected' : ''}>보낸쪽지</option>
-					<option value="보관쪽지" ${"보관쪽지" eq param.category ? 'selected' : ''}>보관쪽지</option>
-					<option value="내게쓴쪽지" ${"내게쓴쪽지" eq param.category ? 'selected' : ''}>내게쓴쪽지</option>
-			</select>
-			</div>			
+					<option value="날씨" ${"날씨" eq param.category ? 'selected' : ''}>날씨</option>
+					<option value="캘린더" ${"캘린더" eq param.category ? 'selected' : ''}>캘린더</option>
+					<option value="길찾기" ${"길찾기" eq param.category ? 'selected' : ''}>길찾기</option>
+					<option value="자산관리" ${"자산관리" eq param.category ? 'selected' : ''}>자산관리</option>
+					<option value="건강" ${"건강" eq param.category ? 'selected' : ''}>건강</option>
+					<option value="기타" ${"기타" eq param.category ? 'selected' : ''}>기타</option>
+				</select>
+			</div>
+			<div class="col-xs-2 col-md-2">
+				<select style="width: 150px;" class="w3-select w3-border"
+					name="sequence" id="sequence">
+					<option value="">최신순</option>
+					<option value="recommend"
+						${"recommend" eq param.sequence ? 'selected' : ''}>추천순</option>
+					<option value="title"
+						${"title" eq param.sequence ? 'selected' : ''}>제목순</option>
+				</select>
+			</div>
 			<div class="col-xs-6 col-md-6 " align="right">
 				<div class="w3-row">
 					<div class="w3-third w3-container" style="padding-right: 0;">
@@ -70,9 +81,6 @@ table {
 					</div>
 				</div>
 			</div>
-			<div class="w3-third w3-container">
-				받은쪽지함 "${sessionScope.
-			</div>
 			<div style="padding-top: 10px;">
 				<a href="javascript:refresh()"><span
 					class="glyphicon glyphicon-repeat"
@@ -87,56 +95,82 @@ table {
 	<table class="w3-table w3-bordered">
 		<thead>
 			<tr class="Info">
-				<th width= "6%" align="center"><input type="checkbox"
-							id="all"/></th>
-				<th width="15">보낸이</th>
-				<th width="60%">내용</th>
+
+				<th width="6%" align="center"><input type="checkbox" id="all" /></th>
+				<th width="6%"></th>
+				<th width="15%">보낸사람</th>
+				<th width="50%">내용</th>
 				<th width="20%">보낸날짜</th>
-				
+
 			</tr>
 		</thead>
-				
-				<c:if test="${!empty list}">
-					<tbody>
-						<c:forEach items="${list }" var="i">
-							<tr>
-								<td align="center"><input type="checkbox" class="chk" id="item"
-									name="num" value="${i.FT_NUM}" /></td>
-								<td><a href="/memo/write.jv?target=${i.FT_SENDER }">${i.FT_SENDER}</a></td>
-								<td><a href="/memo/detail.jv=${i.FT_NUM}">${i.FT_CONTENT}</td>
-								<td>${i.FT_DATE}</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</c:if>
-			</table>
 
-			<c:if test="${empty list }">
+		<c:if test="${!empty list}">
+			<tbody>
+				<c:forEach items="${list }" var="i">
+					<tr>
+						<td align="center"><input type="checkbox" class="chk"
+							id="item" name="num" value="${i.FT_NUM}" /></td>
+						<c:choose>
+							<c:when test="${i.CATEGORY eq '읽은쪽지'}">
+
+								<td><span class="glyphicon glyphicon-envelope"
+									style="color: white"></span></td>
+								<td><a href="/memo/write.jv?target=${i.FT_SENDER }"
+									style="color: white">${i.FT_SENDER}</a></td>
+								<td><a href="/memo/detail.jv=${i.FT_NUM}"
+									style="color: white">${i.FT_CONTENT}</a></td>
+							</c:when>
+							<c:otherwise>
+								<td><span class="glyphicon glyphicon-envelope"
+									style="color: black"></span></td>
+								<td><a href="/memo/write.jv?target=${i.FT_SENDER }"
+									style="color: black">${i.FT_SENDER}</a></td>
+								<td><a href="/memo/detail.jv=${i.FT_NUM}"
+									style="color: black">${i.FT_CONTENT}</a></td>
+
+							</c:otherwise>
+						</c:choose>
+						<c:choose>
+
+							<c:when test="${i.FT_DIFF < 1 }">
+								<fmt:formatDate value="${i.FT_DATE }" pattern="HH:mm" />
+							</c:when>
+							<c:otherwise>
+								<fmt:formatDate value="${i.FT_DATE }" pattern="yyyy-MM-dd" />
+							</c:otherwise>
+						</c:choose>
+						</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</c:if>
+	</table>
+
+	<c:if test="${empty list }">
 					받은 쪽지가 없습니다<br />
-			</c:if>
-		</div>
-		
+	</c:if>
+</div>
 
-	</form>
-	
+
+</form>
+
 </div>
 <script>
-document.getElementById("all").onchange = function() {
-	var flag = this.checked;
-	var items = document.getElementsByClassName("chk");
-	for(var i=0; i<items.length; i++) {
-		items[i].checked= flag;
+	document.getElementById("all").onchange = function() {
+		var flag = this.checked;
+		var items = document.getElementsByClassName("chk");
+		for (var i = 0; i < items.length; i++) {
+			items[i].checked = flag;
+		}
 	}
-}
 
-var item = document.getElementsByClassName("chk");
-for(var i =0 ; i<item.length; i++) {
-	item[i].onchange = function() {
-		if(this.checked== false) {
-			document.getElementById("all").checked= false;
-		}			
+	var item = document.getElementsByClassName("chk");
+	for (var i = 0; i < item.length; i++) {
+		item[i].onchange = function() {
+			if (this.checked == false) {
+				document.getElementById("all").checked = false;
+			}
+		}
 	}
-}
-
-	
 </script>

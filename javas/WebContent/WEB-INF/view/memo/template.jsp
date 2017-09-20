@@ -20,10 +20,10 @@
 		style="margin-top: 30px; margin-left: 0px;">
 		<ul class="nav nav-pills">
 			<a href="/memo/write.jv"><button type="button"
-				style="width: 100px; height: 30px; background-color: #5bc0de; color: white; border: 1px solid #5bc0de; font-size: 15px; position: absolute; left: 0px;"
+				style="width: 100px; height: 40px; background-color: #5bc0de; color: white; border: 1px solid #5bc0de; font-size: 15px; position: absolute; left: 0px;"
 				onclick="location.href='/memo/write.jv?'">쪽지쓰기</button></a>
 			<button type="button"
-				style="width: 100px; height: 30px; background-color: #5bc0de; color: white; border: 1px solid #5bc0de; font-size: 15px; position: absolute; left: 100px;"
+				style="width: 100px; height: 40px; background-color: #5bc0de; color: white; border: 1px solid #5bc0de; font-size: 15px; position: absolute; left: 100px;"
 				onclick="location.href='/memo/write.jv?my=${auth}'">내게쓰기</button>
 		</ul>
 
@@ -33,9 +33,9 @@
 			<li class="${active eq 'mylist' ? 'active' : '' }" align="left"
 				style="margin-left: 0px;"><a href="/memo/mylist.jv">내게쓴쪽지함&nbsp;${sessionScope.mymemo }</a></li>
 			<li class="${active eq 'sendlist' ? 'active' : '' }" align="left"
-				style="margin-left: 0px;"><a href="/memo/mysend">보낸쪽지함&nbsp;${sessionScope.mysend }</a></li>
+				style="margin-left: 0px;"><a href="/memo/mywrite">보낸쪽지함</a></li>
 			<li class="${active eq 'savelist' ? 'active' : '' }" align="left"
-				style="margin-left: 0px;"><a href="/memo/savelist">쪽지보관함&nbsp;${sessionScope.smemo }</a></li>
+				style="margin-left: 0px;"><a href="#">쪽지보관함</a></li>
 		</ul>
 	</div>
 
