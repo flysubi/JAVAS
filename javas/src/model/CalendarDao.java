@@ -79,10 +79,10 @@ public class CalendarDao {
 		}
 	}
 	
-	public List<Map> todayCal() {
+	public List<Map> todayCal(String id) {
 		SqlSession session = factory.openSession();
 		try {
-			List<Map> list = session.selectList("calendar.todayCal");
+			List<Map> list = session.selectList("calendar.todayCal",id);
 			return list;
 		} catch(Exception e) {
 			System.out.println("[calendar] todayCal error ... "+e.toString());

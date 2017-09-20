@@ -31,7 +31,6 @@ public class CalendarController {
 		String id = (String) session.getAttribute("auth");
 		ModelAndView mav = new ModelAndView("t_el");
 		List<Map> list = cdao.getCal(id);
-		System.out.println(list);
 		mav.addObject("list", list);
 		mav.addObject("title", "Ä¶¸°´õ");
 		mav.addObject("section", "function/calendar");
@@ -157,7 +156,7 @@ public class CalendarController {
 		String id = (String) session.getAttribute("auth");
 		ModelAndView mav = new ModelAndView("t_el");
 		List<Map> dday = cdao.ddayCal(id);
-		List<Map> today = cdao.todayCal();
+		List<Map> today = cdao.todayCal(id);
 		mav.addObject("dday", dday);
 		mav.addObject("today", today);
 		mav.addObject("section", "function/calTest");
@@ -166,8 +165,9 @@ public class CalendarController {
 	
 	@RequestMapping("/calTtsAjax.jv")
 	@ResponseBody
-	public List calTtsAjax() {
-		List<Map> list  = cdao.todayCal();
+	public List calTtsAjax(HttpSession session) {
+		String id = (String)session.getAttribute("auth");
+		List<Map> list  = cdao.todayCal(id);
 		return list;
 	}
 }

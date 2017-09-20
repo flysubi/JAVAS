@@ -26,8 +26,8 @@
 	<div class="modal fade" id="myModal" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
-			<div class="modal-content" style="width: 550px;">
-				<div class="modal-header" align="center">
+			<div class="modal-content" style="width: 700px;">
+				<div class="modal-header" align="center"> 
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h3>
 						오늘은 <span class="glyphicon glyphicon-music"></span>
@@ -114,25 +114,25 @@
 				} else {
 					message += "없습니다.";
 				}
-				$.ajax({
-					url : "/tts/ttsAjax.jv",
-					data : {
-						"message" : message
-					}
-				}).done(function(rst3){ 
-					var audio = new Audio("/voice//"+rst3);
-					audio.play();   
-					deleteFile(rst3); 
-				});
+// 				$.ajax({
+// 					url : "/tts/ttsAjax.jv",
+// 					data : {
+// 						"message" : message
+// 					}
+// 				}).done(function(rst3){ 
+// 					var audio = new Audio("/voice//"+rst3);
+// 					audio.play();   
+// 					deleteFile(rst3); 
+// 				});
 				
-				var deleteFile = function(rst3) { 
-					$.ajax({
-						url : "/tts/ttsDeleteAjax.jv",
-						data : {
-							"tempname" : rst3 
-						}
-					})
-				};  
+// 				var deleteFile = function(rst3) { 
+// 					$.ajax({
+// 						url : "/tts/ttsDeleteAjax.jv",
+// 						data : {
+// 							"tempname" : rst3 
+// 						}
+// 					})
+// 				};  
 				});
 			});
 		});

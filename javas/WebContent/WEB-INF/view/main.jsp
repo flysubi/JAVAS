@@ -61,7 +61,7 @@
               
               <div style="position: absolute; left:480px; height:150px; bottom: 0px;">
               <a href="/function/calendar.jv">
-               <img alt="callender" src="/style/캘랜더.png" style="width:90px; height:90px;">
+               <img alt="callender" src="/style/캘린더2.png" style="width:90px; height:90px;">
               </a>
               </div>
               
