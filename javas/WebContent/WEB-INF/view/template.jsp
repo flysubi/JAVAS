@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"  %>
@@ -32,7 +31,7 @@ body {
 	
 }
 </style>
-<body>
+<body >
 	<nav>
 		<tiles:insertAttribute name="nav"/> <!-- value값 include -->
 	</nav>
@@ -52,8 +51,9 @@ body {
 	</section>
 	</c:otherwise>
 	</c:choose> 
-	<footer style="background-color: white; color:black; padding:32; width: 1600px; "> 
-		<tiles:insertAttribute name="footer"/> 
+		<hr style="margin: ;"/>  
+	<footer style="background-color: white; color:black; padding: 5px;">  
+		<tiles:insertAttribute name="footer"/>  
 	</footer>
 </body>
 </html>

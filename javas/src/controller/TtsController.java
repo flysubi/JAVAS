@@ -48,7 +48,7 @@ public class TtsController {
             wr.writeBytes(postParams);
             wr.flush();
             wr.close();
-            int responseCode = con.getResponseCode();
+            int responseCode = con.getResponseCode(); 
             BufferedReader br;
             if(responseCode==200) { // 정상 호출
                 InputStream is = con.getInputStream();

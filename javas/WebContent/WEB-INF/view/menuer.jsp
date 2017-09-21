@@ -53,36 +53,73 @@
 	
 	ul,li{list-style:none;}
 	
-	#slide{left:50px; width:1034px;height:500; position:relative;overflow:hidden;}
-	#slide ul{width:400%;height:100%;transition:1s;}
+	#slide{
+	left:85px;
+	width:1034px;
+	height:500; 
+	position:relative;
+	overflow:hidden;
+	}
+	
+	#slide ul{width:600%;height:100%;transition:1s;}
 	#slide ul:after{content:"";display:block;clear:both;}
-	#slide li{float:left;width:25%;height:100%;}
+	#slide li{float:left;width:1034px;height:100%;}
 	
 	#slide li:nth-child(1){background-image: url("/style/메뉴얼표.png");}
 	#slide li:nth-child(2){background-image: url("/style/메뉴얼날씨.png");}
 	#slide li:nth-child(3){background-image: url("/style/메뉴얼캘랜더.png");}
 	#slide li:nth-child(4){background-image: url("/style/메뉴얼길찾기.png");}
+	#slide li:nth-child(5){background-image: url("/style/메뉴얼자산관리.png");}
+	#slide li:nth-child(6){background-image: url("/style/메뉴얼건강.png");}
 	
 	#slide input{display:none;}
-	#slide label{display:inline-block;vertical-align:middle;width:10px;height:10px;border:2px solid #666;background:#fff;transition:0.3s;border-radius:50%;cursor:pointer;}
-	#slide .pos{text-align:center;position:absolute;bottom:10px;left:0;width:100%;text-align:center;}
+	
+	#slide label
+	{
+	display:inline-block;
+	vertical-align:middle;
+	width:10px;
+	height:10px;
+	border:2px solid #666;
+	background:#fff;
+	transition:0.3s;
+	border-radius:50%;
+	cursor:pointer;}
+	
+	#slide .pos
+	{
+	text-align:center;
+	position:absolute;
+	bottom:10px;
+	left:0;
+	width:1034px;
+	text-align:center;}
 	
 	#pos1:checked~ul{margin-left:0%;}
 	#pos2:checked~ul{margin-left:-100%;}
 	#pos3:checked~ul{margin-left:-200%;}
 	#pos4:checked~ul{margin-left:-300%;}
+	#pos5:checked~ul{margin-left:-400%;}
+	#pos6:checked~ul{margin-left:-500%;}
 	
 	#pos1:checked~.pos>label:nth-child(1){background:#666;}
 	#pos2:checked~.pos>label:nth-child(2){background:#666;}
 	#pos3:checked~.pos>label:nth-child(3){background:#666;}
 	#pos4:checked~.pos>label:nth-child(4){background:#666;}
+	#pos5:checked~.pos>label:nth-child(5){background:#666;}
+	#pos6:checked~.pos>label:nth-child(6){background:#666;}
 </style>
 <div id="slide">
 	<input type="radio" name="pos" id="pos1" checked>
 	<input type="radio" name="pos" id="pos2">
 	<input type="radio" name="pos" id="pos3">
 	<input type="radio" name="pos" id="pos4">
+	<input type="radio" name="pos" id="pos5">
+	<input type="radio" name="pos" id="pos6">
+	
 	<ul>
+		<li></li>
+		<li></li>
 		<li></li>
 		<li></li>
 		<li></li>
@@ -93,8 +130,11 @@
 		<label for="pos2"></label>
 		<label for="pos3"></label>
 		<label for="pos4"></label>
+		<label for="pos5"></label>
+		<label for="pos6"></label>
 	</p>
 </div>
+
 </body>			
 
 <script type="text/javascript">
