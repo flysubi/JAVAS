@@ -134,9 +134,10 @@ public class MemoController {
 	
 	@RequestMapping("/writeExec.jv")
 	public ModelAndView sendExec(@RequestParam Map<String, String> map, HttpSession session) {
-		ModelAndView mav = new ModelAndView();
 		map.put("id", (String) session.getAttribute("auth"));
-		System.out.println(map);
+		ModelAndView mav = new ModelAndView();
+		
+		
 		if(map.get("receiver").equals(map.get("id"))) {
 			map.put("category", "내게쓴쪽지");
 		}else {
@@ -150,6 +151,10 @@ public class MemoController {
 			
 			mav.addObject("result", "fff");
 		}
+		mav.addObject("section", "alert/memo");
+		boolean rst = false;
+		rst = mm.send(map);
+		mav.addObject("rst", rst);
 		return mav;
 	}
 	

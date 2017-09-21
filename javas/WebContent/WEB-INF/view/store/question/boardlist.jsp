@@ -43,6 +43,11 @@
 	background-color: #e5eecc;
 	border: solid 1px #c3c3c3;
 }
+.wrap .table td {
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}
 </style>
 
 

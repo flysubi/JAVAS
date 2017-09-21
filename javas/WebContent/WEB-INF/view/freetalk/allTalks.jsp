@@ -9,7 +9,9 @@
 	font-size: 15px;
 	cursor: pointer;
 }
-
+th, td {
+	font-size: 16px;
+}
 .bt {
 	background-color: white;
 	color: black;
@@ -18,10 +20,16 @@
 
 table {
 	font-size: small;
+	table-layout: fixed;
 }
 
 .well {
 	background: white;
+}
+.wrap .table, td {
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
 }
 </style>
 <div class="row" style="padding-bottom: 10px; padding-top: 10px;">
@@ -142,7 +150,7 @@ table {
 	<ul class="pagination">
 		<c:forEach var="i" begin="1" end="${size}">
 			<li class="${i eq page ? 'active' :'' }"><a
-				href="/freetalk/allTalks.jv?p=${i }&category=${param.category}">${i}</a></li>
+				href="/freetalk/allTalks.jv?p=${i }&category=${param.category}&sequence=${param.sequence }&option=${param.option }&search=${param.search}">${i}</a></li>
 		</c:forEach>
 	</ul>
 </div>
@@ -180,9 +188,6 @@ table {
 	}
 
 if(${num ne null}) {
-	 openModal(${num});
-	 
-	 
+	 openModal(${num}); 
 }
-
 </script>

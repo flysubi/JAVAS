@@ -24,15 +24,21 @@
 	 		select member.*, info.* from member join info 
      		on member.id=info.id where member.id=#{id}
 	 	</select>
+	 	<update id="info_step0" parameterType="java.util.HashMap">
+	 		update member set email=#{email} where id=#{id}
+	 	</update>
 	 	<update id="info_step1" parameterType="java.util.HashMap">
 	 		update member set email=#{email}, password=#{pass} where id=#{id}
 	 	</update>
 	 	<update id="info_step2" parameterType="java.util.HashMap">
 	 		update info set name=#{name, jdbcType=VARCHAR}, gender=#{gender, jdbcType=VARCHAR},
 	 		year=#{year, jdbcType=INTEGER}, month=#{month, jdbcType=INTEGER},
-	 		day=#{day, jdbcType=INTEGER} where id=#{id}
+	 		day=#{day, jdbcType=INTEGER}, voice=#{voice,  jdbcType=INTEGER} where id=#{id}
 	 	</update>
 	 	<update id="logindate" parameterType="java.lang.String">
 	 		update member set logindate = sysdate where id=#{id}
 	 	</update>
+	 	<delete id="userDelete" parameterType="java.lang.String">
+	 		delete from member where id=#{id}
+	 	</delete>
  </mapper>

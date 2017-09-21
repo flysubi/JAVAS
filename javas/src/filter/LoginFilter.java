@@ -66,6 +66,7 @@ public class LoginFilter extends HttpFilter{
          chain.doFilter(req, resp);
       }else {
          resp.sendRedirect("/user/login.jv");
+         System.out.println("로그인 필터!!!");
       }
       
       

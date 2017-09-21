@@ -6,15 +6,17 @@
 		background-color: LightSkyBlue;
 	}
 	a {
-		color: #6aa563;
+		color: LightSkyBlue;
 		font-weight: 700;
 	}
 </style>
 <div class="row" style="margin-top: 30px;">
 	<div class="col-md-2">
 		<ul class="nav nav-stacked nav-pills">
-			<li class="${section eq 'user/userInfo' ? 'active' : '' }">
+			<li class="${section eq 'user/userInfo' ? 'active' : '' }" style="background-color: #DCF3F7;">
 			<a href="/user/userInfo.jv">기본정보</a></li>
+			<li class="${section eq 'user/userDelete' ? 'active' : '' }" style="background-color: #DCF3F7;">
+			<a href="/user/userDelete.jv">회원탈퇴</a></li>
 		</ul>
 	</div>
 	<div class="col-md-10">

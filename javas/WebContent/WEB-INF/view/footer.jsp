@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
-<div align="center">
-
-본 콘텐츠의 저작권은 JAVAS corp에 있으며, 이를 이용하는 경우 저작권법 등에 따라 법적책임을 질 수 있습니다.
-<br/>
-Copyright &copy; JAVAS Corp. All rights Reserved.
+	pageEncoding="UTF-8"%>
+<style>
+img {
+    vertical-align: baseline;
+}
+</style>
+<div class="w3-row">
+  <div class="w3-col m6 w3-center"><p style="text-align: center; margin-bottom: 20px;"><img alt="javas" src="/style/javasFooter.png">Copyright &copy;2017 JAVAS Corp. All rights Reserved.</p></div> 
+  <div class="w3-col m6 w3-center"><a href="https://fullcalendar.io/" target="_blank"><img src="/style/calLogo.png" style="height: 30px; width: 132px;"></a></div>
 </div>
+       
