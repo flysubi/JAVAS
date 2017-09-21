@@ -14,6 +14,7 @@
 		float: center; 
 		margin: 20px 600px; 
 		padding: 0;
+		text-align: left;
 	}
 	.modal-content.modal-fullsize {
 	  height: auto;
@@ -405,19 +406,19 @@ function initMap() {
 					var data2 = rst2;
 					var content = "";
 					content += "<th><td style=\"text-align: center;\"><img alt=\""+data.weather[0].icon+"\" src=\"/style/weather/weather-icon/"+data.weather[0].icon+".png\" style=\"height: 100px; width: 100px;\"/>";
-					content += "<span style=\"font-size: 40pt; vertical-align: top; padding-top:20px; margin-top:20px; font-weight: 700;\">"+parseInt(data.main.temp - 273.15)+"˚C</span><br/>";
-					content += "<b style=\"font-size:24px; padding-top: 20px;\">"+data2.MEAN+"</b></td>";
-					content += "<td style=\"padding-left: 20px; vertical-align: middle; \"><b>풍속 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+data.wind.speed+"m/s<br/>";
+					content += "<span style=\"font-size: 40pt; vertical-align: middle; font-weight: 700;\">"+parseInt(data.main.temp - 273.15)+"˚C</span><br/>";
+					content += "<b style=\"font-size:24px;\">"+data2.MEAN+"</b></td>";
+					content += "<td style=\"padding-left: 20px; padding-top: 27px; vertical-align: top; \"><b>풍속 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+data.wind.speed+"m/s<br/>";
 					content += "습도 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+data.main.humidity+"%</b>";
 					$("#content").html(content);
 					
 					var message = address.substring(5)+"의 날씨를 알려드리겠습니다. 현재 "+data2.MEAN+data2.VOICE
 					+" 기온은 "+parseInt(data.main.temp - 273.15)+"도, 풍속은 "+data.wind.speed+", 습도는"+data.main.humidity+"퍼센트 입니다.";
 					$.ajax({
-						url : "/tts/ttsAjax.jv",
+						//url : "/tts/ttsAjax.jv",
 						data : {
 							"message" : message,
-							"voice" : ${voice}
+							"voice" : ${voice eq null ? 2 : voice}
 						}
 					}).done(function(rst3){
 						var audio = new Audio("/voice//"+rst3);
@@ -488,7 +489,7 @@ $(document).ready(function() {
 				url : "/tts/ttsAjax.jv",
 				data : {
 					"message" : message,
-					"voice" : ${voice}
+					"voice" : ${voice eq null ? 2 : voice}
 				}
 		}).done(function(rst3){ 
 				var audio = new Audio("/voice//"+rst3);
