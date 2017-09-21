@@ -30,7 +30,8 @@ public class WeatherController {
 		session.setAttribute("title", "³¯¾¾");
 		return mav;
 	}
-	@RequestMapping("weatherCodeAjax.jv")
+	
+	@RequestMapping("/weatherCodeAjax.jv")
 	@ResponseBody
 	public Map<String, Object> weatherCodeAjax(@RequestParam(name="code")int code) {
 		Map<String, Object> map = new HashMap<>();

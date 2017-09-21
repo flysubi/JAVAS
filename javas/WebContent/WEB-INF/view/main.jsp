@@ -120,8 +120,8 @@
                 style="width: 110px;height:110px;">
                 </span>
               </button>
-          
               </div>
+              
               <div style="position: absolute; left:480px; height:150px; bottom: 0px;">
               <button id=cal style="background-color: transparent; border: none;">
                <span data-tooltip-text="캘랜더 바로가기">
@@ -239,6 +239,7 @@
       </div>
     </div>
   </div>
+>>>>>>> branch 'master' of https://github.com/flysubi/JAVAS
 <script type='text/javascript'>
 
 
@@ -351,7 +352,6 @@ var tag = document.getElementById( "realTimer" );
 
      tag.innerHTML = timer(); 
 
-
 setInterval ( function() { tag.innerHTML = timer(); } , 1000 ); 
 
 // function timer(){ 
@@ -415,7 +415,7 @@ function initMap() {
 					var message = address.substring(5)+"의 날씨를 알려드리겠습니다. 현재 "+data2.MEAN+data2.VOICE
 					+" 기온은 "+parseInt(data.main.temp - 273.15)+"도, 풍속은 "+data.wind.speed+", 습도는"+data.main.humidity+"퍼센트 입니다.";
 					$.ajax({
-						//url : "/tts/ttsAjax.jv",
+						url : "/tts/ttsAjax.jv",
 						data : {
 							"message" : message,
 							"voice" : ${voice eq null ? 2 : voice}
@@ -552,6 +552,4 @@ $(document).ready(function() {
 <script
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD--k3vwuB9cAExy9ezTOAo-FR6ajxUctw&callback=initMap"
 	async defer></script>
-
-
 

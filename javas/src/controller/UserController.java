@@ -222,7 +222,7 @@ public class UserController {
 
 	@RequestMapping("/logout.jv")
 	public String logout(HttpSession session, HttpServletResponse resp) throws IOException {
-		Cookie c = new Cookie("login", (String) session.getAttribute("auth"));
+		Cookie c = new Cookie("login", (String)session.getAttribute("auth"));
 		c.setPath("/");
 		c.setMaxAge(0);
 		resp.addCookie(c);

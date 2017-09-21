@@ -52,10 +52,9 @@ public class IndexController {
 					Map point = pdao.getPoint(id);
 					session.setAttribute("point", point.get("POINT"));
 				}
-				List<Map> dday = cdao.ddayCal(id);
 				List<Map> today = cdao.todayCal(id);
 				mav.addObject("voice", map2.get("VOICE"));
-				mav.addObject("dday", dday);
+				//mav.addObject("dday", dday);
 				mav.addObject("today", today);
 
 			}
