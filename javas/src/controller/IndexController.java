@@ -1,10 +1,6 @@
 package controller;
 
-<<<<<<< HEAD
-=======
 import java.math.BigDecimal;
-import java.util.ArrayList;
->>>>>>> branch 'master' of https://github.com/flysubi/JAVAS
 import java.util.List;
 import java.util.Map;
 

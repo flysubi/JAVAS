@@ -62,11 +62,8 @@
 <body style="position:relative;">
 	<div id="slidebox" style="position: relative;">
 		<ul id="slider">
-			<li><img alt="main" src="/style/새메인.png"/></li>
-			<li>            
-
-			<li>
-			              
+			<li><img alt="main" src="/style/새메인.png"/></li>          
+			<li>          
               <div style="position: absolute; left: 300px; height:400px; bottom: 0px;">
                <button id="wbt" data-toggle="modal" data-target="#myModal"
                 style="background-color: transparent; border: none;">
@@ -97,7 +94,8 @@
               </div>
               <div style="position: absolute; left:480px; height:150px; bottom: 0px;">
               <a href="/function/calendar.jv">
-               <img alt="callender" src="/style/캘린더2.png" style="width:90px; height:90px;">
+               <img alt="callender" src="/style/캘랜더.png" onmouseover="this.src='/style/캘랜더반전.png'" 
+                onmouseout="this.src='/style/캘랜더.png'" style="width:90px; height:90px;">
               </a>
               </div>
               

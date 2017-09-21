@@ -27,41 +27,40 @@
 		<div class="modal-dialog">
 			<!-- Modal content-->
 			<div class="modal-content" style="width: 550px;">
-				<div class="modal-header" align="center"  style="background-color: #D2E4F1;" >
+				<div class="modal-header" align="center"
+					style="background-color: #D2E4F1;">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h3>
 						오늘은 <span class="glyphicon glyphicon-music"></span>
 					</h3>
 				</div>
 				<div class="modal-body"
-					style="padding: 40px 50px; padding-top: 10px; ">
+					style="padding: 40px 50px; padding-top: 10px;">
 					<div class="row" style="text-align: left;">
 						<div class="col-sm-5">
 							<h3>
 								<span class="glyphicon glyphicon-ok"></span> 일정
 							</h3>
-					<table style="font-size: 10pt;" >
-							<c:forEach var="i" items="${today}">
-										<tr >
-										<td style="padding-right: 10px;padding-top: 5px;">
-										<c:choose>
-											<c:when test="${i.CTIME ne null }">
-										 <span id="${i.NUM}"></span>
-											</c:when>
-											<c:otherwise>
-											</c:otherwise>
-										</c:choose>
-									</td>
-									<td><b>${i.TITLE}</b></td> 
-										</tr>
-							</c:forEach>
-								</table>
+							<table style="font-size: 10pt;">
+								<c:forEach var="i" items="${today}">
+									<tr>
+										<td style="padding-right: 10px; padding-top: 5px;"><c:choose>
+												<c:when test="${i.CTIME ne null }">
+													<span id="${i.NUM}"></span>
+												</c:when>
+												<c:otherwise>
+												</c:otherwise>
+											</c:choose></td>
+										<td><b>${i.TITLE}</b></td>
+									</tr>
+								</c:forEach>
+							</table>
 							<c:if test="${empty today}">
 								<p id="today">오늘의 일정이 없습니다.</p>
-							</c:if> 
+							</c:if>
 						</div>
 						<div class="col-sm-7">
-							<h3> 
+							<h3>
 								<span class="glyphicon glyphicon-ok"></span> D-day
 							</h3>
 							<c:forEach var="i" items="${dday}">
@@ -75,9 +74,9 @@
 						</div>
 					</div>
 				</div>
-				 <div class="modal-footer" >
-        <img src="/style/javasicon.png" style="width: 62px; height: 16px" >
-        </div>
+				<div class="modal-footer">
+					<img src="/style/javasicon.png" style="width: 62px; height: 16px">
+				</div>
 			</div>
 		</div>
 	</div>
@@ -118,25 +117,25 @@
 				} else {
 					message += "없습니다.";
 				}
-// 				$.ajax({
-// 					url : "/tts/ttsAjax.jv",
-// 					data : {
-// 						"message" : message
-// 					}
-// 				}).done(function(rst3){ 
-// 					var audio = new Audio("/voice//"+rst3);
-// 					audio.play();   
-// 					deleteFile(rst3); 
-// 				});
+ 				$.ajax({
+ 					url : "/tts/ttsAjax.jv",
+ 					data : {
+ 						"message" : message
+ 					}
+				}).done(function(rst3){ 
+ 					var audio = new Audio("/voice//"+rst3);
+ 					audio.play();   
+ 					deleteFile(rst3); 
+ 				});
 				
-// 				var deleteFile = function(rst3) { 
-// 					$.ajax({
-// 						url : "/tts/ttsDeleteAjax.jv",
-// 						data : {
-// 							"tempname" : rst3 
-// 						}
-// 					})
-// 				};  
+ 				var deleteFile = function(rst3) { 
+					$.ajax({
+						url : "/tts/ttsDeleteAjax.jv",
+						data : {
+							"tempname" : rst3 
+						}
+					})
+ 				};  
 				});
 			});
 		});

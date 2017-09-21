@@ -34,8 +34,8 @@
 			</c:when>
 			<c:otherwise>
 				<ul class="nav navbar-nav">
-					<li><p class="navbar-text" style="color: black;">${auth }님
-							환영합니다 (${point} P)</p></li>
+					<li><p class="navbar-text" style="color: black;"><b>${auth }</b>님
+							환영합니다 (<b>${point}</b> P)</p></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="/store/main.jv" style="color: #939393;"><span
