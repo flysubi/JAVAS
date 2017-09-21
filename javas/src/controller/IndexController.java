@@ -1,5 +1,10 @@
 package controller;
 
+<<<<<<< HEAD
+=======
+import java.math.BigDecimal;
+import java.util.ArrayList;
+>>>>>>> branch 'master' of https://github.com/flysubi/JAVAS
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import model.CalendarDao;
 import model.PointDao;
+import model.StoreDao;
 
 @Controller
 public class IndexController {
@@ -22,23 +28,42 @@ public class IndexController {
 	@Autowired
 	CalendarDao cdao;
 	
+	@Autowired
+	StoreDao sdao;
+	
 	@RequestMapping({"/", "/index.jv"})
 	public ModelAndView toIndex(HttpSession session) {
 		ModelAndView mav = new ModelAndView("t_base");
 		
 		String id = (String)session.getAttribute("auth");
-	
 			if(id != null) {
+				Map map = sdao.itemInfo(id);
+				if(((BigDecimal)map.get("CALENDAR")).intValue() == 1) {
+					session.setAttribute("calendar", "c");
+				}
+				if(((BigDecimal)map.get("ASSET")).intValue() == 1) {
+					session.setAttribute("asset", "a");
+				} 
+				if (((BigDecimal)map.get("FITNESS")).intValue() == 1) {
+					session.setAttribute("fitness", "f");
+				} 
+				if (((BigDecimal)map.get("VOICE")).intValue() == 1) {
+					session.setAttribute("voice", "v");
+				} 
 				if(!id.equals("admin")) {
 					Map point = pdao.getPoint(id);
 					session.setAttribute("point", point.get("POINT"));
 				}
 				List<Map> dday = cdao.ddayCal(id);
-				List<Map> today = cdao.todayCal();
+				List<Map> today = cdao.todayCal(id);
 				mav.addObject("dday", dday);
 				mav.addObject("today", today);
+
 			}
-			mav.addObject("nav", "on");
+
+
+		mav.addObject("nav", "on");
+
 			return mav;
 	
 	}

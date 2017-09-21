@@ -11,6 +11,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import model.AssetDao;
 import model.CalendarDao;
@@ -30,7 +31,6 @@ public class CalendarController {
 		String id = (String) session.getAttribute("auth");
 		ModelAndView mav = new ModelAndView("t_el");
 		List<Map> list = cdao.getCal(id);
-		System.out.println(list);
 		mav.addObject("list", list);
 		mav.addObject("title", "Ä¶¸°´õ");
 		mav.addObject("section", "function/calendar");
@@ -156,10 +156,18 @@ public class CalendarController {
 		String id = (String) session.getAttribute("auth");
 		ModelAndView mav = new ModelAndView("t_el");
 		List<Map> dday = cdao.ddayCal(id);
-		List<Map> today = cdao.todayCal();
+		List<Map> today = cdao.todayCal(id);
 		mav.addObject("dday", dday);
 		mav.addObject("today", today);
 		mav.addObject("section", "function/calTest");
 		return mav;
+	}
+	
+	@RequestMapping("/calTtsAjax.jv")
+	@ResponseBody
+	public List calTtsAjax(HttpSession session) {
+		String id = (String)session.getAttribute("auth");
+		List<Map> list  = cdao.todayCal(id);
+		return list;
 	}
 }
