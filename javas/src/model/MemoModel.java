@@ -26,6 +26,7 @@ public class MemoModel {
 		try {
 			SqlSession session =factory.openSession();
 			try {
+				System.out.println(map);
 				session.insert("memo.send", map);
 				flag = true;
 			}catch(Exception e){
@@ -40,12 +41,12 @@ public class MemoModel {
 	}
 	
 	
-	public List<Map<String, String>> list(Map map) {
+	public List<Map<String, String>> list(String id) {
 		List<Map<String, String>> list = new ArrayList<>();
 		try {
 			SqlSession session = factory.openSession();
 			try {
-				list = session.selectList("memo.list", map);
+				list = session.selectList("memo.list", id);
 			}catch(Exception e) {
 				System.out.println("[JDBC Exception] MemoModel.list() : " + e.getMessage());
 			}finally {
@@ -56,12 +57,12 @@ public class MemoModel {
 		return list;
 	}
 	
-	public List<Map<String, String>> mylist(Map map) {
+	public List<Map<String, String>> mylist(String id) {
 		List<Map<String, String>> list = new ArrayList<>();
 		try {
 			SqlSession session = factory.openSession();
 			try {
-				list = session.selectList("memo.mylist", map);
+				list = session.selectList("memo.mylist", id);
 			}catch(Exception e) {
 				System.out.println("[JDBC Exception] MemoModel.mylist() : " + e.getMessage());
 			}finally {
@@ -72,7 +73,21 @@ public class MemoModel {
 		return list;
 	}
 	
-	
+	public Map<String, Object> memoDetail(int num) {
+		Map<String, Object> map = new HashMap<>();
+		SqlSession session = factory.openSession();
+		try {
+					
+			map = session.selectOne("memo.detail", num);
+		} catch (Exception e) {
+			System.out.println("[JDBC] MemoModelException boardDetail : " + e.getMessage());
+		} finally {
+			session.close();
+		}
+
+		return map;
+	}
+
 	
 
 	public int countAll(String id) {

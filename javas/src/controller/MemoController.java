@@ -23,31 +23,28 @@ public class MemoController {
 	MemoModel mm;
 	
 	@RequestMapping("/list.jv")
-	public ModelAndView memolist(HttpSession session, @RequestParam(name="p", defaultValue="1")int p,
-			@RequestParam(name="search", required=false) String s) {
+	public ModelAndView memolist(HttpSession session) {
 		String id = (String)session.getAttribute("auth");
-		String[] ar = null;
-		if(s != null) {
-			ar = s.split("\\s+");
-			for(int i=0; i < ar.length; i++) {
-				ar[i] = "%"+ar[i]+"%";
-			}
-		}
-		int start = 1+(p-1)*10;
-		int end = p*10;
-		
-		Map<String, Object> map = new HashMap<>();
-			map.put("start", start);
-			map.put("end", end);
-			map.put("arr", ar);
-			map.put("id", id);		
-		
-		
-		List<Map<String, String>> list = mm.list(map);
+		List<Map<String, String>> list = mm.list(id);
 		int c = mm.countAll(id);
 		int mc = mm.myCount(id);
-		int tot = c;
-		int size = tot%10 ==0 ? tot/10 : tot/10+1;
+		session.setAttribute("memo", c);
+		session.setAttribute("mymemo", mc);
+		ModelAndView mav = new ModelAndView("t_el_memo");
+			mav.addObject("active", "list");
+			mav.addObject("section", "/memo/memolist");
+			mav.addObject("title","쪽지");
+			mav.addObject("name", "list");
+			mav.addObject("list", list);
+		return mav;
+	}	
+	
+	@RequestMapping("/mylist.jv")
+	public ModelAndView mymemolist(HttpSession session) {
+		String id = (String)session.getAttribute("auth");
+		List<Map<String, String>> list = mm.mylist(id);
+		int c = mm.countAll(id);
+		int mc = mm.myCount(id);
 		session.setAttribute("memo", c);
 		session.setAttribute("mymemo", mc);
 		ModelAndView mav = new ModelAndView("t_el_memo");
@@ -56,62 +53,12 @@ public class MemoController {
 			mav.addObject("title","쪽지");
 			mav.addObject("name", "list");
 			mav.addObject("list", list);
-			mav.addObject("total",tot);
-			mav.addObject("size", size);
-			mav.addObject("page", p);
-			
 		return mav;
-	}
-	
-	@RequestMapping("/mylist.jv")
-	public ModelAndView memomylist(HttpSession session, @RequestParam(name="p", defaultValue="1")int p,
-			@RequestParam(name="search", required=false) String s) {
-		String id = (String)session.getAttribute("auth");
-		String[] ar = null;
-		if(s != null) {
-			ar = s.split("\\s+");
-			for(int i=0; i < ar.length; i++) {
-				ar[i] = "%"+ar[i]+"%";
-			}
-		}
-		int start = 1+(p-1)*10;
-		int end = p*10;
-		
-		Map<String, Object> map = new HashMap<>();
-			map.put("start", start);
-			map.put("end", end);
-			map.put("arr", ar);
-			map.put("id", id);		
-		
-		
-		List<Map<String, String>> list = mm.mylist(map);
-		
-		int c = mm.countAll(id);
-		int mc = mm.myCount(id);
-		int tot = mc;
-		int size = tot%10 ==0 ? tot/10 : tot/10+1;
-		session.setAttribute("memo", c);
-		session.setAttribute("mymemo", mc);
-		ModelAndView mav = new ModelAndView("t_el_memo");
-			mav.addObject("active", "mylist");
-			mav.addObject("section", "/memo/mymemolist");
-			mav.addObject("title","쪽지");
-			mav.addObject("name", "list");
-			mav.addObject("list", list);
-			mav.addObject("total",tot);
-			mav.addObject("size", size);
-			mav.addObject("page", p);
-			
-		return mav;
-	}
+	}	
 	
 	
 	
-	
-	
-		
-	
-		@RequestMapping("/write.jv")
+	@RequestMapping("/write.jv")
 	public ModelAndView memosend(@RequestParam (name= "w", required= false) String w, @RequestParam (name= "my", required= false) String my) {
 		ModelAndView mav = new ModelAndView("t_el_memo");
 		mav.addObject("title","쪽지");
@@ -134,17 +81,18 @@ public class MemoController {
 	
 	@RequestMapping("/writeExec.jv")
 	public ModelAndView sendExec(@RequestParam Map<String, String> map, HttpSession session) {
-		map.put("id", (String) session.getAttribute("auth"));
-		ModelAndView mav = new ModelAndView();
-		
-		
-		if(map.get("receiver").equals(map.get("id"))) {
-			map.put("category", "내게쓴쪽지");
-		}else {
-			map.put("category", "보낸쪽지");
-		}	
-		mav.addObject("section", "alert/memo");
+		ModelAndView mav = new ModelAndView("alert/memo");
+		map.put("id", (String)session.getAttribute("auth"));
 		mav.addObject("rst", mm.send(map));
+		return mav;
+	}
+	
+	@RequestMapping("/detail.jv")
+	public ModelAndView sendExec(@RequestParam (name="num") int num) {
+		ModelAndView mav = new ModelAndView("t_el_memo");
+		Map<String, Object> map = mm.memoDetail(num);		
+			mav.addObject("secion", "/memo/detail");
+			mav.addObject("map", map);		
 		return mav;
 	}
 	
@@ -153,12 +101,6 @@ public class MemoController {
 		mm.delete(num, (String)session.getAttribute("auth"));
 		ModelAndView mav = new ModelAndView();
 			mav.setViewName("redirect:/memo/list.jv");
-		
-		
 		return mav;
 	}
-	
-	
-	
-	
 }

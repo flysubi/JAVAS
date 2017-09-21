@@ -4,9 +4,7 @@
 <html>
 <head>
 <style type="text/css">
-b {
-	font-size: 16pt;
-}
+
 .form-control {
 	height: 50px;
 }
