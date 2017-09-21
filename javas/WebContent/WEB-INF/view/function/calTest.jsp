@@ -27,14 +27,14 @@
 		<div class="modal-dialog">
 			<!-- Modal content-->
 			<div class="modal-content" style="width: 550px;">
-				<div class="modal-header" align="center">
+				<div class="modal-header" align="center" style="background-color: MistyRose ">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h3>
 						오늘은 <span class="glyphicon glyphicon-music"></span>
 					</h3>
 				</div>
 				<div class="modal-body"
-					style="padding: 40px 50px; padding-top: 10px;">
+					style="padding: 40px 50px; padding-top: 10px; ">
 					<div class="row" style="text-align: left;">
 						<div class="col-sm-5">
 						<h3><span class="glyphicon glyphicon-ok"></span> Today</h3>
