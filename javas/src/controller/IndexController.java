@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import model.CalendarDao;
 import model.PointDao;
 import model.StoreDao;
+import model.UserDao;
 
 @Controller
 public class IndexController {
@@ -27,6 +28,9 @@ public class IndexController {
 	@Autowired
 	StoreDao sdao;
 	
+	@Autowired
+	UserDao udao;
+	
 	@RequestMapping({"/", "/index.jv"})
 	public ModelAndView toIndex(HttpSession session) {
 		ModelAndView mav = new ModelAndView("t_base");
@@ -34,6 +38,7 @@ public class IndexController {
 		String id = (String)session.getAttribute("auth");
 			if(id != null) {
 				Map map = sdao.itemInfo(id);
+				Map map2 = udao.userInfo(id);
 				if(((BigDecimal)map.get("CALENDAR")).intValue() == 1) {
 					session.setAttribute("calendar", "c");
 				}
@@ -43,18 +48,13 @@ public class IndexController {
 				if (((BigDecimal)map.get("FITNESS")).intValue() == 1) {
 					session.setAttribute("fitness", "f");
 				} 
-				if (((BigDecimal)map.get("VOICE")).intValue() == 1) {
-					session.setAttribute("voice", "v");
-				} 
 				if(!id.equals("admin")) {
 					Map point = pdao.getPoint(id);
 					session.setAttribute("point", point.get("POINT"));
-
-
-
 				}
 				List<Map> dday = cdao.ddayCal(id);
 				List<Map> today = cdao.todayCal(id);
+				mav.addObject("voice", map2.get("VOICE"));
 				mav.addObject("dday", dday);
 				mav.addObject("today", today);
 

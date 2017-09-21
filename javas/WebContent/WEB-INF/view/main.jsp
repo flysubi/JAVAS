@@ -23,6 +23,11 @@
    body {
       margin:0;
    }
+
+ 
+   body.modal-open {
+   	  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+   }
    #slidebox {
       position:relative;
       width:1600px;
@@ -114,23 +119,7 @@
                 style="width: 110px;height:110px;">
                 </span>
               </button>
-              <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog modal-fullsize">
-      <div class="modal-content modal-fullsize">
-        <div class="modal-header" style="background-color: #D2E4F1;">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 id="local" class="modal-title"></h4>
-        </div>
-       	 <div class="modal-body" style="padding-top: 0; padding-bottom: 15px;">
-          <table id="content">
-          </table>
-         </div>
-        <div class="modal-footer" style="background-color: #D2E4F1; padding-top :9px; padding-bottom: 12px">
-        <img src="/style/javasicon.png" style="width: 62px; height: 16px" >
-        </div>
-      </div>
-    </div>
-  </div>
+          
               </div>
               <div style="position: absolute; left:480px; height:150px; bottom: 0px;">
               <button id=cal style="background-color: transparent; border: none;">
@@ -232,6 +221,23 @@
 			</div>
 		</div>
 	</div>
+	<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-fullsize">
+      <div class="modal-content modal-fullsize">
+        <div class="modal-header" style="background-color: #D2E4F1;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 id="local" class="modal-title"></h4>
+        </div>
+       	 <div class="modal-body" style="padding-top: 0; padding-bottom: 15px;">
+          <table id="content">
+          </table>
+         </div>
+        <div class="modal-footer" style="background-color: #D2E4F1; padding-top :9px; padding-bottom: 12px">
+        <img src="/style/javasicon.png" style="width: 62px; height: 16px" >
+        </div>
+      </div>
+    </div>
+  </div>
 <script type='text/javascript'>
 
 
@@ -399,9 +405,9 @@ function initMap() {
 					var data2 = rst2;
 					var content = "";
 					content += "<th><td style=\"text-align: center;\"><img alt=\""+data.weather[0].icon+"\" src=\"/style/weather/weather-icon/"+data.weather[0].icon+".png\" style=\"height: 100px; width: 100px;\"/>";
-					content += "<span style=\"font-size: 40pt; vertical-align: middle; font-weight: 700;\">"+parseInt(data.main.temp - 273.15)+"˚C</span><br/>";
-					content += "<b style=\"font-size:24px;\">"+data2.MEAN+"</b></td>";
-					content += "<td style=\"padding-left: 20px; padding-top: 27px; vertical-align: top; \"><b>풍속 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+data.wind.speed+"m/s<br/>";
+					content += "<span style=\"font-size: 40pt; vertical-align: top; padding-top:20px; margin-top:20px; font-weight: 700;\">"+parseInt(data.main.temp - 273.15)+"˚C</span><br/>";
+					content += "<b style=\"font-size:24px; padding-top: 20px;\">"+data2.MEAN+"</b></td>";
+					content += "<td style=\"padding-left: 20px; vertical-align: middle; \"><b>풍속 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+data.wind.speed+"m/s<br/>";
 					content += "습도 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+data.main.humidity+"%</b>";
 					$("#content").html(content);
 					
@@ -410,7 +416,8 @@ function initMap() {
 					$.ajax({
 						url : "/tts/ttsAjax.jv",
 						data : {
-							"message" : message
+							"message" : message,
+							"voice" : ${voice}
 						}
 					}).done(function(rst3){
 						var audio = new Audio("/voice//"+rst3);
@@ -480,7 +487,8 @@ $(document).ready(function() {
 			$.ajax({
 				url : "/tts/ttsAjax.jv",
 				data : {
-					"message" : message
+					"message" : message,
+					"voice" : ${voice}
 				}
 		}).done(function(rst3){ 
 				var audio = new Audio("/voice//"+rst3);

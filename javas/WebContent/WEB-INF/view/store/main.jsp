@@ -29,7 +29,7 @@ p {
 	<div class="w3-col m2 w3-center">
 		<a href="javascript:itemSelect('voice')" id="voice3"><img src="/style/보이스.png" id="voice2"></img></a>
 		<p style="padding-top: 10px;">
-			보이스<br />200P
+			보이스 선택<br />200P
 		</p>
 	</div>
 	<div class="w3-col m2 w3-center">
@@ -72,7 +72,7 @@ p {
 							<option value="asset" id="asset"
 								${"asset" eq param.category ? 'selected' : ''} disabled>자산관리</option>
 							<option value="voice" id="voice"
-								${"voice" eq param.category ? 'selected' : ''}>보이스</option>
+								${"voice" eq param.category ? 'selected' : ''}>보이스 선택</option>
 							<option value="double" id="double"
 								${"double" eq param.category ? 'selected' : ''}>더블패키지</option>
 							<option value="full" id="full"

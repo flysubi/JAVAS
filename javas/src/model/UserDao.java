@@ -123,6 +123,9 @@ public class UserDao {
 		if(map.get("month").equals("¿ù")) {
 			map.put("month", null);
 		}
+		if(map.get("voice") == null) {
+			map.put("voice", 0);
+		}
 		SqlSession session = factory.openSession();
 		try {
 			if(map.get("npass").equals("")) {
