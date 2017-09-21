@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="store">
+	<update id="itemBuy" parameterType="java.util.HashMap">
+		update info set 
+	<choose>
+		<when test="item == 'calendar'">calendar = 1</when>
+		<when test="item == 'fitness'">fitness = 1</when>
+		<when test="item == 'asset'">asset= 1</when>
+		<when test="item == 'voice'">voice = 1</when>
+		<when test="item == 'double'">calendar = 1 , asset = 1 , double = 1</when>
+		<when test="item == 'full'">full = 1 , calendar = 1 , asset = 1 , fitness = 1 , voice = 1</when>
+	</choose>
+		where id=#{id}
+	</update>
+	<insert id="pointDown" parameterType="java.util.HashMap">
+		insert into point values(#{id}, #{point}, sysdate, #{content}, point_seq.nextval)
+	</insert>
+	<select id="itemInfo" resultType="java.util.HashMap" parameterType="java.lang.String">
+		select * from info where id=#{id}
+	</select>
+</mapper>

@@ -103,7 +103,7 @@
 	</div>
 	<div class="col-xs-0 col-md-2"></div>
 	<div class=" col-xs-12 col-md-8" align="right">
-		<button class="w3-button w3-white w3-border" id="allVeiw">목록</button>
+		<button class="w3-btn w3-ripple w3-white w3-border">목록</button>
 	</div>
 	<div class="col-xs-0 col-md-2"></div>
 </div>
