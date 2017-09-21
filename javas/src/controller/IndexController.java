@@ -36,9 +36,10 @@ public class IndexController {
 		ModelAndView mav = new ModelAndView("t_base");
 
 		String id = (String) session.getAttribute("auth");
+		Map map2 = null;
 		if (id != null) {
 			Map map = sdao.itemInfo(id);
-			Map map2 = udao.userInfo(id);
+			map2 = udao.userInfo(id);
 			if (((BigDecimal) map.get("CALENDAR")).intValue() == 1) {
 				session.setAttribute("calendar", "c");
 			}
@@ -53,11 +54,12 @@ public class IndexController {
 				session.setAttribute("point", point.get("POINT"));
 			}
 			List<Map> today = cdao.todayCal(id);
+			List<Map> dday = cdao.ddayCal(id);
 			mav.addObject("voice", map2.get("VOICE"));
-			//mav.addObject("dday", dday);
+			mav.addObject("dday", dday);
 			mav.addObject("today", today);
-
 		}
+		mav.addObject("map", map2);
 
 		mav.addObject("nav", "on");
 

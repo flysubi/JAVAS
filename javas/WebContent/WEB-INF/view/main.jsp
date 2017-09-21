@@ -106,6 +106,7 @@ body.modal-open {
 		<ul id="slider">
 			<li><img alt="main" src="/style/새메인.png" /></li>
 			<li>
+				<c:if test="${map ne null }">
 				<div
 					style="position: absolute; left: 300px; height: 400px; bottom: 0px;">
 					<button id="wbt" data-toggle="modal" data-target="#myModal"
@@ -117,7 +118,8 @@ body.modal-open {
 						</span>
 					</button>
 				</div>
-
+				</c:if>
+				<c:if test="${map.CALENDAR eq 1 }">
 				<div
 					style="position: absolute; left: 480px; height: 150px; bottom: 0px;">
 					<button id=cal style="background-color: transparent; border: none;">
@@ -128,16 +130,20 @@ body.modal-open {
 						</span>
 					</button>
 				</div>
+				</c:if>
+				<c:if test="${map ne null }">
 				<div
 					style="position: absolute; left: 1150px; height: 300px; bottom: 0px;">
-					<button id=cal style="background-color: transparent; border: none;">
+					<a href="">
 						<span data-tooltip-text="지도 바로가기"> <img alt="callender"
 							src="/style/지도.png" onmouseover="this.src='/style/지도반전.png'"
 							onmouseout="this.src='/style/지도.png'"
 							style="width: 100px; height: 100px;">
 						</span>
-					</button>
-				</div> <img alt="wader" src="/style/기능.png">
+					</a>
+					</div>
+				</c:if>
+				 <img alt="wader" src="/style/기능.png">
 				<div
 					style="position: absolute; left: 665px; height: 310px; bottom: 0px;">
 					<p id="realTimer"></p>
