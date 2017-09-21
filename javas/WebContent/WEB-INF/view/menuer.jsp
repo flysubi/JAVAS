@@ -1,45 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
     
-    
-<!-- <html> -->
-<!-- <head> -->
-<!-- <meta charset="UTF-8"> -->
-<!-- <style type='text/css'> -->
-
-<!--  	#album-contain {width:1200px; margin:0 auto;}  -->
-<!--  	.album-wrap {float:left; position:relative; width:1034px; height:500px; margin:0 10px; overflow:hidden;}  -->
-<!--  	.album-wrap ul.album {position:absolute;  list-style:none;}  -->
-<!--  	.album-wrap ul.album li {float:left; width:1034px;}  -->
-
-<!-- 	span.prev {float:left; width:25px; margin-top:300px;}  -->
-<!--  	span.next {float:left; width:25px; margin-top:300px;}  -->
-
-<!--  	ul.bt-roll {width:200px;height: 50px; margin:0 auto; margin-top:20px;list-style:none;}  -->
-<!--  	ul.bt-roll li {float:left; margin-right:5px;}  -->
-
-<!-- </style> -->
-
-<!-- <body> -->
-<!-- <div id="album-contain" class="clfix"> -->
-<!-- 	<span class="prev"><a href="#"><img src="/style/왼쪽.png" alt="이전"></a></span> -->
-<!-- 	<div class="album-wrap"> -->
-<!-- 		<ul class="album clfix"> -->
-<!-- 			<li><img src="/style/메뉴얼표.png" alt=""></li> -->
-<!-- 			<li><img src="/style/메뉴얼날씨.png" alt=""></li> -->
-<!-- 			<li><img src="/style/메뉴얼캘랜더.png" alt=""></li> -->
-<!-- 			<li><img src="/style/메뉴얼길찾기.png" alt=""></li> -->
-<!-- 		</ul> -->
-<!-- 	</div> -->
-<!-- 	<span class="next"><a href="#"><img src="/style/오른쪽.png" alt="다음"></a></span> -->
-<!-- </div> -->
-
-<!-- <ul class="bt-roll"> -->
-<!-- 	<li><a href="#"><img src="/style/btn_circle_.png" alt=""></a></li> -->
-<!-- 	<li><a href="#"><img src="/style/btn_circle.png" alt=""></a></li> -->
-<!-- 	<li><a href="#"><img src="/style/btn_circle.png" alt=""></a></li> -->
-<!-- 	<li><a href="#"><img src="/style/btn_circle.png" alt=""></a></li> -->
-<!-- </ul>	-->
 
 
 <html lang="en">
@@ -49,6 +10,32 @@
 </head>
 <body>
 <style>
+
+   #slidebox {
+      position:relative;
+      width:1034px;
+      height:500px;
+      overflow:hidden;
+      white-space:nowrap;
+      
+   }
+   #slidebox ul#slider {
+      list-style:none;
+      margin:0;
+      padding:0;
+   }
+   #slidebox ul li {
+      position:absolute;
+      width:1034px;
+      height:500px;
+   }
+   #slidebox ul li img {
+      width:134px;
+      height:500px;
+   }
+
+
+
 	*{margin:0;padding:0;}
 	
 	ul,li{list-style:none;}
@@ -109,14 +96,20 @@
 	#pos5:checked~.pos>label:nth-child(5){background:#666;}
 	#pos6:checked~.pos>label:nth-child(6){background:#666;}
 </style>
+
+
 <div id="slide">
-	<input type="radio" name="pos" id="pos1" checked>
-	<input type="radio" name="pos" id="pos2">
-	<input type="radio" name="pos" id="pos3">
-	<input type="radio" name="pos" id="pos4">
-	<input type="radio" name="pos" id="pos5">
-	<input type="radio" name="pos" id="pos6">
-	
+<div id="slidebox">
+   <ul id="slider">
+	<li><input type="radio" name="pos" id="pos1" checked></li>
+	<li><input type="radio" name="pos" id="pos2"></li>
+	<li><input type="radio" name="pos" id="pos3"></li>
+	<li><input type="radio" name="pos" id="pos4"></li>
+	<li><input type="radio" name="pos" id="pos5"></li>
+	<li><input type="radio" name="pos" id="pos6"></li>
+   </ul>
+</div>	
+	<div>
 	<ul>
 		<li></li>
 		<li></li>
@@ -134,95 +127,59 @@
 		<label for="pos6"></label>
 	</p>
 </div>
+</div>
+
 
 </body>			
 
 <script type="text/javascript">
-// 	var $list = $('#album-contain').find('ul.album');
-// 	var $prev = $('#album-contain').find('span.prev > a');
-// 	var $next = $('#album-contain').find('span.next > a');
-// 	var size = $list.children().outerWidth();
-// 	var len =  $list.children().length;
-// 	var cnt = 0;
 
-// 	$list.css('width',len*size);
+var x = 1034;
+var slider = document.getElementById("slider");
+var slideArray = slider.getElementsByTagName("li");
+var slideMax = slideArray.length - 1;
+var curSlideNo = 0;
 
-// 	trace();
+for (i = 0; i <= slideMax; i++) {
+   if (i == curSlideNo) slideArray[i].style.right = 0;
+   else slideArray[i].style.right = -x + "px";
+}
 
-// 	$('.bt-roll').children().bind('click',function(){
+slider.addEventListener('click', function () {
+   changeSlide();
+}, false);
 
-// 		var idx = $('.bt-roll').children().index(this);
-// 		cnt = idx;
-// 		$list.animate({'left': -(cnt*size)+'px' },'normal');
+var aniStart = false;
+var next = 1;
+var changeSlide = function(){
+   if (aniStart === true) return;
+   next = curSlideNo + 1;
+   if (next > slideMax) next = 0;
+   aniStart = true;
+   sliding();
+}
 
-// 		var source2 = $('.bt-roll').children().find('img').attr('src').replace('_.png','.png');
-// 		$('.bt-roll').children().find('img').attr('src',source2);
-
-// 		var source = $(this).find('img').attr('src').replace('.png','_.png');
-// 		$(this).find('img').attr('src',source);
-
-// 		trace();
-
-// 		if(cnt==0){
-// 			$prev.hide();
-// 			$next.show();
-// 		}
-// 		if(cnt>=len-1){
-// 			$prev.show();
-// 			$next.hide();
-// 		}
-// 		if(cnt>0&&cnt<len-1){
-// 			$prev.show();
-// 			$next.show();
-// 		}
-
-// 		return false;
-// 	});
-
-// 	$next.bind('click', function(){
-// 		if(cnt>=len-1) return false;
-
-// 		cnt++;
-// 		$list.animate({'left': -(cnt*size)+'px'}, 'normal');
-
-// 		var btOff = $('.bt-roll').children().find('img').attr('src').replace('_.png','.png');
-// 		$('.bt-roll').children().find('img').attr('src',btOff);
-
-// 		var btOn =  $('.bt-roll').children().eq(cnt).find('img').attr('src').replace('.png','_.png');
-// 		$('.bt-roll').children().eq(cnt).find('img').attr('src',btOn);
-
-// 		trace();
-
-// 		if(cnt > 0) $prev.show();
-// 		if(cnt>=len-1) $(this).hide();
-
-// 		return false;
-// 	});
-
-// 	$prev.bind('click', function(){
-// 		if(cnt==0) return false;
-
-// 		cnt--;
-// 		$list.animate({'left': -(cnt*size)+'px'}, 'normal');
-
-// 		var btOff = $('.bt-roll').children().find('img').attr('src').replace('_.png','.png');
-// 		$('.bt-roll').children().find('img').attr('src',btOff);
-
-// 		var btOn =  $('.bt-roll').children().eq(cnt).find('img').attr('src').replace('.png','_.png');
-// 		$('.bt-roll').children().eq(cnt).find('img').attr('src',btOn);
-
-// 		trace();
-
-// 		if(cnt <= len-1) $next.show();
-// 		if(cnt==0) $(this).hide();
-
-// 		return false;
-// 	});
-
-// 	function trace(){
-// 		$('#trace').find('span').text(cnt);
-// 	}
+function sliding() {
+   var curX = parseInt(slideArray[curSlideNo].style.right, 10);
+   var nextX = parseInt(slideArray[next].style.right, 10);
+   var newCurX = curX + 50;
+   var newNextX = nextX + 50;
+   if (newCurX >= x) {
+      slideArray[curSlideNo].style.right = -x + "px";
+      slideArray[next].style.right = 0;
+      curSlideNo = curSlideNo + 1;
+      if (curSlideNo > slideMax) curSlideNo = 0;
+      aniStart = false;
+      return;
+   }
+   slideArray[curSlideNo].style.right = newCurX + "px";
+   slideArray[next].style.right = newNextX + "px";
+   setTimeout(function () {
+      sliding();
+   }, 20);
+}
+//setInterval(changeSlide,2000);
 
 </script>
-<!-- 	</body> -->
-<!-- 	</html> -->
+	</body>
+	</html>

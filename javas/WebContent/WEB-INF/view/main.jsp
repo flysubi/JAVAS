@@ -54,16 +54,13 @@
        font-family:'나눔 고딕';  
        font-size: 30px;
     }
-    
    
-    
 </style>
-
 <body style="position:relative;">
 	<div id="slidebox" style="position: relative;">
 		<ul id="slider">
-			<li><img alt="main" src="/style/새메인.png"/></li>          
-			<li>          
+			<li><img alt="main" src="/style/새메인.png"/></li>
+			<li>
               <div style="position: absolute; left: 300px; height:400px; bottom: 0px;">
                <button id="wbt" data-toggle="modal" data-target="#myModal"
                 style="background-color: transparent; border: none;">
@@ -110,6 +107,7 @@
 			 <div style="position:absolute; left:665px; height:310px; bottom: 0px;">		
               <p id="realTimer"></p>     
              </div> 
+
 			</li>
 		</ul>
 	</div>
@@ -129,9 +127,7 @@
 	     </a>
 	   </div>
 	</div>
-      
 
-	
 <script type='text/javascript'>
 
 
@@ -243,6 +239,7 @@ function timer () {
 var tag = document.getElementById( "realTimer" ); 
 
      tag.innerHTML = timer(); 
+
 
 setInterval ( function() { tag.innerHTML = timer(); } , 1000 ); 
 

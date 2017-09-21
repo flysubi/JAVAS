@@ -49,6 +49,9 @@ public class IndexController {
 				if(!id.equals("admin")) {
 					Map point = pdao.getPoint(id);
 					session.setAttribute("point", point.get("POINT"));
+
+
+
 				}
 				List<Map> dday = cdao.ddayCal(id);
 				List<Map> today = cdao.todayCal(id);
@@ -59,6 +62,7 @@ public class IndexController {
 
 
 		mav.addObject("nav", "on");
+
 
 			return mav;
 	
