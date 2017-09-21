@@ -23,7 +23,6 @@ public class UserDao {
 		SqlSession session = factory.openSession();
 
  	try {
-
 			session.insert("user.join_step1", map); 
 			session.insert("user.join_step2", map);
 			session.commit();
@@ -95,19 +94,6 @@ public class UserDao {
 			return false;
 		}
 	}
-	
-	public int logindate(String id) {
-		try {
-			SqlSession session = factory.openSession();
-			int rst = session.update("user.logindate", id);
-			return rst;
-		}catch (Exception e) {
-			e.printStackTrace();
-			return -1;
-		}
-		
-	}
-	
 
 	public boolean emailCheck(String email) {
 		try {
@@ -139,13 +125,29 @@ public class UserDao {
 		}
 		SqlSession session = factory.openSession();
 		try {
-			session.update("user.info_step1", map); 
+			if(map.get("npass").equals("")) {
+				session.update("user.info_step0", map); 
+			}else {
+				session.update("user.info_step1", map); 
+			}
 			session.update("user.info_step2", map);
 			session.commit();
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 			session.rollback();
+			return false;
+		} finally {
+			session.close();
+		}
+	}
+	public boolean userDelete(String id) {
+		SqlSession session = factory.openSession();
+		try {
+			session.delete("user.userDelete", id);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();			
 			return false;
 		} finally {
 			session.close();

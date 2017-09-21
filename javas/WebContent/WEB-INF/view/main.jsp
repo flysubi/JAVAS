@@ -8,7 +8,18 @@
 
 
 <style type='text/css'>
-
+	.modal-dialog.modal-fullsize { 
+		width: 25%; 
+		height: 20%;
+		float: center; 
+		margin: 20px 600px; 
+		padding: 0;
+	}
+	.modal-content.modal-fullsize {
+	  height: auto;
+	  min-height: 100%;
+	  border-radius: 5px; 
+	}
    body {
       margin:0;
    }
@@ -91,22 +102,14 @@
 </style>
 
 <body style="position:relative;">
-<<<<<<< HEAD
 	<div id="slidebox" style="position: relative;">
 		<ul id="slider">
 			<li><img alt="main" src="/style/새메인.png"/></li>
 			<li>            
-=======
-   <div id="slidebox" style="position: relative;">
-      <ul id="slider">
-         <li><img alt="main" src="/style/새메인.png"/></li>
-         <li>
-                       
->>>>>>> branch 'master' of https://github.com/flysubi/JAVAS.git
+
               <div style="position: absolute; left: 300px; height:400px; bottom: 0px;">
-               <button 
-                style="background-color: transparent; border: none;"
-                onclick="location.href='/function/weather.jv';">
+               <button id="wbt" data-toggle="modal" data-target="#myModal"
+                style="background-color: transparent; border: none;">
                 <span data-tooltip-text="날씨 바로가기">
                 <img alt="lain" src="/style/날씨예보.png"
                 onmouseover="this.src='/style/날씨예보반전.png'" 
@@ -114,6 +117,23 @@
                 style="width: 110px;height:110px;">
                 </span>
               </button>
+              <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-fullsize">
+      <div class="modal-content modal-fullsize">
+        <div class="modal-header" style="background-color: #D2E4F1;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 id="local" class="modal-title"></h4>
+        </div>
+       	 <div class="modal-body" style="padding-top: 0; padding-bottom: 15px;">
+          <table id="content">
+          </table>
+         </div>
+        <div class="modal-footer" style="background-color: #D2E4F1; padding-top :9px; padding-bottom: 12px">
+        <img src="/style/javasicon.png" style="width: 62px; height: 16px" >
+        </div>
+      </div>
+    </div>
+  </div>
               </div>
               
               <div style="position: absolute; left:480px; height:150px; bottom: 0px;">
@@ -151,7 +171,6 @@
           <div style="position:absolute; left:665px; height:310px; bottom: 0px;">      
               <p id="realTimer"></p>     
              </div> 
-<<<<<<< HEAD
 			</li>
 		</ul>
 	</div>
@@ -171,33 +190,12 @@
 	     </a>
 	   </div>
 	</div>
-=======
-         </li>
-      </ul>
-   </div>
-   <div style="position: relative;">
-     <img alt="javas" src="/style/javas2.png">
-     <img alt="good" src="/style/좋은점.png">
-     <img alt="join" src="/style/가입문.png">
-     
-     <div style="position: absolute; left: 550px;  top:855px;">
-          <a href="/user/join.jv">
-            <img alt="join2" src="/style/회원가입하러.png">
-          </a>
-      </div>
-      <div style="position:absolute; left:1280px; top:855px">
-        <a href="/menuer.jv">
-           <img alt="login2" src="/style/설정하러.png">        
-        </a>
-      </div>
-   </div>
->>>>>>> branch 'master' of https://github.com/flysubi/JAVAS.git
       
 
    
 <script type='text/javascript'>
 
-
+	  var swh = 2;
       var x = 1600;
       var slider = document.getElementById("slider");
       var slideArray = slider.getElementsByTagName("li");
@@ -210,7 +208,12 @@
       }
  
       slider.addEventListener('click', function () {
-         changeSlide();
+    	 if(swh == 2) {
+    	  	 changeSlide();
+         }
+         if(swh != 2) {
+        	 swh++;
+         }
       }, false);
  
       var aniStart = false;
@@ -298,7 +301,6 @@ var tag = document.getElementById( "realTimer" );
 
      tag.innerHTML = timer(); 
 
-<<<<<<< HEAD
 setInterval ( function() { tag.innerHTML = timer(); } , 1000 ); 
 
 
@@ -319,11 +321,81 @@ $(function(){
 	    });
 	});
 });
+
+function initMap() {
+	$("#wbt").click(function(){
+		swh -= 2;	
+		var address;
+			var add;
+		navigator.geolocation.watchPosition(function(e) {
+			var geocoder = new google.maps.Geocoder();
+			var latlng = new google.maps.LatLng(e.coords.latitude, e.coords.longitude);
+			geocoder.geocode({'latLng' : latlng}, function(results, status) {
+				address = results[2].formatted_address;
+				add = "<b>"+address.substring(5)+"</b>";
+			$("#local").html(add);
+			
+			$.ajax({
+				url : "https://api.openweathermap.org/data/2.5/weather",
+				data : {
+					"lat" : e.coords.latitude,
+					"lon" : e.coords.longitude,
+					"APPID" : "86e306162a4303e8b644973a4ce00b65"
+				}
+			}).done(function(rst){
+				var data = rst;
+				$.ajax({
+					url : "/function/weatherCodeAjax.jv",
+					data : {
+						"code" : data.weather[0].id
+					}	
+				}).done(function(rst2){
+					var data2 = rst2;
+					var content = "";
+					content += "<th><td style=\"text-align: center;\"><img alt=\""+data.weather[0].icon+"\" src=\"/style/weather/weather-icon/"+data.weather[0].icon+".png\" style=\"height: 100px; width: 100px;\"/>";
+					content += "<span style=\"font-size: 40pt; vertical-align: middle; font-weight: 700;\">"+parseInt(data.main.temp - 273.15)+"˚C</span><br/>";
+					content += "<b style=\"font-size:24px;\">"+data2.MEAN+"</b></td>";
+					content += "<td style=\"padding-left: 20px; padding-top: 27px; vertical-align: top; \"><b>풍속 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+data.wind.speed+"m/s<br/>";
+					content += "습도 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+data.main.humidity+"%</b>";
+					$("#content").html(content);
+					
+					var message = address.substring(5)+"의 날씨를 알려드리겠습니다. 현재 "+data2.MEAN+data2.VOICE
+					+" 기온은 "+parseInt(data.main.temp - 273.15)+"도, 풍속은 "+data.wind.speed+", 습도는"+data.main.humidity+"퍼센트 입니다.";
+					$.ajax({
+						//url : "/tts/ttsAjax.jv",
+						data : {
+							"message" : message
+						}
+					}).done(function(rst3){
+						var audio = new Audio("/voice//"+rst3);
+						audio.play();
+						$('#myModal').on('hide.bs.modal', function (e) {
+							audio.pause();
+							});
+						$('#myModal').on('show.bs.modal', function (e) {
+							audio = new Audio("/voice//"+rst3);
+							audio.play();
+							});
+						deleteFile(rst3);
+						
+					});
+				});
+				var deleteFile = function(rst3) {
+					$.ajax({
+						url : "/tts/ttsDeleteAjax.jv",
+						data : {
+							"tempname" : rst3
+						}
+					})
+				};
+			});
+		});
+		});
+	});
+	}
 	</script>
 </body>
 </html>
-
-
-=======
-setInterval ( function() { tag.innerHTML = timer(); } , 1000 ); 
->>>>>>> branch 'master' of https://github.com/flysubi/JAVAS.git
+<script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD--k3vwuB9cAExy9ezTOAo-FR6ajxUctw&callback=initMap"
+	async defer></script>

@@ -23,11 +23,11 @@
 		<button id="cal">TEST ...</button>
 	</div>
 
-	<div class="modal fade" id="myModal" role="dialog">
+	<div class="modal fade" id="myModal2" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
 			<div class="modal-content" style="width: 550px;">
-				<div class="modal-header" align="center">
+				<div class="modal-header" align="center"  style="background-color: #D2E4F1;" >
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h3>
 						오늘은 <span class="glyphicon glyphicon-music"></span>
@@ -58,6 +58,9 @@
 						</div>
 					</div>
 				</div>
+				 <div class="modal-footer" >
+        <img src="/style/javasicon.png" style="width: 62px; height: 16px" >
+        </div>
 			</div>
 		</div>
 	</div>
@@ -65,7 +68,7 @@
 	<script>
 		$(document).ready(function() {
 			$("#cal").click(function() {
-				$("#myModal").modal();
+				$("#myModal2").modal();
 			});
 		});
 	</script>

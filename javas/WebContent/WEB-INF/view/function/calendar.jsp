@@ -29,7 +29,7 @@ body {
 }
 
 #top select {
-	font: inherit; /* mock what Boostrap does, don't compete  */
+	font: inherit;
 }
 
 .left {
@@ -254,7 +254,6 @@ body {
 									$(".imoney").eq(i).val(imarr[i]);
 									$(".emoney").eq(i).val(emarr[i]);
 									$(".anum").eq(i).val(anarr[i]);
-									console.log($(".anum").eq(i).val());
 								}
 								if(calEvent.dday == "true") {
 									$("#dday").prop("checked",true);
