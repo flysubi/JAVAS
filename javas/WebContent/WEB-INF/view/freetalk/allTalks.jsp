@@ -9,7 +9,9 @@
 	font-size: 15px;
 	cursor: pointer;
 }
-
+th, td {
+	font-size: 16px;
+}
 .bt {
 	background-color: white;
 	color: black;
@@ -18,10 +20,16 @@
 
 table {
 	font-size: small;
+	table-layout: fixed;
 }
 
 .well {
 	background: white;
+}
+.wrap .table, td {
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
 }
 </style>
 <div class="row" style="padding-bottom: 10px; padding-top: 10px;">
@@ -180,9 +188,6 @@ table {
 	}
 
 if(${num ne null}) {
-	 openModal(${num});
-	 
-	 
+	 openModal(${num}); 
 }
-
 </script>

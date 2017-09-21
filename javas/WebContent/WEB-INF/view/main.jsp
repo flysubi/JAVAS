@@ -55,6 +55,49 @@
        font-size: 30px;
     }
    
+	[data-tooltip-text]:hover {
+		position: relative;
+	}
+	
+	[data-tooltip-text]:after {
+		-webkit-transition: bottom .3s ease-in-out, opacity .3s ease-in-out;
+		-moz-transition: bottom .3s ease-in-out, opacity .3s ease-in-out;
+		transition: bottom .3s ease-in-out, opacity .3s ease-in-out;
+	
+		background-color: rgba(0, 0, 0, 0.5);
+	
+	  -webkit-box-shadow: 0px 0px 3px 1px rgba(50, 50, 50, 0.4);
+		-moz-box-shadow: 0px 0px 3px 1px rgba(50, 50, 50, 0.4);
+		box-shadow: 0px 0px 3px 1px rgba(50, 50, 50, 0.4);
+		
+	  -webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		border-radius: 5px;
+		
+	  color: #FFFFFF;
+		font-size: 12px;
+		margin-bottom: 10px;
+		padding: 7px 12px;
+		position: absolute;
+		width: auto;
+		min-width: 50px;
+		max-width: 300px;
+		word-wrap: break-word;
+	
+		z-index: 9999;
+	
+		opacity: 0;
+		left: -9999px;
+	  top: 90%;
+		
+		content: attr(data-tooltip-text);
+	}
+	
+	[data-tooltip-text]:hover:after {
+		top: 5%;
+		left: 20;
+		opacity: 1;
+	}   
 </style>
 <body style="position:relative;">
 	<div id="slidebox" style="position: relative;">
@@ -90,24 +133,29 @@
   </div>
               </div>
               <div style="position: absolute; left:480px; height:150px; bottom: 0px;">
-              <a href="/function/calendar.jv">
-               <img alt="callender" src="/style/캘랜더.png" onmouseover="this.src='/style/캘랜더반전.png'" 
-                onmouseout="this.src='/style/캘랜더.png'" style="width:90px; height:90px;">
-              </a>
+              <button id=cal style="background-color: transparent; border: none;">
+               <span data-tooltip-text="캘랜더 바로가기">
+               <img alt="callender" src="/style/캘랜더.png"
+                onmouseover="this.src='/style/캘랜더반전.png'" 
+                onmouseout="this.src='/style/캘랜더.png'"
+                style="width:100px; height:100px;">
+                </span>
+              </button> 
               </div>
-              
                  <div style="position: absolute; left:1150px; height:300px; bottom: 0px;">
-              <a href="/function/map.jv">
-               <img alt="map" src="/style/지도.png" style="width:120px;height:120px;">
-              </a>
+               <button id=cal style="background-color: transparent; border: none;">
+              <span data-tooltip-text="지도 바로가기">
+               <img alt="callender" src="/style/지도.png"
+                onmouseover="this.src='/style/지도반전.png'" 
+                onmouseout="this.src='/style/지도.png'"
+                style="width:100px; height:100px;">
+                </span>
+                </button>
               </div>
-			
 			 <img alt="wader" src="/style/기능.png">
-			
 			 <div style="position:absolute; left:665px; height:310px; bottom: 0px;">		
               <p id="realTimer"></p>     
              </div> 
-
 			</li>
 		</ul>
 	</div>
@@ -127,7 +175,63 @@
 	     </a>
 	   </div>
 	</div>
-
+	<div class="modal fade" id="myModal2" role="dialog">
+              <div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content" style="width: 550px;">
+				<div class="modal-header" align="center"
+					style="background-color: #D2E4F1;">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h3>
+						오늘은 <span class="glyphicon glyphicon-music"></span>
+					</h3>
+				</div>
+				<div class="modal-body"
+					style="padding: 40px 50px; padding-top: 10px;">
+					<div class="row" style="text-align: left;">
+						<div class="col-sm-5">
+							<h3>
+								<span class="glyphicon glyphicon-ok"></span> 일정
+							</h3>
+							<table style="font-size: 10pt;">
+								<c:forEach var="i" items="${today}">
+									<tr>
+										<td style="padding-right: 10px; padding-top: 5px;"><c:choose>
+												<c:when test="${i.CTIME ne null }">
+													<span id="${i.NUM}"></span>
+												</c:when>
+												<c:otherwise>
+												</c:otherwise>
+											</c:choose></td>
+										<td><b>${i.TITLE}</b></td>
+									</tr>
+								</c:forEach>
+							</table>
+							<c:if test="${empty today}">
+								<p id="today">오늘의 일정이 없습니다.</p>
+							</c:if>
+						</div>
+						<div class="col-sm-7">
+							<h3>
+								<span class="glyphicon glyphicon-ok"></span> D-day
+							</h3>
+							<c:forEach var="i" items="${dday}">
+								<p>
+									<b>${i.TITLE}</b>까지D${i.DD}일남았습니다.
+								</p>
+							</c:forEach>
+							<c:if test="${empty dday}">
+								<p id="dday">설정해둔 D-day가 없습니다.</p>
+							</c:if>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<img src="/style/javasicon.png" style="width: 62px; height: 16px">
+				</div>
+			</div>
+		</div>
+	</div>
 <script type='text/javascript'>
 
 
@@ -266,7 +370,7 @@ $(function(){
 
 function initMap() {
 	$("#wbt").click(function(){
-		swh -= 2;	
+		swh = 0;	
 		var address;
 			var add;
 		navigator.geolocation.watchPosition(function(e) {
@@ -304,7 +408,7 @@ function initMap() {
 					var message = address.substring(5)+"의 날씨를 알려드리겠습니다. 현재 "+data2.MEAN+data2.VOICE
 					+" 기온은 "+parseInt(data.main.temp - 273.15)+"도, 풍속은 "+data.wind.speed+", 습도는"+data.main.humidity+"퍼센트 입니다.";
 					$.ajax({
-						//url : "/tts/ttsAjax.jv",
+						url : "/tts/ttsAjax.jv",
 						data : {
 							"message" : message
 						}
@@ -335,6 +439,73 @@ function initMap() {
 		});
 	});
 	}
+	
+$(document).ready(function() {
+
+	$("#cal").click(function() {   
+		swh = 0;
+		$("#myModal2").modal();
+		var message = "오늘의 일정은";
+		$.ajax({
+			url : "/function/calTtsAjax.jv",
+		}).done(function(rst) {
+			if(${!empty today}) {
+				for (var i = 0; i < rst.length; i++) {
+				if(rst[i].CTIME != null) {
+					var getTime = (rst[i].CTIME).substring(0, 2);
+					var intTime = parseInt(getTime);
+					if (intTime < 12 ) { 
+						message += " 오전  "+rst[i].CTIME;
+						$("#"+rst[i].NUM).html("오전 "+rst[i].CTIME);
+						} else { 
+							var getMinutes = (rst[i].CTIME).substring(3,5);
+							getTime = intTime - 12;  
+							message += " 오후  "+getTime+" :  "+getMinutes;
+							$("#"+rst[i].NUM).html("오후 "+getTime+":"+getMinutes);
+							}
+						}
+					message +="   "+rst[i].TITLE+"  , "; 
+				} 
+				message += "입니다. ";
+			 } else {
+				 message += "없습니다.";
+			 }
+			message += "오늘의 D-day는 ";
+		if(${!empty dday}) { 
+			var dday = "${dday[0].DD}".substring(1, "${dday[0].DD}".length); 
+			message += "${dday[0].TITLE}까지  "+dday+"일남았습니다.";
+		} else {
+			message += "없습니다.";
+		}
+			$.ajax({
+				url : "/tts/ttsAjax.jv",
+				data : {
+					"message" : message
+				}
+		}).done(function(rst3){ 
+				var audio = new Audio("/voice//"+rst3);
+				audio.play();   
+				$('#myModal2').on('hide.bs.modal', function (e) {
+					audio.pause();
+					});
+				$('#myModal2').on('show.bs.modal', function (e) {
+					audio = new Audio("/voice//"+rst3);
+					audio.play();
+					});
+				deleteFile(rst3);
+			});
+		
+			var deleteFile = function(rst3) { 
+			$.ajax({
+				url : "/tts/ttsDeleteAjax.jv",
+				data : {
+					"tempname" : rst3 
+				}
+			})
+			};  
+		});
+	});
+});
 
 // 	 var date = new Date(); 
 

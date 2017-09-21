@@ -27,7 +27,7 @@ p {
 		</p>
 	</div>
 	<div class="w3-col m2 w3-center">
-		<a href="javascript:itemSelect('voice')" id="voice3"><img src="/style/캘린더.png" id="voice2"></img></a>
+		<a href="javascript:itemSelect('voice')" id="voice3"><img src="/style/보이스.png" id="voice2"></img></a>
 		<p style="padding-top: 10px;">
 			보이스<br />200P
 		</p>
