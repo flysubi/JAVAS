@@ -31,7 +31,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 		
 	<!-- 글 리스트 가지고 오기 -->
-	<select id="getAllTalks" resultType="java.util.HashMap">
+	<select id="getAllTalks" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 			select t.*, to_date(to_char(sysdate))+1-ft_date as FT_DIFF from (select d.* from (select rownum as r, questionboard.* from questionboard 
 			<choose><when test="arr != '' and arr != null"> where
 		<foreach collection="arr" item="search" separator=" or " open="(" close=")">

@@ -40,12 +40,12 @@ public class MemoModel {
 	}
 	
 	
-	public List<Map<String, String>> list(String id) {
+	public List<Map<String, String>> list(Map map) {
 		List<Map<String, String>> list = new ArrayList<>();
 		try {
 			SqlSession session = factory.openSession();
 			try {
-				list = session.selectList("memo.list", id);
+				list = session.selectList("memo.list", map);
 			}catch(Exception e) {
 				System.out.println("[JDBC Exception] MemoModel.list() : " + e.getMessage());
 			}finally {
@@ -55,6 +55,25 @@ public class MemoModel {
 		}
 		return list;
 	}
+	
+	public List<Map<String, String>> mylist(Map map) {
+		List<Map<String, String>> list = new ArrayList<>();
+		try {
+			SqlSession session = factory.openSession();
+			try {
+				list = session.selectList("memo.mylist", map);
+			}catch(Exception e) {
+				System.out.println("[JDBC Exception] MemoModel.mylist() : " + e.getMessage());
+			}finally {
+				session.close();
+			}
+		}catch(Exception i) {
+		}
+		return list;
+	}
+	
+	
+	
 
 	public int countAll(String id) {
 		int c = 0;

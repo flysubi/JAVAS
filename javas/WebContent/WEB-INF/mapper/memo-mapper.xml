@@ -8,20 +8,99 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(MEMO_SEQ.NEXTVAL,#{id}, #{receiver}, #{ta}, sysdate, #{category})
 	</insert>
 
-
-
-	<select id="list" parameterType="java.lang.String" resultType="java.util.HashMap">
-		select * from memo where ft_receiver = #{id} and ft_sender != #{id}
-		ORDER by ft_num desc
+	<select id="list" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		select t.*, to_date(to_char(sysdate))+1-ft_date as FT_DIFF from
+		(select d.* from (select rownum as r, memo.* from memo
+			<choose>
+         <when test="option != '' and option != null">
+            <choose>
+               <when test="option == 'writer'">
+                  where ft_sender=#{search}
+               </when>
+               <otherwise>
+                        where
+                        <foreach collection="arr" item="search2" separator=" or "
+                           open="(" close=")">
+                           (ft_content like #{search2})
+                        </foreach>
+               </otherwise>
+            </choose>
+            <if test="category != '' and category != null">
+               and category = #{category}
+            </if>
+         </when>
+         <when test="category != '' and category != null">
+            where (category=#{category})
+            <choose>
+               <when test="option != '' and option != null">
+                  <choose>
+                     <when test="option == 'writer'">
+                        where ft_sender=#{search}
+                     </when>
+                     <otherwise>
+                              where
+                              <foreach collection="arr" item="search2" separator=" or "
+                                 open="(" close=")">
+                                 (ft_content like #{search2})
+                              </foreach>
+                     </otherwise>
+                  </choose>
+               </when>
+            </choose>
+         </when>
+      </choose>
+		where ft_receiver = #{id} and ft_sender != #{id}
+		ORDER by ft_num desc)d where r between #{start} and #{end})t
 	</select>
 
-	<select id="mylist" parameterType="java.lang.String" resultType="java.util.HashMap">
-		select from memo where ft_receiver = #{id } and ft_s0ender = #{id }
-		ORDER by num desc
+	<select id="mylist" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+				select t.*, to_date(to_char(sysdate))+1-ft_date as FT_DIFF from
+		(select d.* from (select rownum as r, memo.* from memo
+			<choose>
+         <when test="option != '' and option != null">
+            <choose>
+               <when test="option == 'writer'">
+                  where ft_sender=#{search}
+               </when>
+               <otherwise>
+                        where
+                        <foreach collection="arr" item="search2" separator=" or "
+                           open="(" close=")">
+                           (ft_content like #{search2})
+                        </foreach>
+               </otherwise>
+            </choose>
+            <if test="category != '' and category != null">
+               and category = #{category}
+            </if>
+         </when>
+         <when test="category != '' and category != null">
+            where (category=#{category})
+            <choose>
+               <when test="option != '' and option != null">
+                  <choose>
+                     <when test="option == 'writer'">
+                        where ft_sender=#{search}
+                     </when>
+                     <otherwise>
+                              where
+                              <foreach collection="arr" item="search2" separator=" or "
+                                 open="(" close=")">
+                                 (ft_content like #{search2})
+                              </foreach>
+                     </otherwise>
+                  </choose>
+               </when>
+            </choose>
+         </when>
+      </choose>
+		where ft_receiver = #{id} and ft_sender = #{id}
+		ORDER by ft_num desc)d where r between #{start} and #{end})t
 	</select>
 
 	<select id="countAll" resultType="java.lang.Integer">
-		select count(*) from memo
+		select count(*) from memo where
+		category= '받은쪽지'
 	</select>
 
 	<select id="myCount" parameterType="java.util.HashMap"
@@ -51,7 +130,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="saveCount" parameterType="java.lang.Integer">
 		select count(*) from smemo
 	</select>
-	
+
 
 	<delete id="delete" parameterType="java.util.HashMap">
 		delete memo where ft_receiver = #{id} and
