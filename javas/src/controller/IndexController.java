@@ -29,12 +29,10 @@ public class IndexController {
 				
 					Map point = pdao.getPoint(id);
 					session.setAttribute("point", point.get("POINT"));
-				}
-		
-				mav.addObject("nav", "on");
 	
-				
+				}
 			}
+			mav.addObject("nav", "on");
 			return mav;
 	
 	}

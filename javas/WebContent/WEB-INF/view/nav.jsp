@@ -74,8 +74,8 @@
 					<li><a href="/" style="padding-left: 0;"><img alt="javas"
 							src="/style/javas.png"></a>
 				</ul>
-				<ul class="nav navbar-nav navbar-right"
-					style="font-size: 14pt; margin-top: 17px; font-weight: 600;">
+<!-- 				<ul class="nav navbar-nav navbar-right" -->
+<!-- 					style="font-size: 14pt; margin-top: 17px; font-weight: 600;"> -->
 		
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown"><a class="dropdown-toggle"
@@ -104,7 +104,7 @@
 				</ul>
 				<ul class="nav navbar-nav navbar-right"
 					style="font-size: 14pt; margin-top: 17px; font-weight: 600;">
-					<li><a href="#">메뉴얼</a></li>
+					<li><a href="/menuer.jv">메뉴얼</a></li>
 					<li><a href="/question/list.jv">Q&A</a></li>
 					<li><a href="/freetalk/allTalks.jv">공유게시판</a></li>
 			<li class="dropdown"><a class="dropdown-toggle"
