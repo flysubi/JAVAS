@@ -5,7 +5,7 @@
 <c:when test="${rst}">
 	<script>
 		window.alert("구매 완료");
-		location.href = "/store/main.jv";
+		location.href = "/";
 	</script>
 </c:when>
 <c:otherwise>

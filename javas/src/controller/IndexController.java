@@ -43,12 +43,6 @@ public class IndexController {
 				if (((BigDecimal)map.get("VOICE")).intValue() == 1) {
 					session.setAttribute("voice", "v");
 				} 
-				if(((BigDecimal)map.get("FULL")).intValue() == 1) {
-					session.setAttribute("full", "f");
-				}
-				if (((BigDecimal)map.get("DOUBLE")).intValue() == 1) {
-					session.setAttribute("d", "d");
-				}
 				if(!id.equals("admin")) {
 					
 				

@@ -33,13 +33,13 @@ p {
 		</p>
 	</div>
 	<div class="w3-col m2 w3-center">
-		<a href="javascript:itemSelect('double')" id="double3"><img src="/style/캘린더.png" id="double2"></img></a>
+		<a href="javascript:itemSelect('double')" id="double3"><img src="/style/더블패키지.png" id="double2"></img></a>
 		<p style="padding-top: 10px;">
 			더블 패키지<br/>캘린더 + 자산관리<br />300P
 		</p>
 	</div>
 	<div class="w3-col m2 w3-center">
-		<a href="javascript:itemSelect('full')" id="full3" ><img src="/style/캘린더.png" id="full2"></img></a>
+		<a href="javascript:itemSelect('full')" id="full3" ><img src="/style/풀패키지.png" id="full2"></img></a>
 		<p style="padding-top: 10px;">
 			풀 패키지<br/>모든 기능<br />500P
 		</p>

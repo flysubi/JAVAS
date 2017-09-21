@@ -8,8 +8,8 @@
 		<when test="item == 'fitness'">fitness = 1</when>
 		<when test="item == 'asset'">asset= 1</when>
 		<when test="item == 'voice'">voice = 1</when>
-		<when test="item == 'double'">double = 1</when>
-		<when test="item == 'full'">full = 1</when>
+		<when test="item == 'double'">calendar = 1 , asset = 1 , double = 1</when>
+		<when test="item == 'full'">full = 1 , calendar = 1 , asset = 1 , fitness = 1 , voice = 1</when>
 	</choose>
 		where id=#{id}
 	</update>

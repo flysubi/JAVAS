@@ -96,4 +96,12 @@ public class StoreController {
 			}
 		return list;
 	}
+	
+	@RequestMapping("/alert.jv")
+	public ModelAndView alert() {
+		ModelAndView mav = new ModelAndView("t_el");
+			
+			mav.addObject("section","alert/function");
+		return mav;
+	}
 }
