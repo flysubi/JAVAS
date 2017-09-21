@@ -18,52 +18,50 @@ import model.UserDao;
 
 @Controller
 public class IndexController {
-	
+
 	@Autowired
 	PointDao pdao;
-	
+
 	@Autowired
 	CalendarDao cdao;
-	
+
 	@Autowired
 	StoreDao sdao;
-	
+
 	@Autowired
 	UserDao udao;
-	
-	@RequestMapping({"/", "/index.jv"})
+
+	@RequestMapping({ "/", "/index.jv" })
 	public ModelAndView toIndex(HttpSession session) {
 		ModelAndView mav = new ModelAndView("t_base");
-		
-		String id = (String)session.getAttribute("auth");
-			if(id != null) {
-				Map map = sdao.itemInfo(id);
-				Map map2 = udao.userInfo(id);
-				if(((BigDecimal)map.get("CALENDAR")).intValue() == 1) {
-					session.setAttribute("calendar", "c");
-				}
-				if(((BigDecimal)map.get("ASSET")).intValue() == 1) {
-					session.setAttribute("asset", "a");
-				} 
-				if (((BigDecimal)map.get("FITNESS")).intValue() == 1) {
-					session.setAttribute("fitness", "f");
-				} 
-				if(!id.equals("admin")) {
-					Map point = pdao.getPoint(id);
-					session.setAttribute("point", point.get("POINT"));
-				}
-				List<Map> today = cdao.todayCal(id);
-				mav.addObject("voice", map2.get("VOICE"));
-				//mav.addObject("dday", dday);
-				mav.addObject("today", today);
 
+		String id = (String) session.getAttribute("auth");
+		if (id != null) {
+			Map map = sdao.itemInfo(id);
+			Map map2 = udao.userInfo(id);
+			if (((BigDecimal) map.get("CALENDAR")).intValue() == 1) {
+				session.setAttribute("calendar", "c");
 			}
+			if (((BigDecimal) map.get("ASSET")).intValue() == 1) {
+				session.setAttribute("asset", "a");
+			}
+			if (((BigDecimal) map.get("FITNESS")).intValue() == 1) {
+				session.setAttribute("fitness", "f");
+			}
+			if (!id.equals("admin")) {
+				Map point = pdao.getPoint(id);
+				session.setAttribute("point", point.get("POINT"));
+			}
+			List<Map> today = cdao.todayCal(id);
+			mav.addObject("voice", map2.get("VOICE"));
+			// mav.addObject("dday", dday);
+			mav.addObject("today", today);
 
+		}
 
 		mav.addObject("nav", "on");
 
+		return mav;
 
-			return mav;
-	
 	}
 }

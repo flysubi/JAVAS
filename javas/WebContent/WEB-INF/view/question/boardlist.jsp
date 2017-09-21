@@ -21,13 +21,7 @@
 	 border : 1px solid gray;
 }
 </style>
- <div class="btn-group bt-group-justified" style="float: left" >
-    <button type="button" class="btn bt">질문</button>
-    <button type="button" class="btn bt">자주묻는질문</button>
-    <button type="button" class="btn bt">해결된질문</button>
-    <button type="button" class="btn bt" style="width: 150px;"></button>
-  </div>
-<div>
+
 	<div class="input-group" style="padding-bottom: 15px; padding-top: 20px;  ">
 	</div>
 	<div class="table-responsive">
@@ -57,7 +51,7 @@
 										<td><c:forEach begin="1" end="${i.FT_DEPTH }" step="1">
 												&emsp;
 											</c:forEach> <a href="/question/detail.jv?num=${i.FT_NUM }&like=${i.FT_LIKE}"> <i
-												class="material-icons">subdirectory_arrow_right</i>${i.FT_TITLE }</a></td>
+												class="material-icons"></i>${i.FT_TITLE }</a></td>
 									</c:otherwise>
 								</c:choose>
 								<td>${i.FT_WRITER }</td>

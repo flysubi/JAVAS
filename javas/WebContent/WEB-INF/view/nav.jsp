@@ -67,7 +67,7 @@
             data-toggle="dropdown" href="#">JAVAS<span class="caret"></span></a>
             <ul class="dropdown-menu">
                <li><a href="/function/weather.jv">날씨</a></li>
-               <li><a href="/function/map.jv">길찾기</a></li>
+               <li><a href="/function/search.jv">길찾기</a></li>
                <c:if test="${calendar ne null or full ne null or d ne null }">
                <li><a href="/function/calendar.jv">캘린더</a></li>
                </c:if>

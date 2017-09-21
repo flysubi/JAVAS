@@ -5,7 +5,7 @@
 	<c:when test="${rst }">
 		<script>
 			window.alert("메세지 전송에 성공하였습니다.");
-			location.href="/memo/write.jv";
+			location.href="/memo/list.jv";
 		</script>
 	</c:when>
 	
