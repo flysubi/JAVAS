@@ -9,37 +9,37 @@ p {
 </style>
 <div class="w3-row" style="padding-top: 10px;">
 	<div class="w3-col m2 w3-center">
-		<a href="javascript:itemSelect('calendar')" id="calendar3"><img src="/style/캘린더.png" id="calendar2"></img></a>
+		<a href="javascript:itemSelect('calendar')" id="calendar3"><img src="/style/store/캘린더.png" id="calendar2"></img></a>
 		<p style="padding-top: 10px;"> 
 			캘린더<br />200P
 		</p>
 	</div>
 	<div class="w3-col m2 w3-center">
-		<a href="javascript:itemSelect('fitness')" id="fitness3"><img src="/style/건강.png" id="fitness2"></img></a>
+		<a href="javascript:itemSelect('fitness')" id="fitness3"><img src="/style/store/건강.png" id="fitness2"></img></a>
 		<p style="padding-top: 10px;">
 			건강<br />200P
 		</p>
 	</div>
 	<div class="w3-col m2 w3-center">
-		<a href="javascript:itemSelect('asset')" id="asset3" onclick="return false;"><img src="/style/asset.png" id="asset2"></img></a>
+		<a href="javascript:itemSelect('asset')" id="asset3" onclick="return false;"><img src="/style/store/asset.png" id="asset2"></img></a>
 		<p style="padding-top: 10px;">
 			자산관리<br />* 캘린더 구매자만 가능<br/>200P
 		</p>
 	</div>
 	<div class="w3-col m2 w3-center">
-		<a href="javascript:itemSelect('voice')" id="voice3"><img src="/style/보이스.png" id="voice2"></img></a>
+		<a href="javascript:itemSelect('voice')" id="voice3"><img src="/style/store/보이스.png" id="voice2"></img></a>
 		<p style="padding-top: 10px;">
 			보이스<br />200P
 		</p>
 	</div>
 	<div class="w3-col m2 w3-center">
-		<a href="javascript:itemSelect('double')" id="double3"><img src="/style/더블패키지.png" id="double2"></img></a>
+		<a href="javascript:itemSelect('double')" id="double3"><img src="/style/store/더블패키지.png" id="double2"></img></a>
 		<p style="padding-top: 10px;">
 			더블 패키지<br/>캘린더 + 자산관리<br />300P
 		</p>
 	</div>
 	<div class="w3-col m2 w3-center">
-		<a href="javascript:itemSelect('full')" id="full3" ><img src="/style/풀패키지.png" id="full2"></img></a>
+		<a href="javascript:itemSelect('full')" id="full3" ><img src="/style/store/풀패키지.png" id="full2"></img></a>
 		<p style="padding-top: 10px;">
 			풀 패키지<br/>모든 기능<br />500P
 		</p>
@@ -137,11 +137,11 @@ $(document).ready(function() {
 			for (var i = 0; i < rst.length; i++) {
 				if(rst[i] == "calendar") {
 					$("#asset").prop("disabled", false); 
-					$("#asset2").attr("src","/style/자산관리.png");
+					$("#asset2").attr("src","/style/store/자산관리.png");
 					$("#asset3").attr("onclick","return true;"); //a태그 비활성화
 				} 
 					$("#"+rst[i]).prop("disabled", true);
-					$("#"+rst[i]+"2").attr("src","/style/"+rst[i]+".png");
+					$("#"+rst[i]+"2").attr("src","/style/store/"+rst[i]+".png");
 					$("#"+rst[i]+"3").attr("onclick","return false;"); //a태그 비활성화
 				}
 			}

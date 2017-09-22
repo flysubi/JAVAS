@@ -99,7 +99,6 @@ a:HOVER {
 
 </div>
 
-<img src="기본이미지주소" onmouseover="this.src='마우스올렸을때 바뀔이미지주소'" onmouseout="this.src='기본이미지주소'" border="0">
 
 
 <div class="col-xs-4 col-md-4" >

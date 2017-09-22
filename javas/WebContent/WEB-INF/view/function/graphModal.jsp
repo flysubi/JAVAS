@@ -100,7 +100,7 @@ function drawBasic2() {
 
       data.addRows([
     	  <c:forEach var="g" items="${list2}">
-    	  [ "${g.EDATE}", ${g.K} , ${map.AC} ]s,
+    	  [ "${g.EDATE}", ${g.K} , ${map.AC} ],
         </c:forEach>
     	  <c:if test="${length2 gt 0}">
 	    	  <c:forEach var="i" begin="0" end="${length2}" step="1" varStatus="vs">
