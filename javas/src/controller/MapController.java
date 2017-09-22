@@ -36,6 +36,7 @@ public class MapController {
 			mav.addObject("section", "/function/transferTest");
 		return mav; 
 	}
+	@RequestMapping("/map1.jv")
 	public ModelAndView map1() {
 		ModelAndView mav = new ModelAndView("t_el");
 			mav.addObject("section", "/function/map1");

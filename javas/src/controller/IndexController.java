@@ -38,26 +38,28 @@ public class IndexController {
 		String id = (String) session.getAttribute("auth");
 		Map map2 = null;
 		if (id != null) {
-			Map map = sdao.itemInfo(id);
-			map2 = udao.userInfo(id);
-			if (((BigDecimal) map.get("CALENDAR")).intValue() == 1) {
-				session.setAttribute("calendar", "c");
-			}
-			if (((BigDecimal) map.get("ASSET")).intValue() == 1) {
-				session.setAttribute("asset", "a");
-			}
-			if (((BigDecimal) map.get("FITNESS")).intValue() == 1) {
-				session.setAttribute("fitness", "f");
-			}
 			if (!id.equals("admin")) {
-				Map point = pdao.getPoint(id);
-				session.setAttribute("point", point.get("POINT"));
+				Map map = sdao.itemInfo(id);
+				map2 = udao.userInfo(id);
+				if (((BigDecimal) map.get("CALENDAR")).intValue() == 1) {
+					session.setAttribute("calendar", "c");
+				}
+				if (((BigDecimal) map.get("ASSET")).intValue() == 1) {
+					session.setAttribute("asset", "a");
+				}
+				if (((BigDecimal) map.get("FITNESS")).intValue() == 1) {
+					session.setAttribute("fitness", "f");
+				}
+				if (!id.equals("admin")) {
+					Map point = pdao.getPoint(id);
+					session.setAttribute("point", point.get("POINT"));
+				}
+				List<Map> today = cdao.todayCal(id);
+				List<Map> dday = cdao.ddayCal(id);
+				mav.addObject("voice", map2.get("VOICE"));
+				mav.addObject("dday", dday);
+				mav.addObject("today", today);
 			}
-			List<Map> today = cdao.todayCal(id);
-			List<Map> dday = cdao.ddayCal(id);
-			mav.addObject("voice", map2.get("VOICE"));
-			mav.addObject("dday", dday);
-			mav.addObject("today", today);
 		}
 		mav.addObject("map", map2);
 

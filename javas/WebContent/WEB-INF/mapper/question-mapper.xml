@@ -7,10 +7,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 새로 글 쓰기 -->
 	<insert id="addNew" parameterType="java.util.HashMap">
-		insert into questionboard() values
+		insert into questionboard values
 		(questionboard_seq.nextval, 
 		#{writer},
-		#{title}, #{content}, 0, sysdate)
+		#{title}, #{content}, 0, sysdate, questionboard_seq.currval, 0)
 	</insert>
 	<update id="count" parameterType="java.util.HashMap">
 		update questionboard set FT_like = #{like} + 1 where ft_num = #{num} 	
@@ -25,10 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</when>
 		</choose>
 	</select>
-	<!-- 글 쓰면서 그룹 스탭 카운트 올리기 -->
-	<update id="addReply" parameterType="java.util.HashMap">
-		update questionboard set ft_reply = #{reply} where ft_num = #{num}		
-	</update>
+	
 		
 	<!-- 글 리스트 가지고 오기 -->
 	<select id="getAllTalks" parameterType="java.util.HashMap" resultType="java.util.HashMap">
@@ -39,8 +36,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</foreach>
 		</when>
 		</choose>
-		order by ft_num desc)d  where r between #{start} and #{end})t
+		order
+		by ft_group desc)d  where r between #{start} and #{end})t
 	</select>
+	
+	<insert id="addReply" parameterType="java.util.HashMap">
+		insert into freeboard values
+		(question_seq.nextval,  #{step}+1 , #{depth}+1,
+		#{writer},
+		#{title}, #{content} ,#{group} ,1)
+	</insert>
 	
 	<!-- 한개만 가지고 오기 -->
 	<select id="getOne" resultType="java.util.HashMap">

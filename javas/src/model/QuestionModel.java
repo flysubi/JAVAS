@@ -55,8 +55,8 @@ public class QuestionModel {
 		return n;
 	}
 
-	public Map<String, String> boardDetail(Map map) {
-		Map<String, String> map1 = new HashMap<>();
+	public Map<String, Object> boardDetail(Map map) {
+		Map<String, Object> map1 = new HashMap<>();
 		SqlSession session = factory.openSession();
 		try {
 			if(map.get("like") != null) {
@@ -86,10 +86,11 @@ public class QuestionModel {
 	
 	
 	public int boardDel(int num) {
+		System.out.println(num);
 		SqlSession session = factory.openSession();
 		int n = 0;
 		try {
-			n = session.delete("question.boarddel",num);
+			n = session.delete("question.boardDel",num);
 			
 		} catch(Exception e) {
 			System.out.println("[JDBC] Exception QuestionBoradModelException boardDel"+toString());;

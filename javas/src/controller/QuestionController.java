@@ -71,12 +71,44 @@ public class QuestionController {
 		mav.addObject("title","Q&A");
 		mav.addObject("section", "/question/test");
 		return mav;
+	}	
+	
+	
+	@RequestMapping("/answer.jv")
+	public ModelAndView BoardReply(@RequestParam(name = "num") String num) {
+		ModelAndView mav = new ModelAndView("t_el");
+		Map<String, Object> map = new HashMap<>(); 
+		map.put("num", num);
+		Map<String, Object> map1 = qs.boardDetail(map);
+		mav.addObject("section", "/question/boardanswer");
+		mav.addObject("posts", map1);
+		mav.addObject("title", "Q&A");
+		return mav;
 	}
 
-	@RequestMapping("/writeExec.jv")
-	public ModelAndView boardWriteExec(@RequestParam Map<String, Object> map, HttpSession session) {
+
+	@RequestMapping("/replyExec.jv")
+	public ModelAndView boardReplyExec(HttpSession session, @RequestParam(name="title") String title, @RequestParam(name="content") String content, @RequestParam(name="group") int group, @RequestParam(name="step") int step, @RequestParam(name="depth") int depth ) {
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("title", title);
 		map.put("writer", session.getAttribute("auth"));
+		map.put("content", content);
+		map.put("group", group);
+		qs.boardReply(map);
+		ModelAndView mav = new ModelAndView("redirect:/question/list.jv");
+		return mav;
+	}	
+	
+	@RequestMapping("/writeExec.jv")
+	public ModelAndView boardWriteExec( @RequestParam(name="title") String title, @RequestParam(name="content") String content, HttpSession session) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("writer", session.getAttribute("auth"));
+		map.put("content", content);
+		map.put("title", title);
+		System.out.println(map);
 		qs.postsUpload(map);
+		
 		ModelAndView mav = new ModelAndView("redirect:/question/list.jv");
 		return mav;
 	}
@@ -87,39 +119,15 @@ public class QuestionController {
 		Map<String, Object> map = new HashMap<>();
 		map.put("num", num);
 		map.put("like", like);
-		Map<String, String> map1 = qs.boardDetail(map);
+		Map<String, Object> map1 = qs.boardDetail(map);
 		mav.addObject("section", "/question/boarddetail");
 		mav.addObject("posts", map1);
 		mav.addObject("title", "Q&A");
 		return mav;
 	}
 
-	@RequestMapping("/answer.jv")
-	public ModelAndView BoardReply(@RequestParam(name = "num") String num) {
-		ModelAndView mav = new ModelAndView("t_el");
-		Map<String, String> map = new HashMap<>(); 
-		map.put("num", num);
-		map = qs.boardDetail(map);
-		mav.addObject("section", "/question/boardanswer");
-		mav.addObject("posts", map);
-		mav.addObject("title", "Q&A");
-		return mav;
-	}
 
-	@RequestMapping("/replyExec.jv")
-	public ModelAndView boardReplyExec(HttpSession session, @RequestParam(name="title") String title, @RequestParam(name="content") String content, @RequestParam(name="group") int group, @RequestParam(name="step") int step, @RequestParam(name="depth") int depth ) {
-		Map<String, Object> map = new HashMap<>();
-		
-		map.put("group", group);
-		map.put("step", step);
-		map.put("depth", depth);
-		map.put("writer", session.getAttribute("auth"));
-		map.put("title", title);
-		map.put("content", content);
-		qs.boardReply(map);
-		ModelAndView mav = new ModelAndView("redirect:/question/list.jv");
-		return mav;
-	}	
+
 
 	@RequestMapping("/boardDel.jv")
 	public ModelAndView talkDel(@RequestParam (name="num") int num, HttpSession session ) {

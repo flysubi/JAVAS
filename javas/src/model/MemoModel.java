@@ -77,8 +77,8 @@ public class MemoModel {
 		Map<String, Object> map = new HashMap<>();
 		SqlSession session = factory.openSession();
 		try {
-					
-			map = session.selectOne("memo.detail", num);
+			System.out.println("num"+num);		
+			map = session.selectOne("memo.detail", +num);
 		} catch (Exception e) {
 			System.out.println("[JDBC] MemoModelException boardDetail : " + e.getMessage());
 		} finally {

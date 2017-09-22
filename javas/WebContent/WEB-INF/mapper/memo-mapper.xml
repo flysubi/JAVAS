@@ -15,8 +15,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select t.*, to_date(to_char(sysdate))+1-ft_date as FT_DIFF from (select * from memo where ft_receiver = #{id } and ft_sender = #{id } ORDER by ft_num desc)t
 	</select>
 	
-	<select id="detail"  parameterType="java.lang.String" resultType="java.util.HashMap">
-		select t.*, sysdate-ft_date as FT_DIFF from (select * from memo where ft_num = #{num })t 
+	<select id="detail"  parameterType="java.lang.Integer" resultType="java.util.HashMap">
+		select * from memo where ft_num = #{num }
 	</select>
 	
 	<select id="countAll" parameterType="java.lang.String" resultType="java.lang.Integer">

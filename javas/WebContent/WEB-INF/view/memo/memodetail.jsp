@@ -26,28 +26,7 @@
 		<p style="text-align: left; padding-left: 200px; font-size: 12pt;">
 			보낸사람 : ${map.FT_SENDER } | 작성일 :
 			<fmt:formatDate value="${map.FT_DATE}" pattern="yy-MM-dd" />
-			<c:choose>
-				<c:when test="${map.FT_DIFF lt 1}">
-					<c:choose>
-						<c:when test="${map.FT.DIFF * 1440 gt 60}">
-							<small><fmt:formatNumber value="${map.FT_DIFF * 24}"
-									pattern="#,###" />시간 전</small>
-						</c:when>
-						<c:otherwise>
-							<small><fmt:formatNumber value="${map.FT_DIFF * 1440}"
-									pattern="#,###" />분 전</small>
-						</c:otherwise>
-					</c:choose>
-				</c:when>
-				<c:when test="${map.FT_DIFF lt 365}">
-					<small><fmt:formatNumber value="${map.FT_DIFF}"
-							pattern="#,###" />일 전</small>
-				</c:when>
-				<c:otherwise>
-					<small><fmt:formatNumber value="${map.FT_DIFF div 365}"
-							pattern="#,###" />년 전</small>
-				</c:otherwise>
-			</c:choose>
+		
 		받는사람 : ${map.FT_RECEIVER}
 		</hr>
 		</p>
