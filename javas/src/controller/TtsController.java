@@ -31,8 +31,8 @@ public class TtsController {
 	@ResponseBody
 	public String ttsAjax(@RequestParam(name="message", defaultValue="") String message,
 			@RequestParam(name="voice", defaultValue="2") int voice) {
-		String clientId = "AS8GAOArSnnUBGydwA_u";
-        String clientSecret = "B_CTaP7y28";
+		String clientId = "QAhViAYEB29I2wJVtNwR";
+        String clientSecret = "JgkdmZuE6j";
         String tempname="";
         String vce = voice == 2 ? "mijin" : "jinho";
         try {

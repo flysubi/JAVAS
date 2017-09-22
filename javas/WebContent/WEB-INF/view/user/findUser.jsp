@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <style type="text/css">
-b {
-	font-size: 16pt;
-}
+
 </style>
 <div align="center" class="row" style="margin-top: 100px;">
 	<div class="col-ss-0 col-sm-4"></div>

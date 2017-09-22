@@ -4,11 +4,7 @@
 <html>
 <head>
 <title>Insert title here</title>
-<style type="text/css">
-b {
-	font-size: 16pt;
-}
-</style>
+
 </head>
 
 <body>
