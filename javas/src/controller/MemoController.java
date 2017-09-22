@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -38,6 +39,25 @@ public class MemoController {
 		return mav;
 	}	
 	
+	@RequestMapping("/mylist.jv")
+	public ModelAndView mymemolist(HttpSession session) {
+		String id = (String)session.getAttribute("auth");
+		List<Map<String, String>> list = mm.mylist(id);
+		int c = mm.countAll(id);
+		int mc = mm.myCount(id);
+		session.setAttribute("memo", c);
+		session.setAttribute("mymemo", mc);
+		ModelAndView mav = new ModelAndView("t_el_memo");
+			mav.addObject("active", "mylist");
+			mav.addObject("section", "/memo/memolist");
+			mav.addObject("title","ÂÊÁö");
+			mav.addObject("name", "list");
+			mav.addObject("list", list);
+		return mav;
+	}	
+	
+	
+	
 	@RequestMapping("/write.jv")
 	public ModelAndView memosend(@RequestParam (name= "w", required= false) String w, @RequestParam (name= "my", required= false) String my) {
 		ModelAndView mav = new ModelAndView("t_el_memo");
@@ -61,11 +81,18 @@ public class MemoController {
 	
 	@RequestMapping("/writeExec.jv")
 	public ModelAndView sendExec(@RequestParam Map<String, String> map, HttpSession session) {
-		map.put("id", (String) session.getAttribute("auth"));
 		ModelAndView mav = new ModelAndView("alert/memo");
-		boolean rst = false;
-		rst = mm.send(map);
-		mav.addObject("rst", rst);
+		map.put("id", (String)session.getAttribute("auth"));
+		mav.addObject("rst", mm.send(map));
+		return mav;
+	}
+	
+	@RequestMapping("/detail.jv")
+	public ModelAndView sendExec(@RequestParam (name="num") int num) {
+		ModelAndView mav = new ModelAndView("t_el_memo");
+		Map<String, Object> map = mm.memoDetail(num);		
+			mav.addObject("secion", "/memo/detail");
+			mav.addObject("map", map);		
 		return mav;
 	}
 	
@@ -74,12 +101,6 @@ public class MemoController {
 		mm.delete(num, (String)session.getAttribute("auth"));
 		ModelAndView mav = new ModelAndView();
 			mav.setViewName("redirect:/memo/list.jv");
-		
-		
 		return mav;
 	}
-	
-	
-	
-	
 }

@@ -8,11 +8,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<select id="list" parameterType="java.lang.String" resultType="java.util.HashMap">
-		select * from memo where ft_receiver = #{id} and ft_sender != #{id} ORDER by ft_num desc 
+		select t.*, to_date(to_char(sysdate))+1-ft_date as FT_DIFF from (select * from memo where ft_receiver = #{id} and ft_sender != #{id} ORDER by ft_num desc)t 
 	</select>
 	
 	<select id="mylist" parameterType="java.lang.String" resultType="java.util.HashMap">
-		select from memo where ft_receiver = #{id } and ft_s0ender = #{id } ORDER by num desc
+		select t.*, to_date(to_char(sysdate))+1-ft_date as FT_DIFF from (select * from memo where ft_receiver = #{id } and ft_sender = #{id } ORDER by ft_num desc)t
+	</select>
+	
+	<select id="detail"  parameterType="java.lang.Integer" resultType="java.util.HashMap">
+		select * from memo where ft_num = #{num }
 	</select>
 	
 	<select id="countAll" parameterType="java.lang.String" resultType="java.lang.Integer">

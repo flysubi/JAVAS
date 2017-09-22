@@ -14,57 +14,58 @@ import org.springframework.web.servlet.ModelAndView;
 import model.CalendarDao;
 import model.PointDao;
 import model.StoreDao;
+import model.UserDao;
 
 @Controller
 public class IndexController {
-	
+
 	@Autowired
 	PointDao pdao;
-	
+
 	@Autowired
 	CalendarDao cdao;
-	
+
 	@Autowired
 	StoreDao sdao;
-	
-	@RequestMapping({"/", "/index.jv"})
+
+	@Autowired
+	UserDao udao;
+
+	@RequestMapping({ "/", "/index.jv" })
 	public ModelAndView toIndex(HttpSession session) {
 		ModelAndView mav = new ModelAndView("t_base");
-		
-		String id = (String)session.getAttribute("auth");
-			if(id != null) {
+
+		String id = (String) session.getAttribute("auth");
+		Map map2 = null;
+		if (id != null) {
+			if (!id.equals("admin")) {
 				Map map = sdao.itemInfo(id);
-				if(((BigDecimal)map.get("CALENDAR")).intValue() == 1) {
+				map2 = udao.userInfo(id);
+				if (((BigDecimal) map.get("CALENDAR")).intValue() == 1) {
 					session.setAttribute("calendar", "c");
 				}
-				if(((BigDecimal)map.get("ASSET")).intValue() == 1) {
+				if (((BigDecimal) map.get("ASSET")).intValue() == 1) {
 					session.setAttribute("asset", "a");
-				} 
-				if (((BigDecimal)map.get("FITNESS")).intValue() == 1) {
+				}
+				if (((BigDecimal) map.get("FITNESS")).intValue() == 1) {
 					session.setAttribute("fitness", "f");
-				} 
-				if (((BigDecimal)map.get("VOICE")).intValue() == 1) {
-					session.setAttribute("voice", "v");
-				} 
-				if(!id.equals("admin")) {
+				}
+				if (!id.equals("admin")) {
 					Map point = pdao.getPoint(id);
 					session.setAttribute("point", point.get("POINT"));
-
-
-
 				}
-				List<Map> dday = cdao.ddayCal(id);
 				List<Map> today = cdao.todayCal(id);
+				List<Map> dday = cdao.ddayCal(id);
+				mav.addObject("voice", map2.get("VOICE"));
 				mav.addObject("dday", dday);
 				mav.addObject("today", today);
-
 			}
-
+		}
+		mav.addObject("map", map2);
 
 		mav.addObject("nav", "on");
 
+		return mav;
 
-			return mav;
-	
 	}
 }

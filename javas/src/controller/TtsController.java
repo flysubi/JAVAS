@@ -29,10 +29,12 @@ public class TtsController {
 	
 	@RequestMapping("/ttsAjax.jv")
 	@ResponseBody
-	public String ttsAjax(@RequestParam(name="message", defaultValue="")String message) {
+	public String ttsAjax(@RequestParam(name="message", defaultValue="") String message,
+			@RequestParam(name="voice", defaultValue="2") int voice) {
 		String clientId = "AS8GAOArSnnUBGydwA_u";
         String clientSecret = "B_CTaP7y28";
         String tempname="";
+        String vce = voice == 2 ? "mijin" : "jinho";
         try {
             String text = URLEncoder.encode(message, "UTF-8"); // 13ÀÚ
             String apiURL = "https://openapi.naver.com/v1/voice/tts.bin";
@@ -42,7 +44,7 @@ public class TtsController {
             con.setRequestProperty("X-Naver-Client-Id", clientId);
             con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
             // post request
-            String postParams = "speaker=mijin&speed=1&text=" + text;
+            String postParams = "speaker="+vce+"&speed=1&text=" + text;
             con.setDoOutput(true);
             DataOutputStream wr = new DataOutputStream(con.getOutputStream());
             wr.writeBytes(postParams);

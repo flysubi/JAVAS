@@ -18,7 +18,7 @@
         map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
         places = new google.maps.places.PlacesService(map);
         google.maps.event.addListener(map, 'tilesloaded', tilesLoaded);
-        //autocomplete = new google.maps.places.Autocomplete(document.getElementById('searchbox'));
+        //autocomplete = n흠ew google.maps.places.Autocomplete(document.getElementById('searchbox'));
         searchbox = new google.maps.places.SearchBox(document.getElementById("searchbox"));
         google.maps.event.addListener(searchbox, 'place_changed', function () {
             showSelectedPlace();
@@ -214,7 +214,9 @@
         <br>
         <input type="radio" name="type" value="subway_station" onclick="search()">지하철
    		<br>
-        <input type="radio" name="type" value="lodging" onclick="search()">숙박업소</form>     
+        <input type="radio" name="type" value="lodging" onclick="search()">숙박업소    
+		<br>
+        <input type="radio" name="type" value="busstop" onclick="search()">버스정류장</form>
 		
 </div>
 <div id="listing">

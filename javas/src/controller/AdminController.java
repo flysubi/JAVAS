@@ -34,7 +34,7 @@ public class AdminController {
 	public ModelAndView toLogin(HttpSession session) {
 		ModelAndView mav = new ModelAndView("t_el");
 		mav.addObject("section", "admin/login");
-		session.setAttribute("title", "관리자로그인");
+		mav.addObject("title", "관리자로그인");
 		mav.addObject("height", "52%");
 		return mav;
 	}
@@ -81,6 +81,7 @@ public class AdminController {
 
 		List<Map<String, Object>> list = adao.member();
 		mav.addObject("section", "admin/member");
+		mav.addObject("title", "회원명단");
 		mav.addObject("list", list);
 		return mav;
 
@@ -158,7 +159,8 @@ public class AdminController {
 		mav.addObject("cnt6", cnt6);
 		mav.addObject("cnt7", cnt7);
 		mav.addObject("section", "/admin/statistics");
-
+		
+		mav.addObject("title", "회원통계");
 		return mav;
 	}
 	

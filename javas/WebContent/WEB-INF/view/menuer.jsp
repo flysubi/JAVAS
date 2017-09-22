@@ -118,14 +118,6 @@
 		<li></li>
 		<li></li>
 	</ul>
-	<p class="pos">
-		<label for="pos1"></label>
-		<label for="pos2"></label>
-		<label for="pos3"></label>
-		<label for="pos4"></label>
-		<label for="pos5"></label>
-		<label for="pos6"></label>
-	</p>
 </div>
 </div>
 

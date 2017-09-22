@@ -117,7 +117,6 @@ public class FreetalkController {
 			@RequestParam (name="search", required=false) String s,
 			@RequestParam (name="num",defaultValue="-1") int num, @RequestParam (name="num2",defaultValue="-1") int num2,
 			HttpSession session ) {
-		
 		String[] ar = null;
 		if(s != null) {
 			ar = s.split("\\s+");

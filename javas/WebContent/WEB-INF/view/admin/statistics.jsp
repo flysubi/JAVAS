@@ -4,8 +4,8 @@
 <script type="text/javascript"
 	src="https://www.gstatic.com/charts/loader.js"></script>
 <h3>회원통계</h3>
-<div id="chart_div" style="width: 900px; height: 500px;"></div>
-<div id="chart_div2" style="width: 900px; height: 500px;"></div>
+<div id="chart_div" style="width: 550px; height: 500px; float: left"></div>
+<div id="chart_div2" style="width: 550px; height: 500px; float: right;"></div>
 
 <script type="text/javascript">
 	google.charts.load("current", {

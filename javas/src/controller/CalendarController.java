@@ -150,18 +150,6 @@ public class CalendarController {
 		mav.setViewName("redirect:/function/calendar.jv");
 		return mav;
 	}
-
-	@RequestMapping("/calTest.jv")
-	public ModelAndView calTest(HttpSession session) {
-		String id = (String) session.getAttribute("auth");
-		ModelAndView mav = new ModelAndView("t_el");
-		List<Map> dday = cdao.ddayCal(id);
-		List<Map> today = cdao.todayCal(id);
-		mav.addObject("dday", dday);
-		mav.addObject("today", today);
-		mav.addObject("section", "function/calTest");
-		return mav;
-	}
 	
 	@RequestMapping("/calTtsAjax.jv")
 	@ResponseBody

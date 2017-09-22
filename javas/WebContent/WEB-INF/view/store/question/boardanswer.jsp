@@ -12,9 +12,7 @@
 			<div class="form-group" align="left">
 				<label style="margin-left: 10px;">내용</label>
 				<textarea rows="10" class="form-control" name="content" placeholder="내용을 입력해주세요." >
-
-
-
+</br>
 ${posts.FT_WRITER} 님의 글
 =============================================================================================
 
@@ -24,7 +22,8 @@ ${posts.FT_CONTENT}
 	
 				</textarea>
 				<input type="text" name="group" value="${posts.FT_GROUP }" style="display: none;"/>
-				
+				<input type="text" name="step" value="${posts.FT_STEP }" style="display: none;"/>
+				<input type="text" name="depth" value="${posts.FT_DEPTH }" style="display: none;"/>
 			</div>
 			<div class="form-group">
 				<button id="sbt" type="submit" class="btn btn-default" style="width: 100%">보내기</button>

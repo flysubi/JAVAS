@@ -16,19 +16,13 @@ public class MenuerController {
 	@Autowired
 	PointDao pdao;
 	
-	@RequestMapping({"/menuer.jv"})
+	@RequestMapping("/menuer.jv")
 	public ModelAndView toIndex(HttpSession session) {
 		ModelAndView mav = new ModelAndView("t_el");
 		
 		
 		mav.addObject("title","¸Þ´º¾ó");
 		mav.addObject("section", "menuer");
-//		String id = (String)session.getAttribute("auth");
-//		if(id != null) {
-//			Map point = pdao.getPoint(id);
-//			session.setAttribute("point", point.get("POINT"));
-//		}
-		
 		return mav;
 	}
 	

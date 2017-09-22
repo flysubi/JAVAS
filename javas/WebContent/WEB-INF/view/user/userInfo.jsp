@@ -4,9 +4,7 @@
 <html>
 <head>
 <style type="text/css">
-b {
-	font-size: 16pt;
-}
+
 .form-control {
 	height: 50px;
 }
@@ -68,9 +66,18 @@ b {
     				</div>
     				<span id="ywrg"
 							style="color: red; float: left;"></span><br/>
-					<label class="radio-inline" style="font-size: 20px;"><input type="radio" name="gender" value="남" style="height: 20px; width: 20px;"> 남자</label>
-					<label class="radio-inline" style="font-size: 20px;"><input type="radio" name="gender" value="여" style="height: 20px; width: 20px;"> 여자</label>
+					<label class="radio-inline" style="font-size: 20px;"><input type="radio" name="gender" value="남" ${map.GENDER eq '남' ? 'checked' : '' } style="height: 20px; width: 20px;"> 남성</label>
+					<label class="radio-inline" style="font-size: 20px;"><input type="radio" name="gender" value="여" ${map.GENDER eq '여' ? 'checked' : '' } style="height: 20px; width: 20px;"> 여성</label>
 					</div>
+					<c:if test="${map.VOICE ne 0 }">
+					<div style="font-size: 20px;">
+					알림 voice
+					</div>
+					<div>			
+					<label class="radio-inline" style="font-size: 20px;"><input type="radio" name="voice" value="1" ${map.VOICE eq 1 ? 'checked' : '' } style="height: 20px; width: 20px;"> 남</label>
+					<label class="radio-inline" style="font-size: 20px;"><input type="radio" name="voice" value="2" ${map.VOICE eq 2 ? 'checked' : '' } style="height: 20px; width: 20px;"> 여</label>
+					</div>
+					</c:if>
 					<button type="submit" class="btn bnt-default" id="save" style="background-color: LightSkyBlue; color: white; font-weight: 900; width: 49%;">저장하기</button>
 					<button type="reset" class="btn bnt-default" style="background-color: LightSkyBlue; color: white; font-weight: 900;  width: 49%;">다시작성</button>
 				</form>
