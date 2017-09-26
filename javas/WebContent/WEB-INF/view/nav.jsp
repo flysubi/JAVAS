@@ -31,27 +31,6 @@
 					</a></li>
 				</ul>
 			</c:when>
-			<c:when test="${auth eq 'admin' }">
-				<ul class="nav navbar-nav">
-					<li><p class="navbar-text" style="color: black;">
-							<b>관리자모드입니다.(<b>1000000</b> P) 
-						</p></li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="/store/main.jv" style="color: #939393;"><span
-							class="glyphicon glyphicon-gift"></span> 상점</a></li>
-					<li><a href="/memo/list.jv" style="color: #939393;"><span
-							class="glyphicon glyphicon-envelope"></span> 쪽지함 ${memo }</a></li>
-					<li><a href="/user/userInfo.jv" style="color: #939393;"><span
-							class="glyphicon glyphicon-wrench"></span> 정보수정</a></li>
-					<li><a href="/user/logout.jv" style="color: #939393;"><span
-							class="glyphicon glyphicon-log-out"></span> 로그아웃</a></li>
-				</ul>
-
-			</c:when>
-			
-
-
 				<c:otherwise>
 					<ul class="nav navbar-nav">
 						<li><p class="navbar-text" style="color: black;">
@@ -59,12 +38,14 @@
 							</p></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
+					<c:if test="${auth ne 'admin' }">
 						<li><a href="/store/main.jv" style="color: #939393;"><span
 								class="glyphicon glyphicon-gift"></span> 상점</a></li>
 						<li><a href="/memo/list.jv" style="color: #939393;"><span
 								class="glyphicon glyphicon-envelope"></span> 쪽지함 ${memo }</a></li>
 						<li><a href="/user/userInfo.jv" style="color: #939393;"><span
 								class="glyphicon glyphicon-wrench"></span> 정보수정</a></li>
+						</c:if>
 						<li><a href="/user/logout.jv" style="color: #939393;"><span
 								class="glyphicon glyphicon-log-out"></span> 로그아웃</a></li>
 					</ul>
@@ -87,7 +68,7 @@
 						data-toggle="dropdown" href="#">게시판관리<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="/question/list.jv">Q&A</a></li>
-							<li><a href="/freetalk/altalks.jv">공유게시판</a></li>
+							<li><a href="/freetalk/allTalks.jv">공유게시판</a></li>
 						</ul></li>
 
 					<li class="dropdown"><a class="dropdown-toggle"

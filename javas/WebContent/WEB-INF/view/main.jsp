@@ -491,8 +491,8 @@ $(document).ready(function() {
 	               "voice" : ${voice eq 1 ? 1 : 2}
 	            }
 	      }).done(function(rst3){ 
-	            var audio = new Audio("/voice//"+rst3);
-	            audio.play();   
+	           var audio = new Audio("/voice//"+rst3);
+	           audio.play();   
 	            $('#myModal2').on('hide.bs.modal', function (e) {
 	               audio.pause();
 	               });

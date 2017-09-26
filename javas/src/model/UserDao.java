@@ -85,24 +85,28 @@ public class UserDao {
 
 	public boolean idCheck(String id) {
 
+		SqlSession session = factory.openSession();
 		try {
-			SqlSession session = factory.openSession();
 			HashMap rst = session.selectOne("user.idCheck", id);
 			return rst != null;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
+		} finally {
+			session.close();
 		}
 	}
 
 	public boolean emailCheck(String email) {
+		SqlSession session = factory.openSession();
 		try {
-			SqlSession session = factory.openSession();
 			HashMap rst = session.selectOne("user.findMember", email);
 			return rst != null;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
+		} finally {
+			session.close();
 		}
 	}
 	

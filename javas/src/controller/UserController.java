@@ -122,7 +122,7 @@ public class UserController {
 		String id = (String) session.getAttribute("auth");
 		Map point = new HashMap();
 		point.put("id", id);
-		point.put("point", 100);
+		point.put("point", 485);
 		point.put("content", "login");
 		boolean bb = pdao.pointUp(point);
 		Map getPoint = pdao.getPoint(id);
@@ -241,13 +241,9 @@ public class UserController {
 	}
 	
 	@RequestMapping("/userDelete.jv")
-	public ModelAndView userDelete(HttpSession session, HttpServletResponse resp) {
+	public ModelAndView userDelete(HttpSession session) {
 		ModelAndView mav = new ModelAndView("t_el_info");
-		Cookie c = new Cookie("login", (String) session.getAttribute("auth"));
-		c.setPath("/");
-		c.setMaxAge(0);
-		resp.addCookie(c);
-		session.invalidate();
+		
 		mav.addObject("section", "user/userDelete");
 		session.setAttribute("title", "È¸¿øÅ»Åð");
 		mav.addObject("id", session.getAttribute("auth"));
@@ -267,12 +263,19 @@ public class UserController {
 		return mav;
 	}
 	@RequestMapping("/deleteResult.jv")
-	public ModelAndView deleteResult(@RequestParam() Map map, HttpSession session) {
+	public ModelAndView deleteResult(@RequestParam() Map map, HttpSession session,  HttpServletResponse resp) {
 		ModelAndView mav = new ModelAndView("alert/userInfo");
 		boolean rst = false;
 		map.put("id", session.getAttribute("auth")); 
 		if(udao.login(map)) {
 			rst = udao.infoResult(map);
+			if(rst) {
+				Cookie c = new Cookie("login", (String) session.getAttribute("auth"));
+				c.setPath("/");
+				c.setMaxAge(0);
+				resp.addCookie(c);
+				session.invalidate();
+			}
 		}
 		mav.addObject("rst2", rst);
 		return mav;
